@@ -1,61 +1,45 @@
-local _G = GLOBAL
-
--- 概率升级物品
-local useUpgradePolicy = GetModConfigData('UseUpgradePolicy')
-TUNING.useUpgradePolicy = useUpgradePolicy
-
-local useRoleLevelUp = GetModConfigData('UseRoleLevelUp')
-local useMorePick = GetModConfigData('UseMorePick')
-local useMoreDrop = GetModConfigData('UseMoreDrop')
-local useRoleStrenth = GetModConfigData('UseRoleStrenth')
-local useWeaponLevelUp = GetModConfigData('UseWeaponLevelUp')
-local useHatslLevelUp = GetModConfigData('UseHatslLevelUp')
-local useFarmLevelUp = GetModConfigData('UseFarmLevelUp')
 
 
-if useMorePick then
-	modimport("scripts/zaxmods/zaxmorepick.lua")
-end
 
-if useWeaponLevelUp then
-	modimport("scripts/zaxmods/zaxweapons.lua")
-end
-
-if useHatslLevelUp then
-	modimport("scripts/zaxmods/zaxhats.lua")
-end
-
-if useFarmLevelUp then
-	modimport("scripts/zaxmods/zaxfarm.lua")
-end
+PrefabFiles = {
+	"myth_granary"
+}
 
 
--- 初始化角色，添加组件
--- init character and add components
-local function initPalyer(inst)
-	-- 角色升级
-	if useRoleLevelUp then 			
-		inst:AddComponent("rolelevel")
-	end
-	-- 额外掉落
-	if useMoreDrop then 
-		inst:AddComponent("zxmoredrop")
-	end
-	-- 角色强化
-	if useRoleStrenth then
-		inst:AddComponent("rolestrenth")
-	end
-
-	if useFarmLevelUp then
-		inst:AddComponent("zxfarmskill")
-	end
-
-	inst.components.talker:Say("我又来到这个奇怪的世界！")	
-end
+modimport("scripts/mods/zx_containers.lua")
 
 
-if GLOBAL.TheNet:GetIsServer() then
-	AddPlayerPostInit(initPalyer)
-end
+
+local Recipes = { 
+
+	{
+        name = "zx_granary",
+        ingredients = {
+            {
+				Ingredient("bearger_fur", 1), Ingredient("boards", 5),Ingredient("bundlewrap", 8),MedalIngredient("immortal_essence", 6),
+			},
+			{
+				Ingredient("bearger_fur", 1), Ingredient("boards", 3),Ingredient("bundlewrap", 4),MedalIngredient("immortal_essence", 3),
+			},
+        },
+        level = TECH.LOST,
+		placer = "zx_granary_placer", 
+		no_deconstruction = true,
+		min_spacing = 1.5,
+		filters = {"STRUCTURES","CONTAINERS"},
+    }
+}
+
+AddRecipe2(
+	"myth_granary",
+	{Ingredient("bearger_fur", 1)},
+	TECH.SCIENCE_TWO,
+	{
+		placer = "myth_granary_placer",
+        atlas = "images/myth_granary.xml",
+        image = "myth_granary.tex",
+    },
+	{"STRUCTURES", "CONTAINERS"}
+)
 
 
