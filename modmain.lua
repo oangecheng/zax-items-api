@@ -1,25 +1,29 @@
-
 GLOBAL.setmetatable(env,{__index=function(t,k) return GLOBAL.rawget(GLOBAL,k) end})
+
+-- 仓库保鲜
+TUNING.ZX_GRANARY_FRESHRATE = GetModConfigData("zx_granary_freshrate")
+TUNING.ZX_GRANARY_DIFFICULT = GetModConfigData("zx_granary_difficult")
+-- 语言
+TUNING.ZX_ITEMS_LANGUAGE = GetModConfigData("zx_items_language")
+
 
 
 PrefabFiles = {
-	-- "myth_granary",
-	"lg_granary",
+	"zx_granary_meat",
+	"zx_granary_veggie"
 }
 
 
- modimport("scripts/mods/zx_containers.lua")
+Assets = {
+    Asset("ANIM", "anim/ui_zx_5x10.zip"),
+}
 
-AddRecipe2(
-	"lg_granary",
-	{Ingredient("bearger_fur", 1)},
-	TECH.SCIENCE_TWO,
-	{
-		placer = "lg_granary_placer",
-        atlas = "images/inventoryimages/lg_granary.xml",
-        image = "lg_granary.tex",
-    },
-	{"STRUCTURES", "CONTAINERS"}
-)
+
+local ch = TUNING.ZX_ITEMS_LANGUAGE == "ch"
+modimport(ch and "utils/strings_ch" or "utils/strings_eng")
+modimport("scripts/mods/zx_containers.lua")
+modimport("utils/recipes")
+modimport("utils/minimap")
+
 
 
