@@ -5,25 +5,36 @@ TUNING.ZX_GRANARY_FRESHRATE = GetModConfigData("zx_granary_freshrate")
 TUNING.ZX_GRANARY_DIFFICULT = GetModConfigData("zx_granary_difficult")
 -- 语言
 TUNING.ZX_ITEMS_LANGUAGE = GetModConfigData("zx_items_language")
+-- 一些其他物品
+TUNING.ZX_MEATRACK = GetModConfigData("zx_meatrack")
 
 
 
 PrefabFiles = {
 	"zx_granary_meat",
-	"zx_granary_veggie"
+	"zx_granary_veggie",
+	"zx_placers"
 }
 
 
 Assets = {
-    Asset("ANIM", "anim/ui_zx_5x10.zip"),
+    Asset("ANIM", "anim/ui_zx_5x10.zip"),	
+    Asset("ATLAS", "images/inventoryimages/zx_meatrack_hermit.xml"),
+    Asset("IMAGE", "images/inventoryimages/zx_meatrack_hermit.tex"),
 }
 
 
 local ch = TUNING.ZX_ITEMS_LANGUAGE == "ch"
-modimport(ch and "utils/strings_ch" or "utils/strings_eng")
+modimport(ch and "utils/strings_ch.lua" or "utils/strings_eng.lua")
 modimport("scripts/mods/zx_containers.lua")
-modimport("utils/recipes")
-modimport("utils/minimap")
+modimport("utils/recipes.lua")
+modimport("utils/minimap.lua")
+
+-- 原版物品其他mod可能也有
+-- 加个配置项是否可建造
+if TUNING.ZX_MEATRACK then
+    modimport("scripts/mods/zx_meatrack.lua")
+end
 
 
 

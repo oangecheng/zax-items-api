@@ -1,6 +1,6 @@
 local ch = locale == "zh" or locale == "zhr"
 
-local VERSION = "0.1.0"
+local VERSION = "0.1.1"
 
 -- 名称
 name = ch and "建家党狂喜" or "more items"
@@ -8,14 +8,14 @@ name = ch and "建家党狂喜" or "more items"
 description = 
 ch and 
 [[
-	版本 0.1.0                   
+	版本 0.1.1                  
 	一些额外的物品，提升游戏体验,
 	你可以建造一些物品来装饰自己的基地，
 	持续更新中...
 ]]
 or 
 [[
-	version 0.1.0                              
+	version 0.1.1                             
 	more items to improve game experience，
 	You can build items to decorate your base.
 	Continuous updates...
@@ -77,5 +77,17 @@ configuration_options =
 			{description = ch and "困难" or "difficult", data = 2},
 		},
 		default = 0,
+	},
+
+	Title(ch and "其他物品" or "other items"),
+	{
+		name = "zx_meatrack",
+		label = ch and "老奶奶晾肉架" or "meatrack hermit",
+		options = {
+			{description = ch and "允许建造" or "enable", data = true},
+			{description = ch and "禁止建造" or "disable", data = false},
+		},
+		default = true,
 	}
+
 } 
