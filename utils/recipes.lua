@@ -51,3 +51,18 @@ AddRecipe2(
     },
 	{"STRUCTURES", "CONTAINERS"}
 )
+
+
+-- 小雏菊花丛
+AddRecipe2(
+	"zx_flower_1",
+	{Ingredient("butterfly", 2),},
+	TECH.SCIENCE_ONE,
+	{
+		placer = "zx_flower_1_placer",
+        atlas = "images/inventoryimages/zx_flower_1.xml",
+        image = "zx_flower_1.tex",
+        min_spacing = 0,
+    },
+	{"STRUCTURES", "DECOR"}
+)

@@ -13,7 +13,8 @@ TUNING.ZX_MEATRACK = GetModConfigData("zx_meatrack")
 PrefabFiles = {
 	"zx_granary_meat",
 	"zx_granary_veggie",
-	"zx_placers"
+	"zx_placers",
+    "zx_flower",
 }
 
 
