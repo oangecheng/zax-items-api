@@ -15,14 +15,20 @@ local prefabs = {
 
 -- 被锤掉落里面的物品
 local function on_hit(inst, worker)
-    inst.components.container:DropEverything()
-    inst.components.container:Close()
+    if inst.components.container ~= nil then
+        inst.components.container:DropEverything()
+        inst.components.container:Close()
+    end
 end
 
 -- 锤坏了之后移除仓库
 local function on_hammered(inst, worker)
-    inst.components.lootdropper:DropLoot()
-    inst.components.container:DropEverything()
+    if inst.components.lootdropper ~= nil then
+        inst.components.lootdropper:DropLoot()
+    end
+    if inst.components.container ~= nil then
+        inst.components.container:DropEverything()
+    end
     local fx = SpawnPrefab("collapse_small")
     fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
     fx:SetMaterial("wood")
