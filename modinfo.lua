@@ -1,29 +1,31 @@
 local ch = locale == "zh" or locale == "zhr"
 
-local VERSION = "0.1.3"
+local VERSION = "0.1.5"
 
 -- 名称
-name = ch and "建家党狂喜" or "more items"
+name = "建家党狂喜(more items)"
 -- 描述
 description = 
 ch and 
 [[
-	版本 0.1.3                  
+	版本 0.1.5                  
 	一些额外的物品，提升游戏体验,
 	你可以建造一些物品来装饰自己的基地，
 	肉仓/蔬菜仓
 	寄居蟹晾肉架
 	小雏菊花丛
+	寄居蟹蜂箱
 	持续更新中...
 ]]
 or 
 [[
-	version 0.1.3                            
+	version 0.1.5                            
 	more items to improve game experience，
 	You can build items to decorate your base.
 	Meat and Veggie Granary
 	Meatrack hermit
 	Daisy bushes
+	Beebox hermit
 	Continuous updates...
 ]]
 
@@ -89,6 +91,15 @@ configuration_options =
 	{
 		name = "zx_meatrack",
 		label = ch and "老奶奶晾肉架" or "meatrack hermit",
+		options = {
+			{description = ch and "允许建造" or "enable", data = true},
+			{description = ch and "禁止建造" or "disable", data = false},
+		},
+		default = true,
+	},
+	{
+		name = "zx_beebox",
+		label = ch and "老奶奶蜂箱" or "beebox hermit",
 		options = {
 			{description = ch and "允许建造" or "enable", data = true},
 			{description = ch and "禁止建造" or "disable", data = false},

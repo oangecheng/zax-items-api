@@ -7,6 +7,7 @@ TUNING.ZX_GRANARY_DIFFICULT = GetModConfigData("zx_granary_difficult")
 TUNING.ZX_ITEMS_LANGUAGE = GetModConfigData("zx_items_language")
 -- 一些其他物品
 TUNING.ZX_MEATRACK = GetModConfigData("zx_meatrack")
+TUNING.ZX_BEEBOX = GetModConfigData("zx_beebox")
 
 
 
@@ -22,6 +23,8 @@ Assets = {
     Asset("ANIM", "anim/ui_zx_5x10.zip"),	
     Asset("ATLAS", "images/inventoryimages/zx_meatrack_hermit.xml"),
     Asset("IMAGE", "images/inventoryimages/zx_meatrack_hermit.tex"),
+    Asset("ATLAS", "images/inventoryimages/zx_beebox_hermit.xml"),
+    Asset("IMAGE", "images/inventoryimages/zx_beebox_hermit.tex"),
 }
 
 
@@ -35,6 +38,9 @@ modimport("utils/minimap.lua")
 -- 加个配置项是否可建造
 if TUNING.ZX_MEATRACK then
     modimport("scripts/mods/zx_meatrack.lua")
+end
+if TUNING.ZX_BEEBOX then
+    modimport("scripts/mods/zx_beebox.lua")
 end
 
 
