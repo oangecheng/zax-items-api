@@ -1,6 +1,6 @@
 local ch = locale == "zh" or locale == "zhr"
 
-local VERSION = "0.1.5"
+local VERSION = "0.1.6"
 
 -- 名称
 name = "建家党狂喜(more items)"
@@ -8,24 +8,26 @@ name = "建家党狂喜(more items)"
 description = 
 ch and 
 [[
-	版本 0.1.5                  
+	版本 0.1.6                  
 	一些额外的物品，提升游戏体验,
 	你可以建造一些物品来装饰自己的基地，
 	肉仓/蔬菜仓
 	寄居蟹晾肉架
 	小雏菊花丛
 	寄居蟹蜂箱
+	紫色酢浆草
 	持续更新中...
 ]]
 or 
 [[
-	version 0.1.5                            
+	version 0.1.6                            
 	more items to improve game experience，
 	You can build items to decorate your base.
 	Meat and Veggie Granary
 	Meatrack hermit
 	Daisy bushes
 	Beebox hermit
+	Oxalis
 	Continuous updates...
 ]]
 

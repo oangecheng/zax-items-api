@@ -6,8 +6,13 @@ STRINGS.NAMES.ZX_GRANARY_MEAT = "Meat granary"
 STRINGS.RECIPE_DESC.ZX_GRANARY_MEAT = "It can store a lot of meat!"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZX_GRANARY_MEAT = "Everyone has to eat meat, eggs and milk!"
 
+-- 花1
 STRINGS.NAMES.ZX_FLOWER_1 = "Daisy bushes"
 STRINGS.RECIPE_DESC.ZX_FLOWER_1 = "Small yellow flowers"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZX_FLOWER_1 = "so beautiful!"
+-- 花2
+STRINGS.NAMES.ZX_FLOWER_1 = "Oxalis"
+STRINGS.RECIPE_DESC.ZX_FLOWER_1 = "Pourple represents nobility!"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZX_FLOWER_1 = "so beautiful!"
 
 -- 老奶奶晾肉架
