@@ -80,3 +80,18 @@ AddRecipe2(
     },
 	{"STRUCTURES", "DECOR"}
 )
+
+
+-- 紫色酢浆草
+AddRecipe2(
+	"zx_light_2",
+	{Ingredient("butterfly", 2),},
+	TECH.SCIENCE_ONE,
+	{
+		placer = "zx_light_2_placer",
+        atlas = "images/inventoryimages/zx_light_2.xml",
+        image = "zx_light_2.tex",
+        min_spacing = 0,
+    },
+	{"STRUCTURES", "DECOR"}
+)

@@ -16,6 +16,7 @@ PrefabFiles = {
 	"zx_granary_veggie",
 	"zx_placers",
     "zx_flower",
+    "zx_light",
 }
 
 
