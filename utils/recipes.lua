@@ -80,3 +80,18 @@ AddRecipe2(
     },
 	{"STRUCTURES", "DECOR"}
 )
+
+
+-- 紫色酢浆草
+AddRecipe2(
+	"zx_light_1",
+	{Ingredient("fireflies", 1), Ingredient("cutstone", 2), Ingredient("gears", 2), Ingredient("yellowgem", 1)},
+	TECH.SCIENCE_ONE,
+	{
+		placer = "zx_light_1_placer",
+        atlas = "images/inventoryimages/zx_light_1.xml",
+        image = "zx_light_1.tex",
+        min_spacing = 1,
+    },
+	{"STRUCTURES", "DECOR"}
+)
