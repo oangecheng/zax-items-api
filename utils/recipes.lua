@@ -81,12 +81,26 @@ AddRecipe2(
 	{"STRUCTURES", "DECOR"}
 )
 
+-- 绣球花
+-- AddRecipe2(
+-- 	"zx_flower_3",
+-- 	{Ingredient("butterfly", 2),},
+-- 	TECH.SCIENCE_ONE,
+-- 	{
+-- 		placer = "zx_flower_3_placer",
+--         atlas = "images/inventoryimages/zx_flower_3.xml",
+--         image = "zx_flower_3.tex",
+--         min_spacing = 0,
+--     },
+-- 	{"STRUCTURES", "DECOR"}
+-- )
 
--- 紫色酢浆草
+
+-- 花园灯
 AddRecipe2(
 	"zx_light_1",
 	{Ingredient("fireflies", 1), Ingredient("cutstone", 2), Ingredient("gears", 2), Ingredient("yellowgem", 1)},
-	TECH.SCIENCE_ONE,
+	TECH.SCIENCE_TWO,
 	{
 		placer = "zx_light_1_placer",
         atlas = "images/inventoryimages/zx_light_1.xml",

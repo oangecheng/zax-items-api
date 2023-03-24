@@ -12,7 +12,6 @@ local default_pos = {
 local params = containers.params
 
 
-
 params.zx_granary_meat = {
 	widget =
     {
@@ -31,24 +30,32 @@ for y = 4, 0, -1 do
 	end
 end
 
-local meat_items = {
-	"meat",
-	"fish",
-	"egg",
-	"dairy",
-	"fat",
+local meat_types = {
+	FOODTYPE.MEAT,
+}
+
+local meat_whitelist = {
+	"spoiled_food",
+	"spoiled_fish",
+	"spoiled_fish_small",
+	"rottenegg"
 }
 
 function params.zx_granary_meat.itemtestfn(container, item, slot)
-	if cooking.ingredients[item.prefab] == nil then
-		return false
-	end
-	for _, v in ipairs(meat_items) do
-		if cooking.ingredients[item.prefab].tags[v] ~= nil then
+	if not (item and item.components.edible) then return false end
+
+	local type = item.components.edible.foodtype
+	for _,v in ipairs(meat_types) do
+		if type == v then
 			return true
 		end
 	end
-	return false
+
+	for _,v in ipairs(meat_whitelist) do
+		if v == item.prefab then
+			return true
+		end 
+	end
   end
 
 
@@ -71,29 +78,37 @@ for y = 4, 0, -1 do
 end
 
 
-local veggie_items = {
-	"veggie",
-	"fruit",
-	"seed",
-	"sweetener",
-	"decoration",
+local veggie_types = {
+	FOODTYPE.VEGGIE,
+	FOODTYPE.SEEDS,
+	FOODTYPE.GENERIC,
+	FOODTYPE.GOODIES,
+	FOODTYPE.BERRY,
+}
+
+local veggie_whitelist = {
+	"spoiled_food",
+	"acorn",
 }
 
 
 function params.zx_granary_veggie.itemtestfn(container, item, slot)
-	if item:HasTag("deployedfarmplant") then
-		return true
-	end
-	if cooking.ingredients[item.prefab] == nil then
-		return false
-	end
-	for _, v in ipairs(veggie_items) do
-		if cooking.ingredients[item.prefab].tags[v] ~= nil then
+	if not (item and item.components.edible) then return false end
+
+	local type = item.components.edible.foodtype
+	for _,v in ipairs(veggie_types) do
+		if type == v then
 			return true
 		end
 	end
+
+	for _,v in ipairs(veggie_whitelist) do
+		if v == item.prefab then
+			return true
+		end 
+	end
 	return false
-  end
+end
 
 
 --加入容器

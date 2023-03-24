@@ -3,6 +3,7 @@
     <folder id="0" name="images">
         <file id="0" name="images/zx_flower_1.png" width="400" height="400" pivot_x="0.507463" pivot_y="0.251244"/>
         <file id="1" name="images/zx_flower_2.png" width="400" height="400" pivot_x="0.507463" pivot_y="0.345771"/>
+        <file id="2" name="images/zx_flower_3.png" width="400" height="400" pivot_x="0.524876" pivot_y="0.460199"/>
     </folder>
     <entity id="0" name="zx_flower">
         <animation id="0" name="zx_flower_1" length="1000">
@@ -50,7 +51,7 @@
         <animation id="1" name="zx_flower_2" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="zx_flower_2" folder="0" file="1" abs_x="0" abs_y="0" abs_pivot_x="0.507463" abs_pivot_y="0.345771" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" name="zx_flower_2" folder="0" file="1" abs_x="0" abs_y="0" abs_pivot_x="0.507463" abs_pivot_y="0.345771" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
                 </key>
                 <key id="1" time="200">
                     <object_ref id="0" timeline="0" key="1" z_index="0"/>
@@ -70,22 +71,64 @@
             </mainline>
             <timeline id="0" name="zx_flower_2">
                 <key id="0" spin="0">
-                    <object folder="0" file="1"/>
+                    <object folder="0" file="1" angle="0"/>
                 </key>
                 <key id="1" time="200" spin="0">
-                    <object folder="0" file="1"/>
+                    <object folder="0" file="1" angle="0"/>
                 </key>
                 <key id="2" time="400" spin="0">
-                    <object folder="0" file="1"/>
+                    <object folder="0" file="1" angle="0"/>
                 </key>
                 <key id="3" time="600" spin="0">
-                    <object folder="0" file="1"/>
+                    <object folder="0" file="1" angle="0"/>
                 </key>
                 <key id="4" time="800" spin="0">
-                    <object folder="0" file="1"/>
+                    <object folder="0" file="1" angle="0"/>
                 </key>
                 <key id="5" time="1000" spin="0">
-                    <object folder="0" file="1"/>
+                    <object folder="0" file="1" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="zx_flower_3" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="zx_flower_3" folder="0" file="2" abs_x="0" abs_y="0" abs_pivot_x="0.524876" abs_pivot_y="0.460199" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="200">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="2" time="400">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                </key>
+                <key id="3" time="600">
+                    <object_ref id="0" timeline="0" key="3" z_index="0"/>
+                </key>
+                <key id="4" time="800">
+                    <object_ref id="0" timeline="0" key="4" z_index="0"/>
+                </key>
+                <key id="5" time="1000">
+                    <object_ref id="0" timeline="0" key="5" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="zx_flower_3">
+                <key id="0">
+                    <object folder="0" file="2"/>
+                </key>
+                <key id="1" time="200">
+                    <object folder="0" file="2" angle="0"/>
+                </key>
+                <key id="2" time="400" spin="0">
+                    <object folder="0" file="2"/>
+                </key>
+                <key id="3" time="600" spin="0">
+                    <object folder="0" file="2"/>
+                </key>
+                <key id="4" time="800" spin="0">
+                    <object folder="0" file="2"/>
+                </key>
+                <key id="5" time="1000" spin="0">
+                    <object folder="0" file="2"/>
                 </key>
             </timeline>
         </animation>

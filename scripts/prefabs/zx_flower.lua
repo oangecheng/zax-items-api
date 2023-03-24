@@ -4,6 +4,8 @@ local assets = {
     Asset("IMAGE", "images/inventoryimages/zx_flower_1.tex"),
     Asset("ATLAS", "images/inventoryimages/zx_flower_2.xml"),
     Asset("IMAGE", "images/inventoryimages/zx_flower_2.tex"),
+    Asset("ATLAS", "images/inventoryimages/zx_flower_3.xml"),
+    Asset("IMAGE", "images/inventoryimages/zx_flower_3.tex"),
 }
 
 
@@ -61,4 +63,6 @@ end
 return MakeFlower("zx_flower_1"),
 MakePlacer("zx_flower_1_placer", "zx_flower", "zx_flower", "zx_flower_1"),
 MakeFlower("zx_flower_2"),
-MakePlacer("zx_flower_2_placer", "zx_flower", "zx_flower", "zx_flower_2")
+MakePlacer("zx_flower_2_placer", "zx_flower", "zx_flower", "zx_flower_2"),
+MakeFlower("zx_flower_3"),
+MakePlacer("zx_flower_3_placer", "zx_flower", "zx_flower", "zx_flower_3")
