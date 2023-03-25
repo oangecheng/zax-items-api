@@ -38,15 +38,14 @@ local meat_whitelist = {
 	"spoiled_food",
 	"spoiled_fish",
 	"spoiled_fish_small",
-	"rottenegg"
+	"rottenegg",
 }
 
 function params.zx_granary_meat.itemtestfn(container, item, slot)
-	if not (item and item.components.edible) then return false end
-
-	local type = item.components.edible.foodtype
+	if item == nil then return false end
 	for _,v in ipairs(meat_types) do
-		if type == v then
+		local tag = "edible_"..v
+		if item:HasTag(tag) then 
 			return true
 		end
 	end
@@ -56,7 +55,8 @@ function params.zx_granary_meat.itemtestfn(container, item, slot)
 			return true
 		end 
 	end
-  end
+	return false
+end
 
 
 params.zx_granary_veggie = {
@@ -93,11 +93,10 @@ local veggie_whitelist = {
 
 
 function params.zx_granary_veggie.itemtestfn(container, item, slot)
-	if not (item and item.components.edible) then return false end
-
-	local type = item.components.edible.foodtype
+	if item == nil then return false end
 	for _,v in ipairs(veggie_types) do
-		if type == v then
+		local tag = "edible_"..v
+		if item:HasTag(tag) then 
 			return true
 		end
 	end
