@@ -1,6 +1,6 @@
 local ch = locale == "zh" or locale == "zhr"
 
-local VERSION = "0.1.9.2"
+local VERSION = "0.2.0"
 
 -- 名称
 name = "建家党狂喜(more items)"
@@ -8,7 +8,7 @@ name = "建家党狂喜(more items)"
 description = 
 ch and 
 [[
-	版本 0.1.9                 
+	版本 0.2.0                 
 	一些额外的物品，提升游戏体验,
 	你可以建造一些物品来装饰自己的基地，
 	肉仓/蔬菜仓
@@ -17,11 +17,12 @@ ch and
 	寄居蟹蜂箱
 	紫色酢浆草
 	花园灯
+	绣球花
 	持续更新中...
 ]]
 or 
 [[
-	version 0.1.9                           
+	version 0.2.0                          
 	more items to improve game experience，
 	You can build items to decorate your base.
 	Meat and Veggie Granary
@@ -30,6 +31,7 @@ or
 	Beebox hermit
 	Oxalis
 	Garden Lamp
+	Hydrangea
 	Continuous updates...
 ]]
 
@@ -72,9 +74,9 @@ configuration_options =
 		name = "zx_granary_freshrate",
 		label = ch and "保鲜设置" or "keep freshness settings",
 		options = {
+			{description = ch and "正常(冰箱)" or "normal", data = 1},
+			{description = ch and "缓慢" or "default", data = 0.5},
 			{description = ch and "默认" or "default", data = 0.2},
-			{description = ch and "普通" or "default", data = 0.5},
-			{description = ch and "正常" or "normal", data = 1},
 			{description = ch and "永久" or "always", data = 0},
 			{description = ch and "返鲜" or "fresh back", data = -0.2},
 		},

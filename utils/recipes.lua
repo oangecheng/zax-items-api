@@ -81,19 +81,19 @@ AddRecipe2(
 	{"STRUCTURES", "DECOR"}
 )
 
--- 绣球花
--- AddRecipe2(
--- 	"zx_flower_3",
--- 	{Ingredient("butterfly", 2),},
--- 	TECH.SCIENCE_ONE,
--- 	{
--- 		placer = "zx_flower_3_placer",
---         atlas = "images/inventoryimages/zx_flower_3.xml",
---         image = "zx_flower_3.tex",
---         min_spacing = 0,
---     },
--- 	{"STRUCTURES", "DECOR"}
--- )
+--绣球花
+AddRecipe2(
+	"zx_flower_3",
+	{Ingredient("butterfly", 2),},
+	TECH.SCIENCE_ONE,
+	{
+		placer = "zx_flower_3_placer",
+        atlas = "images/inventoryimages/zx_flower_3.xml",
+        image = "zx_flower_3.tex",
+        min_spacing = 0,
+    },
+	{"STRUCTURES", "DECOR"}
+)
 
 
 -- 花园灯
