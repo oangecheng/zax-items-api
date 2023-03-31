@@ -18,6 +18,7 @@ ch and
 	紫色酢浆草
 	花园灯
 	绣球花
+	花园水井
 	持续更新中...
 ]]
 or 
@@ -32,6 +33,7 @@ or
 	Oxalis
 	Garden Lamp
 	Hydrangea
+	Garden Well
 	Continuous updates...
 ]]
 

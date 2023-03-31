@@ -17,6 +17,7 @@ PrefabFiles = {
 	"zx_placers",
     "zx_flower",
     "zx_light",
+    "zx_well",
 }
 
 

@@ -33,3 +33,8 @@ STRINGS.CHARACTERS.GENERIC.DESCRIBE.BEEBOX_HERMIT = "so many bees!"
 STRINGS.NAMES.ZX_LIGHT_1 = "Garden Lamp"
 STRINGS.RECIPE_DESC.ZX_LIGHT_1 = "A small lamp that keeps shining!"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZX_LIGHT_1 = "This light is so comfortable!"
+
+-- 水井
+STRINGS.NAMES.ZX_WELL = "Garden Well"
+STRINGS.RECIPE_DESC.ZX_WELL = "A lot of water!"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZX_WELL = "Farming is much more convenient now!"
