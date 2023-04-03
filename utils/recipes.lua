@@ -114,7 +114,7 @@ AddRecipe2(
 -- 水井
 AddRecipe2(
     "zx_well",
-    {Ingredient("fireflies", 1), Ingredient("cutstone", 2), Ingredient("gears", 2), Ingredient("yellowgem", 1)},
+    {Ingredient("goldenshovel", 1), Ingredient("cutstone", 5), Ingredient("boards", 2), Ingredient("rope", 1)},
     TECH.SCIENCE_TWO,
     {
         placer = "zx_well_placer",

@@ -1,8 +1,9 @@
 local assets = {
     Asset("ANIM", "anim/zx_well.zip"),
 	Asset("ATLAS", "images/minimap/zx_well.xml"),
-	Asset("ATLAS", "images/zx_well.xml"),
-	Asset("IMAGE", "images/zx_well.tex"),
+    Asset("IMAGE", "images/minimap/zx_well.tex"),
+	Asset("ATLAS", "images/inventoryimages/zx_well.xml"),
+	Asset("IMAGE", "images/inventoryimages/zx_well.tex"),
 }
 
 local prefabs = {
@@ -27,21 +28,24 @@ end
 
 
 -- 建造
-local function onbuilt(inst)
+local function onBuilt(inst)
     inst.AnimState:PlayAnimation("idle")
     inst.SoundEmitter:PlaySound("dontstarve/common/icebox_craft")
 end
 
 
 local function fn()
+
+    local inst = CreateEntity()
     
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
     inst.entity:AddMiniMapEntity()
     inst.entity:AddNetwork()
+    inst.entity:AddSoundEmitter()
 	
-	MakeObstaclePhysics(inst, .25)
-	inst:SetPhysicsRadiusOverride(.25)
+	MakeObstaclePhysics(inst, 1)
+	inst:SetPhysicsRadiusOverride(1)
 
     inst.MiniMapEntity:SetIcon("zx_well.tex")
 
@@ -71,6 +75,9 @@ local function fn()
     -- inst.components.workable:SetOnWorkCallback(onHit)
 
     inst:ListenForEvent("onbuilt", onBuilt)
+    -- 如果没有做雪覆盖的动画，这个函数是没有意义的
+    MakeSnowCovered(inst)
+
     return inst
 end
 

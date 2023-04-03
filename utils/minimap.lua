@@ -1,6 +1,7 @@
 local map_icons = {
 	"zx_granary_meat",
     "zx_granary_veggie",
+    "zx_well"
 }
 
 for k,v in pairs(map_icons) do
