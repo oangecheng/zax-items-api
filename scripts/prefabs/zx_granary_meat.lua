@@ -81,6 +81,7 @@ local function fn()
 	
     inst:AddTag("structure")
 	inst:AddTag("wildfirepriority")
+    inst:AddTag("chest")
 
 	MakeObstaclePhysics(inst, 1.5)
 	

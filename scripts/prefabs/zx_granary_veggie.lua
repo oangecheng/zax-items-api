@@ -86,6 +86,7 @@ local function fn()
     inst.MiniMapEntity:SetIcon("zx_granary_veggie.tex")
 	
     inst:AddTag("structure")
+    inst:AddTag("chest")
 	inst:AddTag("wildfirepriority")
 
 	MakeObstaclePhysics(inst, 1.5)

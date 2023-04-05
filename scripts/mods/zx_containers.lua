@@ -115,3 +115,27 @@ local containers = require "containers"
 for k, v in pairs(params) do
     containers.MAXITEMSLOTS = math.max(containers.MAXITEMSLOTS, v.widget.slotpos ~= nil and #v.widget.slotpos or 0)
 end
+
+
+
+--兼容show me的绿色索引，代码参考自风铃草大佬的穹妹--------
+--我是参考的勋章，哈哈----
+local zx_containers= {
+	"zx_granary_meat",
+	"zx_granary_veggie",
+}
+--如果他优先级比我高 这一段生效
+for k,mod in pairs(ModManager.mods) do 
+	if mod and mod.SHOWME_STRINGS then      
+		if mod.postinitfns and mod.postinitfns.PrefabPostInit and mod.postinitfns.PrefabPostInit.treasurechest then     --是的 箱子的寻物已经加上去了
+			for _, v in ipairs(zx_containers) do
+				mod.postinitfns.PrefabPostInit[v] = mod.postinitfns.PrefabPostInit.treasurechest
+			end
+		end
+	end
+end
+--如果他优先级比我低 那下面这一段生效
+TUNING.MONITOR_CHESTS = TUNING.MONITOR_CHESTS or {}
+for _, v in ipairs(zx_containers) do
+	TUNING.MONITOR_CHESTS[v] = true
+end
