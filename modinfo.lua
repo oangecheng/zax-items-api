@@ -1,6 +1,6 @@
 local ch = locale == "zh" or locale == "zhr"
 
-local VERSION = "0.2.1"
+local VERSION = "0.2.2"
 
 -- 名称
 name = "建家党狂喜(more items)"
