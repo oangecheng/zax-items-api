@@ -3,6 +3,86 @@ local containers = require "containers"
 
 
 
+---- 容器排序 ----------------
+
+local function compareStr(str1, str2)
+    if (str1 == str2) then
+        return 0
+    end
+    if (str1 < str2) then
+        return -1
+    end
+    if (str1 > str2) then
+        return 1
+    end
+end
+
+
+local function compareFun(a, b)
+    if a and b then
+        --尝试按照 prefab 名字排序
+        local prefab_a = tostring(a.prefab)
+        local prefab_b = tostring(b.prefab)
+        return compareStr(prefab_a, prefab_b)
+    end
+end
+
+
+--插入法排序函数
+local function insertSortFun(list, comp)
+    for i = 2, #list do
+        local v = list[i]
+        local j = i - 1
+        while (j > 0 and (comp(list[j], v) > 0)) do
+            list[j+1] = list[j]
+            j = j-1
+        end
+        list[j+1] = v
+    end
+end
+
+
+--容器排序
+local function slotsSortFun(inst)
+    if inst and inst.components.container then
+        --取出容器中的所有物品
+        local items = {}
+        for k, v in pairs(inst.components.container.slots) do
+            local item = inst.components.container:RemoveItemBySlot(k)
+            if (item) then
+                table.insert(items, item)
+            end
+        end
+
+        insertSortFun(items, compareFun)
+
+        for i = 1, #items do
+            inst.components.container:GiveItem(items[i])
+        end
+    end
+end
+
+--- 箱子整理函数
+--- @param inst 箱子
+--- @param doer 玩家
+local function containerSortFn(inst, doer)
+	if inst.components.container ~= nil then
+		slotsSortFun(inst)
+	elseif inst.replica.container ~= nil and not inst.replica.container:IsBusy() then
+		SendRPCToServer(RPC.DoWidgetButtonAction, nil, inst, nil)
+	end
+end
+
+
+--- 按钮是否可点击
+--- @param inst 箱子
+local function containerSortValidFn(inst)
+	return inst.replica.container ~= nil and not inst.replica.container:IsEmpty()--容器不为空
+end
+
+-------------------- 容器排序 ---------------
+
+
 local default_pos = {
 	zx_granary_meat = Vector3(0, 220, 0),
 	zx_granary_veggie = Vector3(0, 220, 0),
@@ -20,6 +100,12 @@ params.zx_granary_meat = {
         animbuild = "ui_zx_5x10",
         pos = default_pos.zx_granary_meat,
         side_align_tip = 160,
+		buttoninfo = {
+			text = "整理",
+			position = Vector3(0, -230, 0),
+			fn = containerSortFn,
+			validfn = containerSortValidFn,
+		}
     },
     type = "chest",
 }
