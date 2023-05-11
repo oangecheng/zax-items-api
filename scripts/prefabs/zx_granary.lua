@@ -127,12 +127,12 @@ local function makeGranary(name)
 	    inst:AddComponent("preserver")
 	    inst.components.preserver:SetPerishRateMultiplier(fresh_rate)
 
+        MakeLargeBurnable(inst)
         inst.components.burnable:SetOnBurntFn(on_burnt)
         inst.components.burnable:SetOnIgniteFn(on_ignite)
         inst.components.burnable:SetOnExtinguishFn(on_extinguish)
 	
         AddHauntableDropItemOrWork(inst)
-        MakeLargeBurnable(inst)
         MakeLargePropagator(inst)
         MakeSnowCovered(inst)
         return inst

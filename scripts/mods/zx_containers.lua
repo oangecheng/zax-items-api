@@ -153,6 +153,12 @@ params.zx_granary_veggie = {
         animbuild = "ui_zx_5x10",
         pos = default_pos.zx_granary_veggie,
         side_align_tip = 160,
+		buttoninfo = {
+			text = "整理",
+			position = Vector3(0, -230, 0),
+			fn = containerSortFn,
+			validfn = containerSortValidFn,
+		}
     },
     type = "chest",
 }

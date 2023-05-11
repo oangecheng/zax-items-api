@@ -12,8 +12,7 @@ TUNING.ZX_BEEBOX = GetModConfigData("zx_beebox")
 
 
 PrefabFiles = {
-	"zx_granary_meat",
-	"zx_granary_veggie",
+	"zx_granary",
 	"zx_placers",
     "zx_flower",
     "zx_light",
