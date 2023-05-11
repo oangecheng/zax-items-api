@@ -125,7 +125,8 @@ local function makeGranary(name)
 
         -- 添加保鲜组件
 	    inst:AddComponent("preserver")
-	    inst.components.preserver:SetPerishRateMultiplier(fresh_rate)
+        local rate = fresh_rate()
+	    inst.components.preserver:SetPerishRateMultiplier(rate)
 
         MakeLargeBurnable(inst)
         inst.components.burnable:SetOnBurntFn(on_burnt)
