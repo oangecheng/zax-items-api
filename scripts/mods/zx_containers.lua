@@ -86,6 +86,7 @@ end
 local default_pos = {
 	zx_granary_meat = Vector3(0, 220, 0),
 	zx_granary_veggie = Vector3(0, 220, 0),
+	zx_box = Vector3(0, 220, 0),
 }
 
 
@@ -200,6 +201,40 @@ function params.zx_granary_veggie.itemtestfn(container, item, slot)
 	end
 	return false
 end
+
+
+-- 特色容器的大小都是 5x5的尺寸
+local function createBoxParam()
+	return {
+		widget =
+		{
+			slotpos = {},
+			animbank = "ui_zx_5x5",
+			animbuild = "ui_zx_5x5",
+			pos = default_pos.zx_box,
+			side_align_tip = 160,
+		},
+		type = "chest",
+	}
+end
+-- 设置容器的位置
+local function initBoxSlot(param)
+	for y = 4, 0, -1 do
+		for x = 0, 4 do
+			table.insert(param.widget.slotpos, Vector3(80 * (x - 3) + 80, 80 * (y - 3) + 80, 0))
+		end
+	end
+end
+
+
+--- 干草车只能放草
+params.zx_hay_cart = createBoxParam()
+initBoxSlot(params.zx_hay_cart)
+function params.zx_hay_cart.itemtestfn(container, item, slot)
+	if item.prefab == "cutgrass" then return true end
+	return false
+end
+
 
 
 --加入容器

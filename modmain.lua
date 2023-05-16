@@ -17,11 +17,13 @@ PrefabFiles = {
     "zx_flower",
     "zx_light",
     "zx_well",
+    "zx_box",
 }
 
 
 Assets = {
     Asset("ANIM", "anim/ui_zx_5x10.zip"),	
+    Asset("ANIM", "anim/ui_zx_5x5.zip"),	
     Asset("ATLAS", "images/inventoryimages/zx_meatrack_hermit.xml"),
     Asset("IMAGE", "images/inventoryimages/zx_meatrack_hermit.tex"),
     Asset("ATLAS", "images/inventoryimages/zx_beebox_hermit.xml"),
