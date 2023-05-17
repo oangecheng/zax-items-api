@@ -5,6 +5,26 @@ local containers = require "containers"
 
 ---- 容器排序 ----------------
 
+-- 设置容器的位置
+local function init5x5BoxSlot(param)
+	for y = 4, 0, -1 do
+		for x = 0, 4 do
+			table.insert(param.widget.slotpos, Vector3(80 * (x - 3) + 80, 80 * (y - 3) + 80, 0))
+		end
+	end
+end
+
+
+-- 设置容器的位置
+local function init5x10BoxSlot(param)
+	for y = 4, 0, -1 do
+		for x = 0, 9 do
+			table.insert(param.widget.slotpos, Vector3(82 * (x - 5) + 40, 80 * (y - 3) + 80, 0))
+		end
+	end
+end
+
+
 local function compareStr(str1, str2)
     if (str1 == str2) then
         return 0
@@ -203,33 +223,25 @@ function params.zx_granary_veggie.itemtestfn(container, item, slot)
 end
 
 
--- 特色容器的大小都是 5x5的尺寸
+-- 特色容器的大小都是 5x10 的尺寸
 local function createBoxParam()
 	return {
 		widget =
 		{
 			slotpos = {},
-			animbank = "ui_zx_5x5",
-			animbuild = "ui_zx_5x5",
+			animbank = "ui_zx_5x10",
+			animbuild = "ui_zx_5x10",
 			pos = default_pos.zx_box,
 			side_align_tip = 160,
 		},
 		type = "chest",
 	}
 end
--- 设置容器的位置
-local function initBoxSlot(param)
-	for y = 4, 0, -1 do
-		for x = 0, 4 do
-			table.insert(param.widget.slotpos, Vector3(80 * (x - 3) + 80, 80 * (y - 3) + 80, 0))
-		end
-	end
-end
 
 
 --- 干草车只能放草
 params.zx_hay_cart = createBoxParam()
-initBoxSlot(params.zx_hay_cart)
+init5x10BoxSlot(params.zx_hay_cart)
 function params.zx_hay_cart.itemtestfn(container, item, slot)
 	if item.prefab == "cutgrass" then return true end
 	return false

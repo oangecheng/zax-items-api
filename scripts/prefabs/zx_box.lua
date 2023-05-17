@@ -72,11 +72,11 @@ local function onClose(inst)
     local container = inst.components.container
     if container then
         if container:IsEmpty() then
-            inst:PlayAnimation("empty")
+            inst.AnimState:PlayAnimation("empty")
         elseif container:IsFull() then
-            inst:PlayAnimation("full")
+            inst.AnimState:PlayAnimation("full")
         else
-            inst:PlayAnimation("half")
+            inst.AnimState:PlayAnimation("half")
         end
     end
 end
@@ -105,7 +105,7 @@ local function makeBox(name, icebox)
 	    inst:AddTag("wildfirepriority")
         inst:AddTag("chest")
 
-	    MakeObstaclePhysics(inst, 1.5)
+	    MakeObstaclePhysics(inst, 1)
 	
         inst.AnimState:SetBank(name) 
         inst.AnimState:SetBuild(name)

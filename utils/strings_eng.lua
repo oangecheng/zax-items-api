@@ -6,6 +6,10 @@ STRINGS.NAMES.ZX_GRANARY_MEAT = "Meat granary"
 STRINGS.RECIPE_DESC.ZX_GRANARY_MEAT = "It can store a lot of meat!"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZX_GRANARY_MEAT = "Fresh meat tastes good!"
 
+STRINGS.NAMES.ZX_HAY_CART = "Hay cart"
+STRINGS.RECIPE_DESC.ZX_HAY_CART = "Can store a lot of grass"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZX_HAY_CART = "Too much grass!"
+
 -- 花1
 STRINGS.NAMES.ZX_FLOWER_1 = "Daisy bushes"
 STRINGS.RECIPE_DESC.ZX_FLOWER_1 = "Small yellow flowers"

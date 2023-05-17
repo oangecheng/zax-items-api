@@ -53,6 +53,21 @@ AddRecipe2(
 )
 
 
+-- 干草车
+AddRecipe2(
+	"zx_hay_cart",
+	{Ingredient("boards", 10)},
+	TECH.SCIENCE_TWO,
+	{
+		placer = "zx_hay_cart_placer",
+        atlas = "images/inventoryimages/zx_hay_cart.xml",
+        image = "zx_hay_cart.tex",
+    },
+	{"STRUCTURES", "CONTAINERS"}
+)
+
+
+
 -- 小雏菊花丛
 AddRecipe2(
 	"zx_flower_1",

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+    <folder id="0" name="images">
+        <file id="0" name="images/zx_hay_cart_empty.png" width="400" height="400" pivot_x="0.5" pivot_y="0.3"/>
+        <file id="1" name="images/zx_hay_cart_full.png" width="400" height="400" pivot_x="0.5" pivot_y="0.3"/>
+        <file id="2" name="images/zx_hay_cart_half.png" width="400" height="400" pivot_x="0.5" pivot_y="0.3"/>
+    </folder>
+    <entity id="0" name="zx_hay_cart">
+        <animation id="0" name="empty" length="300">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="zx_hay_cart_empty" folder="0" file="0" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.3" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="100">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="2" time="200">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                </key>
+                <key id="3" time="300">
+                    <object_ref id="0" timeline="0" key="3" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="zx_hay_cart_empty">
+                <key id="0" spin="0">
+                    <object folder="0" file="0"/>
+                </key>
+                <key id="1" time="100" spin="0">
+                    <object folder="0" file="0"/>
+                </key>
+                <key id="2" time="200" spin="0">
+                    <object folder="0" file="0"/>
+                </key>
+                <key id="3" time="300" spin="0">
+                    <object folder="0" file="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="half" length="300">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="zx_hay_cart_half" folder="0" file="2" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.3" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="100">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="2" time="200">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                </key>
+                <key id="3" time="300">
+                    <object_ref id="0" timeline="0" key="3" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="zx_hay_cart_half">
+                <key id="0" spin="0">
+                    <object folder="0" file="2"/>
+                </key>
+                <key id="1" time="100" spin="0">
+                    <object folder="0" file="2"/>
+                </key>
+                <key id="2" time="200" spin="0">
+                    <object folder="0" file="2"/>
+                </key>
+                <key id="3" time="300" spin="0">
+                    <object folder="0" file="2"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="full" length="300">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="zx_hay_cart_full" folder="0" file="1" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.3" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="100">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="2" time="200">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                </key>
+                <key id="3" time="300">
+                    <object_ref id="0" timeline="0" key="3" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="zx_hay_cart_full">
+                <key id="0" spin="0">
+                    <object folder="0" file="1"/>
+                </key>
+                <key id="1" time="100" spin="0">
+                    <object folder="0" file="1"/>
+                </key>
+                <key id="2" time="200" spin="0">
+                    <object folder="0" file="1"/>
+                </key>
+                <key id="3" time="300" spin="0">
+                    <object folder="0" file="1"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>
