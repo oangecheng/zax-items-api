@@ -61,14 +61,7 @@ local function onExtinguish(inst)
 end
 
 
--- 打开/关闭播放声音，这里使用盐盒的音效
-local function onOpen(inst)
-    inst.SoundEmitter:PlaySound("saltydog/common/saltbox/open")
-end
-
--- 关闭的时候根据格子填充的数量判断显示样式
-local function onClose(inst)
-    inst.SoundEmitter:PlaySound("saltydog/common/saltbox/close")
+local function updateState(inst)
     local container = inst.components.container
     if container then
         if container:IsEmpty() then
@@ -79,6 +72,18 @@ local function onClose(inst)
             inst.AnimState:PlayAnimation("half")
         end
     end
+end
+
+
+-- 打开/关闭播放声音，这里使用盐盒的音效
+local function onOpen(inst)
+    inst.SoundEmitter:PlaySound("saltydog/common/saltbox/open")
+end
+
+-- 关闭的时候根据格子填充的数量判断显示样式
+local function onClose(inst)
+    inst.SoundEmitter:PlaySound("saltydog/common/saltbox/close")
+    updateState(inst)
 end
 
 
@@ -152,6 +157,11 @@ local function makeBox(name, icebox)
         AddHauntableDropItemOrWork(inst)
         MakeLargePropagator(inst)
         MakeSnowCovered(inst)
+
+        inst.OnLoad = function(data)
+            updateState(inst)
+        end
+
         return inst
     end
 
