@@ -46,5 +46,10 @@ if TUNING.ZX_BEEBOX then
     modimport("scripts/mods/zx_beebox.lua")
 end
 
+modimport("medal_ui.lua")--UI、容器等
+
+
+-- act.doer:ShowPopUp(POPUPS.MEDALSKIN, true ,act.invobject)
+
 
 

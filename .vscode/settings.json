@@ -1,5 +1,30 @@
 {
     "Lua.diagnostics.disable": [
-        "undefined-global"
+    ],
+    "Lua.diagnostics.globals": [
+        "ANCHOR_MIDDLE",
+        "Class",
+        "SCALEMODE_FILLSCREEN",
+        "TheFrontEnd",
+        "SCALEMODE_PROPORTIONAL",
+        "AddClassPostConstruct",
+        "AddPopup",
+        "POPUPS",
+        "modimport",
+        "CONTROL_MAP",
+        "CONTROL_CANCEL",
+        "TheInput",
+        "STRINGS",
+        "HEADERFONT",
+        "UICOLOURS",
+        "Vector3",
+        "ThePlantRegistry",
+        "CONTROL_OPEN_CRAFTING",
+        "CONTROL_OPEN_INVENTORY",
+        "CODEFONT",
+        "ANCHOR_LEFT",
+        "PLANTREGISTRYUICOLOURS",
+        "CONTROL_PREVVALUE",
+        "json"
     ]
 }
