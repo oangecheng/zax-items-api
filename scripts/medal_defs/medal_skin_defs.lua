@@ -25,7 +25,7 @@ local medal_skins =
 				id=3,
 				price=168,
 				name=STRINGS.MEDAL_SKIN_NAME.MEDAL_STATUE_GUGUGU_SKIN3,
-				reskin_fn=function(inst)
+				reskin_fn = function(inst)
 					inst.AnimState:OverrideSymbol("swap_statue", "medal_statue_gugugu_skin3", "swap_statue")
 				end,
 				image="medal_statue_gugugu_skin3",

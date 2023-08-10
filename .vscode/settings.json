@@ -25,6 +25,8 @@
         "ANCHOR_LEFT",
         "PLANTREGISTRYUICOLOURS",
         "CONTROL_PREVVALUE",
-        "json"
+        "json",
+        "Asset",
+        "AddPlayerPostInit"
     ]
 }

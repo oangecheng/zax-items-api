@@ -27,6 +27,7 @@ local MedalSkinWidget = Class(Widget, function(self, owner, staff)
 	local button_data = {
 		-- {text = STRINGS.UI.PLANTREGISTRY.TAB_TITLE_PLANTS, build_panel_fn = function() return PlantsPage(self) end},
 		{text = STRINGS.MEDAL_UI.SKIN_TITLE, build_panel_fn = function() return MedalSkinPage(self,owner,staff) end},
+		{text = "页面2", build_panel_fn = function() return MedalSkinPage(self,owner,staff) end},
 	}
 
 	local function MakeTab(data, index)

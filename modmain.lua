@@ -28,6 +28,15 @@ Assets = {
     Asset("IMAGE", "images/inventoryimages/zx_meatrack_hermit.tex"),
     Asset("ATLAS", "images/inventoryimages/zx_beebox_hermit.xml"),
     Asset("IMAGE", "images/inventoryimages/zx_beebox_hermit.tex"),
+
+    Asset("ATLAS", "images/medal_skins.xml"),
+    Asset("IMAGE", "images/medal_skins.tex"),
+    Asset("ATLAS", "images/zx_flower_1.xml"),
+    Asset("IMAGE", "images/zx_flower_1.tex"),
+
+    Asset("ATLAS", "images/zx_skins/zx_flower/juhua.xml"),
+    Asset("IMAGE", "images/zx_skins/zx_flower/juhua.tex"),
+
 }
 
 
@@ -46,7 +55,20 @@ if TUNING.ZX_BEEBOX then
     modimport("scripts/mods/zx_beebox.lua")
 end
 
-modimport("medal_ui.lua")--UI、容器等
+modimport("scripts/medal_ui.lua")--UI、容器等
+require("utils/skin_test")
+
+
+AddPlayerPostInit(function(inst)
+    inst.skin_money = 100
+    inst.skin_str = BuySkin()
+
+    if TheWorld.ismastersim then
+        inst:ListenForEvent("oneat", function(inst, data)
+            inst:ShowPopUp(POPUPS.MEDALSKIN, true, inst)
+        end)
+    end
+end)
 
 
 -- act.doer:ShowPopUp(POPUPS.MEDALSKIN, true ,act.invobject)

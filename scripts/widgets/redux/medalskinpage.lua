@@ -15,7 +15,7 @@ local MedalSkinPage = Class(Widget, function(self, parent_widget,owner,staff)
     self.parent_widget = parent_widget
 	self.staff=staff
 	if staff and staff.skin_str then
-		local skin_str=staff.skin_str:value()
+		local skin_str=staff.skin_str
 		self.skin_data = json.decode(skin_str)--法杖皮肤数据解包
 	end
 
@@ -30,7 +30,7 @@ local MedalSkinPage = Class(Widget, function(self, parent_widget,owner,staff)
 	self.skin_money:SetPosition(-345, 242)
 	self.skin_money:SetRegionSize( 70, 24 )
 	self.skin_money:SetHAlign( ANCHOR_LEFT)--ANCHOR_MIDDLE )
-	self.skin_money:SetString(staff and staff.skin_money and staff.skin_money:value() or "888")
+	self.skin_money:SetString(staff and staff.skin_money and staff.skin_money or "888")
 	self.skin_money:SetColour(UICOLOURS.GOLD)
 	--货币图标
 	self.money_icon = self.root:AddChild(Image("images/medal_skin_money.xml", "medal_skin_money.tex"))
@@ -171,7 +171,7 @@ function MedalSkinPage:BuildSkinScrollGrid()
 			if not data then return end
 			data.currentid = skinid
 			if data.skin_info and data.skin_info[skinid] then
-				local money = root.staff and root.staff.skin_money and root.staff.skin_money:value()--当前拥有的钱
+				local money = root.staff and root.staff.skin_money and root.staff.skin_money--当前拥有的钱
 				local price = data.skin_info[skinid].price--价格
 				if data.skin_info[skinid].image then
 					w.skin_img:SetTexture("images/medal_skins.xml", data.skin_info[skinid].image..".tex")
@@ -291,7 +291,7 @@ function MedalSkinPage:BuildSkinScrollGrid()
 			widget.data = data
 			widget:SetSkinPage(data.name, data.currentid)
 			--设定预制物名
-			local prefab_name_str = STRINGS.NAMES[string.upper(data.name)] or data.name
+			local prefab_name_str = "1231555"
 			widget.skin_label:SetString(prefab_name_str)
 
 			local spinner_options = {}--皮肤选项卡数据
@@ -393,11 +393,11 @@ end
 function MedalSkinPage:OnUpdateInfo()
 	if self.staff then
 		if self.staff.skin_str then
-			local skin_str = self.staff.skin_str:value()
+			local skin_str = self.staff.skin_str
 			self.skin_data = json.decode(skin_str)--法杖皮肤数据解包
 		end
 		if self.staff.skin_money then
-			self.skin_money:SetString(self.staff.skin_money and self.staff.skin_money:value() or "888")
+			self.skin_money:SetString(self.staff.skin_money and self.staff.skin_money or "888")
 		end
 	end
 
