@@ -37,10 +37,15 @@ Assets = {
     Asset("ATLAS", "images/zx_flower_1.xml"),
     Asset("IMAGE", "images/zx_flower_1.tex"),
 
-    Asset("ATLAS", "images/zx_skins/zx_flower/juhua.xml"),
-    Asset("IMAGE", "images/zx_skins/zx_flower/juhua.tex"),
-
+    -- Asset("ATLAS", "images/zx_skins/zx_flower/daisy_bushes.xml"),
+    -- Asset("IMAGE", "images/zx_skins/zx_flower/daisy_bushes.tex"),
+    -- Asset("ATLAS", "images/zx_skins/zx_flower/oxalis.xml"),
+    -- Asset("IMAGE", "images/zx_skins/zx_flower/oxalis.tex"),
 }
+
+
+
+
 
 
 local ch = TUNING.ZX_ITEMS_LANGUAGE == "ch"
@@ -48,6 +53,20 @@ modimport(ch and "utils/strings_ch.lua" or "utils/strings_eng.lua")
 modimport("scripts/mods/zx_containers.lua")
 modimport("utils/recipes.lua")
 modimport("utils/minimap.lua")
+
+
+
+
+local skins = require("zx_skin/zx_skins")
+for k, v in pairs(skins) do
+    local path = "images/zx_skins/"..k.."/"
+    for i, s in ipairs(v.data) do
+        print("哈哈".. path..s.file..".xml")
+        table.insert(Assets, Asset("ATLAS", path..s.file..".xml"))
+        table.insert(Assets, Asset("IMAGE", path..s.file..".tex"))
+    end
+    
+end
 
 -- 原版物品其他mod可能也有
 -- 加个配置项是否可建造
@@ -62,12 +81,16 @@ modimport("scripts/medal_ui.lua")--UI、容器等
 require("utils/skin_test")
 
 
+
+
+
 AddPlayerPostInit(function(inst)
     inst.skin_money = 100
     inst.skin_str = BuySkin()
 
     if TheWorld.ismastersim then
         inst:ListenForEvent("oneat", function(inst, data)
+            print("哈哈哈"..inst.userid)
             inst:ShowPopUp(POPUPS.MEDALSKIN, true, inst)
         end)
     end

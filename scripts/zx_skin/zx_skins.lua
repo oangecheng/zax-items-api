@@ -5,33 +5,46 @@ local skins = {}
 
 local s = {
     ["zx_flower"] = {
-        [1] = {
+        {
+            id = 1,
             name = "juhua",
             xml = "images/zx_skins/zx_flower/juhua.xml",
-            tex = "images/zx_skins/zx_flower/juhua.tex",
+            tex = "juhua.tex",
+        },
+        {
+            id = 2,
+            name = "juhua",
+            xml = "images/zx_skins/zx_flower/juhua.xml",
+            tex = "juhua.tex",
         }
     }
 }
 
 
-local function registerSkin(prefab, skinid, name, userids, index)
-    local skin = skins[prefab] or {}
-    skin.info = skin.info or {}
+local function registerSkin(prefab, skinid, file, index)
+    skins[prefab] = skins[prefab] or {}
+    skins[prefab].data =  skins[prefab].data or {}
+    skins[prefab].index = index
 
-    skin.info[skinid] = {}
-    local s = skin.info[skinid]
-    s.userids = userids
-    s.name = STRINGS.ZX_SKIN_NAMES[string.upper(prefab).."_".. string.upper(skinid)]
-    s.xml = "images/zx_skins/"..prefab.."/"..skinid..".xml"
-    s.tex = skinid..".tex"
-
-    skin.index = index
-    skins[prefab] = skin
+    local skin = {}
+    skin.id = skinid
+    skin.name = STRINGS.ZX_SKIN_NAMES[prefab][file]
+    skin.xml = "images/zx_skins/"..prefab.."/"..file..".xml"
+    skin.tex = file..".tex"
+    skin.file = file
+    
+    table.insert(skins[prefab].data, skin)
 end
 
 
-registerSkin("zx_flower", 1, "juhua", "1", 1)
-registerSkin("zx_flower", 2, "juhua", "2", 2)
+
+
+registerSkin("zx_flower", 1001, "daisy_bushes", 1)
+registerSkin("zx_flower", 1002, "oxalis"      , 1)
+
+
+registerSkin("zx_light" , 1101, "oxalis"      , 0)
+
 
 
 

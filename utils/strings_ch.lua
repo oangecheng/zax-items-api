@@ -84,6 +84,11 @@ STRINGS.MEDAL_SKIN_NAME={
 
 
 STRINGS.ZX_SKIN_NAMES = {
-	ZX_FLOWER_JUHUA = "菊花",
-	ZX_GRANARY_VEGGIE = "菜仓",
+	["zx_flower"] = {
+		["daisy_bushes"] = "小雏菊花丛",
+		["oxalis"]       = "紫色酢浆草",
+	},
+	["zx_light"] = {
+		["oxalis"]       = "紫色酢浆草",
+	}
 }

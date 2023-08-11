@@ -8,6 +8,8 @@ local Spinner = require "widgets/spinner"
 local PopupDialogScreen = require "screens/redux/popupdialog"
 
 local MEDAL_SKINS=require("medal_defs/medal_skin_defs")
+local ZXSKINS=require("zx_skin/zx_skins")
+
 
 local MedalSkinPage = Class(Widget, function(self, parent_widget,owner,staff)
     Widget._ctor(self, "MedalSkinPage")
@@ -56,18 +58,15 @@ local MedalSkinPage = Class(Widget, function(self, parent_widget,owner,staff)
 
 
 	local skin_grid_data = {}--皮肤数据
-	self.all_skin_num=0--皮肤总数量
-	for i,v in pairs(MEDAL_SKINS) do--遍历皮肤数据表
-		if not v.hide then
-			table.insert(skin_grid_data,{sort_num=v.sort_num,name=i,skin_info=v.skin_info,currentid=1})
-			if v.skin_info then
-				self.all_skin_num=self.all_skin_num+#v.skin_info
-			end
+	self.all_skin_num = 0--皮肤总数量
+	for k,v in pairs(ZXSKINS) do--遍历皮肤数据表
+		table.insert(skin_grid_data, { prefab = k, info = v.data, currentid = 1 })
+		if v then
+			self.all_skin_num = self.all_skin_num + #v
 		end
 	end
-	table.sort(skin_grid_data, function(a,b) return a.sort_num < b.sort_num end)--排序(免得pairs打乱了)
+	-- table.sort(skin_grid_data, function(a,b) return a.index < b.index end)--排序(免得pairs打乱了)
 	self.skin_grid:SetItemsData(skin_grid_data)
-
 	self.parent_default_focus = self.skin_grid
 	self:SetSkinNumText()
 end)
@@ -166,34 +165,37 @@ function MedalSkinPage:BuildSkinScrollGrid()
 		w.buy_button:SetPosition(0, -95, 0)
 		
 		--皮肤展示卡
-		function w:SetSkinPage(name, skinid)
+		function w:SetSkinPage(prefab, skinid)
 			local data=w.data
 			if not data then return end
-			data.currentid = skinid
-			if data.skin_info and data.skin_info[skinid] then
-				if data.skin_info[skinid].image then
-					w.skin_img:SetTexture("images/medal_skins.xml", data.skin_info[skinid].image..".tex")
-				end
-				if data.skin_info[skinid].name then
-					w.skin_name:SetString(data.skin_info[skinid].name)
-				end
 
-				w.buy_button:SetOnClick(function()
-					local popup
-					popup = PopupDialogScreen("title", "desc",
-						{
-							{text = "按钮1", cb = function()
-								TheFrontEnd:PopScreen(popup)
-							end},
-							{text = "按钮2", cb = function()
-								TheFrontEnd:PopScreen(popup)
-							end},
-						}
-					)
-					TheFrontEnd:PushScreen(popup)
-				end)
-				w.buy_button:Enable()
+			print("KsfunLog SetSkinPage 1".. prefab .. " " .. skinid)
+
+			data.currentid = skinid
+
+			local skin = data.info[skinid]
+			if skin then
+
+				print("KsfunLog SetSkinPage 2".. skin.xml .. " " .. skin.tex)
+				w.skin_img:SetTexture(skin.xml, skin.tex)
+				w.skin_name:SetString(skin.name)
 			end
+
+			w.buy_button:SetOnClick(function()
+				local popup
+				popup = PopupDialogScreen("title", "desc",
+					{
+						{text = "按钮1", cb = function()
+							TheFrontEnd:PopScreen(popup)
+						end},
+						{text = "按钮2", cb = function()
+							TheFrontEnd:PopScreen(popup)
+						end},
+					}
+				)
+				TheFrontEnd:PushScreen(popup)
+			end)
+			w.buy_button:Enable()
 		end
 
 		local _OnControl = w.cell_root.OnControl
@@ -245,22 +247,27 @@ function MedalSkinPage:BuildSkinScrollGrid()
 		end
 		-- if widget.data ~= data then
 			widget.data = data
-			widget:SetSkinPage(data.name, data.currentid)
-			--设定预制物名
-			local prefab_name_str = "1231555"
-			widget.skin_label:SetString(prefab_name_str)
+			widget:SetSkinPage(data.prefab, data.currentid)
+
+			print("KsfunLog onchange1 ".. data.prefab .. " " .. data.currentid)
+
+			widget.skin_label:SetString(STRINGS.NAMES[string.upper(data.prefab)])
 
 			local spinner_options = {}--皮肤选项卡数据
-			for i, v in ipairs(data.skin_info) do--遍历数据表，加入到选项卡里
-				table.insert(spinner_options,{text=v.price or 1,data=i})
+			for i, v in ipairs(data.info) do --遍历数据表，加入到选项卡里
+				table.insert( spinner_options, { text= 100, data = i } )
 			end
 
 			widget.cell_root:SetTextures("images/plantregistry.xml", "plant_entry_active.tex", "plant_entry_focus.tex")
 			widget.skin_seperator:SetTexture("images/plantregistry.xml", "plant_entry_seperator_active.tex")
 			widget.skin_spinner:SetOptions(spinner_options)
 			widget.skin_spinner:SetOnChangedFn(function(spinner_data)
-				widget:SetSkinPage(data.name, spinner_data)
+				print("KsfunLog onchange3 ".. spinner_data)
+				widget:SetSkinPage(data.prefab, spinner_data)
 			end)
+
+			print("KsfunLog onchange 2 ".. data.prefab .. " " .. data.currentid)
+
 			widget.skin_spinner:SetSelected(data.currentid)
 
 			
