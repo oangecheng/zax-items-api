@@ -3,7 +3,18 @@
 local skins = {}
 
 
-local function registerSkin(prefab, skinid, userids, index)
+local s = {
+    ["zx_flower"] = {
+        [1] = {
+            name = "juhua",
+            xml = "images/zx_skins/zx_flower/juhua.xml",
+            tex = "images/zx_skins/zx_flower/juhua.tex",
+        }
+    }
+}
+
+
+local function registerSkin(prefab, skinid, name, userids, index)
     local skin = skins[prefab] or {}
     skin.info = skin.info or {}
 
@@ -19,8 +30,8 @@ local function registerSkin(prefab, skinid, userids, index)
 end
 
 
-registerSkin("zx_flower", "juhua", "1", 1)
-registerSkin("zx_flower", "juhua", "2", 1)
+registerSkin("zx_flower", 1, "juhua", "1", 1)
+registerSkin("zx_flower", 2, "juhua", "2", 2)
 
 
 

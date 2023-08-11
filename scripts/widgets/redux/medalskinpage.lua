@@ -171,59 +171,28 @@ function MedalSkinPage:BuildSkinScrollGrid()
 			if not data then return end
 			data.currentid = skinid
 			if data.skin_info and data.skin_info[skinid] then
-				local money = root.staff and root.staff.skin_money and root.staff.skin_money--当前拥有的钱
-				local price = data.skin_info[skinid].price--价格
 				if data.skin_info[skinid].image then
 					w.skin_img:SetTexture("images/medal_skins.xml", data.skin_info[skinid].image..".tex")
 				end
 				if data.skin_info[skinid].name then
 					w.skin_name:SetString(data.skin_info[skinid].name)
 				end
-				if price then
-					--已拥有皮肤
-					if root.skin_data and root.skin_data[name] and table.contains(root.skin_data[name],skinid) then
-						w.buy_button:Hide()
-						w.bought_label:Show()
-						w.bought_label:SetString(STRINGS.MEDAL_UI.SKIN_BOUGHT)
-						w.bought_label:SetColour(PLANTREGISTRYUICOLOURS.UNLOCKEDBROWN)
-					elseif price<=0 then--需要用皮肤券解锁
-						w.buy_button:Hide()
-						w.bought_label:Show()
-						w.bought_label:SetString(STRINGS.MEDAL_UI.SKIN_NEED_COUPON)
-						w.bought_label:SetColour({ 247 / 255, 227 / 255, 165 / 255, 1 })
-					else
-						if money and money >= price then
-							w.buy_button:SetOnClick(function()
-								-- print(money,name,skinid,price)
-								local popup
-								-- popup = PopupDialogScreen(STRINGS.MEDAL_UI.DELETEPOS_TITLE, STRINGS.MEDAL_UI.DELETEPOS_INFO,
-								popup = PopupDialogScreen(STRINGS.MEDAL_UI.SKIN_TIP_TITLE, STRINGS.MEDAL_UI.SKIN_TIP_INFO1..price..STRINGS.MEDAL_UI.SKIN_TIP_INFO2,
-									{
-										{text=STRINGS.MEDAL_UI.DELETEPOS_YES, cb = function()
-											if root.staff and root.staff.buy_skin_client then
-												root.staff:buy_skin_client(name,skinid,price)
-											end
-											-- root:OnUpdateInfo()--更新数据
-											root.inst:DoSimTaskInTime(.2,function()
-												root:OnUpdateInfo()--更新数据
-											end)
-											TheFrontEnd:PopScreen(popup)
-										end},
-										{text=STRINGS.MEDAL_UI.DELETEPOS_NO, cb = function()
-											TheFrontEnd:PopScreen(popup)
-										end},
-									}
-								)
-								TheFrontEnd:PushScreen(popup)
-							end)
-							w.buy_button:Enable()
-						else--钱不够不让点购买
-							w.buy_button:Disable()
-						end
-						w.bought_label:Hide()
-						w.buy_button:Show()
-					end
-				end
+
+				w.buy_button:SetOnClick(function()
+					local popup
+					popup = PopupDialogScreen("title", "desc",
+						{
+							{text = "按钮1", cb = function()
+								TheFrontEnd:PopScreen(popup)
+							end},
+							{text = "按钮2", cb = function()
+								TheFrontEnd:PopScreen(popup)
+							end},
+						}
+					)
+					TheFrontEnd:PushScreen(popup)
+				end)
+				w.buy_button:Enable()
 			end
 		end
 
@@ -263,19 +232,6 @@ function MedalSkinPage:BuildSkinScrollGrid()
 				return w.skin_spinner:GetHelpText()
 			end
 		end
-		--点击打开面板(现在没啥卵用)
-		-- w.cell_root:SetOnClick(function()
-		-- 	if not w.data then return end
-		-- 	local widgetpath
-		-- 	if ThePlantRegistry:IsAnyPlantStageKnown(w.data.plant) then
-		-- 		widgetpath = w.data and w.data.plant_def.plantregistrywidget or nil
-		-- 	else
-		-- 		widgetpath = w.data and w.data.plant_def.unknownwidget or "widgets/redux/unknownplantpage"
-		-- 	end
-		-- 	if widgetpath then
-		-- 		self:OpenPageWidget(widgetpath, w.data, w)
-		-- 	end
-		-- end)
 
 		return w
 	end
@@ -345,41 +301,6 @@ function MedalSkinPage:BuildSkinScrollGrid()
     return grid
 end
 
--- function MedalSkinPage:OpenPageWidget(plantregistrywidgetpath, data, currentwidget)
--- 	self.currentwidget = currentwidget
--- 	local plantregistrywidget = require(plantregistrywidgetpath)
--- 	self.plantregistrywidget = self.root:AddChild(plantregistrywidget(self, data))
--- 	self.plantregistrywidget:SetFocus(true)
--- 	self.parent_default_focus = self.plantregistrywidget
--- 	self.plant_grid:Hide()
--- 	self.plantregistrywidget:SetFocus()
--- 	if self.parent_widget then
--- 		self.parent_widget.tab_root:Hide()
--- 		if self.plantregistrywidget:HideBackdrop() then
--- 			self.parent_widget.backdrop:Hide()
--- 		end
--- 	end
--- end
-
--- function MedalSkinPage:ClosePageWidget()
--- 	if self.plantregistrywidget then
--- 		self.root:RemoveChild(self.plantregistrywidget)
--- 		self.plantregistrywidget:Kill()
--- 		self.plantregistrywidget = nil
--- 	end
--- 	self.parent_default_focus = self.plant_grid
--- 	self.plant_grid:Show()
--- 	if self.parent_widget then
--- 		self.parent_widget.tab_root:Show()
--- 		self.parent_widget.backdrop:Show()
--- 	end
--- 	if self.currentwidget then
--- 		self.currentwidget:SetFocus(true)
--- 		self.currentwidget = nil
--- 	else
--- 		self.plant_grid:SetFocus(true)
--- 	end
--- end
 
 function MedalSkinPage:OnControl(control, down)
 	if self.plantregistrywidget then

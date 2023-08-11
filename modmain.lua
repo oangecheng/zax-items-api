@@ -29,6 +29,9 @@ Assets = {
     Asset("ATLAS", "images/inventoryimages/zx_beebox_hermit.xml"),
     Asset("IMAGE", "images/inventoryimages/zx_beebox_hermit.tex"),
 
+    
+    Asset("ATLAS", "images/medal_skin_money.xml"),
+    Asset("IMAGE", "images/medal_skin_money.tex"),
     Asset("ATLAS", "images/medal_skins.xml"),
     Asset("IMAGE", "images/medal_skins.tex"),
     Asset("ATLAS", "images/zx_flower_1.xml"),
