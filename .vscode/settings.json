@@ -40,6 +40,12 @@
         "MakeObstaclePhysics",
         "CreateEntity",
         "MakePlacer",
-        "GetRandomItem"
+        "GetRandomItem",
+        "MakeSmallPropagator",
+        "Prefab",
+        "ACTIONS",
+        "Ingredient",
+        "AddRecipe2",
+        "TECH"
     ]
 }

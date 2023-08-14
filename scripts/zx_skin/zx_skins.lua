@@ -13,7 +13,7 @@ local function registerSkin(prefab, skinid, file, index)
     local skin = {}
     skin.id = skinid
     skin.name = STRINGS.ZX_SKIN_NAMES[prefab][file]
-    skin.xml = "images/zx_skins/"..prefab.."/"..file..".xml"
+    skin.xml = "images/zxskins/"..prefab.."/"..file..".xml"
     skin.tex = file..".tex"
     skin.file = file
 
@@ -28,6 +28,11 @@ end
 registerSkin("zx_flower", 1001, "daisy_bushes", 1)
 registerSkin("zx_flower", 1002, "oxalis"      , 1)
 registerSkin("zx_light" , 1101, "oxalis"      , 0)
+
+
+registerSkin("zxflowerbush", 1201, "zxdaisy",   2)
+registerSkin("zxflowerbush", 1202, "zxdoxalis", 2)
+
 
 
 

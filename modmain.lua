@@ -12,6 +12,7 @@ TUNING.ZX_BEEBOX = GetModConfigData("zx_beebox")
 
 
 PrefabFiles = {
+    "zxflowerbush",
 	"zx_granary",
 	"zx_placers",
     "zx_flower",
@@ -49,14 +50,14 @@ modimport("utils/minimap.lua")
 
 local skins = require("zx_skin/zx_skins")
 for k, v in pairs(skins) do
-    local path = "images/zx_skins/"..k.."/"
+    local path = "images/zxskins/"..k.."/"
     for i, s in ipairs(v.data) do
-        print("哈哈".. path..s.file..".xml")
         table.insert(Assets, Asset("ATLAS", path..s.file..".xml"))
         table.insert(Assets, Asset("IMAGE", path..s.file..".tex"))
     end
-
 end
+
+
 
 -- 原版物品其他mod可能也有
 -- 加个配置项是否可建造
