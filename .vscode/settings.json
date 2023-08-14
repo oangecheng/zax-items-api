@@ -32,6 +32,14 @@
         "TUNING",
         "GetModConfigData",
         "GLOBAL",
-        "env"
+        "env",
+        "SpawnPrefab",
+        "AddComponentPostInit",
+        "AddPrefabPostInit",
+        "MakeMediumBurnable",
+        "MakeObstaclePhysics",
+        "CreateEntity",
+        "MakePlacer",
+        "GetRandomItem"
     ]
 }

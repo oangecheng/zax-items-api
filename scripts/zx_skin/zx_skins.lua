@@ -1,30 +1,14 @@
 
 
-local skins = {}
+local Skin = {}
 
-
-local s = {
-    ["zx_flower"] = {
-        {
-            id = 1,
-            name = "juhua",
-            xml = "images/zx_skins/zx_flower/juhua.xml",
-            tex = "juhua.tex",
-        },
-        {
-            id = 2,
-            name = "juhua",
-            xml = "images/zx_skins/zx_flower/juhua.xml",
-            tex = "juhua.tex",
-        }
-    }
-}
+local skinlist = {}
 
 
 local function registerSkin(prefab, skinid, file, index)
-    skins[prefab] = skins[prefab] or {}
-    skins[prefab].data =  skins[prefab].data or {}
-    skins[prefab].index = index
+    skinlist[prefab] = skinlist[prefab] or {}
+    skinlist[prefab].data = skinlist[prefab].data or {}
+    skinlist[prefab].index = skinlist[prefab].index or index
 
     local skin = {}
     skin.id = skinid
@@ -32,20 +16,35 @@ local function registerSkin(prefab, skinid, file, index)
     skin.xml = "images/zx_skins/"..prefab.."/"..file..".xml"
     skin.tex = file..".tex"
     skin.file = file
+
+    --- 用文件名命名动画文件
+    skin.bank = file
+    skin.build = file
     
-    table.insert(skins[prefab].data, skin)
+    table.insert(skinlist[prefab].data, skin)
 end
-
-
 
 
 registerSkin("zx_flower", 1001, "daisy_bushes", 1)
 registerSkin("zx_flower", 1002, "oxalis"      , 1)
-
-
 registerSkin("zx_light" , 1101, "oxalis"      , 0)
 
 
 
+--- 没有自定义皮肤切换函数，使用默认的
+for k, v in pairs(skinlist) do
+    if v and v.skinfunc == nil and v.data.bank and v.data.build then
+        v.skinfunc = function (inst)
+            inst.AnimState:SetBank(v.data.bank)
+            inst.AnimState:SetBuild(v.data.build)
+        end
+    end
+end
 
-return skins
+
+Skin.GetSkins = function(useid)
+    return skinlist
+end
+
+
+return Skin

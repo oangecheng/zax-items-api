@@ -7,7 +7,7 @@ local TEMPLATES = require "widgets/redux/templates"
 local Spinner = require "widgets/spinner"
 local PopupDialogScreen = require "screens/redux/popupdialog"
 
-local ZXSKINS=require("zx_skin/zx_skins")
+local ZXSKINS= require("zx_skin/zx_skins").GetSkins("")
 
 
 local GridPage = Class(Widget, function(self, parent_widget, owner)
