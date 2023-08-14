@@ -27,6 +27,11 @@
         "CONTROL_PREVVALUE",
         "json",
         "Asset",
-        "AddPlayerPostInit"
+        "AddPlayerPostInit",
+        "TheWorld",
+        "TUNING",
+        "GetModConfigData",
+        "GLOBAL",
+        "env"
     ]
 }

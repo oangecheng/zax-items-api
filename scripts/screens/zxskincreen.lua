@@ -2,11 +2,11 @@ local Screen = require "widgets/screen"
 local Widget = require "widgets/widget"
 local ImageButton = require "widgets/imagebutton"
 local TEMPLATES = require "widgets/redux/templates"
-local MedalSkinWidget = require "widgets/redux/medalskinwidget"
+local MultiTabWidget = require "widgets/redux/zxskinwidget"
 
-local MedalSkinPopupScreen = Class(Screen, function(self, owner, staff)
+local ZxSkinPopupScreen = Class(Screen, function(self, owner, staff)
     self.owner = owner
-    Screen._ctor(self, "MedalSkinPopupScreen")
+    Screen._ctor(self, "ZxSkinPopupScreen")
 
     local black = self:AddChild(ImageButton("images/global.xml", "square.tex"))
     black.image:SetVRegPoint(ANCHOR_MIDDLE)
@@ -24,31 +24,30 @@ local MedalSkinPopupScreen = Class(Screen, function(self, owner, staff)
     root:SetVAnchor(ANCHOR_MIDDLE)
 	root:SetPosition(0, -25)
 
-	self.medalskin = root:AddChild(MedalSkinWidget(owner,staff))
+	self.zxskin = root:AddChild(MultiTabWidget(owner,staff))
 
-	self.default_focus = self.medalskin
+	self.default_focus = self.zxskin
 
     -- SetAutopaused(true)
 end)
 
-function MedalSkinPopupScreen:OnDestroy()
+function ZxSkinPopupScreen:OnDestroy()
     -- SetAutopaused(false)
 
-    POPUPS.MEDALSKIN:Close(self.owner)
-
-	MedalSkinPopupScreen._base.OnDestroy(self)
+    POPUPS.ZXSKIN:Close(self.owner)
+	ZxSkinPopupScreen._base.OnDestroy(self)
 end
 
-function MedalSkinPopupScreen:OnBecomeInactive()
-    MedalSkinPopupScreen._base.OnBecomeInactive(self)
+function ZxSkinPopupScreen:OnBecomeInactive()
+    ZxSkinPopupScreen._base.OnBecomeInactive(self)
 end
 
-function MedalSkinPopupScreen:OnBecomeActive()
-    MedalSkinPopupScreen._base.OnBecomeActive(self)
+function ZxSkinPopupScreen:OnBecomeActive()
+    ZxSkinPopupScreen._base.OnBecomeActive(self)
 end
 
-function MedalSkinPopupScreen:OnControl(control, down)
-    if MedalSkinPopupScreen._base.OnControl(self, control, down) then return true end
+function ZxSkinPopupScreen:OnControl(control, down)
+    if ZxSkinPopupScreen._base.OnControl(self, control, down) then return true end
 
     if not down and (control == CONTROL_MAP or control == CONTROL_CANCEL) then
 		TheFrontEnd:GetSound():PlaySound("dontstarve/HUD/click_move")
@@ -59,7 +58,7 @@ function MedalSkinPopupScreen:OnControl(control, down)
 	return false
 end
 
-function MedalSkinPopupScreen:GetHelpText()
+function ZxSkinPopupScreen:GetHelpText()
     local controller_id = TheInput:GetControllerID()
     local t = {}
 
@@ -68,4 +67,4 @@ function MedalSkinPopupScreen:GetHelpText()
     return table.concat(t, "  ")
 end
 
-return MedalSkinPopupScreen
+return ZxSkinPopupScreen

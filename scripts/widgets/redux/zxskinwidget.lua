@@ -3,31 +3,25 @@ local ImageButton = require "widgets/imagebutton"
 local Widget = require "widgets/widget"
 local Text = require "widgets/text"
 
-local MedalSkinPage = require "widgets/redux/medalskinpage"
+local SkinPage = require "widgets/redux/zxskinpage"
 
 require("util")
 
 -------------------------------------------------------------------------------------------------------
-local MedalSkinWidget = Class(Widget, function(self, owner, staff)
-    Widget._ctor(self, "MedalSkinWidget")
+local MultiTabWidget = Class(Widget, function(self, owner, staff)
+    Widget._ctor(self, "MultiTabWidget")
     self.root = self:AddChild(Widget("root"))
 
 	self.tab_root = self.root:AddChild(Widget("tab_root"))
 
 	self.backdrop = self.root:AddChild(Image("images/plantregistry.xml", "backdrop.tex"))
 
-	-- if not ThePlantRegistry:ApplyOnlineProfileData() then
-	-- 	local msg = (TheFrontEnd ~= nil and TheFrontEnd:GetIsOfflineMode() or not TheNet:IsOnlineMode()) and STRINGS.UI.PLANTREGISTRY.ONLINE_DATA_USER_OFFLINE or STRINGS.UI.PLANTREGISTRY.ONLINE_DATA_DOWNLOAD_FAILED
-	-- 	self.sync_status = self.root:AddChild(Text(HEADERFONT, 18, msg, UICOLOURS.GREY))
-	-- 	self.sync_status:SetPosition(0, -285)
-	-- end
-
 	local base_size = .7
 
 	local button_data = {
 		-- {text = STRINGS.UI.PLANTREGISTRY.TAB_TITLE_PLANTS, build_panel_fn = function() return PlantsPage(self) end},
-		{text = STRINGS.MEDAL_UI.SKIN_TITLE, build_panel_fn = function() return MedalSkinPage(self,owner,staff) end},
-		{text = "页面2", build_panel_fn = function() return MedalSkinPage(self,owner,staff) end},
+		{text = "皮肤页面", build_panel_fn = function() return SkinPage(self,owner) end},
+		{text = "页面2", build_panel_fn = function() return SkinPage(self, owner) end},
 	}
 
 	local function MakeTab(data, index)
@@ -84,13 +78,13 @@ local MedalSkinWidget = Class(Widget, function(self, owner, staff)
 	self.focus_forward = function() return self.panel.parent_default_focus end
 end)
 
-function MedalSkinWidget:Kill()
+function MultiTabWidget:Kill()
 	ThePlantRegistry:Save() -- for saving filter settings
 
-	MedalSkinWidget._base.Kill(self)
+	MultiTabWidget._base.Kill(self)
 end
 
-function MedalSkinWidget:_PositionTabs(tabs, w, y)
+function MultiTabWidget:_PositionTabs(tabs, w, y)
 	local offset = #self.tabs / 2
 	for i = 1, #self.tabs do
 		local x = (i - offset - 0.5) * w
@@ -98,7 +92,7 @@ function MedalSkinWidget:_PositionTabs(tabs, w, y)
 	end
 end
 
-function MedalSkinWidget:OnControlTabs(control, down)
+function MultiTabWidget:OnControlTabs(control, down)
 	if control == CONTROL_OPEN_CRAFTING then
 		local tab = self.tabs[((self.last_selected._tabindex - 1) % #self.tabs) + 1]
 		if not down then
@@ -115,15 +109,15 @@ function MedalSkinWidget:OnControlTabs(control, down)
 
 end
 
-function MedalSkinWidget:OnControl(control, down)
-    if MedalSkinWidget._base.OnControl(self, control, down) then return true end
+function MultiTabWidget:OnControl(control, down)
+    if MultiTabWidget._base.OnControl(self, control, down) then return true end
 
 	if #self.tabs > 1 then
 		return self:OnControlTabs(control, down)
 	end
 end
 
-function MedalSkinWidget:GetHelpText()
+function MultiTabWidget:GetHelpText()
     local controller_id = TheInput:GetControllerID()
     local t = {}
 
@@ -135,4 +129,4 @@ function MedalSkinWidget:GetHelpText()
 end
 
 
-return MedalSkinWidget
+return MultiTabWidget

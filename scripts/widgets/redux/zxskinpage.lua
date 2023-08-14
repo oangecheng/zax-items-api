@@ -7,36 +7,29 @@ local TEMPLATES = require "widgets/redux/templates"
 local Spinner = require "widgets/spinner"
 local PopupDialogScreen = require "screens/redux/popupdialog"
 
-local MEDAL_SKINS=require("medal_defs/medal_skin_defs")
 local ZXSKINS=require("zx_skin/zx_skins")
 
 
-local MedalSkinPage = Class(Widget, function(self, parent_widget,owner,staff)
-    Widget._ctor(self, "MedalSkinPage")
+local GridPage = Class(Widget, function(self, parent_widget, owner)
+    Widget._ctor(self, "GridPage")
 
     self.parent_widget = parent_widget
-	self.staff=staff
-	if staff and staff.skin_str then
-		local skin_str=staff.skin_str
-		self.skin_data = json.decode(skin_str)--法杖皮肤数据解包
-	end
-
 	self.root = self:AddChild(Widget("root"))
 
 	--皮肤面板
 	self.skin_grid = self.root:AddChild(self:BuildSkinScrollGrid())
-	self.skin_grid:SetPosition(-15, -12)--腾点位置给货币
+	self.skin_grid:SetPosition(-15, -12)
 
 	--当前货币数量
 	self.skin_money = self.root:AddChild(Text(CODEFONT, 24))
 	self.skin_money:SetPosition(-345, 242)
 	self.skin_money:SetRegionSize( 70, 24 )
-	self.skin_money:SetHAlign( ANCHOR_LEFT)--ANCHOR_MIDDLE )
-	self.skin_money:SetString(staff and staff.skin_money and staff.skin_money or "888")
+	self.skin_money:SetHAlign( ANCHOR_LEFT)
+	self.skin_money:SetString("888")
 	self.skin_money:SetColour(UICOLOURS.GOLD)
+
 	--货币图标
 	self.money_icon = self.root:AddChild(Image("images/medal_skin_money.xml", "medal_skin_money.tex"))
-	-- self.money_icon:ScaleToSize(20, 20)
 	self.money_icon:SetSize(18, 18)
 	self.money_icon:SetPosition(-390, 243)
 
@@ -44,26 +37,22 @@ local MedalSkinPage = Class(Widget, function(self, parent_widget,owner,staff)
 	self.skin_num = self.root:AddChild(Text(CODEFONT, 24))
 	self.skin_num:SetPosition(-250, 243)
 	self.skin_num:SetRegionSize( 150, 24 )
-	self.skin_num:SetHAlign( ANCHOR_LEFT)--ANCHOR_MIDDLE )
-	self.skin_num:SetString("已拥有:5/20")
+	self.skin_num:SetHAlign( ANCHOR_LEFT)
+	self.skin_num:SetString("已拥有:2/5")
 	self.skin_num:SetColour(UICOLOURS.GOLD)
 
 	--提示文字
 	self.skin_help = self.root:AddChild(Text(CODEFONT, 24))
 	self.skin_help:SetPosition(0, 243)
 	self.skin_help:SetRegionSize( 250, 24 )
-	self.skin_help:SetHAlign( ANCHOR_LEFT)--ANCHOR_MIDDLE )
-	self.skin_help:SetString(STRINGS.MEDAL_UI.SKIN_HELP)
+	self.skin_help:SetHAlign( ANCHOR_LEFT)
+	self.skin_help:SetString("提示文字")
 	self.skin_help:SetColour(UICOLOURS.GOLD)
 
 
 	local skin_grid_data = {}--皮肤数据
-	self.all_skin_num = 0--皮肤总数量
 	for k,v in pairs(ZXSKINS) do--遍历皮肤数据表
 		table.insert(skin_grid_data, { prefab = k, info = v.data, currentid = 1 })
-		if v then
-			self.all_skin_num = self.all_skin_num + #v
-		end
 	end
 	-- table.sort(skin_grid_data, function(a,b) return a.index < b.index end)--排序(免得pairs打乱了)
 	self.skin_grid:SetItemsData(skin_grid_data)
@@ -88,8 +77,10 @@ local textures = {
 	bg_end_changing = "blank.tex",
 	bg_modified = "option_highlight.tex",
 }
+
+
 --构造皮肤列表
-function MedalSkinPage:BuildSkinScrollGrid()
+function GridPage:BuildSkinScrollGrid()
     local row_w = 160
     local row_h = 230
 	local row_spacing = 2
@@ -102,8 +93,8 @@ function MedalSkinPage:BuildSkinScrollGrid()
 	local font_size = 20
 
 	local function ScrollWidgetsCtor(context, index)
-		-- local w = Widget("plant-cell-".. index)
-		local root=self
+		local root = self
+
 		local w = Widget("skin-cell-".. index)
 		w.cell_root = w:AddChild(ImageButton("images/plantregistry.xml", "plant_entry.tex", "plant_entry_focus.tex"))
 
@@ -115,15 +106,18 @@ function MedalSkinPage:BuildSkinScrollGrid()
 		--外框
 		w.skin_seperator = w.cell_root:AddChild(Image("images/plantregistry.xml", "plant_entry_seperator.tex"))
 		w.skin_seperator:SetPosition(0, 88)
+
 		--皮肤贴图
 		w.skin_img = w.cell_root:AddChild(Image())
 		w.skin_img:SetPosition(0, 0)
 		w.skin_img:SetScale(0.8, 0.8)
+
 		--皮肤预制物名称
 		w.skin_label = w.cell_root:AddChild(Text(font, font_size))
 		w.skin_label:SetPosition(0, 100)
 		w.skin_label:SetRegionSize( width_label, height )
 		w.skin_label:SetHAlign( ANCHOR_MIDDLE )
+
 		--皮肤预制物名称
 		w.skin_name = w.cell_root:AddChild(Text(font, font_size))
 		w.skin_name:SetPosition(0, 78)
@@ -141,7 +135,7 @@ function MedalSkinPage:BuildSkinScrollGrid()
 		w.bought_label:SetPosition(0, -95)
 		w.bought_label:SetRegionSize( width_label, height )
 		w.bought_label:SetHAlign( ANCHOR_MIDDLE )
-		w.bought_label:SetString(STRINGS.MEDAL_UI.SKIN_BOUGHT)
+		w.bought_label:SetString("已拥有")
 		w.bought_label:SetColour(PLANTREGISTRYUICOLOURS.UNLOCKEDBROWN)
 		
 
@@ -153,30 +147,25 @@ function MedalSkinPage:BuildSkinScrollGrid()
 		w.skin_spinner:SetTextColour(PLANTREGISTRYUICOLOURS.UNLOCKEDBROWN)
 		w.skin_spinner.text:SetPosition(8, 12)
 
-		--购买按钮
+		--按钮
 		w.buy_button = w.cell_root:AddChild(
 			TEMPLATES.StandardButton(
 				nil,
-				STRINGS.MEDAL_UI.SKIN_BUY_BUTTON,--按钮文字
+				"确定",--按钮文字
 				{60, 30}--按钮尺寸
 			)
 		)
 		w.buy_button:SetTextSize(18)
 		w.buy_button:SetPosition(0, -95, 0)
 		
-		--皮肤展示卡
+		--皮肤选项卡展示
 		function w:SetSkinPage(prefab, skinid)
 			local data=w.data
 			if not data then return end
-
-			print("KsfunLog SetSkinPage 1".. prefab .. " " .. skinid)
-
 			data.currentid = skinid
 
 			local skin = data.info[skinid]
 			if skin then
-
-				print("KsfunLog SetSkinPage 2".. skin.xml .. " " .. skin.tex)
 				w.skin_img:SetTexture(skin.xml, skin.tex)
 				w.skin_name:SetString(skin.name)
 			end
@@ -245,41 +234,33 @@ function MedalSkinPage:BuildSkinScrollGrid()
 		else
 			widget.cell_root:Show()
 		end
-		-- if widget.data ~= data then
-			widget.data = data
-			widget:SetSkinPage(data.prefab, data.currentid)
 
-			print("KsfunLog onchange1 ".. data.prefab .. " " .. data.currentid)
+		widget.data = data
+		widget:SetSkinPage(data.prefab, data.currentid)
 
-			widget.skin_label:SetString(STRINGS.NAMES[string.upper(data.prefab)])
+		widget.skin_label:SetString(STRINGS.NAMES[string.upper(data.prefab)])
 
-			local spinner_options = {}--皮肤选项卡数据
-			for i, v in ipairs(data.info) do --遍历数据表，加入到选项卡里
-				table.insert( spinner_options, { text= 100, data = i } )
-			end
+		local spinner_options = {}--皮肤选项卡数据
+		for i, v in ipairs(data.info) do --遍历数据表，加入到选项卡里
+			table.insert( spinner_options, { text= 100, data = i } )
+		end
 
-			widget.cell_root:SetTextures("images/plantregistry.xml", "plant_entry_active.tex", "plant_entry_focus.tex")
-			widget.skin_seperator:SetTexture("images/plantregistry.xml", "plant_entry_seperator_active.tex")
-			widget.skin_spinner:SetOptions(spinner_options)
-			widget.skin_spinner:SetOnChangedFn(function(spinner_data)
-				print("KsfunLog onchange3 ".. spinner_data)
-				widget:SetSkinPage(data.prefab, spinner_data)
-			end)
-
-			print("KsfunLog onchange 2 ".. data.prefab .. " " .. data.currentid)
-
-			widget.skin_spinner:SetSelected(data.currentid)
-
-			
-		-- end
+		widget.cell_root:SetTextures("images/plantregistry.xml", "plant_entry_active.tex", "plant_entry_focus.tex")
+		widget.skin_seperator:SetTexture("images/plantregistry.xml", "plant_entry_seperator_active.tex")
+		widget.skin_spinner:SetOptions(spinner_options)
+		widget.skin_spinner:SetOnChangedFn(function(spinner_data)
+			print("KsfunLog onchange3 ".. spinner_data)
+			widget:SetSkinPage(data.prefab, spinner_data)
+		end)
+		widget.skin_spinner:SetSelected(data.currentid)
     end
 
     local grid = TEMPLATES.ScrollingGrid(
         {},
         {
             context = {},
-            widget_width  = row_w+row_spacing,
-            widget_height = row_h+row_spacing,
+            widget_width  = row_w + row_spacing,
+            widget_height = row_h + row_spacing,
 			force_peek    = true,
             num_visible_rows = 2,
             num_columns      = 5,
@@ -287,8 +268,8 @@ function MedalSkinPage:BuildSkinScrollGrid()
             apply_fn     = ScrollWidgetSetData,
             scrollbar_offset = 15,
 			scrollbar_height_offset = -60,
-			peek_percent = 30/(row_h+row_spacing),
-			end_offset = math.abs(1 - 5/(row_h+row_spacing)),
+			peek_percent = 30/(row_h + row_spacing),
+			end_offset = math.abs(1 - 5/(row_h + row_spacing)),
 		})
 
 	--滚动条设定
@@ -309,42 +290,23 @@ function MedalSkinPage:BuildSkinScrollGrid()
 end
 
 
-function MedalSkinPage:OnControl(control, down)
+function GridPage:OnControl(control, down)
 	if self.plantregistrywidget then
 		self.plantregistrywidget:OnControl(control, down)
 		return true
 	end
-	return MedalSkinPage._base.OnControl(self, control, down)
+	return GridPage._base.OnControl(self, control, down)
 end
 
 --更新数据
-function MedalSkinPage:OnUpdateInfo()
-	if self.staff then
-		if self.staff.skin_str then
-			local skin_str = self.staff.skin_str
-			self.skin_data = json.decode(skin_str)--法杖皮肤数据解包
-		end
-		if self.staff.skin_money then
-			self.skin_money:SetString(self.staff.skin_money and self.staff.skin_money or "888")
-		end
-	end
-
+function GridPage:OnUpdateInfo()
 	self:SetSkinNumText()
 	self.skin_grid:RefreshView()--更新数据
 end
 
 --设置已解锁皮肤的文字
-function MedalSkinPage:SetSkinNumText()
-	local all_num=self.all_skin_num or 0
-	local has_num=0
-	
-	if self.skin_data then
-		for k, v in pairs(self.skin_data) do
-			has_num=has_num+#v
-		end
-	end
-
-	self.skin_num:SetString(STRINGS.MEDAL_UI.SKIN_BOUGHT..":"..has_num.."/"..all_num.."")
+function GridPage:SetSkinNumText()
+	self.skin_num:SetString("1/100")
 end
 
-return MedalSkinPage
+return GridPage

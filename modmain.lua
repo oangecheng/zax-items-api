@@ -22,25 +22,15 @@ PrefabFiles = {
 
 
 Assets = {
-    Asset("ANIM", "anim/ui_zx_5x10.zip"),	
-    Asset("ANIM", "anim/ui_zx_5x5.zip"),	
+    Asset("ANIM", "anim/ui_zx_5x10.zip"),
+    Asset("ANIM", "anim/ui_zx_5x5.zip"),
     Asset("ATLAS", "images/inventoryimages/zx_meatrack_hermit.xml"),
     Asset("IMAGE", "images/inventoryimages/zx_meatrack_hermit.tex"),
     Asset("ATLAS", "images/inventoryimages/zx_beebox_hermit.xml"),
     Asset("IMAGE", "images/inventoryimages/zx_beebox_hermit.tex"),
 
-    
     Asset("ATLAS", "images/medal_skin_money.xml"),
     Asset("IMAGE", "images/medal_skin_money.tex"),
-    Asset("ATLAS", "images/medal_skins.xml"),
-    Asset("IMAGE", "images/medal_skins.tex"),
-    Asset("ATLAS", "images/zx_flower_1.xml"),
-    Asset("IMAGE", "images/zx_flower_1.tex"),
-
-    -- Asset("ATLAS", "images/zx_skins/zx_flower/daisy_bushes.xml"),
-    -- Asset("IMAGE", "images/zx_skins/zx_flower/daisy_bushes.tex"),
-    -- Asset("ATLAS", "images/zx_skins/zx_flower/oxalis.xml"),
-    -- Asset("IMAGE", "images/zx_skins/zx_flower/oxalis.tex"),
 }
 
 
@@ -65,7 +55,7 @@ for k, v in pairs(skins) do
         table.insert(Assets, Asset("ATLAS", path..s.file..".xml"))
         table.insert(Assets, Asset("IMAGE", path..s.file..".tex"))
     end
-    
+
 end
 
 -- 原版物品其他mod可能也有
@@ -77,27 +67,15 @@ if TUNING.ZX_BEEBOX then
     modimport("scripts/mods/zx_beebox.lua")
 end
 
-modimport("scripts/medal_ui.lua")--UI、容器等
-require("utils/skin_test")
-
-
-
-
+modimport("scripts/zxui.lua")--UI、容器等
 
 AddPlayerPostInit(function(inst)
-    inst.skin_money = 100
-    inst.skin_str = BuySkin()
-
     if TheWorld.ismastersim then
         inst:ListenForEvent("oneat", function(inst, data)
-            print("哈哈哈"..inst.userid)
-            inst:ShowPopUp(POPUPS.MEDALSKIN, true, inst)
+            inst:ShowPopUp(POPUPS.ZXSKIN, true)
         end)
     end
 end)
-
-
--- act.doer:ShowPopUp(POPUPS.MEDALSKIN, true ,act.invobject)
 
 
 

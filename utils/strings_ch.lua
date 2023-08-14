@@ -48,41 +48,6 @@ STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZX_WELL = "这下种地方便多了!"
 
 
 
-
-
-STRINGS.MEDAL_UI={
-	MEDALPAGETIPS="点击打开能力勋章设置界面",
-	DRAGABLETIPS="按住右键可拖拽",
-	DRAGABLETIPS1="按住",
-	DRAGABLETIPS2="可拖拽",
-	EXCHANGEGIFT="换取礼物",
-	SLOTSSORT="整理",
-	DISTRIBUTION="一键分配",
-	DELETEPOS="移除",
-	DELETEPOS_TITLE="移除锚点",
-	DELETEPOS_INFO="确定要移除该锚点吗？",
-	DELETEPOS_YES="确定",
-	DELETEPOS_NO="取消",
-	SKIN_TITLE="风花雪月",
-	SKIN_BUY_BUTTON="购买",
-	SKIN_BOUGHT="已拥有",
-	SKIN_TIP_TITLE="购买皮肤",
-	SKIN_TIP_INFO1="确定要消耗",
-	SKIN_TIP_INFO2="皮肤币购买该皮肤吗？",
-	SKIN_HELP="可使用血汗钱充值，1血汗钱=10皮肤币",
-	SKIN_NEED_COUPON="皮肤券解锁",
-	BUFF_OPEN_TIP="展开",
-	LISTEN_QUESTION="请听题",
-}
-
-STRINGS.MEDAL_SKIN_NAME={
-	MEDAL_STATUE_GUGUGU_SKIN1="鸽王之王",
-	MEDAL_STATUE_GUGUGU_SKIN2="合家欢乐",
-	MEDAL_STATUE_GUGUGU_SKIN3="冰雕玉琢",
-}
-
-
-
 STRINGS.ZX_SKIN_NAMES = {
 	["zx_flower"] = {
 		["daisy_bushes"] = "小雏菊花丛",
