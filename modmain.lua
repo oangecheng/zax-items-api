@@ -44,6 +44,7 @@ modimport(ch and "utils/strings_ch.lua" or "utils/strings_eng.lua")
 modimport("scripts/mods/zx_containers.lua")
 modimport("utils/recipes.lua")
 modimport("utils/minimap.lua")
+modimport("scripts/mods/zxhook.lua")
 
 
 
