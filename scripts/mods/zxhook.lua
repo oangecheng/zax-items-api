@@ -2,14 +2,18 @@
 
 --- hook清洁扫帚
 AddPrefabPostInit("reskin_tool", function(inst)
+    if not TheWorld.ismastersim then
+        return
+    end
+
     local oldtest = inst.components.spellcaster.can_cast_fn
-    local oldcb = inst.components.spellcaster.onspellcast
+    local spell = inst.components.spellcaster.spell
 
     inst.components.spellcaster:SetSpellFn(function(tool, target, pos, doer)
         if target.components.zxskinable then
             target.components.zxskinable:ChangeSkin(doer)
-        elseif oldcb then
-            oldcb(tool, target, pos, doer)
+        elseif spell then
+            spell(tool, target, pos, doer)
         end
         
     end)

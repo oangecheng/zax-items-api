@@ -4,10 +4,7 @@ local ZxSkinPopupScreen = require "screens/zxskinscreen"--皮肤界面
 AddClassPostConstruct("screens/playerhud",function(self, anim, owner)
 	--添加皮肤界面
 	self.ShowZxSkinScreen = function(_, attach)
-		if attach==nil then
-			return
-		end
-		self.zxskinscreen = ZxSkinPopupScreen(self.owner, attach)
+		self.zxskinscreen = ZxSkinPopupScreen(self.owner)
         self:OpenScreenUnderPause(self.zxskinscreen)
         return self.zxskinscreen
 	end

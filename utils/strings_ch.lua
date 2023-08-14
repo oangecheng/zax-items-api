@@ -48,6 +48,12 @@ STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZX_WELL = "这下种地方便多了!"
 
 
 
+-- 花丛
+STRINGS.NAMES.ZXFLOWERBUSH = "花丛"
+STRINGS.RECIPE_DESC.ZXFLOWERBUSH = "可以更换皮肤的花丛!"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXFLOWERBUSH = "这下方便多了!"
+
+
 STRINGS.ZX_SKIN_NAMES = {
 	["zx_flower"] = {
 		["daisy_bushes"] = "小雏菊花丛",
@@ -55,5 +61,9 @@ STRINGS.ZX_SKIN_NAMES = {
 	},
 	["zx_light"] = {
 		["oxalis"]       = "紫色酢浆草",
-	}
+	},
+	["zxflowerbush"] = {
+		["zxoxalis"]     = "紫色酢浆草",
+		["zxdaisy"]      = "小雏菊花丛",
+	},
 }

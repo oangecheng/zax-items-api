@@ -8,7 +8,7 @@ local SkinPage = require "widgets/redux/zxskinpage"
 require("util")
 
 -------------------------------------------------------------------------------------------------------
-local MultiTabWidget = Class(Widget, function(self, owner, staff)
+local MultiTabWidget = Class(Widget, function(self, owner)
     Widget._ctor(self, "MultiTabWidget")
     self.root = self:AddChild(Widget("root"))
 

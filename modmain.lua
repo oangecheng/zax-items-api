@@ -50,7 +50,7 @@ modimport("scripts/mods/zxhook.lua")
 
 
 local skins = require("zx_skin/zx_skins")
-for k, v in pairs(skins) do
+for k, v in pairs(skins.GetSkins("")) do
     local path = "images/zxskins/"..k.."/"
     for i, s in ipairs(v.data) do
         table.insert(Assets, Asset("ATLAS", path..s.file..".xml"))

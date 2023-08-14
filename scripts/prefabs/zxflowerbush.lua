@@ -2,7 +2,7 @@
 
 local assets = {
     Asset("ANIM", "anim/zxdaisy.zip"),	
-    Asset("ANIM", "anim/zxdoxalis.zip"),
+    Asset("ANIM", "anim/zxoxalis.zip"),
 }
 
 
@@ -28,8 +28,8 @@ local function fn()
     MakeObstaclePhysics(inst, .2)
 
     --- 默认用酢浆草
-    inst.AnimState:SetBank("zxdoxalis") 
-    inst.AnimState:SetBuild("zxdoxalis")
+    inst.AnimState:SetBank("zxoxalis") 
+    inst.AnimState:SetBuild("zxoxalis")
     inst.AnimState:PlayAnimation("idle")
 
     inst.entity:SetPristine()
@@ -52,4 +52,5 @@ local function fn()
     return inst
 end
 
-return Prefab("zxflowerbush", fn, assets, nil)
+return Prefab("zxflowerbush", fn, assets, nil),
+MakePlacer("zxflowerbush_placer", "zxoxalis", "zxoxalis", "idle")

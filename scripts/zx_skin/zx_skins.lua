@@ -31,18 +31,20 @@ registerSkin("zx_light" , 1101, "oxalis"      , 0)
 
 
 registerSkin("zxflowerbush", 1201, "zxdaisy",   2)
-registerSkin("zxflowerbush", 1202, "zxdoxalis", 2)
+registerSkin("zxflowerbush", 1202, "zxoxalis", 2)
 
 
 
 
 --- 没有自定义皮肤切换函数，使用默认的
 for k, v in pairs(skinlist) do
-    if v and v.skinfunc == nil and v.data.bank and v.data.build then
-        v.skinfunc = function (inst)
-            inst.AnimState:SetBank(v.data.bank)
-            inst.AnimState:SetBuild(v.data.build)
-        end
+    for index, value in ipairs(v.data) do
+        if value and value.skinfunc == nil and value.bank and value.build then
+            value.skinfunc = function (inst)
+                inst.AnimState:SetBank(value.bank)
+                inst.AnimState:SetBuild(value.build)
+            end
+        end 
     end
 end
 

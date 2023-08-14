@@ -4,7 +4,7 @@ local ImageButton = require "widgets/imagebutton"
 local TEMPLATES = require "widgets/redux/templates"
 local MultiTabWidget = require "widgets/redux/zxskinwidget"
 
-local ZxSkinPopupScreen = Class(Screen, function(self, owner, staff)
+local ZxSkinPopupScreen = Class(Screen, function(self, owner)
     self.owner = owner
     Screen._ctor(self, "ZxSkinPopupScreen")
 
@@ -24,7 +24,7 @@ local ZxSkinPopupScreen = Class(Screen, function(self, owner, staff)
     root:SetVAnchor(ANCHOR_MIDDLE)
 	root:SetPosition(0, -25)
 
-	self.zxskin = root:AddChild(MultiTabWidget(owner,staff))
+	self.zxskin = root:AddChild(MultiTabWidget(owner))
 
 	self.default_focus = self.zxskin
 
