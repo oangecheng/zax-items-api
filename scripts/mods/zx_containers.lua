@@ -83,8 +83,8 @@ local function slotsSortFun(inst)
 end
 
 --- 箱子整理函数
---- @param inst 箱子
---- @param doer 玩家
+--- @param inst table 箱子
+--- @param doer table 玩家
 local function containerSortFn(inst, doer)
 	if inst.components.container ~= nil then
 		slotsSortFun(inst)
@@ -95,7 +95,7 @@ end
 
 
 --- 按钮是否可点击
---- @param inst 箱子
+--- @param inst table 箱子
 local function containerSortValidFn(inst)
 	return inst.replica.container ~= nil and not inst.replica.container:IsEmpty()--容器不为空
 end

@@ -46,6 +46,14 @@
         "ACTIONS",
         "Ingredient",
         "AddRecipe2",
-        "TECH"
+        "TECH",
+        "MakeSnowCoveredPristine",
+        "MakeSnowCovered",
+        "MakeLargePropagator",
+        "MakeLargeBurnable",
+        "AddHauntableDropItemOrWork",
+        "SendRPCToServer",
+        "RPC",
+        "AddMinimapAtlas"
     ]
 }
