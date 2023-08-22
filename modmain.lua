@@ -10,6 +10,10 @@ TUNING.ZX_MEATRACK = GetModConfigData("zx_meatrack")
 TUNING.ZX_BEEBOX = GetModConfigData("zx_beebox")
 
 
+--- 日志
+KsFunLog = function(info, v1, v2, v3)
+    print("KsFunLog: "..info.." "..tostring(v1).." "..tostring(v2).." "..tostring(v3))
+end
 
 PrefabFiles = {
     "zxflowerbush",

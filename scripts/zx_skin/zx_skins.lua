@@ -4,7 +4,7 @@ local Skin = {}
 
 
 local USER_SKIN_DEF = {
-    ["123"] = { 1000, 10001 }
+    ["123"] = { 1001 }
 }
 
 
