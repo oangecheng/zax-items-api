@@ -20,14 +20,6 @@ local GridPage = Class(Widget, function(self, parent_widget, owner)
 	self.skin_grid = self.root:AddChild(self:BuildSkinScrollGrid())
 	self.skin_grid:SetPosition(-15, -12)
 
-	--当前货币数量
-	self.skin_money = self.root:AddChild(Text(CODEFONT, 24))
-	self.skin_money:SetPosition(-345, 242)
-	self.skin_money:SetRegionSize( 70, 24 )
-	self.skin_money:SetHAlign( ANCHOR_LEFT)
-	self.skin_money:SetString("888")
-	self.skin_money:SetColour(UICOLOURS.GOLD)
-
 	--已解锁皮肤数量(文字)
 	self.skin_num = self.root:AddChild(Text(CODEFONT, 24))
 	self.skin_num:SetPosition(-250, 243)
@@ -239,7 +231,6 @@ function GridPage:BuildSkinScrollGrid()
 		widget.skin_seperator:SetTexture("images/plantregistry.xml", "plant_entry_seperator_active.tex")
 		widget.skin_spinner:SetOptions(spinner_options)
 		widget.skin_spinner:SetOnChangedFn(function(spinner_data)
-			print("KsfunLog onchange3 ".. spinner_data)
 			widget:SetSkinPage(data.prefab, spinner_data)
 		end)
 		widget.skin_spinner:SetSelected(data.currentid)
@@ -286,17 +277,6 @@ function GridPage:OnControl(control, down)
 		return true
 	end
 	return GridPage._base.OnControl(self, control, down)
-end
-
---更新数据
-function GridPage:OnUpdateInfo()
-	self:SetSkinNumText()
-	self.skin_grid:RefreshView()--更新数据
-end
-
---设置已解锁皮肤的文字
-function GridPage:SetSkinNumText()
-	self.skin_num:SetString("1/100")
 end
 
 return GridPage

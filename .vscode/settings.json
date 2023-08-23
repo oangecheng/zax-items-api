@@ -54,6 +54,8 @@
         "AddHauntableDropItemOrWork",
         "SendRPCToServer",
         "RPC",
-        "AddMinimapAtlas"
+        "AddMinimapAtlas",
+        "FOODTYPE",
+        "ModManager"
     ]
 }
