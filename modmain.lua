@@ -10,10 +10,6 @@ TUNING.ZX_MEATRACK = GetModConfigData("zx_meatrack")
 TUNING.ZX_BEEBOX = GetModConfigData("zx_beebox")
 
 
---- 日志
-KsFunLog = function(info, v1, v2, v3)
-    print("KsFunLog: "..info.." "..tostring(v1).." "..tostring(v2).." "..tostring(v3))
-end
 
 PrefabFiles = {
     "zxflowerbush",
@@ -33,9 +29,6 @@ Assets = {
     Asset("IMAGE", "images/inventoryimages/zx_meatrack_hermit.tex"),
     Asset("ATLAS", "images/inventoryimages/zx_beebox_hermit.xml"),
     Asset("IMAGE", "images/inventoryimages/zx_beebox_hermit.tex"),
-
-    Asset("ATLAS", "images/medal_skin_money.xml"),
-    Asset("IMAGE", "images/medal_skin_money.tex"),
 }
 
 
@@ -73,15 +66,16 @@ if TUNING.ZX_BEEBOX then
     modimport("scripts/mods/zx_beebox.lua")
 end
 
-modimport("scripts/zxui.lua")--UI、容器等
 
-AddPlayerPostInit(function(inst)
-    if TheWorld.ismastersim then
-        inst:ListenForEvent("oneat", function(inst, data)
-            inst:ShowPopUp(POPUPS.ZXSKIN, true)
-        end)
-    end
-end)
+-- 皮肤面板展示页面，先不开
+-- modimport("scripts/zxui.lua")--UI、容器等
+-- AddPlayerPostInit(function(inst)
+--     if TheWorld.ismastersim then
+--         inst:ListenForEvent("oneat", function(inst, data)
+--             inst:ShowPopUp(POPUPS.ZXSKIN, true)
+--         end)
+--     end
+-- end)
 
 
 

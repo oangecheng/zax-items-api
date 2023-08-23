@@ -6,7 +6,7 @@ local map_icons = {
 }
 
 for k,v in pairs(map_icons) do
-	table.insert(Assets, Asset( "IMAGE", "images/minimap/"..v..".tex" ))
-    table.insert(Assets, Asset( "ATLAS", "images/minimap/"..v..".xml" ))
-    AddMinimapAtlas("images/minimap/"..v..".xml")
+	table.insert(Assets, Asset( "IMAGE", "images/inventoryimages/"..v..".tex" ))
+    table.insert(Assets, Asset( "ATLAS", "images/inventoryimages/"..v..".xml" ))
+    AddMinimapAtlas("images/inventoryimages/"..v..".xml")
 end

@@ -42,3 +42,13 @@ STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZX_LIGHT_1 = "This light is so comfortable!"
 STRINGS.NAMES.ZX_WELL = "Garden Well"
 STRINGS.RECIPE_DESC.ZX_WELL = "A lot of water!"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZX_WELL = "Farming is much more convenient now!"
+
+
+
+STRINGS.ZX_SKIN_NAMES = {
+	["zxflowerbush"] = {
+		["zxoxalis"]     = "oxalis",
+		["zxdaisy"]      = "daisy",
+		["zxhydrangea"]  = "hydrangea"
+	},
+}

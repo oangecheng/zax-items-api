@@ -11,7 +11,7 @@ local USER_SKIN_DEF = {
 local skinlist = {}
 
 
-local function registerSkin(prefab, skinid, file, index, isdefault)
+local function registerSkin(prefab, skinid, file, index, isfree)
     skinlist[prefab] = skinlist[prefab] or {}
     skinlist[prefab].data = skinlist[prefab].data or {}
     skinlist[prefab].index = skinlist[prefab].index or index
@@ -22,7 +22,7 @@ local function registerSkin(prefab, skinid, file, index, isdefault)
     skin.xml = "images/zxskins/"..prefab.."/"..file..".xml"
     skin.tex = file..".tex"
     skin.file = file
-    skin.isdefault = isdefault
+    skin.isfree = isfree
 
     --- 用文件名命名动画文件
     skin.bank = file
@@ -31,9 +31,10 @@ local function registerSkin(prefab, skinid, file, index, isdefault)
     table.insert(skinlist[prefab].data, skin)
 end
 
-registerSkin("zxflowerbush", 1000, "zxdaisy",   1, true)
-registerSkin("zxflowerbush", 1001, "zxoxalis",  1)
 
+registerSkin("zxflowerbush", 1000, "zxdaisy",      1, true)
+registerSkin("zxflowerbush", 1001, "zxoxalis",     1, true)
+registerSkin("zxflowerbush", 1002, "zxhydrangea",  1, true)
 
 
 
@@ -64,7 +65,7 @@ Skin.GetUserPrefabSkins = function (userid, prefab)
         -- 在这里定义的都是能够换肤的，只是部分玩家没有该皮肤就没法换，但是还有个默认的皮肤
         for _, v in ipairs(skins) do
             ---@diagnostic disable-next-line: undefined-field
-            if v.isdefault or table.contains(userskins, v.id) then
+            if v.isfree or table.contains(userskins, v.id) then
                 table.insert(ret, v)
             end
         end

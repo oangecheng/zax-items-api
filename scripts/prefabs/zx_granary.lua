@@ -5,14 +5,10 @@ local assets = {
     Asset("ANIM", "anim/zx_granary_meat.zip"),	
     Asset("ATLAS", "images/inventoryimages/zx_granary_meat.xml"),
     Asset("IMAGE", "images/inventoryimages/zx_granary_meat.tex"),
-    Asset("ATLAS", "images/minimap/zx_granary_meat.xml"),
-    Asset("IMAGE", "images/minimap/zx_granary_meat.tex"),
     -- 菜仓
     Asset("ANIM", "anim/zx_granary_veggie.zip"),	
     Asset("ATLAS", "images/inventoryimages/zx_granary_veggie.xml"),
     Asset("IMAGE", "images/inventoryimages/zx_granary_veggie.tex"),
-    Asset("ATLAS", "images/minimap/zx_granary_veggie.xml"),
-    Asset("IMAGE", "images/minimap/zx_granary_veggie.tex")
 }
 
 local prefabs = {

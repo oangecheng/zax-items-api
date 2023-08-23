@@ -1,7 +1,5 @@
 local assets = {
     Asset("ANIM", "anim/zx_well.zip"),
-	Asset("ATLAS", "images/minimap/zx_well.xml"),
-    Asset("IMAGE", "images/minimap/zx_well.tex"),
 	Asset("ATLAS", "images/inventoryimages/zx_well.xml"),
 	Asset("IMAGE", "images/inventoryimages/zx_well.tex"),
 }

@@ -70,41 +70,13 @@ AddRecipe2(
 
 -- 小雏菊花丛
 AddRecipe2(
-	"zx_flower_1",
+	"zxflowerbush",
 	{Ingredient("butterfly", 2),},
 	TECH.SCIENCE_ONE,
 	{
-		placer = "zx_flower_1_placer",
-        atlas = "images/inventoryimages/zx_flower_1.xml",
-        image = "zx_flower_1.tex",
-        min_spacing = 0,
-    },
-	{"STRUCTURES", "DECOR"}
-)
-
--- 紫色酢浆草
-AddRecipe2(
-	"zx_flower_2",
-	{Ingredient("butterfly", 2),},
-	TECH.SCIENCE_ONE,
-	{
-		placer = "zx_flower_2_placer",
-        atlas = "images/inventoryimages/zx_flower_2.xml",
-        image = "zx_flower_2.tex",
-        min_spacing = 0,
-    },
-	{"STRUCTURES", "DECOR"}
-)
-
---绣球花
-AddRecipe2(
-	"zx_flower_3",
-	{Ingredient("butterfly", 2),},
-	TECH.SCIENCE_ONE,
-	{
-		placer = "zx_flower_3_placer",
-        atlas = "images/inventoryimages/zx_flower_3.xml",
-        image = "zx_flower_3.tex",
+		placer = "zxflowerbush_placer",
+        atlas = "images/zxskins/zxflowerbush/zxoxalis.xml",
+        image = "zxoxalis.tex",
         min_spacing = 0,
     },
 	{"STRUCTURES", "DECOR"}

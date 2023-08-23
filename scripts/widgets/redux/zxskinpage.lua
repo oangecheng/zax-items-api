@@ -28,11 +28,6 @@ local GridPage = Class(Widget, function(self, parent_widget, owner)
 	self.skin_money:SetString("888")
 	self.skin_money:SetColour(UICOLOURS.GOLD)
 
-	--货币图标
-	self.money_icon = self.root:AddChild(Image("images/medal_skin_money.xml", "medal_skin_money.tex"))
-	self.money_icon:SetSize(18, 18)
-	self.money_icon:SetPosition(-390, 243)
-
 	--已解锁皮肤数量(文字)
 	self.skin_num = self.root:AddChild(Text(CODEFONT, 24))
 	self.skin_num:SetPosition(-250, 243)
@@ -124,19 +119,14 @@ function GridPage:BuildSkinScrollGrid()
 		w.skin_name:SetRegionSize( width_label, height )
 		w.skin_name:SetHAlign( ANCHOR_MIDDLE )
 		w.skin_name:SetColour(PLANTREGISTRYUICOLOURS.UNLOCKEDBROWN)
-		--货币图标
-		w.money_icon = w.cell_root:AddChild(Image("images/medal_skin_money.xml", "medal_skin_money.tex"))
-		-- w.money_icon:ScaleToSize(20, 20)
-		w.money_icon:SetSize(16, 16)
-		w.money_icon:SetPosition(-15, -72)
 		
 		--已购买文字显示
-		w.bought_label = w.cell_root:AddChild(Text(font, font_size))
-		w.bought_label:SetPosition(0, -95)
-		w.bought_label:SetRegionSize( width_label, height )
-		w.bought_label:SetHAlign( ANCHOR_MIDDLE )
-		w.bought_label:SetString("已拥有")
-		w.bought_label:SetColour(PLANTREGISTRYUICOLOURS.UNLOCKEDBROWN)
+		w.skin_label = w.cell_root:AddChild(Text(font, font_size))
+		w.skin_label:SetPosition(0, -95)
+		w.skin_label:SetRegionSize( width_label, height )
+		w.skin_label:SetHAlign( ANCHOR_MIDDLE )
+		w.skin_label:SetString("已拥有")
+		w.skin_label:SetColour(PLANTREGISTRYUICOLOURS.UNLOCKEDBROWN)
 		
 
 		local lean = true
@@ -148,15 +138,15 @@ function GridPage:BuildSkinScrollGrid()
 		w.skin_spinner.text:SetPosition(8, 12)
 
 		--按钮
-		w.buy_button = w.cell_root:AddChild(
+		w.skin_btn = w.cell_root:AddChild(
 			TEMPLATES.StandardButton(
 				nil,
 				"确定",--按钮文字
 				{60, 30}--按钮尺寸
 			)
 		)
-		w.buy_button:SetTextSize(18)
-		w.buy_button:SetPosition(0, -95, 0)
+		w.skin_btn:SetTextSize(18)
+		w.skin_btn:SetPosition(0, -95, 0)
 		
 		--皮肤选项卡展示
 		function w:SetSkinPage(prefab, skinid)
@@ -170,27 +160,27 @@ function GridPage:BuildSkinScrollGrid()
 				w.skin_name:SetString(skin.name)
 			end
 
-			w.buy_button:SetOnClick(function()
-				local popup
-				popup = PopupDialogScreen("title", "desc",
-					{
-						{text = "按钮1", cb = function()
-							TheFrontEnd:PopScreen(popup)
-						end},
-						{text = "按钮2", cb = function()
-							TheFrontEnd:PopScreen(popup)
-						end},
-					}
-				)
-				TheFrontEnd:PushScreen(popup)
+			w.skin_btn:SetOnClick(function()
+				-- local popup
+				-- popup = PopupDialogScreen("title", "desc",
+				-- 	{
+				-- 		{text = "按钮1", cb = function()
+				-- 			TheFrontEnd:PopScreen(popup)
+				-- 		end},
+				-- 		{text = "按钮2", cb = function()
+				-- 			TheFrontEnd:PopScreen(popup)
+				-- 		end},
+				-- 	}
+				-- )
+				-- TheFrontEnd:PushScreen(popup)
 			end)
-			w.buy_button:Enable()
+			w.skin_btn:Enable()
 		end
 
 		local _OnControl = w.cell_root.OnControl
 		w.cell_root.OnControl = function(_, control, down)
 			if w.skin_spinner.focus or (control == CONTROL_PREVVALUE or control == CONTROL_NEXTVALUE) then if w.skin_spinner:IsVisible() then w.skin_spinner:OnControl(control, down) end return true end
-			if w.buy_button.focus or (control == CONTROL_PREVVALUE or control == CONTROL_NEXTVALUE) then if w.buy_button:IsVisible() then w.buy_button:OnControl(control, down) end return true end
+			if w.skin_btn.focus or (control == CONTROL_PREVVALUE or control == CONTROL_NEXTVALUE) then if w.skin_btn:IsVisible() then w.skin_btn:OnControl(control, down) end return true end
 			return _OnControl(_, control, down)
 		end
 

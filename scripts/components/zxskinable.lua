@@ -20,7 +20,7 @@ local function findSkin(self, skinid)
                 return v
             end
         else
-            if v.isdefault then
+            if v.isfree then
                return v
             end
         end
@@ -69,6 +69,7 @@ function Skinable:ChangeSkin(doer)
         local index = 0
         if self.skinid ~= 0 then
             for i, v in ipairs(skins) do
+            
                 if v.id == self.skinid then
                     index = i
                     break
@@ -77,6 +78,7 @@ function Skinable:ChangeSkin(doer)
         end
 
         index = index + 1 > size and 1 or index + 1
+        print("ChangeSkin = "..skins[index].bank)
         reskin(self, skins[index])
     end
 end

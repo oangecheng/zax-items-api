@@ -55,15 +55,9 @@ STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXFLOWERBUSH = "这下方便多了!"
 
 
 STRINGS.ZX_SKIN_NAMES = {
-	["zx_flower"] = {
-		["daisy_bushes"] = "小雏菊花丛",
-		["oxalis"]       = "紫色酢浆草",
-	},
-	["zx_light"] = {
-		["oxalis"]       = "紫色酢浆草",
-	},
 	["zxflowerbush"] = {
 		["zxoxalis"]     = "紫色酢浆草",
 		["zxdaisy"]      = "小雏菊花丛",
+		["zxhydrangea"]  = "绣球花"
 	},
 }
