@@ -12,19 +12,22 @@ TUNING.ZX_BEEBOX = GetModConfigData("zx_beebox")
 
 
 PrefabFiles = {
-    "zxflowerbush",
 	"zx_granary",
 	"zx_placers",
     "zx_flower",
     "zx_light",
     "zx_well",
     "zx_box",
+    
+    "zxflowerbush",
+    "zxboxs"
 }
 
 
 Assets = {
     Asset("ANIM", "anim/ui_zx_5x10.zip"),
     Asset("ANIM", "anim/ui_zx_5x5.zip"),
+    Asset("ANIM", "anim/ui_chest_3x3.zip"),
     Asset("ATLAS", "images/inventoryimages/zx_meatrack_hermit.xml"),
     Asset("IMAGE", "images/inventoryimages/zx_meatrack_hermit.tex"),
     Asset("ATLAS", "images/inventoryimages/zx_beebox_hermit.xml"),

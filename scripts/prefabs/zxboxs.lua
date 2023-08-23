@@ -1,10 +1,10 @@
 
 local assets = {
+    Asset("ANIM", "anim/ui_chest_3x3.zip"),
     Asset("ANIM", "anim/ui_zx_5x5.zip"),
-    -- 干草车
-    Asset("ANIM",  "anim/zxashcan.zip"),	
-    Asset("ATLAS", "images/inventoryimages/zxashcan.xml"),
-    Asset("IMAGE", "images/inventoryimages/zxashcan.tex"),
+    Asset("ANIM", "anim/zxashcan.zip"),
+    Asset("ATLAS", "images/zxskins/zxashcan/zxashcan.xml"),
+    Asset("IMAGE", "images/zxskins/zxashcan/zxashcan.tex")
 }
 
 
@@ -23,8 +23,13 @@ local boxesdef = {
 
     ["zxashcan"] = {
 
+        oninitfn = function (inst)
+            inst.AnimState:PlayAnimation("close")
+        end,
+
         onopenfn = function(inst, doer)
-            inst.AnimState:PlayAnimation("open")
+            --- 后面再做动画
+            inst.AnimState:PlayAnimation("close")
             if inst.cleartask then
                 inst.cleartask:Cancel()
                 inst.cleartask = nil
@@ -32,12 +37,12 @@ local boxesdef = {
         end,
 
         onclosefn = function (inst, doer)
-            inst.AnimState:PlayAnimation("idle")
+            inst.AnimState:PlayAnimation("close")
             if inst.cleartask then
                 inst.cleartask:Cancel()
                 inst.cleartask = nil
             end
-            inst.cleartask = inst:DoTaskInTime(5, function ()
+            inst.cleartask = inst:DoTaskInTime(0.1, function ()
                 if inst.components.container then
                     local items = inst.components.container:RemoveAllItems()
                     if items then
@@ -141,7 +146,9 @@ local function MakeZxBox(name)
 	
         inst.AnimState:SetBank(name) 
         inst.AnimState:SetBuild(name)
-        inst.AnimState:PlayAnimation("empty")
+        if data.oninitfn then
+            data.oninitfn(inst)
+        end
 	
 	    MakeSnowCoveredPristine(inst)
 	
@@ -195,5 +202,5 @@ end
 
 
 return MakeZxBox("zxashcan"),
-MakePlacer("zxashcan_placer", "zxashcan", "zxashcan", "empty")
+MakePlacer("zxashcan_placer", "zxashcan", "zxashcan", "close")
 

@@ -37,6 +37,10 @@ registerSkin("zxflowerbush", 1001, "zxoxalis",     1, true)
 registerSkin("zxflowerbush", 1002, "zxhydrangea",  1, true)
 
 
+registerSkin("zxashcan", 1100, "zxashcan",  1, true)
+
+
+
 
 --- 没有自定义皮肤切换函数，使用默认的
 for k, v in pairs(skinlist) do

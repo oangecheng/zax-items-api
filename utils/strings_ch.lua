@@ -11,6 +11,10 @@ STRINGS.NAMES.ZX_HAY_CART = "干草车"
 STRINGS.RECIPE_DESC.ZX_HAY_CART = "可以放入大量的草"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZX_HAY_CART = "上面堆满了草!"
 
+STRINGS.NAMES.ZXASHCAN = "垃圾桶"
+STRINGS.RECIPE_DESC.ZXASHCAN = "可以销毁任意的物品"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXASHCAN = "闻着有点味道!"
+
 
 -- 花1
 STRINGS.NAMES.ZX_FLOWER_1 = "小雏菊花丛"
@@ -60,4 +64,7 @@ STRINGS.ZX_SKIN_NAMES = {
 		["zxdaisy"]      = "小雏菊花丛",
 		["zxhydrangea"]  = "绣球花"
 	},
+	["zxashcan"] = {
+		["zxashcan"] = "垃圾桶"
+	}
 }

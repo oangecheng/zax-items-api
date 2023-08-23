@@ -10,6 +10,10 @@ STRINGS.NAMES.ZX_HAY_CART = "Hay cart"
 STRINGS.RECIPE_DESC.ZX_HAY_CART = "Can store a lot of grass"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZX_HAY_CART = "Too much grass!"
 
+STRINGS.NAMES.ZXASHCAN = "Ashcan"
+STRINGS.RECIPE_DESC.ZXASHCAN = "Destroy any thing"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXASHCAN = "It smells a little bad!"
+
 -- 花1
 STRINGS.NAMES.ZX_FLOWER_1 = "Daisy bushes"
 STRINGS.RECIPE_DESC.ZX_FLOWER_1 = "Small yellow flowers"
@@ -50,5 +54,9 @@ STRINGS.ZX_SKIN_NAMES = {
 		["zxoxalis"]     = "oxalis",
 		["zxdaisy"]      = "daisy",
 		["zxhydrangea"]  = "hydrangea"
+	},
+
+	["zxashcan"] = {
+		["zxashcan"] = "ashcan"
 	},
 }

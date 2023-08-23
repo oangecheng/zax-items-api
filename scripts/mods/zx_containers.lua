@@ -224,7 +224,7 @@ end
 
 
 -- 特色容器的大小都是 5x10 的尺寸
-local function createBoxParam()
+local function createBox5x10Param()
 	return {
 		widget =
 		{
@@ -238,14 +238,54 @@ local function createBoxParam()
 	}
 end
 
+local function createBox5x5Param()
+	return {
+		widget =
+		{
+			slotpos = {},
+			animbank = "ui_zx_5x5",
+			animbuild = "ui_zx_5x5",
+			pos = default_pos.zx_box,
+			side_align_tip = 160,
+		},
+		type = "chest",
+	}
+end
+
 
 --- 干草车只能放草
-params.zx_hay_cart = createBoxParam()
+params.zx_hay_cart = createBox5x10Param()
 init5x10BoxSlot(params.zx_hay_cart)
 function params.zx_hay_cart.itemtestfn(container, item, slot)
 	if item.prefab == "cutgrass" then return true end
 	return false
 end
+
+
+
+--- 垃圾桶
+params.zxashcan =
+{
+    widget =
+    {
+        slotpos = {},
+        animbank = "ui_chest_3x3",
+        animbuild = "ui_chest_3x3",
+        pos = Vector3(0, 200, 0),
+        side_align_tip = 160,
+    },
+    type = "chest",
+}
+
+for y = 2, 0, -1 do
+    for x = 0, 2 do
+        table.insert(params.zxashcan.widget.slotpos, Vector3(80 * x - 80 * 2 + 80, 80 * y - 80 * 2 + 80, 0))
+    end
+end
+
+
+
+
 
 
 

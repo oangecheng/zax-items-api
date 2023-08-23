@@ -83,6 +83,22 @@ AddRecipe2(
 )
 
 
+-- 小雏菊花丛
+AddRecipe2(
+	"zxashcan",
+	{Ingredient("butterfly", 2),},
+	TECH.SCIENCE_ONE,
+	{
+		placer = "zxashcan_placer",
+        atlas = "images/zxskins/zxashcan/zxashcan.xml",
+        image = "zxashcan.tex",
+        min_spacing = 0,
+    },
+	{"STRUCTURES", "DECOR"}
+)
+
+
+
 -- 花园灯
 AddRecipe2(
 	"zx_light_1",
