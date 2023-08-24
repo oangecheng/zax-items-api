@@ -39,12 +39,11 @@ local GridPage = Class(Widget, function(self, parent_widget, owner)
 
 	local skin_grid_data = {}--皮肤数据
 	for k,v in pairs(ZXSKINS) do--遍历皮肤数据表
-		table.insert(skin_grid_data, { prefab = k, info = v.data, currentid = 1 })
+		table.insert(skin_grid_data, { prefab = k, info = v.data, index = v.index, currentid = 1 })
 	end
-	-- table.sort(skin_grid_data, function(a,b) return a.index < b.index end)--排序(免得pairs打乱了)
+	table.sort(skin_grid_data, function(a,b) return a.index < b.index end)--排序(免得pairs打乱了)
 	self.skin_grid:SetItemsData(skin_grid_data)
 	self.parent_default_focus = self.skin_grid
-	self:SetSkinNumText()
 end)
 
 local textures = {
@@ -111,14 +110,6 @@ function GridPage:BuildSkinScrollGrid()
 		w.skin_name:SetRegionSize( width_label, height )
 		w.skin_name:SetHAlign( ANCHOR_MIDDLE )
 		w.skin_name:SetColour(PLANTREGISTRYUICOLOURS.UNLOCKEDBROWN)
-		
-		--已购买文字显示
-		w.skin_label = w.cell_root:AddChild(Text(font, font_size))
-		w.skin_label:SetPosition(0, -95)
-		w.skin_label:SetRegionSize( width_label, height )
-		w.skin_label:SetHAlign( ANCHOR_MIDDLE )
-		w.skin_label:SetString("已拥有")
-		w.skin_label:SetColour(PLANTREGISTRYUICOLOURS.UNLOCKEDBROWN)
 		
 
 		local lean = true
@@ -220,6 +211,7 @@ function GridPage:BuildSkinScrollGrid()
 		widget.data = data
 		widget:SetSkinPage(data.prefab, data.currentid)
 
+		print("ScrollWidgetSetData"..tostring(STRINGS.NAMES[string.upper(data.prefab)]))
 		widget.skin_label:SetString(STRINGS.NAMES[string.upper(data.prefab)])
 
 		local spinner_options = {}--皮肤选项卡数据

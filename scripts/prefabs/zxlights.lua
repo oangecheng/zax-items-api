@@ -2,7 +2,7 @@
 
 local assets = {
     Asset("ANIM", "anim/zxgardenlight.zip"),
-    Asset("ANIM", "anim/zxcatlight.zip"),
+    Asset("ANIM", "anim/zxflowerlight.zip"),
 }
 
 
@@ -87,8 +87,8 @@ local function MakeLight(name)
         MakeObstaclePhysics(inst, .2)
 
 
-        inst.AnimState:SetBank(name)
-        inst.AnimState:SetBuild(name)
+        inst.AnimState:SetBank("zxgardenlight")
+        inst.AnimState:SetBuild("zxgardenlight")
         inst.AnimState:PlayAnimation("close")
 
         inst.entity:SetPristine()
@@ -100,6 +100,7 @@ local function MakeLight(name)
         inst:AddComponent("inspectable")
         inst:AddComponent("lootdropper")
         inst:AddComponent("zxskinable")
+        inst.components.zxskinable:SetInitSkinId(1200)
 
 
         inst:AddComponent("workable")

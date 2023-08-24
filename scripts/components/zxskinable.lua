@@ -42,10 +42,14 @@ end
 local Skinable = Class(function (self, inst)
     self.inst = inst
     self.skinid = 0
-    local skin = findSkin(self, 0)
-    reskin(self, skin)
 end)
 
+
+function Skinable:SetInitSkinId(id )
+    self.skinid = id
+    local skin = findSkin(self, self.skinid)
+    reskin(self, skin)
+end
 
 
 --- 判断该玩家是否可以更换皮肤

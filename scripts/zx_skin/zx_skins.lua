@@ -28,6 +28,7 @@ local function registerSkin(prefab, skinid, file, index, isfree)
     skin.bank = file
     skin.build = file
     
+    table.sort(skinlist[prefab].data, function(a,b) return a.id < b.id end)
     table.insert(skinlist[prefab].data, skin)
 end
 
@@ -37,8 +38,11 @@ registerSkin("zxflowerbush", 1001, "zxoxalis",     1, true)
 registerSkin("zxflowerbush", 1002, "zxhydrangea",  1, true)
 
 
-registerSkin("zxashcan", 1100, "zxashcan",  1, true)
+registerSkin("zxashcan", 1100, "zxashcan",  2, true)
 
+
+registerSkin("zxlight",  1200, "zxgardenlight", 3, true)
+registerSkin("zxlight",  1201, "zxflowerlight", 3, true)
 
 
 

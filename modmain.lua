@@ -20,7 +20,8 @@ PrefabFiles = {
     "zx_box",
     
     "zxflowerbush",
-    "zxboxs"
+    "zxboxs",
+    "zxlights",
 }
 
 
@@ -70,7 +71,7 @@ if TUNING.ZX_BEEBOX then
 end
 
 
--- 皮肤面板展示页面，先不开
+-- -- 皮肤面板展示页面，先不开
 -- modimport("scripts/zxui.lua")--UI、容器等
 -- AddPlayerPostInit(function(inst)
 --     if TheWorld.ismastersim then

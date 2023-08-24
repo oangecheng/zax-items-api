@@ -57,6 +57,11 @@ STRINGS.NAMES.ZXFLOWERBUSH = "花丛"
 STRINGS.RECIPE_DESC.ZXFLOWERBUSH = "可以更换皮肤的花丛!"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXFLOWERBUSH = "这下方便多了!"
 
+--花园灯
+STRINGS.NAMES.ZXLIGHT = "永亮灯"
+STRINGS.RECIPE_DESC.ZXFLOWERBUSH = "晚上自动打开的灯!"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXFLOWERBUSH = "见鬼去吧，查理!"
+
 
 STRINGS.ZX_SKIN_NAMES = {
 	["zxflowerbush"] = {
@@ -66,5 +71,10 @@ STRINGS.ZX_SKIN_NAMES = {
 	},
 	["zxashcan"] = {
 		["zxashcan"] = "垃圾桶"
+	},
+	["zxlight"] = {
+		["zxgardenlight"] = "花园灯",
+		["zxflowerlight"] = "藤蔓灯"
 	}
+	
 }
