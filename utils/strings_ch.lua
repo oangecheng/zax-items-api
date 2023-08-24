@@ -73,8 +73,9 @@ STRINGS.ZX_SKIN_NAMES = {
 		["zxashcan"] = "垃圾桶"
 	},
 	["zxlight"] = {
-		["zxgardenlight"] = "花园灯",
-		["zxflowerlight"] = "藤蔓灯"
+		["zxgardenlight"]   = "花园灯",
+		["zxflowerlight"]   = "藤蔓灯",
+		["zxmushroomlight"] = "蘑菇灯"
 	}
 	
 }

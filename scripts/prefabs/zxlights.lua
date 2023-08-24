@@ -3,6 +3,7 @@
 local assets = {
     Asset("ANIM", "anim/zxgardenlight.zip"),
     Asset("ANIM", "anim/zxflowerlight.zip"),
+    Asset("ANIM", "anim/zxmushroomlight.zip"),
 }
 
 

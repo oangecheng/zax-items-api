@@ -41,8 +41,9 @@ registerSkin("zxflowerbush", 1002, "zxhydrangea",  1, true)
 registerSkin("zxashcan", 1100, "zxashcan",  2, true)
 
 
-registerSkin("zxlight",  1200, "zxgardenlight", 3, true)
-registerSkin("zxlight",  1201, "zxflowerlight", 3, true)
+registerSkin("zxlight",  1200, "zxgardenlight",   3, true)
+registerSkin("zxlight",  1201, "zxflowerlight",   3, true)
+registerSkin("zxlight",  1202, "zxmushroomlight", 3, true)
 
 
 

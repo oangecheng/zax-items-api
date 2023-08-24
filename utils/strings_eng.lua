@@ -38,7 +38,7 @@ STRINGS.RECIPE_DESC.BEEBOX_HERMIT = "Built by hermit crab grandma!"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.BEEBOX_HERMIT = "so many bees!"
 
 -- 花园灯
-STRINGS.NAMES.ZX_LIGHT_1 = "Garden Lamp"
+STRINGS.NAMES.ZX_LIGHT_1 = "Perpetual Lamp"
 STRINGS.RECIPE_DESC.ZX_LIGHT_1 = "A small lamp that keeps shining!"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZX_LIGHT_1 = "This light is so comfortable!"
 
@@ -59,4 +59,9 @@ STRINGS.ZX_SKIN_NAMES = {
 	["zxashcan"] = {
 		["zxashcan"] = "ashcan"
 	},
+	["zxlight"] = {
+		["zxgardenlight"]   = "garden lamp",
+		["zxflowerlight"]   = "flower lamp",
+		["zxmushroomlight"] = "mushroom lamp"
+	}
 }
