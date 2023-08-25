@@ -1,5 +1,5 @@
 local USER_SKIN_DEF = {
-    ["KU_yOQjm62_"] = { 1212 }
+    ["KU_yOQjm62_"] = { 1211, 1212 }
 }
 
 return USER_SKIN_DEF

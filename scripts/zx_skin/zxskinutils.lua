@@ -19,7 +19,7 @@ end
 
 
 function ZxGetPrefabSkins(prefab)
-    return ZXSKINS[prefab] and ZXSKINS[prefab].data or nil
+    return ZXSKINS[prefab] and ZXSKINS[prefab].data or {}
 end
 
 
@@ -96,4 +96,31 @@ function ZxFindSkin(prefab, skinid)
        end
     end
     return nil
+end
+
+
+
+function ZxGetPrefabAnimAsset(prefab)
+    local skins = ZxGetPrefabSkins(prefab)
+    local asset = {}
+    for _, v in ipairs(skins) do
+        local anim = "anim/"..v.file..".zip"
+        table.insert(asset, Asset("ANIM", anim))
+        if v.isdefault then
+            table.insert(asset, Asset("ATLAS", v.xml))
+            table.insert(asset, Asset("IMAGE", "images/zxskins/"..prefab.."/"..v.file..".tex"))
+        end
+    end
+    return asset
+end
+
+
+function ZxGetPrefabDefaultSkin(prefab)
+    local skins = ZxGetPrefabSkins(prefab)
+    for _, v in ipairs(skins) do
+        if v.isdefault then
+            return v
+        end
+    end
+    return {}
 end

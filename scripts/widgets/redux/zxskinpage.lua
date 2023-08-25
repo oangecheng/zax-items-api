@@ -10,8 +10,6 @@ local PopupDialogScreen = require "screens/redux/popupdialog"
 
 local GridPage = Class(Widget, function(self, parent_widget, owner)
     Widget._ctor(self, "GridPage")
-
-	self.ownerid = owner and owner.userid or ""
     self.parent_widget = parent_widget
 	self.root = self:AddChild(Widget("root"))
 

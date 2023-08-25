@@ -70,16 +70,7 @@ if TUNING.ZX_BEEBOX then
 end
 
 
--- -- 皮肤面板展示页面，先不开
-modimport("scripts/zxui.lua")--UI、容器等
-AddPlayerPostInit(function(inst)
-    if TheWorld.ismastersim then
-        inst:ListenForEvent("oneat", function(inst, data)
-            print("用户id = " .. inst.userid)
-            inst:ShowPopUp(POPUPS.ZXSKIN, true)
-        end)
-    end
-end)
+modimport("scripts/zxui.lua")
 
 
 

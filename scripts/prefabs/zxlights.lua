@@ -1,12 +1,6 @@
-
-
-local assets = {
-    Asset("ANIM", "anim/zxgardenlight.zip"),
-    Asset("ANIM", "anim/zxflowerlight.zip"),
-    Asset("ANIM", "anim/zxmushroomlight.zip"),
-    Asset("ANIM", "anim/zxbubblelight.zip"),
-
-}
+local PREABLE = "zxlight"
+local assets = ZxGetPrefabAnimAsset(PREABLE)
+local defalutSKin = ZxGetPrefabDefaultSkin(PREABLE)
 
 
 local prefabs = {
@@ -68,7 +62,7 @@ local function on_burnt(inst)
 end
 
 
-local function MakeLight(name)
+local function MakeLight(name, initSkinId)
 
     local function fn()
         local inst = CreateEntity()
@@ -90,8 +84,9 @@ local function MakeLight(name)
         MakeObstaclePhysics(inst, .2)
 
 
-        inst.AnimState:SetBank("zxgardenlight")
-        inst.AnimState:SetBuild("zxgardenlight")
+        local skin = ZxFindSkin(name, initSkinId)
+        inst.AnimState:SetBank(defalutSKin.bank)
+        inst.AnimState:SetBuild(defalutSKin.build)
         inst.AnimState:PlayAnimation("close")
 
         inst.entity:SetPristine()
@@ -103,7 +98,7 @@ local function MakeLight(name)
         inst:AddComponent("inspectable")
         inst:AddComponent("lootdropper")
         inst:AddComponent("zxskinable")
-        inst.components.zxskinable:SetInitSkinId(1200)
+        inst.components.zxskinable:SetInitSkinId(defalutSKin.id)
 
 
         inst:AddComponent("workable")
@@ -131,5 +126,5 @@ local function MakeLight(name)
 end
 
 
-return MakeLight("zxlight"),
-MakePlacer("zxlight_placer", "zxgardenlight", "zxgardenlight", "close")
+return MakeLight(PREABLE),
+MakePlacer(PREABLE.."_placer", defalutSKin.bank, defalutSKin.bank, "close")

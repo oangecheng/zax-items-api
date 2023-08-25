@@ -38,7 +38,7 @@ STRINGS.RECIPE_DESC.BEEBOX_HERMIT = "Built by hermit crab grandma!"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.BEEBOX_HERMIT = "so many bees!"
 
 -- 花园灯
-STRINGS.NAMES.ZX_LIGHT_1 = "Perpetual Lamp"
+STRINGS.NAMES.ZX_LIGHT_1 = "Garden Lamp"
 STRINGS.RECIPE_DESC.ZX_LIGHT_1 = "A small lamp that keeps shining!"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZX_LIGHT_1 = "This light is so comfortable!"
 
@@ -47,6 +47,24 @@ STRINGS.NAMES.ZX_WELL = "Garden Well"
 STRINGS.RECIPE_DESC.ZX_WELL = "A lot of water!"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZX_WELL = "Farming is much more convenient now!"
 
+
+
+
+-- 花丛
+STRINGS.NAMES.ZXFLOWERBUSH = "Flowerbush"
+STRINGS.RECIPE_DESC.ZXFLOWERBUSH = "Flowers that can be replaced with skin!"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXFLOWERBUSH = "This is so much easier!"
+
+--花园灯
+STRINGS.NAMES.ZXLIGHT = "Perpetual light"
+STRINGS.RECIPE_DESC.ZXLIGHT = "Lights that turn on automatically at night!"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXLIGHT = "Go to hell, Charlie!"
+
+
+STRINGS.ZX_SKIN_PAGE_TITLE = "Items shop"
+STRINGS.ZX_SKIN_PAGE_NOTICE = "The mysterious way to get it..."
+STRINGS.ZX_SKIN_HAS = "owned"
+STRINGS.ZX_SKIN_NOT_HAS = "not owned"
 
 
 STRINGS.ZX_SKIN_NAMES = {

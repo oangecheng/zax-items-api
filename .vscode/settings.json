@@ -57,6 +57,7 @@
         "ModManager",
         "locale",
         "CONTROL_NEXTVALUE",
-        "deepcopy"
+        "deepcopy",
+        "ThePlayer"
     ]
 }

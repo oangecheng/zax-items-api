@@ -4,7 +4,7 @@
 local skinlist = {}
 
 
-local function registerSkin(prefab, skinid, file, index, skintype)
+local function registerSkin(prefab, skinid, file, index, skintype, isdefault)
     skinlist[prefab] = skinlist[prefab] or {}
     skinlist[prefab].data = skinlist[prefab].data or {}
     skinlist[prefab].index = skinlist[prefab].index or index
@@ -16,6 +16,7 @@ local function registerSkin(prefab, skinid, file, index, skintype)
     skin.tex = file..".tex"
     skin.file = file
     skin.type = skintype
+    skin.isdefault = isdefault
 
     --- 用文件名命名动画文件
     skin.bank = file
@@ -26,15 +27,15 @@ local function registerSkin(prefab, skinid, file, index, skintype)
 end
 
 
-registerSkin("zxflowerbush", 1000, "zxdaisy",      1, ZX_SKINTYPE.FREE)
-registerSkin("zxflowerbush", 1001, "zxoxalis",     1, ZX_SKINTYPE.FREE)
+registerSkin("zxflowerbush", 1000, "zxoxalis",     1, ZX_SKINTYPE.FREE, true)
+registerSkin("zxflowerbush", 1001, "zxdaisy",      1, ZX_SKINTYPE.FREE)
 registerSkin("zxflowerbush", 1002, "zxhydrangea",  1, ZX_SKINTYPE.FREE)
 
 
-registerSkin("zxashcan", 1100, "zxashcan",  2, ZX_SKINTYPE.FREE)
+registerSkin("zxashcan", 1100, "zxashcan",  2, ZX_SKINTYPE.FREE, true)
 
 
-registerSkin("zxlight",  1200, "zxgardenlight",   3, ZX_SKINTYPE.FREE)
+registerSkin("zxlight",  1200, "zxgardenlight",   3, ZX_SKINTYPE.FREE, true)
 registerSkin("zxlight",  1202, "zxmushroomlight", 3, ZX_SKINTYPE.FREE)
 registerSkin("zxlight",  1211, "zxflowerlight",   3, ZX_SKINTYPE.SPONSOR)
 registerSkin("zxlight",  1212, "zxbubblelight",   3, ZX_SKINTYPE.SPONSOR)
