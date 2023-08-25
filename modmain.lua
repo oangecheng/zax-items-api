@@ -9,6 +9,11 @@ TUNING.ZX_ITEMS_LANGUAGE = GetModConfigData("zx_items_language")
 TUNING.ZX_MEATRACK = GetModConfigData("zx_meatrack")
 TUNING.ZX_BEEBOX = GetModConfigData("zx_beebox")
 
+local ch = TUNING.ZX_ITEMS_LANGUAGE == "ch"
+modimport(ch and "utils/strings_ch.lua" or "utils/strings_eng.lua")
+
+require("zx_skin/zxskinutils")
+
 
 
 PrefabFiles = {
@@ -38,10 +43,6 @@ Assets = {
 
 
 
-
-
-local ch = TUNING.ZX_ITEMS_LANGUAGE == "ch"
-modimport(ch and "utils/strings_ch.lua" or "utils/strings_eng.lua")
 modimport("scripts/mods/zx_containers.lua")
 modimport("utils/recipes.lua")
 modimport("utils/minimap.lua")
@@ -49,9 +50,7 @@ modimport("scripts/mods/zxhook.lua")
 
 
 
-
-local skins = require("zx_skin/zx_skins")
-for k, v in pairs(skins.GetSkins("")) do
+for k, v in pairs(ZxGetAllSkins()) do
     local path = "images/zxskins/"..k.."/"
     for i, s in ipairs(v.data) do
         table.insert(Assets, Asset("ATLAS", path..s.file..".xml"))
@@ -76,6 +75,7 @@ modimport("scripts/zxui.lua")--UI、容器等
 AddPlayerPostInit(function(inst)
     if TheWorld.ismastersim then
         inst:ListenForEvent("oneat", function(inst, data)
+            print("用户id = " .. inst.userid)
             inst:ShowPopUp(POPUPS.ZXSKIN, true)
         end)
     end

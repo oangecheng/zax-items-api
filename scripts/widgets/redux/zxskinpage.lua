@@ -7,12 +7,11 @@ local TEMPLATES = require "widgets/redux/templates"
 local Spinner = require "widgets/spinner"
 local PopupDialogScreen = require "screens/redux/popupdialog"
 
-local ZXSKINS= require("zx_skin/zx_skins").GetSkins("")
-
 
 local GridPage = Class(Widget, function(self, parent_widget, owner)
     Widget._ctor(self, "GridPage")
 
+	self.ownerid = owner and owner.userid or ""
     self.parent_widget = parent_widget
 	self.root = self:AddChild(Widget("root"))
 
@@ -20,28 +19,20 @@ local GridPage = Class(Widget, function(self, parent_widget, owner)
 	self.skin_grid = self.root:AddChild(self:BuildSkinScrollGrid())
 	self.skin_grid:SetPosition(-15, -12)
 
-	--已解锁皮肤数量(文字)
-	self.skin_num = self.root:AddChild(Text(CODEFONT, 24))
-	self.skin_num:SetPosition(-250, 243)
-	self.skin_num:SetRegionSize( 150, 24 )
-	self.skin_num:SetHAlign( ANCHOR_LEFT)
-	self.skin_num:SetString("已拥有:2/5")
-	self.skin_num:SetColour(UICOLOURS.GOLD)
-
 	--提示文字
 	self.skin_help = self.root:AddChild(Text(CODEFONT, 24))
-	self.skin_help:SetPosition(0, 243)
-	self.skin_help:SetRegionSize( 250, 24 )
+	self.skin_help:SetPosition(-250, 245)
+	self.skin_help:SetRegionSize(250, 24)
 	self.skin_help:SetHAlign( ANCHOR_LEFT)
-	self.skin_help:SetString("提示文字")
+	self.skin_help:SetString(STRINGS.ZX_SKIN_PAGE_NOTICE)
 	self.skin_help:SetColour(UICOLOURS.GOLD)
 
-
-	local skin_grid_data = {}--皮肤数据
-	for k,v in pairs(ZXSKINS) do--遍历皮肤数据表
+	local ZXSKINS= ZxGetCanShowSkins(owner.userid)
+	local skin_grid_data = {}
+	for k,v in pairs(ZXSKINS) do
 		table.insert(skin_grid_data, { prefab = k, info = v.data, index = v.index, currentid = 1 })
 	end
-	table.sort(skin_grid_data, function(a,b) return a.index < b.index end)--排序(免得pairs打乱了)
+	table.sort(skin_grid_data, function(a,b) return a.index < b.index end)
 	self.skin_grid:SetItemsData(skin_grid_data)
 	self.parent_default_focus = self.skin_grid
 end)
@@ -118,18 +109,8 @@ function GridPage:BuildSkinScrollGrid()
 
 		w.skin_spinner:SetPosition(0, -85)
 		w.skin_spinner:SetTextColour(PLANTREGISTRYUICOLOURS.UNLOCKEDBROWN)
-		w.skin_spinner.text:SetPosition(8, 12)
+		w.skin_spinner.text:SetPosition(0, 12)
 
-		--按钮
-		w.skin_btn = w.cell_root:AddChild(
-			TEMPLATES.StandardButton(
-				nil,
-				"确定",--按钮文字
-				{60, 30}--按钮尺寸
-			)
-		)
-		w.skin_btn:SetTextSize(18)
-		w.skin_btn:SetPosition(0, -95, 0)
 		
 		--皮肤选项卡展示
 		function w:SetSkinPage(prefab, skinid)
@@ -141,29 +122,13 @@ function GridPage:BuildSkinScrollGrid()
 			if skin then
 				w.skin_img:SetTexture(skin.xml, skin.tex)
 				w.skin_name:SetString(skin.name)
-			end
 
-			w.skin_btn:SetOnClick(function()
-				-- local popup
-				-- popup = PopupDialogScreen("title", "desc",
-				-- 	{
-				-- 		{text = "按钮1", cb = function()
-				-- 			TheFrontEnd:PopScreen(popup)
-				-- 		end},
-				-- 		{text = "按钮2", cb = function()
-				-- 			TheFrontEnd:PopScreen(popup)
-				-- 		end},
-				-- 	}
-				-- )
-				-- TheFrontEnd:PushScreen(popup)
-			end)
-			w.skin_btn:Enable()
+			end
 		end
 
 		local _OnControl = w.cell_root.OnControl
 		w.cell_root.OnControl = function(_, control, down)
 			if w.skin_spinner.focus or (control == CONTROL_PREVVALUE or control == CONTROL_NEXTVALUE) then if w.skin_spinner:IsVisible() then w.skin_spinner:OnControl(control, down) end return true end
-			if w.skin_btn.focus or (control == CONTROL_PREVVALUE or control == CONTROL_NEXTVALUE) then if w.skin_btn:IsVisible() then w.skin_btn:OnControl(control, down) end return true end
 			return _OnControl(_, control, down)
 		end
 
@@ -210,13 +175,12 @@ function GridPage:BuildSkinScrollGrid()
 
 		widget.data = data
 		widget:SetSkinPage(data.prefab, data.currentid)
-
-		print("ScrollWidgetSetData"..tostring(STRINGS.NAMES[string.upper(data.prefab)]))
 		widget.skin_label:SetString(STRINGS.NAMES[string.upper(data.prefab)])
 
 		local spinner_options = {}--皮肤选项卡数据
 		for i, v in ipairs(data.info) do --遍历数据表，加入到选项卡里
-			table.insert( spinner_options, { text= 100, data = i } )
+			local text = v.canuse and STRINGS.ZX_SKIN_HAS or STRINGS.ZX_SKIN_NOT_HAS
+			table.insert(spinner_options, { text = text, data = i } )
 		end
 
 		widget.cell_root:SetTextures("images/plantregistry.xml", "plant_entry_active.tex", "plant_entry_focus.tex")

@@ -1,6 +1,4 @@
 {
-    "Lua.diagnostics.disable": [
-    ],
     "Lua.diagnostics.globals": [
         "ANCHOR_MIDDLE",
         "Class",
@@ -57,6 +55,8 @@
         "AddMinimapAtlas",
         "FOODTYPE",
         "ModManager",
-        "locale"
+        "locale",
+        "CONTROL_NEXTVALUE",
+        "deepcopy"
     ]
 }

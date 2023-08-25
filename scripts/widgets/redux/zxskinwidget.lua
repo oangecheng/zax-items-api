@@ -19,9 +19,7 @@ local MultiTabWidget = Class(Widget, function(self, owner)
 	local base_size = .7
 
 	local button_data = {
-		-- {text = STRINGS.UI.PLANTREGISTRY.TAB_TITLE_PLANTS, build_panel_fn = function() return PlantsPage(self) end},
-		{text = "皮肤页面", build_panel_fn = function() return SkinPage(self,owner) end},
-		{text = "页面2", build_panel_fn = function() return SkinPage(self, owner) end},
+		{text = STRINGS.ZX_SKIN_PAGE_TITLE, build_panel_fn = function() return SkinPage(self,owner) end},
 	}
 
 	local function MakeTab(data, index)
