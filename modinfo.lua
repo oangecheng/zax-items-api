@@ -1,6 +1,7 @@
+---@diagnostic disable: lowercase-global
 local ch = locale == "zh" or locale == "zhr"
 
-local VERSION = "0.2.7.1"
+local VERSION = "0.3.0"
 
 -- 名称
 name = "建家党狂喜(more items)"
@@ -8,7 +9,8 @@ name = "建家党狂喜(more items)"
 description = 
 ch and 
 [[
-	版本 0.2.7.1                
+	版本 0.3.0
+	交流&bug反馈群 600710976                
 	一些额外的物品，提升游戏体验,
 	你可以建造一些物品来装饰自己的基地，
 	肉仓/蔬菜仓
@@ -20,11 +22,13 @@ ch and
 	绣球花
 	花园水井
 	干草车
+	垃圾桶
+	支持使用魔法扫帚给物品换肤
 	持续更新中...
 ]]
 or 
 [[
-	version 0.2.7.1                        
+	version 0.3.0                        
 	more items to improve game experience，
 	You can build items to decorate your base.
 	Meat and Veggie Granary
@@ -32,10 +36,12 @@ or
 	Daisy bushes
 	Beebox hermit
 	Oxalis
-	Garden Lamp
+	Perpetual Lamp (4 skin)
 	Hydrangea
 	Garden Well
 	Hay cart
+	ashcan
+	support change skin
 	Continuous updates...
 ]]
 

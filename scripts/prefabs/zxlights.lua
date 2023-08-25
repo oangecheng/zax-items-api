@@ -4,6 +4,8 @@ local assets = {
     Asset("ANIM", "anim/zxgardenlight.zip"),
     Asset("ANIM", "anim/zxflowerlight.zip"),
     Asset("ANIM", "anim/zxmushroomlight.zip"),
+    Asset("ANIM", "anim/zxbubblelight.zip"),
+
 }
 
 
@@ -19,7 +21,7 @@ end
 local function open(inst)
     if not inst.broken then
 		inst.Light:Enable(true)
-		inst.AnimState:PlayAnimation("open")
+		inst.AnimState:PlayAnimation("open", true)
 		inst.lightson = true
 	end
 end

@@ -56,6 +56,7 @@
         "RPC",
         "AddMinimapAtlas",
         "FOODTYPE",
-        "ModManager"
+        "ModManager",
+        "locale"
     ]
 }

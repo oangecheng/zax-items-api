@@ -75,7 +75,8 @@ STRINGS.ZX_SKIN_NAMES = {
 	["zxlight"] = {
 		["zxgardenlight"]   = "花园灯",
 		["zxflowerlight"]   = "藤蔓灯",
-		["zxmushroomlight"] = "蘑菇灯"
+		["zxmushroomlight"] = "蘑菇灯",
+		["zxbubblelight"]   = "泡泡灯",
 	}
 	
 }
