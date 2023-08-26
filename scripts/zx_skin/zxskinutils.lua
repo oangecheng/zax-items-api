@@ -1,6 +1,6 @@
 
 
-ZX_SKINTYPE = {
+local ZX_SKINTYPE = {
     UNKOWN = 0,
     FREE = 1,
     SPONSOR = 2,
