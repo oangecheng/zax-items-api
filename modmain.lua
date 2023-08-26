@@ -8,6 +8,8 @@ TUNING.ZX_ITEMS_LANGUAGE = GetModConfigData("zx_items_language")
 -- 一些其他物品
 TUNING.ZX_MEATRACK = GetModConfigData("zx_meatrack")
 TUNING.ZX_BEEBOX = GetModConfigData("zx_beebox")
+TUNING.ZX_SHOWSHOPENTRY = GetModConfigData("zxshowshopentry")
+
 
 local ch = TUNING.ZX_ITEMS_LANGUAGE == "ch"
 modimport(ch and "utils/strings_ch.lua" or "utils/strings_eng.lua")
@@ -70,7 +72,9 @@ if TUNING.ZX_BEEBOX then
 end
 
 
-modimport("scripts/zxui.lua")
+if TUNING.ZX_SHOWSHOPENTRY then
+    modimport("scripts/zxui.lua")
+end
 
 
 

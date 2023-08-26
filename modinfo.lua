@@ -1,7 +1,7 @@
 ---@diagnostic disable: lowercase-global
 local ch = locale == "zh" or locale == "zhr"
 
-local VERSION = "0.3.0"
+local VERSION = "0.3.0.1"
 
 -- 名称
 name = "建家党狂喜(more items)"
@@ -77,6 +77,15 @@ configuration_options =
 			{description = ch and "英文" or "English", data = "eng"},
 		},
 		default = "ch",
+	},
+	{
+		name = "zxshowshopentry",
+		label = ch and "关闭面板入口" or "close panel entry",
+		options = {
+			{description = ch and "关闭" or "close", data = false},
+			{description = ch and "打开" or "open",  data = true},
+		},
+		default = false,
 	},
 	
 	Title(ch and "粮仓设置" or "granary settings"),
