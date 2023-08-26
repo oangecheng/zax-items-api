@@ -88,7 +88,7 @@ AddRecipe2(
 -- 花丛
 AddRecipe2(
 	"zxflowerbush",
-	{Ingredient("butterfly", 2),},
+	{Ingredient("butterfly", 2)},
 	TECH.SCIENCE_ONE,
 	{
 		placer = "zxflowerbush_placer",
@@ -103,7 +103,7 @@ AddRecipe2(
 -- 垃圾桶
 AddRecipe2(
 	"zxashcan",
-	{Ingredient("butterfly", 2),},
+	{Ingredient("boards", 2), Ingredient("goldnugget", 1)},
 	TECH.SCIENCE_ONE,
 	{
 		placer = "zxashcan_placer",

@@ -8,6 +8,12 @@ ZX_SKINTYPE = {
 }
 
 
+local WHITE_USERS = {
+    "KU_6BQklGIZ",
+    "KU_yOQjm62_",
+}
+
+
 
 local ZXSKINS = require("zx_skin/zxskinsdef")
 local ZXUSERSKINS = require("zx_skin/zxuserdata")
@@ -27,6 +33,10 @@ function ZxGetUserPrefabSkins(userid, prefab)
     local ret = {}
     local userskins = ZXUSERSKINS[userid] or {}
     local skins = ZxGetPrefabSkins(prefab)
+    ---@diagnostic disable-next-line: undefined-field
+    if table.contains(WHITE_USERS, userid) then
+        return skins
+    end
 
     if skins then
         for _, v in ipairs(skins) do
@@ -41,6 +51,10 @@ end
 
 
 function ZxUserHasSkin(userid, skinid)
+     ---@diagnostic disable-next-line: undefined-field
+     if table.contains(WHITE_USERS, userid) then
+        return true
+    end
     local userskins = ZXUSERSKINS[userid] or {}
     for k, v in pairs(ZXSKINS) do
         for i, d in ipairs(v.data) do
@@ -60,12 +74,15 @@ end
 function ZxGetCanShowSkins(userid)
     local userskins = ZXUSERSKINS[userid]
     local allskins = deepcopy(ZXSKINS)
+    ---@diagnostic disable-next-line: undefined-field
+    local white = table.contains(WHITE_USERS, userid)
+
     for k, s in pairs(allskins) do
         local skins = s.data
         local list = {}
         for i, v in ipairs(skins) do
             ---@diagnostic disable-next-line: undefined-field
-            if v.type == ZX_SKINTYPE.FREE or table.contains(userskins, v.id) then
+            if white or v.type == ZX_SKINTYPE.FREE or table.contains(userskins, v.id) then
                 v.canuse = true
                 table.insert(list, v)
             elseif v.type == ZX_SKINTYPE.SPONSOR then

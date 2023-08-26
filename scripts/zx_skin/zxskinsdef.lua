@@ -26,19 +26,25 @@ local function registerSkin(prefab, skinid, file, index, skintype, isdefault)
     table.insert(skinlist[prefab].data, skin)
 end
 
-
+-- 花丛
 registerSkin("zxflowerbush", 1000, "zxoxalis",     1, ZX_SKINTYPE.FREE, true)
 registerSkin("zxflowerbush", 1001, "zxdaisy",      1, ZX_SKINTYPE.FREE)
 registerSkin("zxflowerbush", 1002, "zxhydrangea",  1, ZX_SKINTYPE.FREE)
-
-
+-- 垃圾桶
 registerSkin("zxashcan", 1100, "zxashcan",  2, ZX_SKINTYPE.FREE, true)
-
-
+--- 灯
 registerSkin("zxlight",  1200, "zxgardenlight",   3, ZX_SKINTYPE.FREE, true)
 registerSkin("zxlight",  1202, "zxmushroomlight", 3, ZX_SKINTYPE.FREE)
 registerSkin("zxlight",  1211, "zxflowerlight",   3, ZX_SKINTYPE.SPONSOR)
 registerSkin("zxlight",  1212, "zxbubblelight",   3, ZX_SKINTYPE.SPONSOR)
+registerSkin("zxlight",  1250, "zxcatllight",     3, ZX_SKINTYPE.CUSTOM)
+registerSkin("zxlight",  1251, "zxcatrlight",     3, ZX_SKINTYPE.CUSTOM)
+registerSkin("zxlight",  1252, "zxcatsleftlight", 3, ZX_SKINTYPE.CUSTOM)
+registerSkin("zxlight",  1253, "zxcatsrightlight",3, ZX_SKINTYPE.CUSTOM)
+registerSkin("zxlight",  1254, "zxstartalllight", 3, ZX_SKINTYPE.CUSTOM)
+registerSkin("zxlight",  1255, "zxstarshortlight",3, ZX_SKINTYPE.CUSTOM)
+
+
 
 --- 没有自定义皮肤切换函数，使用默认的
 for k, v in pairs(skinlist) do

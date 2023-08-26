@@ -78,9 +78,15 @@ STRINGS.ZX_SKIN_NAMES = {
 		["zxashcan"] = "ashcan"
 	},
 	["zxlight"] = {
-		["zxgardenlight"]   = "garden lamp",
-		["zxflowerlight"]   = "flower lamp",
-		["zxmushroomlight"] = "mushroom lamp",
-		["zxbubblelight"]   = "bubble lamp",
+		["zxgardenlight"]     = "garden lamp",
+		["zxflowerlight"]     = "flower lamp",
+		["zxmushroomlight"]   = "mushroom lamp",
+		["zxbubblelight"]     = "bubble lamp",
+		["zxcatllight"]       = "black kitty(left)",
+		["zxcatrlight"]       = "black kitty(right)",
+		["zxcatsleftlight"]   = "cat(left)",
+		["zxcatsrightlight"]  = "cat(right)",
+		["zxstartalllight"]   = "star lamp(tall)",
+		["zxstarshortlight"]  = "star lamp(short)",
 	}
 }
