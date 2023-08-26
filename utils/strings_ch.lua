@@ -79,15 +79,14 @@ STRINGS.ZX_SKIN_NAMES = {
 	},
 	["zxlight"] = {
 		["zxgardenlight"]     = "花园灯",
-		["zxflowerlight"]     = "藤蔓灯",
-		["zxmushroomlight"]   = "蘑菇伞",
-		["zxbubblelight"]     = "泡泡灯",
-		["zxcatllight"]       = "小黑猫(左)",
-		["zxcatrlight"]       = "小黑猫(右)",
-		["zxcatsleftlight"]   = "浣猫灯(左)",
-		["zxcatsrightlight"]  = "浣猫灯(右)",
-		["zxstartalllight"]   = "星星灯(高)",
-		["zxstarshortlight"]  = "星星灯(矮)",
+		["zxflowerlight"]     = "铃兰花灯",
+		["zxmushroomlight"]   = "摩尔蘑菇灯",
+		["zxbubblelight"]     = "POPO",
+		["zxcatllight"]       = "猫猫灯(左)",
+		["zxcatrlight"]       = "猫猫灯(右)",
+		["zxcatsleftlight"]   = "典藏卡基米(左)",
+		["zxcatsrightlight"]  = "典藏卡基米(右)",
+		["zxstartalllight"]   = "蜘蛛灯",
+		["zxstarshortlight"]  = "星星灯",
 	}
-	
 }
