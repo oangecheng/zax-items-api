@@ -12,7 +12,7 @@ local ZX_SKINTYPE = {
 local WHITE_USERS = {
     "KU_6BQklGIZ",
     "KU_yOQjm62_",
-    "KU_3RvV9D3I",
+    "KU_Gi0-qc00",
 }
 
 local USER_SKIN_DEF = {
@@ -27,6 +27,8 @@ local USER_SKIN_DEF = {
     ["KU_dwt6dovw"] = { 1211, 1212 },
     ["KU_j0Qm7xr0"] = { 1211, 1212 },
     ["KU_cuIT1xT8"] = { 1211, 1212 },
+    ["KU_3RvV9nnh"] = { 1211, 1212 },
+    ["KU_3NiPPyTS"] = { 1211, 1212 },
 
     ["KU_GqQ9ffgi"] = { 1211, 1212, 1252, 1253 },
     ["KU_aAgFa01P"] = { 1211, 1212, 1252, 1253 },
