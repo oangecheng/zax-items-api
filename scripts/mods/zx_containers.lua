@@ -262,6 +262,14 @@ function params.zx_hay_cart.itemtestfn(container, item, slot)
 end
 
 
+params.zxlogstore = createBox5x10Param()
+init5x10BoxSlot(params.zxlogstore)
+function params.zxlogstore.itemtestfn(container, item, slot)
+	if item.prefab == "log" then return true end
+	return false
+end
+
+
 
 --- 垃圾桶
 params.zxashcan =

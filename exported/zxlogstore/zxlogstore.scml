@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+    <folder id="0" name="images">
+        <file id="0" name="images/main.png" width="500" height="500" pivot_x="0.45" pivot_y="0.2"/>
+        <file id="1" name="images/door.png" width="500" height="500" pivot_x="0.318725" pivot_y="0.153386"/>
+        <file id="2" name="images/decorate.png" width="500" height="500" pivot_x="0.414343" pivot_y="0.828685"/>
+        <file id="3" name="images/door_open.png" width="500" height="499" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="zxlogstore">
+        <animation id="0" name="close" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="main" folder="0" file="0" abs_x="0" abs_y="0" abs_pivot_x="0.45" abs_pivot_y="0.2" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" name="door" folder="0" file="1" abs_x="-61.764706" abs_y="-29.411765" abs_pivot_x="0.318725" abs_pivot_y="0.153386" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" name="decorate" folder="0" file="2" abs_x="-20" abs_y="327" abs_pivot_x="0.414343" abs_pivot_y="0.828685" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="main">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="door">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-61.764706" y="-29.411765" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="decorate">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-20" y="327" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="open" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="main_000" folder="0" file="0" abs_x="0" abs_y="0" abs_pivot_x="0.45" abs_pivot_y="0.2" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" name="decorate_000" folder="0" file="2" abs_x="-20" abs_y="327" abs_pivot_x="0.414343" abs_pivot_y="0.828685" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" name="door_open" folder="0" file="3" abs_x="-410" abs_y="397" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="main_000">
+                <key id="0" spin="0">
+                    <object folder="0" file="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="decorate_000">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-20" y="327"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="door_open">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-410" y="397"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

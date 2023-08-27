@@ -3,6 +3,7 @@ local assets = {
     Asset("ANIM", "anim/ui_chest_3x3.zip"),
     Asset("ANIM", "anim/ui_zx_5x5.zip"),
     Asset("ANIM", "anim/zxashcan.zip"),
+    Asset("ANIM", "anim/zxlogstore.zip"),
     Asset("ATLAS", "images/zxskins/zxashcan/zxashcan.xml"),
     Asset("IMAGE", "images/zxskins/zxashcan/zxashcan.tex")
 }
@@ -52,6 +53,20 @@ local boxesdef = {
                     end
                 end
             end)
+        end
+    },
+
+    ["zxlogstore"] = {
+        oninitfn = function (inst)
+            inst.AnimState:PlayAnimation("close")
+        end,
+
+        onopenfn = function(inst, doer)
+            inst.AnimState:PlayAnimation("open")
+        end,
+
+        onclosefn = function (inst, doer)
+            inst.AnimState:PlayAnimation("close")
         end
     }
 }
@@ -202,5 +217,6 @@ end
 
 
 return MakeZxBox("zxashcan"),
-MakePlacer("zxashcan_placer", "zxashcan", "zxashcan", "close")
-
+MakePlacer("zxashcan_placer", "zxashcan", "zxashcan", "close"),
+MakeZxBox("zxlogstore"),
+MakePlacer("zxlogstore_placer", "zxlogstore", "zxlogstore", "close")
