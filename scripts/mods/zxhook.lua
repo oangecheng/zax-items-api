@@ -10,7 +10,7 @@ AddPrefabPostInit("reskin_tool", function(inst)
     local spell = inst.components.spellcaster.spell
 
     inst.components.spellcaster:SetSpellFn(function(tool, target, pos, doer)
-        if target and target.components.zxskinable then
+        if doer and target and target.components.zxskinable then
             target.components.zxskinable:ChangeSkin(doer)
         elseif spell then
             spell(tool, target, pos, doer)
@@ -19,7 +19,7 @@ AddPrefabPostInit("reskin_tool", function(inst)
     end)
     
     inst.components.spellcaster:SetCanCastFn(function (doer, target, pos)
-        if target and target.components.zxskinable then
+        if doer and target and target.components.zxskinable then
             return target.components.zxskinable:CanChangeSkin(doer)
         else
             return oldtest and oldtest(doer, target, pos)

@@ -29,6 +29,7 @@ local USER_SKIN_DEF = {
     ["KU_cuIT1xT8"] = { 1211, 1212 },
     ["KU_3RvV9nnh"] = { 1211, 1212 },
     ["KU_3NiPPyTS"] = { 1211, 1212 },
+    ["KU_K9a7Kkx6"] = { 1211 },
 
     ["KU_GqQ9ffgi"] = { 1211, 1212, 1252, 1253 },
     ["KU_aAgFa01P"] = { 1211, 1212, 1252, 1253 },
@@ -80,8 +81,8 @@ registerSkin("zxlight",  1252, "zxcatsleftlight", 3, ZX_SKINTYPE.CUSTOM)
 registerSkin("zxlight",  1253, "zxcatsrightlight",3, ZX_SKINTYPE.CUSTOM)
 registerSkin("zxlight",  1254, "zxstartalllight", 3, ZX_SKINTYPE.CUSTOM)
 registerSkin("zxlight",  1255, "zxstarshortlight",3, ZX_SKINTYPE.CUSTOM)
-
-
+-- 柴房
+registerSkin("zxlogstore", 1300, "zxlogstoreforest", 4, ZX_SKINTYPE.FREE)
 
 --- 没有自定义皮肤切换函数，使用默认的
 for k, v in pairs(skinlist) do

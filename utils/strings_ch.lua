@@ -62,6 +62,11 @@ STRINGS.NAMES.ZXLIGHT = "永亮灯"
 STRINGS.RECIPE_DESC.ZXLIGHT = "晚上自动打开的灯!"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXLIGHT = "见鬼去吧，查理!"
 
+--柴房
+STRINGS.NAMES.ZXLOGSTORE = "柴房"
+STRINGS.RECIPE_DESC.ZXLOGSTORE = "存放木材的地方!"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXLOGSTORE = "里面堆满了柴火!"
+
 STRINGS.ZX_SKIN_PAGE_TITLE = "建家党小店"
 STRINGS.ZX_SKIN_PAGE_NOTICE = "神秘的获取方式..."
 STRINGS.ZX_SKIN_HAS = "已拥有"
@@ -88,5 +93,8 @@ STRINGS.ZX_SKIN_NAMES = {
 		["zxcatsrightlight"]  = "典藏卡基米(右)",
 		["zxstartalllight"]   = "蜘蛛灯",
 		["zxstarshortlight"]  = "星星灯",
+	},
+	["zxlogstore"] = {
+		["zxlogstoreforest"]  = "森林小屋"
 	}
 }

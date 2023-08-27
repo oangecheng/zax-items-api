@@ -3,10 +3,15 @@ local assets = {
     Asset("ANIM", "anim/ui_chest_3x3.zip"),
     Asset("ANIM", "anim/ui_zx_5x5.zip"),
     Asset("ANIM", "anim/zxashcan.zip"),
-    Asset("ANIM", "anim/zxlogstore.zip"),
     Asset("ATLAS", "images/zxskins/zxashcan/zxashcan.xml"),
     Asset("IMAGE", "images/zxskins/zxashcan/zxashcan.tex")
 }
+
+local logstore = ZxGetPrefabAnimAsset("zxlogstore")
+for i, v in ipairs(logstore) do
+    table.insert(assets, v)
+end
+
 
 
 local prefabs = {
@@ -57,6 +62,7 @@ local boxesdef = {
     },
 
     ["zxlogstore"] = {
+        skinid = 1300,
         oninitfn = function (inst)
             inst.AnimState:PlayAnimation("close")
         end,
@@ -183,8 +189,9 @@ local function MakeZxBox(name)
         inst.components.container.skipclosesnd = true
         inst.components.container.skipopensnd = true
 
-        if data.skinable then
+        if data.skinid then
             inst:AddComponent("zxskinable")
+            inst.components.zxskinable:SetInitSkinId(data.skinid)
         end
 	
 	    -- 可以用锤子拆

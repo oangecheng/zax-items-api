@@ -262,10 +262,12 @@ function params.zx_hay_cart.itemtestfn(container, item, slot)
 end
 
 
+local logsdef = { "livinglog", "twigs", "log", "boards" }
 params.zxlogstore = createBox5x10Param()
 init5x10BoxSlot(params.zxlogstore)
 function params.zxlogstore.itemtestfn(container, item, slot)
-	if item.prefab == "log" then return true end
+	---@diagnostic disable-next-line: undefined-field
+	if table.contains(logsdef, item.prefab) then return true end
 	return false
 end
 

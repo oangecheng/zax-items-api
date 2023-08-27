@@ -60,6 +60,11 @@ STRINGS.NAMES.ZXLIGHT = "Perpetual light"
 STRINGS.RECIPE_DESC.ZXLIGHT = "Lights that turn on automatically at night!"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXLIGHT = "Go to hell, Charlie!"
 
+--柴房
+STRINGS.NAMES.ZXLOGSTORE = "Log hourse"
+STRINGS.RECIPE_DESC.ZXLOGSTORE = "store logs!"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXLOGSTORE = "a lot of logs!"
+
 
 STRINGS.ZX_SKIN_PAGE_TITLE = "Items shop"
 STRINGS.ZX_SKIN_PAGE_NOTICE = "The mysterious way to get it..."
@@ -88,5 +93,8 @@ STRINGS.ZX_SKIN_NAMES = {
 		["zxcatsrightlight"]  = "cat(right)",
 		["zxstartalllight"]   = "star lamp(tall)",
 		["zxstarshortlight"]  = "star lamp(short)",
-	}
+	},
+	["zxlogstore"] = {
+		["zxlogstoreforest"]  = "forest log house"
+	},
 }
