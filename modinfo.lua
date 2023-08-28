@@ -1,7 +1,7 @@
 ---@diagnostic disable: lowercase-global
 local ch = locale == "zh" or locale == "zhr"
 
-local VERSION = "0.3.0.3"
+local VERSION = "0.3.0.6"
 
 -- 名称
 name = "建家党狂喜(more items)"
@@ -9,7 +9,7 @@ name = "建家党狂喜(more items)"
 description = 
 ch and 
 [[
-	版本 0.3.0.3
+	版本 0.3.0.5
 	交流&bug反馈群 600710976                
 	一些额外的物品，提升游戏体验,
 	你可以建造一些物品来装饰自己的基地，
@@ -28,7 +28,7 @@ ch and
 ]]
 or 
 [[
-	version 0.3.0.3                       
+	version 0.3.0.5                       
 	more items to improve game experience，
 	You can build items to decorate your base.
 	Meat and Veggie Granary

@@ -63,7 +63,9 @@ local boxesdef = {
 
     ["zxlogstore"] = {
         skinid = 1300,
-        oninitfn = function (inst)
+        oninitfn = function (inst) 	
+            inst.AnimState:SetBank("zxlogstoreforest") 
+            inst.AnimState:SetBuild("zxlogstoreforest")
             inst.AnimState:PlayAnimation("close")
         end,
 
@@ -226,4 +228,4 @@ end
 return MakeZxBox("zxashcan"),
 MakePlacer("zxashcan_placer", "zxashcan", "zxashcan", "close"),
 MakeZxBox("zxlogstore"),
-MakePlacer("zxlogstore_placer", "zxlogstore", "zxlogstore", "close")
+MakePlacer("zxlogstore_placer", "zxlogstoreforest", "zxlogstoreforest", "close")
