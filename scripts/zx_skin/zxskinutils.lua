@@ -37,6 +37,7 @@ local USER_SKIN_DEF = {
     ["KU_nnMF5QXa"] = { 1211, 1212 },
     ["KU_pvwb-HJP"] = { 1211, 1212 },
     ["KU_qRBOnX1n"] = { 1211, 1212 },
+    ["KU_GlsWZ3Xb"] = { 1211, 1212 },
 
     ["KU_GqQ9ffgi"] = { 1211, 1212, 1252, 1253 },
     ["KU_aAgFa01P"] = { 1211, 1212, 1252, 1253 },
