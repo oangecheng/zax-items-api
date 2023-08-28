@@ -9,39 +9,18 @@ name = "建家党狂喜(more items)"
 description = 
 ch and 
 [[
-	版本 0.3.0.5
+	版本 0.3.0.6
 	交流&bug反馈群 600710976                
 	一些额外的物品，提升游戏体验,
-	你可以建造一些物品来装饰自己的基地，
-	肉仓/蔬菜仓
-	寄居蟹晾肉架
-	小雏菊花丛
-	寄居蟹蜂箱
-	紫色酢浆草
-	花园灯
-	绣球花
-	花园水井
-	干草车
-	垃圾桶
 	支持使用魔法扫帚给物品换肤
 	持续更新中...
 ]]
 or 
 [[
-	version 0.3.0.5                       
+	version 0.3.0.6                       
 	more items to improve game experience，
 	You can build items to decorate your base.
-	Meat and Veggie Granary
-	Meatrack hermit
-	Daisy bushes
-	Beebox hermit
-	Oxalis
-	Perpetual Lamp (4 skin)
-	Hydrangea
-	Garden Well
-	Hay cart
-	ashcan
-	support change skin
+	support change skin by reskin tool
 	Continuous updates...
 ]]
 
