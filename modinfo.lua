@@ -1,7 +1,7 @@
 ---@diagnostic disable: lowercase-global
 local ch = locale == "zh" or locale == "zhr"
 
-local VERSION = "0.3.0.6"
+local VERSION = "0.3.0.7"
 
 -- 名称
 name = "建家党狂喜(more items)"
@@ -9,7 +9,7 @@ name = "建家党狂喜(more items)"
 description = 
 ch and 
 [[
-	版本 0.3.0.6
+	版本 0.3.0.7
 	交流&bug反馈群 600710976                
 	一些额外的物品，提升游戏体验,
 	支持使用魔法扫帚给物品换肤
@@ -17,7 +17,7 @@ ch and
 ]]
 or 
 [[
-	version 0.3.0.6                       
+	version 0.3.0.7                       
 	more items to improve game experience，
 	You can build items to decorate your base.
 	support change skin by reskin tool
