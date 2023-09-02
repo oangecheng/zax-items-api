@@ -62,6 +62,12 @@ end
 
 
 
+AddPlayerPostInit(function(inst)
+   ZxGetUserSkinFromServer(inst)
+end)
+
+
+
 -- 原版物品其他mod可能也有
 -- 加个配置项是否可建造
 if TUNING.ZX_MEATRACK then

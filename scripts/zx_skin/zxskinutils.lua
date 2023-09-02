@@ -9,44 +9,9 @@ local ZX_SKINTYPE = {
 
 
 
-local WHITE_USERS = {
-    "KU_6BQklGIZ",
-    "KU_yOQjm62_",
-    "KU_Gi0-qc00",
-}
+local WHITE_USERS = {}
+local USER_SKIN_DEF = {}
 
-local USER_SKIN_DEF = {
-    ["KU_UD4KSaLq"] = { 1250, 1251, 1252, 1253, 1254, 1255 },
-    ["KU_0vPtVaaE"] = { 1250, 1251, 1252, 1253, 1254, 1255 },
-    ["KU_BJgEZCEU"] = { 1250, 1251, 1252, 1253, 1254, 1255 },
-
-    ["KU_F4GEmay9"] = { 1211, 1212 },
-    ["KU_SIyU71VB"] = { 1211, 1212 },
-    ["KU_LPW1CXfz"] = { 1211, 1212 },
-    ["KU_m5E5k5Xm"] = { 1211, 1212 },
-    ["KU_dwt6dovw"] = { 1211, 1212 },
-    ["KU_j0Qm7xr0"] = { 1211, 1212 },
-    ["KU_cuIT1xT8"] = { 1211, 1212 },
-    ["KU_3RvV9nnh"] = { 1211, 1212 },
-    ["KU_3NiPPyTS"] = { 1211, 1212 },
-    ["KU_K9a7Kkx6"] = { 1211, 1212 },
-    ["KU_MAFS6M2M"] = { 1211, 1212 },
-    ["KU_cuIT1qdU"] = { 1211, 1212 },
-    ["KU_tw1TiToM"] = { 1211, 1212 },
-    ["KU_9Ct7yrkB"] = { 1211, 1212 },
-    ["KU_nnMF5QXa"] = { 1211, 1212 },
-    ["KU_pvwb-HJP"] = { 1211, 1212 },
-    ["KU_qRBOnX1n"] = { 1211, 1212 },
-    ["KU_GlsWZ3Xb"] = { 1211, 1212 },
-    ["KU_zePBhJWp"] = { 1211, 1212 },
-
-    ["KU_GqQ9ffgi"] = { 1211, 1212, 1252, 1253 },
-    ["KU_aAgFa01P"] = { 1211, 1212, 1252, 1253 },
-    ["KU_rqpw9ctB"] = { 1211, 1212, 1252, 1253 },
-    ["KU_cuIT1yFq"] = { 1211, 1212, 1252, 1253 },
-    ["KU_q87X4lLl"] = { 1211, 1212, 1252, 1253 },
-    ["KU_3RvV9D3I"] = { 1211, 1212, 1252, 1253 },
-}
 
 local skinlist = {}
 
@@ -74,24 +39,24 @@ local function registerSkin(prefab, skinid, file, index, skintype, isdefault)
 end
 
 -- 花丛
-registerSkin("zxflowerbush", 1000, "zxoxalis",     1, ZX_SKINTYPE.FREE, true)
-registerSkin("zxflowerbush", 1001, "zxdaisy",      1, ZX_SKINTYPE.FREE)
-registerSkin("zxflowerbush", 1002, "zxhydrangea",  1, ZX_SKINTYPE.FREE)
+registerSkin("zxflowerbush", "1000", "zxoxalis",     1, ZX_SKINTYPE.FREE, true)
+registerSkin("zxflowerbush", "1001", "zxdaisy",      1, ZX_SKINTYPE.FREE)
+registerSkin("zxflowerbush", "1002", "zxhydrangea",  1, ZX_SKINTYPE.FREE)
 -- 垃圾桶
-registerSkin("zxashcan", 1100, "zxashcan",  2, ZX_SKINTYPE.FREE, true)
+registerSkin("zxashcan", "1100", "zxashcan",  2, ZX_SKINTYPE.FREE, true)
 --- 灯
-registerSkin("zxlight",  1200, "zxgardenlight",   3, ZX_SKINTYPE.FREE, true)
-registerSkin("zxlight",  1202, "zxmushroomlight", 3, ZX_SKINTYPE.FREE)
-registerSkin("zxlight",  1211, "zxflowerlight",   3, ZX_SKINTYPE.SPONSOR)
-registerSkin("zxlight",  1212, "zxbubblelight",   3, ZX_SKINTYPE.SPONSOR)
-registerSkin("zxlight",  1250, "zxcatllight",     3, ZX_SKINTYPE.CUSTOM)
-registerSkin("zxlight",  1251, "zxcatrlight",     3, ZX_SKINTYPE.CUSTOM)
-registerSkin("zxlight",  1252, "zxcatsleftlight", 3, ZX_SKINTYPE.CUSTOM)
-registerSkin("zxlight",  1253, "zxcatsrightlight",3, ZX_SKINTYPE.CUSTOM)
-registerSkin("zxlight",  1254, "zxstartalllight", 3, ZX_SKINTYPE.CUSTOM)
-registerSkin("zxlight",  1255, "zxstarshortlight",3, ZX_SKINTYPE.CUSTOM)
+registerSkin("zxlight",  "1200", "zxgardenlight",   3, ZX_SKINTYPE.FREE, true)
+registerSkin("zxlight",  "1202", "zxmushroomlight", 3, ZX_SKINTYPE.FREE)
+registerSkin("zxlight",  "1211", "zxflowerlight",   3, ZX_SKINTYPE.SPONSOR)
+registerSkin("zxlight",  "1212", "zxbubblelight",   3, ZX_SKINTYPE.SPONSOR)
+registerSkin("zxlight",  "1250", "zxcatllight",     3, ZX_SKINTYPE.CUSTOM)
+registerSkin("zxlight",  "1251", "zxcatrlight",     3, ZX_SKINTYPE.CUSTOM)
+registerSkin("zxlight",  "1252", "zxcatsleftlight", 3, ZX_SKINTYPE.CUSTOM)
+registerSkin("zxlight",  "1253", "zxcatsrightlight",3, ZX_SKINTYPE.CUSTOM)
+registerSkin("zxlight",  "1254", "zxstartalllight", 3, ZX_SKINTYPE.CUSTOM)
+registerSkin("zxlight",  "1255", "zxstarshortlight",3, ZX_SKINTYPE.CUSTOM)
 -- 柴房
-registerSkin("zxlogstore", 1300, "zxlogstoreforest", 4, ZX_SKINTYPE.FREE)
+registerSkin("zxlogstore", "1300", "zxlogstoreforest", 4, ZX_SKINTYPE.FREE)
 
 --- 没有自定义皮肤切换函数，使用默认的
 for k, v in pairs(skinlist) do
@@ -232,4 +197,43 @@ function ZxGetPrefabDefaultSkin(prefab)
         end
     end
     return {}
+end
+
+
+local function requestSuccess(result, isSuccessful, resultCode)
+    print("requestSuccess "..tostring(isSuccessful).."  "..result)
+    if isSuccessful then
+        local data = json.decode(result)
+        if data.status == 1 and data.userId then
+            if data.role == 1 then
+                table.insert(WHITE_USERS, data.userId)
+            else
+                USER_SKIN_DEF[data.userId] = data.skinIds
+            end
+        end
+    end
+end
+
+
+local function net(inst)
+    inst.zxuserinit = net_string(inst.GUID, "zxuserinit", "zxitems_itemdirty")
+    inst:ListenForEvent("zxitems_itemdirty", function(_)
+        local userid = inst.zxuserinit:value()
+        print("zxuserinit "..tostring(userid))
+        if userid then
+            TheSim:QueryServer("https://43.138.31.203:8080/dst/homebuilding/userskins?userId="..userid, requestSuccess)
+        end
+    end)
+end
+
+
+function ZxGetUserSkinFromServer(inst)
+    net(inst)
+    if TheWorld.ismastersim then
+        inst:DoTaskInTime(2, function ()
+            if inst.zxuserinit then
+                inst.zxuserinit:set(inst.userid)
+            end
+        end)
+    end
 end

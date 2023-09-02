@@ -58,6 +58,8 @@
         "locale",
         "CONTROL_NEXTVALUE",
         "deepcopy",
-        "ThePlayer"
+        "ThePlayer",
+        "TheSim",
+        "net_string"
     ]
 }
