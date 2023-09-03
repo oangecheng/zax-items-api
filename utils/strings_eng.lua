@@ -66,6 +66,12 @@ STRINGS.RECIPE_DESC.ZXLOGSTORE = "store logs!"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXLOGSTORE = "a lot of logs!"
 
 
+-- 蜂蜜罐
+STRINGS.NAMES.ZXHONEYJAR = "Honey jar"
+STRINGS.RECIPE_DESC.ZXHONEYJAR = "can store honey!"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXHONEYJAR = "bear like it!"
+
+
 STRINGS.ZX_SKIN_PAGE_TITLE = "Items shop"
 STRINGS.ZX_SKIN_PAGE_NOTICE = "The mysterious way to get it..."
 STRINGS.ZX_SKIN_HAS = "owned"
@@ -96,5 +102,8 @@ STRINGS.ZX_SKIN_NAMES = {
 	},
 	["zxlogstore"] = {
 		["zxlogstoreforest"]  = "forest log house"
+	},
+	["zxhoneyjar"] = {
+		["zxhoneyjar1"]  = "sweety honey jar"
 	},
 }

@@ -29,6 +29,7 @@ PrefabFiles = {
     "zxflowerbush",
     "zxboxs",
     "zxlights",
+    -- "zxtestprefab"
 }
 
 

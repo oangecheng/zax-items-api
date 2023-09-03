@@ -272,8 +272,17 @@ function params.zxlogstore.itemtestfn(container, item, slot)
 end
 
 
+local huneydefs = { "medal_withered_royaljelly", "royal_jelly", "honey" }
+params.zxhoneyjar = createBox5x5Param()
+init5x5BoxSlot(params.zxhoneyjar)
+function params.zxhoneyjar.itemtestfn(container, item, slot)
+	---@diagnostic disable-next-line: undefined-field
+	if table.contains(huneydefs, item.prefab) then return true end
+	return false
+end
 
---- 垃圾桶
+
+
 params.zxashcan =
 {
     widget =
@@ -283,6 +292,17 @@ params.zxashcan =
         animbuild = "ui_chest_3x3",
         pos = Vector3(0, 200, 0),
         side_align_tip = 160,
+		buttoninfo={
+			text = "销毁",
+			position = Vector3(0, -140, 0),
+			fn = function (inst, doer)
+				if inst.components.container ~= nil then
+					inst.btnfn(inst, doer)
+				elseif inst.replica.container ~= nil and not inst.replica.container:IsBusy() then
+					SendRPCToServer(RPC.DoWidgetButtonAction, nil, inst, nil)
+				end
+			end,
+		}
     },
     type = "chest",
 }

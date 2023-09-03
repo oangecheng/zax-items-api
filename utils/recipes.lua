@@ -144,3 +144,18 @@ AddRecipe2(
     },
 	{"STRUCTURES", "DECOR", "CONTAINERS"}
 )
+
+
+-- 蜜罐
+AddRecipe2(
+	"zxhoneyjar",
+	{Ingredient("boards", 1), Ingredient("cutstone", 5)},
+	TECH.SCIENCE_TWO,
+	{
+		placer = "zxhoneyjar_placer",
+        atlas = "images/zxskins/zxhoneyjar/zxhoneyjar1.xml",
+        image = "zxhoneyjar1.tex",
+        min_spacing = 0,
+    },
+	{"STRUCTURES", "DECOR", "CONTAINERS"}
+)

@@ -56,7 +56,11 @@ registerSkin("zxlight",  "1253", "zxcatsrightlight",3, ZX_SKINTYPE.CUSTOM)
 registerSkin("zxlight",  "1254", "zxstartalllight", 3, ZX_SKINTYPE.CUSTOM)
 registerSkin("zxlight",  "1255", "zxstarshortlight",3, ZX_SKINTYPE.CUSTOM)
 -- 柴房
-registerSkin("zxlogstore", "1300", "zxlogstoreforest", 4, ZX_SKINTYPE.FREE)
+registerSkin("zxlogstore", "1300", "zxlogstoreforest", 4, ZX_SKINTYPE.FREE, true)
+-- 蜂蜜罐子
+registerSkin("zxhoneyjar", "1400", "zxhoneyjar1", 5, ZX_SKINTYPE.FREE, true)
+
+
 
 --- 没有自定义皮肤切换函数，使用默认的
 for k, v in pairs(skinlist) do
