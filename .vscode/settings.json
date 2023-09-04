@@ -60,6 +60,11 @@
         "deepcopy",
         "ThePlayer",
         "TheSim",
-        "net_string"
+        "net_string",
+        "AddStategraphActionHandler",
+        "AddAction",
+        "AddComponentAction",
+        "AddStategraphPostInit",
+        "AddActionQueuerAction"
     ]
 }

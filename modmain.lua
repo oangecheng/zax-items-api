@@ -68,6 +68,9 @@ AddPlayerPostInit(function(inst)
 end)
 
 
+--- 动作hook
+modimport("scripts/zxactionhook.lua")
+
 
 -- 原版物品其他mod可能也有
 -- 加个配置项是否可建造
