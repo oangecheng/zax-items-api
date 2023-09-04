@@ -159,3 +159,17 @@ AddRecipe2(
     },
 	{"STRUCTURES", "DECOR", "CONTAINERS"}
 )
+
+-- 蛋篮子
+AddRecipe2(
+	"zxeggbasket",
+	{Ingredient("boards", 1), Ingredient("cutstone", 5)},
+	TECH.SCIENCE_TWO,
+	{
+		placer = "zxeggbasket_placer",
+        atlas = "images/zxskins/zxeggbasket/zxeggbasket1.xml",
+        image = "zxeggbasket1.tex",
+        min_spacing = 0,
+    },
+	{"STRUCTURES", "DECOR", "CONTAINERS"}
+)

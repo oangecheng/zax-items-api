@@ -329,6 +329,27 @@ end
 
 
 
+local eggbasketdef = { "bird_egg", "rottenegg", "tallbirdegg" }
+params.zxeggbasket = {
+	widget =
+	{
+		slotpos = {},
+		slotbg = {},
+		animbank = "zx5x5_honey",
+		animbuild = "zx5x5_honey",
+		pos = default_pos.zx_box,
+		side_align_tip = 160,
+	},
+	type = "chest",
+}
+init5x5BoxSlot(params.zxeggbasket)
+function params.zxeggbasket.itemtestfn(container, item, slot)
+	---@diagnostic disable-next-line: undefined-field
+	return table.contains(eggbasketdef, item.prefab)
+end
+
+
+
 
 
 

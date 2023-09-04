@@ -86,6 +86,12 @@ STRINGS.RECIPE_DESC.ZXHONEYJAR = "存放蜂蜜的陶罐!"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXHONEYJAR = "熊大应该很喜欢!"
 
 
+-- 蛋篮子
+STRINGS.NAMES.ZXEGGBASKET = "蛋篮子"
+STRINGS.RECIPE_DESC.ZXEGGBASKET = "存放蛋类的小竹篮!"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXEGGBASKET = "小竹篮!"
+
+
 STRINGS.ZX_SKIN_PAGE_TITLE = "建家党小店"
 STRINGS.ZX_SKIN_PAGE_NOTICE = "神秘的获取方式..."
 STRINGS.ZX_SKIN_HAS = "已拥有"
@@ -119,5 +125,8 @@ STRINGS.ZX_SKIN_NAMES = {
 	},
 	["zxhoneyjar"] = {
 		["zxhoneyjar1"]  = "甜心花蜜罐"
+	},
+	["zxeggbasket"] = {
+		["zxeggbasket1"]  = "复古竹艺"
 	},
 }

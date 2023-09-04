@@ -71,6 +71,11 @@ STRINGS.NAMES.ZXHONEYJAR = "Honey jar"
 STRINGS.RECIPE_DESC.ZXHONEYJAR = "can store honey!"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXHONEYJAR = "bear like it!"
 
+-- 蛋篮子
+STRINGS.NAMES.ZXEGGBASKET = "Egg basket"
+STRINGS.RECIPE_DESC.ZXEGGBASKET = "a basket can store eggs!"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXEGGBASKET = "cute basket!"
+
 
 STRINGS.ZX_SKIN_PAGE_TITLE = "Items shop"
 STRINGS.ZX_SKIN_PAGE_NOTICE = "The mysterious way to get it..."
@@ -105,5 +110,8 @@ STRINGS.ZX_SKIN_NAMES = {
 	},
 	["zxhoneyjar"] = {
 		["zxhoneyjar1"]  = "sweety honey jar"
+	},
+	["zxeggbasket"] = {
+		["zxeggbasket1"]  = "cute basket"
 	},
 }

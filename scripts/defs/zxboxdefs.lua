@@ -102,11 +102,52 @@ local logstore = {
 
 
 
+local function eggBasketAnim(inst)
+    local container = inst.components.container
+    if container == nil then return "empty" end
+    if container:IsEmpty() then return "empty"
+    elseif container:IsFull() then return "full"
+    else return "half" end
+end
+
+local eggbasket = {
+    placeanim = "empty",
+    initskin = ZxGetPrefabDefaultSkin("zxeggbasket");
+
+    oninitfn = function (inst)
+        inst.AnimState:PlayAnimation(eggBasketAnim(inst))
+    end,
+
+    onopenfn = function (inst, doer)
+        inst.SoundEmitter:PlaySound("saltydog/common/saltbox/open")
+    end,
+
+    onclosefn = function (inst, doer)
+        inst.AnimState:PlayAnimation(eggBasketAnim(inst))
+        inst.SoundEmitter:PlaySound("saltydog/common/saltbox/close")
+    end,
+
+
+    onbuildfn = function (inst)
+        inst.AnimState:PlayAnimation("onbuild")
+        inst.AnimState:PushAnimation("empty")
+    end,
+
+    onhitfn = function (inst, doer)
+        inst.AnimState:PlayAnimation("onhit")
+        inst.AnimState:PushAnimation(eggBasketAnim(inst))
+    end,
+}
+
+
+
+
 
 local boxs = {
     ["zxhoneyjar"] = honeyjar,
     ["zxlogstore"] = logstore,
     ["zxashcan"]   = ashcan,
+    ["zxeggbasket"] = eggbasket,
 }
 
 return  boxs
