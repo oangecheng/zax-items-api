@@ -13,9 +13,17 @@ local actions = {
 		id = "ZXSTOREPUT",
 		str = STRINGS.ZXACTION.ZXSTOREPUT,
 		fn = function(act)
-            act.target.components.zxstorable:Store(act.invobject, act.doer)
-            removeItem(act.invobject)
-            return true
+            local st = act.target and act.target.components.zxstorable
+            if st and act.invobject and act.doer then
+                if st:CanStore(act.invobject, act.doer) then
+                    st:Store(act.invobject, act.doer)
+                    act.invobject:Remove()
+                    return true
+                end
+                
+            end
+        
+            return false
 		end,
 		state = "give",
 	},
@@ -45,13 +53,12 @@ local actions = {
 local componentactions = {
     {
         type = "USEITEM",
-		component = "zxstorable",
+		component = "inventoryitem",
 		tests = {
 			{
 				action = "ZXSTOREPUT",
-				testfn = function(inst, doer, target, _, _)
-                    local st = target.components.zxstorable
-					return doer and st and st:CanStore(inst, doer)
+				testfn = function(inst, doer, target, acts, right)
+					return doer ~= nil and target and target:HasTag("haha")
 				end,
 			},
         },
@@ -63,8 +70,8 @@ local componentactions = {
         tests = {
 			{
 				action = "ZXSTORETAKE",
-				testfn = function(inst, doer, target, _, _)
-					return doer and target.components.zxstorable
+				testfn = function(inst, doer, _, _)
+					return doer ~= nil
 				end,
 			},
         },
