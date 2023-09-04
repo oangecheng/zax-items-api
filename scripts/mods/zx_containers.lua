@@ -6,10 +6,13 @@ local containers = require "containers"
 ---- 容器排序 ----------------
 
 -- 设置容器的位置
-local function init5x5BoxSlot(param)
+local function init5x5BoxSlot(param, bg)
 	for y = 4, 0, -1 do
 		for x = 0, 4 do
 			table.insert(param.widget.slotpos, Vector3(80 * (x - 3) + 80, 80 * (y - 3) + 80, 0))
+			if bg then
+				table.insert(param.widget.slotbg, bg)
+			end
 		end
 	end
 end
@@ -273,12 +276,23 @@ end
 
 
 local huneydefs = { "medal_withered_royaljelly", "royal_jelly", "honey" }
-params.zxhoneyjar = createBox5x5Param()
-init5x5BoxSlot(params.zxhoneyjar)
+params.zxhoneyjar = {
+	widget =
+	{
+		slotpos = {},
+		slotbg = {},
+		animbank = "zx5x5_honey",
+		animbuild = "zx5x5_honey",
+		pos = default_pos.zx_box,
+		side_align_tip = 160,
+	},
+	type = "chest",
+}
+local honeyslotbg = { image = "zx_slotbg_honey.tex", atlas = "images/zx_slotbg_honey.xml" }
+init5x5BoxSlot(params.zxhoneyjar, honeyslotbg)
 function params.zxhoneyjar.itemtestfn(container, item, slot)
 	---@diagnostic disable-next-line: undefined-field
-	if table.contains(huneydefs, item.prefab) then return true end
-	return false
+	return table.contains(huneydefs, item.prefab)
 end
 
 
