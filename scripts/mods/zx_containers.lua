@@ -335,8 +335,8 @@ params.zxeggbasket = {
 	{
 		slotpos = {},
 		slotbg = {},
-		animbank = "zx5x5_honey",
-		animbuild = "zx5x5_honey",
+		animbank = "ui_zx_5x5",
+		animbuild = "ui_zx_5x5",
 		pos = default_pos.zx_box,
 		side_align_tip = 160,
 	},
