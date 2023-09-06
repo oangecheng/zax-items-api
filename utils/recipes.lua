@@ -125,7 +125,7 @@ AddRecipe2(
 		placer = "zxashcan_placer",
         atlas = "images/zxskins/zxashcan/zxashcan.xml",
         image = "zxashcan.tex",
-        min_spacing = 0,
+        min_spacing = 1,
     },
 	{"STRUCTURES", "DECOR", "CONTAINERS"}
 )
@@ -140,7 +140,7 @@ AddRecipe2(
 		placer = "zxlogstore_placer",
         atlas = "images/zxskins/zxlogstore/zxlogstoreforest.xml",
         image = "zxlogstoreforest.tex",
-        min_spacing = 0,
+        min_spacing = 1,
     },
 	{"STRUCTURES", "DECOR", "CONTAINERS"}
 )
@@ -155,7 +155,7 @@ AddRecipe2(
 		placer = "zxhoneyjar_placer",
         atlas = "images/zxskins/zxhoneyjar/zxhoneyjar1.xml",
         image = "zxhoneyjar1.tex",
-        min_spacing = 0,
+        min_spacing = 1,
     },
 	{"STRUCTURES", "DECOR", "CONTAINERS"}
 )
@@ -169,7 +169,7 @@ AddRecipe2(
 		placer = "zxeggbasket_placer",
         atlas = "images/zxskins/zxeggbasket/zxeggbasket1.xml",
         image = "zxeggbasket1.tex",
-        min_spacing = 0,
+        min_spacing = 1,
     },
 	{"STRUCTURES", "DECOR", "CONTAINERS"}
 )

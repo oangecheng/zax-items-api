@@ -65,6 +65,7 @@
         "AddAction",
         "AddComponentAction",
         "AddStategraphPostInit",
-        "AddActionQueuerAction"
+        "AddActionQueuerAction",
+        "MakeCharacterPhysics"
     ]
 }
