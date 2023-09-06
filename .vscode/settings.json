@@ -65,6 +65,9 @@
         "AddAction",
         "AddComponentAction",
         "AddStategraphPostInit",
-        "AddActionQueuerAction"
+        "AddActionQueuerAction",
+        "MakeInventoryPhysics",
+        "MakeSmallBurnable",
+        "MakeHauntableLaunchAndIgnite"
     ]
 }
