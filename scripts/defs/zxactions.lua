@@ -46,6 +46,16 @@ local actions = {
             return false
 		end,
 		state = "domediumaction",
+    },
+
+    {
+        id = "ZXSHOPOPEN",
+		str = STRINGS.ZXACTION.ZXSHOPOPEN,
+		fn = function(act)
+            act.doer:ShowPopUp(POPUPS.ZXSKIN, true, act.invobject)
+            return true
+		end,
+		state = "domediumaction",
     }
 }
 
@@ -62,6 +72,19 @@ local componentactions = {
 				end,
 			},
         },
+    },
+
+    {
+        type = "INVENTORY",
+        component = "inventoryitem",
+        tests = {
+            {
+                action = "ZXSHOPOPEN",
+                testfn = function(inst,doer,actions,right)
+                    return doer ~= nil and inst and inst:HasTag("zxskintool")
+                end
+            }
+        }
     },
 
     {

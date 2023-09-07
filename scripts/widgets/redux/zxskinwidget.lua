@@ -8,7 +8,7 @@ local SkinPage = require "widgets/redux/zxskinpage"
 require("util")
 
 -------------------------------------------------------------------------------------------------------
-local MultiTabWidget = Class(Widget, function(self, owner)
+local MultiTabWidget = Class(Widget, function(self, owner, holder)
     Widget._ctor(self, "MultiTabWidget")
     self.root = self:AddChild(Widget("root"))
 
@@ -19,7 +19,7 @@ local MultiTabWidget = Class(Widget, function(self, owner)
 	local base_size = .7
 
 	local button_data = {
-		{text = STRINGS.ZX_SKIN_PAGE_TITLE, build_panel_fn = function() return SkinPage(self,owner) end},
+		{text = STRINGS.ZX_SKIN_PAGE_TITLE, build_panel_fn = function() return SkinPage(self,owner,holder) end},
 	}
 
 	local function MakeTab(data, index)

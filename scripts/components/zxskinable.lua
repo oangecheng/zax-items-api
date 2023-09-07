@@ -22,7 +22,7 @@ end
 
 local Skinable = Class(function (self, inst)
     self.inst = inst
-    self.skinid = 0
+    self.skinid = nil
 end)
 
 
@@ -31,6 +31,7 @@ function Skinable:SetInitSkinId(id )
     local skin = findSkin(self, self.skinid)
     reskin(self, skin)
 end
+
 
 
 --- 判断该玩家是否可以更换皮肤
@@ -51,7 +52,7 @@ function Skinable:ChangeSkin(doer)
     if next(skins) ~= nil then
         local size = #skins
         local index = 0
-        if self.skinid ~= 0 then
+        if self.skinid ~= nil then
             for i, v in ipairs(skins) do
                 if v.id == self.skinid then
                     index = i
@@ -65,6 +66,14 @@ function Skinable:ChangeSkin(doer)
     end
 end
 
+
+function Skinable:SetSkin(skinid)
+    local skin = findSkin(self, skinid)
+    print("set skin "..tostring(skin))
+    reskin(self, skin)
+end
+
+
 function Skinable:OnSave()
     return {
         skinid = self.skinid
@@ -73,7 +82,7 @@ end
 
 
 function Skinable:OnLoad(data)
-    self.skinid = data.skinid or 0
+    self.skinid = data.skinid and tostring(data.skinid) or nil
     local skin = findSkin(self, self.skinid)
     reskin(self, skin)
 end

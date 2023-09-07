@@ -68,6 +68,10 @@
         "AddActionQueuerAction",
         "MakeInventoryPhysics",
         "MakeSmallBurnable",
-        "MakeHauntableLaunchAndIgnite"
+        "MakeHauntableLaunchAndIgnite",
+        "net_bool",
+        "AddModRPCHandler",
+        "MOD_RPC",
+        "SendModRPCToServer"
     ]
 }

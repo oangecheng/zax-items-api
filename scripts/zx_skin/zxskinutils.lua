@@ -16,6 +16,42 @@ local USER_SKIN_DEF = {}
 local skinlist = {}
 
 
+
+function ZxGetSwapSymbol(inst)
+    if inst.components.zxskinable then
+        local id = inst.components.zxskinable.skinid
+        local skin = ZxFindSkin(inst.prefab, id)
+        if skin then
+            local file = skin.file
+            return "swap_"..file
+        end
+    end
+end
+
+
+local function addReskinFuncWithSymbol(prefab)
+    local data = skinlist[prefab].data
+    for key, value in pairs(data) do
+        value.skinfunc = function (inst)
+            inst.AnimState:SetBank(value.bank)
+            inst.AnimState:SetBuild(value.build)
+
+            print(" change skin 1")
+            if inst.zxowener then
+                local symbol = "swap_"..value.file
+                print(" change skin 1" .. symbol)
+                if symbol then
+                    inst.zxowener.AnimState:OverrideSymbol("swap_object", symbol, "swap")
+                    inst.zxowener.AnimState:Show("ARM_carry")
+                    inst.zxowener.AnimState:Hide("ARM_normal")
+                end
+            end
+        end
+    end
+    
+end
+
+
 local function registerSkin(prefab, skinid, file, index, skintype, isdefault)
     skinlist[prefab] = skinlist[prefab] or {}
     skinlist[prefab].data = skinlist[prefab].data or {}
@@ -37,6 +73,12 @@ local function registerSkin(prefab, skinid, file, index, skintype, isdefault)
     table.sort(skinlist[prefab].data, function(a,b) return a.id < b.id end)
     table.insert(skinlist[prefab].data, skin)
 end
+
+-- 法杖
+registerSkin("zxskintool", "0000", "zxskintool1", 0, ZX_SKINTYPE.FREE, true)
+registerSkin("zxskintool", "0001", "zxskintool2", 0, ZX_SKINTYPE.FREE)
+addReskinFuncWithSymbol("zxskintool")
+
 
 -- 花丛
 registerSkin("zxflowerbush", "1000", "zxoxalis",     1, ZX_SKINTYPE.FREE, true)
@@ -163,7 +205,7 @@ function ZxFindSkin(prefab, skinid)
     local skins =  ZxGetPrefabSkins(prefab)
     if skins then
        for _, v in ipairs(skins) do
-        if skinid ~= 0 then
+        if skinid ~= nil then
             if skinid == v.id then
                 return v
             end
@@ -243,3 +285,4 @@ function ZxGetUserSkinFromServer(inst)
         end)
     end
 end
+

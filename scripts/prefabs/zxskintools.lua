@@ -3,7 +3,12 @@ local assets =
     Asset("ANIM", "anim/zxskintool1.zip"),
     Asset("ANIM", "anim/swap_zxskintool1.zip"),
     Asset("ATLAS", "images/zxskins/zxskintool/zxskintool1.xml"),
-    Asset("IMAGE", "images/zxskins/zxskintool/zxskintool1.tex")
+    Asset("IMAGE", "images/zxskins/zxskintool/zxskintool1.tex"),
+
+    Asset("ANIM", "anim/zxskintool2.zip"),
+    Asset("ANIM", "anim/swap_zxskintool2.zip"),
+    Asset("ATLAS", "images/zxskins/zxskintool/zxskintool2.xml"),
+    Asset("IMAGE", "images/zxskins/zxskintool/zxskintool2.tex")
 }
 
 local prefabs =
@@ -35,13 +40,29 @@ local function can_cast_fn(doer, target, pos)
 end
 
 
+
+local function net(inst)
+    inst.useskinclient = function(inst, skinid)
+        if TheWorld.ismastersim and skinid then
+            inst.components.zxskinable:SetSkin(skinid)
+        else
+            SendModRPCToServer(MOD_RPC.zx_itemsapi.UseSkin, inst, skinid)
+        end
+    end
+end
+
+
+
 local function onequip(inst, owner)
-    owner.AnimState:OverrideSymbol("swap_object", "swap_zxskintool1", "swap")
+    inst.zxowener = owner
+    local symbol = ZxGetSwapSymbol(inst)
+    owner.AnimState:OverrideSymbol("swap_object", symbol, "swap")
     owner.AnimState:Show("ARM_carry")
     owner.AnimState:Hide("ARM_normal")
 end
 
 local function onunequip(inst, owner)
+    inst.zxowener = nil
     owner.AnimState:Hide("ARM_carry")
     owner.AnimState:Show("ARM_normal")
 end
@@ -61,7 +82,7 @@ local function tool_fn()
     inst.AnimState:PlayAnimation("idle")
 
     inst:AddTag("nopunch")
-
+    inst:AddTag("zxskintool")
     inst:AddTag("veryquickcast")
 
     -- local swap_data = {sym_build = "swap_reskin_tool", bank = "reskin_tool"}
@@ -69,6 +90,7 @@ local function tool_fn()
 
     inst.entity:SetPristine()
 
+    net(inst)
     if not TheWorld.ismastersim then
         return inst
     end
@@ -84,6 +106,10 @@ local function tool_fn()
     inst.components.equippable:SetOnEquip(onequip)
     inst.components.equippable:SetOnUnequip(onunequip)
 
+    inst:AddComponent("zxskinable")
+    inst.components.zxskinable:SetInitSkinId("0000")
+
+
     inst:AddComponent("spellcaster")
     inst.components.spellcaster.canuseontargets = true
     inst.components.spellcaster.canuseondead = true
@@ -98,6 +124,10 @@ local function tool_fn()
     MakeSmallBurnable(inst, TUNING.SMALL_BURNTIME)
     MakeSmallPropagator(inst)
     MakeHauntableLaunchAndIgnite(inst)
+
+    inst.openShop = function ()
+        inst.zxshopopen:set(true)
+    end
 
     inst._cached_reskinname = {}
 

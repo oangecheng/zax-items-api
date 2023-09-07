@@ -8,10 +8,11 @@ local Spinner = require "widgets/spinner"
 local PopupDialogScreen = require "screens/redux/popupdialog"
 
 
-local GridPage = Class(Widget, function(self, parent_widget, owner)
+local GridPage = Class(Widget, function(self, parent_widget, owner, holder)
     Widget._ctor(self, "GridPage")
     self.parent_widget = parent_widget
 	self.root = self:AddChild(Widget("root"))
+	self.holder = holder
 
 	--皮肤面板
 	self.skin_grid = self.root:AddChild(self:BuildSkinScrollGrid())
@@ -109,6 +110,18 @@ function GridPage:BuildSkinScrollGrid()
 		w.skin_spinner:SetTextColour(PLANTREGISTRYUICOLOURS.UNLOCKEDBROWN)
 		w.skin_spinner.text:SetPosition(0, 12)
 
+		--购买按钮
+		w.buy_button = w.cell_root:AddChild(
+			TEMPLATES.StandardButton(
+				nil,
+				"使用",--按钮文字
+				{60, 30}--按钮尺寸
+			)
+		)
+		w.buy_button:SetTextSize(18)
+		w.buy_button:SetPosition(0, -95, 0)
+		w.buy_button:Hide()
+
 		
 		--皮肤选项卡展示
 		function w:SetSkinPage(prefab, skinid)
@@ -120,13 +133,21 @@ function GridPage:BuildSkinScrollGrid()
 			if skin then
 				w.skin_img:SetTexture(skin.xml, skin.tex)
 				w.skin_name:SetString(skin.name)
-
 			end
+
+			if root.holder and root.holder.prefab == prefab then
+				w.buy_button:Show()
+				w.buy_button:SetOnClick(function ()
+					root.holder:useskinclient(skin.id)
+				end)
+			end
+
 		end
 
 		local _OnControl = w.cell_root.OnControl
 		w.cell_root.OnControl = function(_, control, down)
 			if w.skin_spinner.focus or (control == CONTROL_PREVVALUE or control == CONTROL_NEXTVALUE) then if w.skin_spinner:IsVisible() then w.skin_spinner:OnControl(control, down) end return true end
+			if w.buy_button.focus or (control == CONTROL_PREVVALUE or control == CONTROL_NEXTVALUE) then if w.buy_button:IsVisible() then w.buy_button:OnControl(control, down) end return true end
 			return _OnControl(_, control, down)
 		end
 

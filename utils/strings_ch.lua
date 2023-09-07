@@ -3,6 +3,7 @@
 STRINGS.ZXACTION = {
 	ZXSTOREPUT = "堆放",
 	ZXSTORETAKE = "拿取",
+	ZXSHOPOPEN = "打开小店",
 }
 
 STRINGS.CHARACTERS.GENERIC.ACTIONFAIL.ZXSTORETAKE={
@@ -63,6 +64,11 @@ STRINGS.NAMES.ZX_WELL = "花园水井"
 STRINGS.RECIPE_DESC.ZX_WELL = "用不完的水!"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZX_WELL = "这下种地方便多了!"
 
+
+-- 花丛
+STRINGS.NAMES.ZXSKINTOOL = "建家魔法杖"
+STRINGS.RECIPE_DESC.ZXSKINTOOL = "用来给建家党物品换皮肤!"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXSKINTOOL = "这下方便多了!"
 
 
 -- 花丛
@@ -128,5 +134,9 @@ STRINGS.ZX_SKIN_NAMES = {
 	},
 	["zxeggbasket"] = {
 		["zxeggbasket1"]  = "复古竹艺"
+	},
+	["zxskintool"] = {
+		["zxskintool1"]  = "暗夜杖",
+		["zxskintool2"]  = "仙女杖"
 	},
 }

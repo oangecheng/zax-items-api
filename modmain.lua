@@ -87,10 +87,8 @@ if TUNING.ZX_BEEBOX then
     modimport("scripts/mods/zx_beebox.lua")
 end
 
-
-if TUNING.ZX_SHOWSHOPENTRY then
-    modimport("scripts/zxui.lua")
-end
+modimport("scripts/zxui.lua")
+modimport("scripts/zxrpc.lua")
 
 
 

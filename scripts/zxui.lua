@@ -3,8 +3,8 @@ local ZxSkinPopupScreen = require "screens/zxskinscreen"--皮肤界面
 
 AddClassPostConstruct("screens/playerhud",function(self, anim, owner)
 	--添加皮肤界面
-	self.ShowZxSkinScreen = function(_, attach)
-		self.zxskinscreen = ZxSkinPopupScreen(self.owner)
+	self.ShowZxSkinScreen = function(_, holder)
+		self.zxskinscreen = ZxSkinPopupScreen(self.owner, holder)
         self:OpenScreenUnderPause(self.zxskinscreen)
         return self.zxskinscreen
 	end
@@ -20,17 +20,17 @@ AddClassPostConstruct("screens/playerhud",function(self, anim, owner)
 end)
 
 
+
 AddPopup("ZXSKIN")
-POPUPS.ZXSKIN.fn = function(inst, show)
+POPUPS.ZXSKIN.fn = function(inst, show, holder)
     if inst.HUD then
         if not show then
             inst.HUD:CloseZxSkinScreen()
-        elseif not inst.HUD:ShowZxSkinScreen() then
+        elseif not inst.HUD:ShowZxSkinScreen(holder) then
             POPUPS.ZXSKIN:Close(inst)
         end
     end
 end
-
 
 
 
