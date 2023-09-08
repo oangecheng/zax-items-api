@@ -55,7 +55,7 @@ local actions = {
             act.doer:ShowPopUp(POPUPS.ZXSKIN, true, act.invobject)
             return true
 		end,
-		state = "domediumaction",
+		state = "give",
     }
 }
 

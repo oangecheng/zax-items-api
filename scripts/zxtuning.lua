@@ -1,0 +1,3 @@
+ZXTUNING = {
+    isCh = true
+}

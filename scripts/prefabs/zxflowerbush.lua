@@ -37,7 +37,6 @@ local function fn()
 
     inst:AddComponent("inspectable")
     inst:AddComponent("zxskinable")
-    inst.components.zxskinable:SetInitSkinId(1001)
 
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.HAMMER)

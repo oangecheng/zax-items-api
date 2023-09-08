@@ -98,7 +98,6 @@ local function MakeLight(name, initSkinId)
         inst:AddComponent("inspectable")
         inst:AddComponent("lootdropper")
         inst:AddComponent("zxskinable")
-        inst.components.zxskinable:SetInitSkinId(defalutSKin.id)
 
 
         inst:AddComponent("workable")

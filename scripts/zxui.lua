@@ -34,9 +34,9 @@ end
 
 
 
-local skinentry = require("widgets/zxskinentry")
-AddClassPostConstruct("widgets/controls", function(self)
-	self.skinentry = self:AddChild(skinentry())
-end)
+-- local skinentry = require("widgets/zxskinentry")
+-- AddClassPostConstruct("widgets/controls", function(self)
+-- 	self.skinentry = self:AddChild(skinentry())
+-- end)
 
 

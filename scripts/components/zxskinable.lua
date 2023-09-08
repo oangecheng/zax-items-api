@@ -6,7 +6,7 @@ end
 
 
 --- 查找目标skin
---- @param skinid number 0则查找默认皮肤
+--- @param skinid string 0则查找默认皮肤
 local function findSkin(self, skinid)
     return ZxFindSkin(self.inst.prefab, skinid)
 end
@@ -22,16 +22,10 @@ end
 
 local Skinable = Class(function (self, inst)
     self.inst = inst
-    self.skinid = nil
-end)
-
-
-function Skinable:SetInitSkinId(id )
-    self.skinid = id
-    local skin = findSkin(self, self.skinid)
+    local skin =  ZxGetPrefabDefaultSkin(inst.prefab)
+    self.skinid = skin.id
     reskin(self, skin)
-end
-
+end)
 
 
 --- 判断该玩家是否可以更换皮肤

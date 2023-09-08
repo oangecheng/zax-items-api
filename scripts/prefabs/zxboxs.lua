@@ -112,7 +112,6 @@ local function MakeZxBox(prefabname, data)
         inst.components.container.skipopensnd = true
 
         inst:AddComponent("zxskinable")
-        inst.components.zxskinable:SetInitSkinId(skin.id)
         -- 可以用锤子拆
         inst:AddComponent("workable")
         inst.components.workable:SetWorkAction(ACTIONS.HAMMER)

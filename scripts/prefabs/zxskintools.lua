@@ -1,5 +1,4 @@
-local assets =
-{
+local assets = {
     Asset("ANIM", "anim/zxskintool1.zip"),
     Asset("ANIM", "anim/swap_zxskintool1.zip"),
     Asset("ATLAS", "images/zxskins/zxskintool/zxskintool1.xml"),
@@ -11,8 +10,7 @@ local assets =
     Asset("IMAGE", "images/zxskins/zxskintool/zxskintool2.tex")
 }
 
-local prefabs =
-{
+local prefabs = {
     "tornado",
 }
 
@@ -31,12 +29,19 @@ local function spawnFx(inst)
 end
 
 
-local function spellCB(tool, target, pos, caster)
-    spawnFx(target)
+local function spellCB(tool, target, pos, doer)
+    if doer and target and target.components.zxskinable then
+        target.components.zxskinable:ChangeSkin(doer)
+        spawnFx(target)
+    end
 end
 
+
 local function can_cast_fn(doer, target, pos)
-    return true
+    if doer and target and target.components.zxskinable then
+        return target.components.zxskinable:CanChangeSkin(doer)
+    end
+    return false
 end
 
 
@@ -85,9 +90,7 @@ local function tool_fn()
     inst:AddTag("zxskintool")
     inst:AddTag("veryquickcast")
 
-    -- local swap_data = {sym_build = "swap_reskin_tool", bank = "reskin_tool"}
-    -- MakeInventoryFloatable(inst, "med", 0.05, {1.0, 0.4, 1.0}, true, -20, swap_data)
-
+    MakeInventoryFloatable(inst)
     inst.entity:SetPristine()
 
     net(inst)
@@ -107,8 +110,6 @@ local function tool_fn()
     inst.components.equippable:SetOnUnequip(onunequip)
 
     inst:AddComponent("zxskinable")
-    inst.components.zxskinable:SetInitSkinId("0000")
-
 
     inst:AddComponent("spellcaster")
     inst.components.spellcaster.canuseontargets = true

@@ -1,4 +1,9 @@
 
+local isCh = ZXTUNING.isCh
+
+
+
+
 
 local ZX_SKINTYPE = {
     UNKOWN = 0,
@@ -29,28 +34,6 @@ function ZxGetSwapSymbol(inst)
 end
 
 
-local function addReskinFuncWithSymbol(prefab)
-    local data = skinlist[prefab].data
-    for key, value in pairs(data) do
-        value.skinfunc = function (inst)
-            inst.AnimState:SetBank(value.bank)
-            inst.AnimState:SetBuild(value.build)
-
-            print(" change skin 1")
-            if inst.zxowener then
-                local symbol = "swap_"..value.file
-                print(" change skin 1" .. symbol)
-                if symbol then
-                    inst.zxowener.AnimState:OverrideSymbol("swap_object", symbol, "swap")
-                    inst.zxowener.AnimState:Show("ARM_carry")
-                    inst.zxowener.AnimState:Hide("ARM_normal")
-                end
-            end
-        end
-    end
-    
-end
-
 
 local function registerSkin(prefab, skinid, file, index, skintype, isdefault)
     skinlist[prefab] = skinlist[prefab] or {}
@@ -77,8 +60,6 @@ end
 -- 法杖
 registerSkin("zxskintool", "0000", "zxskintool1", 0, ZX_SKINTYPE.FREE, true)
 registerSkin("zxskintool", "0001", "zxskintool2", 0, ZX_SKINTYPE.FREE)
-addReskinFuncWithSymbol("zxskintool")
-
 
 -- 花丛
 registerSkin("zxflowerbush", "1000", "zxoxalis",     1, ZX_SKINTYPE.FREE, true)
@@ -106,6 +87,23 @@ registerSkin("zxeggbasket", "1500", "zxeggbasket1", 6, ZX_SKINTYPE.FREE, true)
 
 
 
+local function tryChangeSymbol(inst, skin)
+    if inst.zxowener and skin then
+        local symbol = "swap_"..skin.file
+        inst.zxowener.AnimState:OverrideSymbol("swap_object", symbol, "swap")
+        inst.zxowener.AnimState:Show("ARM_carry")
+        inst.zxowener.AnimState:Hide("ARM_normal")
+    end
+end
+
+local function tryChangeInventoryitem(inst, skin)
+    if skin and inst.components.inventoryitem then
+        inst.components.inventoryitem.atlasname = skin.xml
+        inst.components.inventoryitem.imagename = skin.file
+    end
+end
+
+
 --- 没有自定义皮肤切换函数，使用默认的
 for k, v in pairs(skinlist) do
     for index, value in ipairs(v.data) do
@@ -113,7 +111,9 @@ for k, v in pairs(skinlist) do
             value.skinfunc = function (inst)
                 inst.AnimState:SetBank(value.bank)
                 inst.AnimState:SetBuild(value.build)
-            end
+                tryChangeSymbol(inst, value)
+                tryChangeInventoryitem(inst, value)
+            end        
         end 
     end
 end
@@ -249,7 +249,6 @@ end
 
 
 local function requestSuccess(result, isSuccessful, resultCode)
-    print("requestSuccess "..tostring(isSuccessful).."  "..result)
     if isSuccessful then
         local data = json.decode(result)
         if data.status == 1 and data.userId then

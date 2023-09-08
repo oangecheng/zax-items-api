@@ -57,15 +57,6 @@ configuration_options =
 		},
 		default = "ch",
 	},
-	{
-		name = "zxshowshopentry",
-		label = ch and "关闭面板入口" or "close panel entry",
-		options = {
-			{description = ch and "关闭" or "close", data = false},
-			{description = ch and "打开" or "open",  data = true},
-		},
-		default = false,
-	},
 	
 	Title(ch and "粮仓设置" or "granary settings"),
 	{

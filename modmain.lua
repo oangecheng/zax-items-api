@@ -1,21 +1,21 @@
 GLOBAL.setmetatable(env,{__index=function(t,k) return GLOBAL.rawget(GLOBAL,k) end})
+require("zxtuning")
+
 
 -- 仓库保鲜
 TUNING.ZX_GRANARY_FRESHRATE = GetModConfigData("zx_granary_freshrate")
 TUNING.ZX_GRANARY_DIFFICULT = GetModConfigData("zx_granary_difficult")
--- 语言
-TUNING.ZX_ITEMS_LANGUAGE = GetModConfigData("zx_items_language")
 -- 一些其他物品
 TUNING.ZX_MEATRACK = GetModConfigData("zx_meatrack")
 TUNING.ZX_BEEBOX = GetModConfigData("zx_beebox")
-TUNING.ZX_SHOWSHOPENTRY = GetModConfigData("zxshowshopentry")
+
+ZXTUNING.isCh = GetModConfigData("zx_items_language") == "ch"
 
 
-local ch = TUNING.ZX_ITEMS_LANGUAGE == "ch"
-modimport(ch and "utils/strings_ch.lua" or "utils/strings_eng.lua")
+modimport(ZXTUNING.isCh and "utils/strings_ch.lua" or "utils/strings_eng.lua")
+
 
 require("zx_skin/zxskinutils")
-
 
 
 PrefabFiles = {
