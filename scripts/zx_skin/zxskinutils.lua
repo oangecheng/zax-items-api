@@ -1,7 +1,26 @@
 
 local isCh = ZXTUNING.isCh
-
-
+local skinnamesdef = {
+    ["0000"] = isCh and "暗夜杖" or "dark staff",
+    ["0001"] = isCh and "仙女杖"  or "fairy staff",
+    ["1000"] = isCh and "紫色酢浆草" or "oxalis",
+    ["1001"] = isCh and "小雏菊花丛" or "daisy",
+    ["1002"] = isCh and "绣球花" or "hydrangea",
+    ["1100"] = isCh and "垃圾桶" or "ashcan",
+    ["1200"] = isCh and "花园灯" or "garden lamp",
+    ["1202"] = isCh and "蘑菇灯" or "mushroom lamp",
+    ["1211"] = isCh and "铃兰花灯" or "flower lamp",
+    ["1212"] = isCh and "POPO" or "bubble lamp",
+    ["1250"] = isCh and "猫猫灯(左)" or "black kitty(left)",
+    ["1251"] = isCh and "猫猫灯(右)" or "black kitty(right)",
+    ["1252"] = isCh and "典藏卡基米(左)" or "cat lamp",
+    ["1253"] = isCh and "典藏卡基米(右)" or "cat lamp",
+    ["1254"] = isCh and "小蛛灯" or "flower lamp",
+    ["1255"] = isCh and "星星灯" or "flower lamp",
+    ["1300"] = isCh and "森林小屋" or "forest house",
+    ["1400"] = isCh and "甜心花蜜罐" or "sweety honey jar",
+    ["1500"] = isCh and "复古竹艺" or "bamboo art",
+}
 
 
 
@@ -42,7 +61,7 @@ local function registerSkin(prefab, skinid, file, index, skintype, isdefault)
 
     local skin = {}
     skin.id = skinid
-    skin.name = STRINGS.ZX_SKIN_NAMES[prefab][file]
+    skin.name = skinnamesdef[skinid] or "未知"
     skin.xml = "images/zxskins/"..prefab.."/"..file..".xml"
     skin.tex = file..".tex"
     skin.file = file

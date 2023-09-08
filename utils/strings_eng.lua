@@ -81,37 +81,3 @@ STRINGS.ZX_SKIN_PAGE_TITLE = "Items shop"
 STRINGS.ZX_SKIN_PAGE_NOTICE = "The mysterious way to get it..."
 STRINGS.ZX_SKIN_HAS = "owned"
 STRINGS.ZX_SKIN_NOT_HAS = "not owned"
-
-
-STRINGS.ZX_SKIN_NAMES = {
-	["zxflowerbush"] = {
-		["zxoxalis"]     = "oxalis",
-		["zxdaisy"]      = "daisy",
-		["zxhydrangea"]  = "hydrangea"
-	},
-
-	["zxashcan"] = {
-		["zxashcan"] = "ashcan"
-	},
-	["zxlight"] = {
-		["zxgardenlight"]     = "garden lamp",
-		["zxflowerlight"]     = "flower lamp",
-		["zxmushroomlight"]   = "mushroom lamp",
-		["zxbubblelight"]     = "bubble lamp",
-		["zxcatllight"]       = "black kitty(left)",
-		["zxcatrlight"]       = "black kitty(right)",
-		["zxcatsleftlight"]   = "cat(left)",
-		["zxcatsrightlight"]  = "cat(right)",
-		["zxstartalllight"]   = "star lamp(tall)",
-		["zxstarshortlight"]  = "star lamp(short)",
-	},
-	["zxlogstore"] = {
-		["zxlogstoreforest"]  = "forest log house"
-	},
-	["zxhoneyjar"] = {
-		["zxhoneyjar1"]  = "sweety honey jar"
-	},
-	["zxeggbasket"] = {
-		["zxeggbasket1"]  = "cute basket"
-	},
-}
