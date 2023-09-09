@@ -83,6 +83,17 @@ AddRecipe2(
 
 
 --------------------------------- 下面可以换肤 --------------------------------------
+-- 法杖
+AddRecipe2(
+    "zxskintool",
+    {Ingredient("twigs", 1),Ingredient("petals", 4)},
+    TECH.SCIENCE_ONE,
+    {
+        atlas="images/zxskins/zxskintool/zxskintool1.xml",
+        image="zxskintool1.tex",
+    },
+    {"TOOLS"}
+)
 
 
 -- 花丛
@@ -110,7 +121,7 @@ AddRecipe2(
 		placer = "zxlight_placer",
         atlas = "images/zxskins/zxlight/zxgardenlight.xml",
         image = "zxgardenlight.tex",
-        min_spacing = 1,
+        min_spacing = 2,
     },
 	{"STRUCTURES", "DECOR", "LIGHT"}
 )
@@ -125,7 +136,7 @@ AddRecipe2(
 		placer = "zxashcan_placer",
         atlas = "images/zxskins/zxashcan/zxashcan.xml",
         image = "zxashcan.tex",
-        min_spacing = 0,
+        min_spacing = 2,
     },
 	{"STRUCTURES", "DECOR", "CONTAINERS"}
 )
@@ -140,7 +151,6 @@ AddRecipe2(
 		placer = "zxlogstore_placer",
         atlas = "images/zxskins/zxlogstore/zxlogstoreforest.xml",
         image = "zxlogstoreforest.tex",
-        min_spacing = 0,
     },
 	{"STRUCTURES", "DECOR", "CONTAINERS"}
 )
@@ -155,7 +165,7 @@ AddRecipe2(
 		placer = "zxhoneyjar_placer",
         atlas = "images/zxskins/zxhoneyjar/zxhoneyjar1.xml",
         image = "zxhoneyjar1.tex",
-        min_spacing = 0,
+        min_spacing = 2,
     },
 	{"STRUCTURES", "DECOR", "CONTAINERS"}
 )
@@ -169,7 +179,7 @@ AddRecipe2(
 		placer = "zxeggbasket_placer",
         atlas = "images/zxskins/zxeggbasket/zxeggbasket1.xml",
         image = "zxeggbasket1.tex",
-        min_spacing = 0,
+        min_spacing = 2,
     },
 	{"STRUCTURES", "DECOR", "CONTAINERS"}
 )
