@@ -81,5 +81,8 @@
         "Wander",
         "BT",
         "RemovePhysicsColliders"
+    ],
+    "Lua.diagnostics.disable": [
+        "trailing-space"
     ]
 }

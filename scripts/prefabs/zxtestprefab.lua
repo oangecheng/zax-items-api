@@ -41,7 +41,7 @@ local function fn()
 
     inst.AnimState:SetBank("perd")
     inst.AnimState:SetBuild("perd")
-    inst.AnimState:Hide("hat")
+    -- inst.AnimState:Hide("hat")
 
     inst.AnimState:PlayAnimation("idle_loop", true)
     inst.entity:SetPristine()
@@ -64,7 +64,7 @@ local function fn()
             inst.x = x
             inst.y = y
             inst.z = z
-        end
+        end 
         local deltaX = math.random(1, 3.5)
         local d = math.random() < 0.5
         deltaX =  d and deltaX or -deltaX
