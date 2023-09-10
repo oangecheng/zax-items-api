@@ -20,6 +20,7 @@ local skinnamesdef = {
     ["1300"] = isCh and "森林小屋" or "forest house",
     ["1400"] = isCh and "甜心花蜜罐" or "sweety honey jar",
     ["1500"] = isCh and "复古竹艺" or "bamboo art",
+    ["1600"] = isCh and "木质手推车" or "trolley",
 }
 
 
@@ -103,6 +104,8 @@ registerSkin("zxlogstore", "1300", "zxlogstoreforest", 4, ZX_SKINTYPE.FREE, true
 registerSkin("zxhoneyjar", "1400", "zxhoneyjar1", 5, ZX_SKINTYPE.FREE, true)
 -- 蛋篮子
 registerSkin("zxeggbasket", "1500", "zxeggbasket1", 6, ZX_SKINTYPE.FREE, true)
+-- 草车
+registerSkin("zx_hay_cart", "1600", "zxhaycart1",  7, ZX_SKINTYPE.FREE, true)
 
 
 

@@ -53,18 +53,6 @@ AddRecipe2(
 )
 
 
--- 干草车
-AddRecipe2(
-	"zx_hay_cart",
-	{Ingredient("boards", 10)},
-	TECH.SCIENCE_TWO,
-	{
-		placer = "zx_hay_cart_placer",
-        atlas = "images/inventoryimages/zx_hay_cart.xml",
-        image = "zx_hay_cart.tex",
-    },
-	{"STRUCTURES", "CONTAINERS"}
-)
 
 -- 水井
 AddRecipe2(
@@ -182,4 +170,18 @@ AddRecipe2(
         min_spacing = 2,
     },
 	{"STRUCTURES", "DECOR", "CONTAINERS"}
+)
+
+
+-- 干草车
+AddRecipe2(
+	"zx_hay_cart",
+	{Ingredient("boards", 10)},
+	TECH.SCIENCE_TWO,
+	{
+		placer = "zx_hay_cart_placer",
+        atlas = "images/zxskins/zx_hay_cart/zxhaycart1.xml",
+        image = "zxhaycart1.tex",
+    },
+	{"STRUCTURES", "CONTAINERS"}
 )

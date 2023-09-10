@@ -143,11 +143,54 @@ local eggbasket = {
 
 
 
+local function haycartAnim(inst)
+    local container = inst.components.container
+    if container == nil then return "empty" end
+    if container:IsEmpty() then return "empty"
+    elseif container:IsFull() then return "full"
+    else return "half" end
+end
+
+local haycart = {
+    placeanim = "empty",
+    initskin = ZxGetPrefabDefaultSkin("zx_hay_cart");
+
+    oninitfn = function (inst)
+        inst.AnimState:PlayAnimation(haycartAnim(inst))
+    end,
+
+    onopenfn = function (inst, doer)
+        inst.SoundEmitter:PlaySound("saltydog/common/saltbox/open")
+    end,
+
+    onclosefn = function (inst, doer)
+        inst.AnimState:PlayAnimation(haycartAnim(inst))
+        inst.SoundEmitter:PlaySound("saltydog/common/saltbox/close")
+    end,
+
+
+    onbuildfn = function (inst)
+        inst.AnimState:PlayAnimation("onbuild")
+        inst.AnimState:PushAnimation("empty")
+    end,
+
+    onhitfn = function (inst, doer)
+        inst.AnimState:PlayAnimation("onhit")
+        inst.AnimState:PushAnimation(haycartAnim(inst))
+    end,
+}
+
+
+
+
+
+
 local boxs = {
     ["zxhoneyjar"] = honeyjar,
     ["zxlogstore"] = logstore,
     ["zxashcan"]   = ashcan,
     ["zxeggbasket"] = eggbasket,
+    ["zx_hay_cart"] = haycart,
 }
 
 return  boxs
