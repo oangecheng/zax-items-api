@@ -2,30 +2,89 @@ local cooking = require("cooking")
 local containers = require "containers"
 
 
+local default_pos = Vector3(0, 220, 0)
 
----- 容器排序 ----------------
 
--- 设置容器的位置
-local function init5x5BoxSlot(param, bg)
+-- 特色容器的大小都是 5x10 的尺寸
+local function createBox5x10Param(anim, slotbg)
+	local p = {
+		widget =
+		{
+			slotpos = {},
+			animbank = anim and anim or "ui_zx_5x10",
+			animbuild = anim and anim or "ui_zx_5x10",
+			pos = default_pos,
+			side_align_tip = 160,
+		},
+		type = "chest",
+	}
+
 	for y = 4, 0, -1 do
-		for x = 0, 4 do
-			table.insert(param.widget.slotpos, Vector3(80 * (x - 3) + 80, 80 * (y - 3) + 80, 0))
-			if bg then
-				table.insert(param.widget.slotbg, bg)
+		for x = 0, 9 do
+			local offsetX = x<=4 and -20 or 10
+			table.insert(p.widget.slotpos, Vector3(80 * (x - 5) + 40 + offsetX, 80 * (y - 3) + 80, 0))
+			if slotbg then
+				table.insert(p.widget.slotbg, slotbg)
 			end
 		end
 	end
+
+	return p;
 end
 
+local function createBox5x5Param(anim, slotbg)
+	local p =  {
+		widget =
+		{
+			slotpos = {},
+			slotbg = slotbg and {} or nil,
+			animbank = anim and anim or "ui_zx_5x5",
+			animbuild = anim and anim or "ui_zx_5x5",
+			pos = default_pos,
+			side_align_tip = 160,
+		},
+		type = "chest",
+	}
 
--- 设置容器的位置
-local function init5x10BoxSlot(param)
 	for y = 4, 0, -1 do
-		for x = 0, 9 do
-			table.insert(param.widget.slotpos, Vector3(82 * (x - 5) + 40, 80 * (y - 3) + 80, 0))
+		for x = 0, 4 do
+			table.insert(p.widget.slotpos, Vector3(80 * (x - 3) + 80, 80 * (y - 3) + 80, 0))
+			if slotbg then
+				table.insert(p.widget.slotbg, slotbg)
+			end
 		end
 	end
+
+	return p
 end
+
+
+
+local function creatBox3x3Param(anim, slotbg)
+	local p = {
+		widget =
+		{
+			slotpos = {},
+			animbank = "ui_chest_3x3",
+			animbuild = "ui_chest_3x3",
+			pos = default_pos,
+			side_align_tip = 160,
+		},
+		type = "chest",
+	}
+	for y = 2, 0, -1 do
+		for x = 0, 2 do
+			table.insert(p.widget.slotpos, Vector3(80 * x - 80 * 2 + 80, 80 * y - 80 * 2 + 80, 0))
+			if slotbg then
+				table.insert(p.widget.slotbg, slotbg)
+			end
+		end
+	end
+	return p
+end
+
+
+
 
 
 local function compareStr(str1, str2)
@@ -103,55 +162,27 @@ local function containerSortValidFn(inst)
 	return inst.replica.container ~= nil and not inst.replica.container:IsEmpty()--容器不为空
 end
 
--------------------- 容器排序 ---------------
 
 
-local default_pos = {
-	zx_granary_meat = Vector3(0, 220, 0),
-	zx_granary_veggie = Vector3(0, 220, 0),
-	zx_box = Vector3(0, 220, 0),
-}
 
 
+---------------------------------  以下是各种容器的定义 ----------------------------------------------
 local params = containers.params
 
 
-params.zx_granary_meat = {
-	widget =
-    {
-        slotpos = {},
-        animbank = "ui_zx_5x10",
-        animbuild = "ui_zx_5x10",
-        pos = default_pos.zx_granary_meat,
-        side_align_tip = 160,
-		buttoninfo = {
-			text = "整理",
-			position = Vector3(0, -230, 0),
-			fn = containerSortFn,
-			validfn = containerSortValidFn,
-		}
-    },
-    type = "chest",
-}
-for y = 4, 0, -1 do
-	for x = 0, 9 do
-		local offsetX = x<=4 and -20 or 10
-		table.insert(params.zx_granary_meat.widget.slotpos, Vector3(80 * (x - 5) + 40 + offsetX, 80 * (y - 3) + 80, 0))
-	end
-end
 
-local meat_types = {
-	FOODTYPE.MEAT,
+------------------- 肉仓 ------------------
+params.zx_granary_meat = createBox5x10Param()
+params.zx_granary_meat.widget.buttoninfo = {
+	text = "整理",
+	position = Vector3(0, -230, 0),
+	fn = containerSortFn,
+	validfn = containerSortValidFn,
 }
 
-local meat_whitelist = {
-	"spoiled_food",
-	"spoiled_fish",
-	"spoiled_fish_small",
-	"rottenegg",
-}
-
-function params.zx_granary_meat.itemtestfn(container, item, slot)
+local meat_types = { FOODTYPE.MEAT,}
+local meat_whitelist = {"spoiled_food","spoiled_fish","spoiled_fish_small","rottenegg",}
+params.zx_granary_meat.itemtestfn= function(container, item, slot)
 	if item == nil then return false end
 	for _,v in ipairs(meat_types) do
 		local tag = "edible_"..v
@@ -169,46 +200,19 @@ function params.zx_granary_meat.itemtestfn(container, item, slot)
 end
 
 
-params.zx_granary_veggie = {
-	widget =
-    {
-        slotpos = {},
-        animbank = "ui_zx_5x10",
-        animbuild = "ui_zx_5x10",
-        pos = default_pos.zx_granary_veggie,
-        side_align_tip = 160,
-		buttoninfo = {
-			text = "整理",
-			position = Vector3(0, -230, 0),
-			fn = containerSortFn,
-			validfn = containerSortValidFn,
-		}
-    },
-    type = "chest",
-}
-for y = 4, 0, -1 do
-	for x = 0, 9 do
-		local offsetX = x<=4 and -20 or 10
-		table.insert(params.zx_granary_veggie.widget.slotpos, Vector3(80 * (x - 5) + 40 + offsetX, 80 * (y - 3) + 80, 0))
-	end
-end
 
-
-local veggie_types = {
-	FOODTYPE.VEGGIE,
-	FOODTYPE.SEEDS,
-	FOODTYPE.GENERIC,
-	FOODTYPE.GOODIES,
-	FOODTYPE.BERRY,
+------------------- 菜仓 ------------------
+params.zx_granary_veggie = createBox5x10Param()
+params.zx_granary_meat.widget.buttoninfo = {
+	text = "整理",
+	position = Vector3(0, -230, 0),
+	fn = containerSortFn,
+	validfn = containerSortValidFn,
 }
 
-local veggie_whitelist = {
-	"spoiled_food",
-	"acorn",
-}
-
-
-function params.zx_granary_veggie.itemtestfn(container, item, slot)
+local veggie_types = { FOODTYPE.VEGGIE, FOODTYPE.SEEDS, FOODTYPE.GENERIC, FOODTYPE.GOODIES, FOODTYPE.BERRY}
+local veggie_whitelist = { "spoiled_food", "acorn",}
+params.zx_granary_veggie.itemtestfn= function(container, item, slot)
 	if item == nil then return false end
 	for _,v in ipairs(veggie_types) do
 		local tag = "edible_"..v
@@ -226,48 +230,21 @@ function params.zx_granary_veggie.itemtestfn(container, item, slot)
 end
 
 
--- 特色容器的大小都是 5x10 的尺寸
-local function createBox5x10Param()
-	return {
-		widget =
-		{
-			slotpos = {},
-			animbank = "ui_zx_5x10",
-			animbuild = "ui_zx_5x10",
-			pos = default_pos.zx_box,
-			side_align_tip = 160,
-		},
-		type = "chest",
-	}
-end
 
-local function createBox5x5Param()
-	return {
-		widget =
-		{
-			slotpos = {},
-			animbank = "ui_zx_5x5",
-			animbuild = "ui_zx_5x5",
-			pos = default_pos.zx_box,
-			side_align_tip = 160,
-		},
-		type = "chest",
-	}
-end
-
-
---- 干草车只能放草
+------------------- 干草车 ------------------
 params.zx_hay_cart = createBox5x10Param()
-init5x10BoxSlot(params.zx_hay_cart)
+--- 草、芦苇
+local grassdef = { "cutgrass", "cutreeds" }
 function params.zx_hay_cart.itemtestfn(container, item, slot)
-	if item.prefab == "cutgrass" then return true end
-	return false
+	---@diagnostic disable-next-line: undefined-field
+	return table.contains(grassdef, item.prefab)
 end
 
 
-local logsdef = { "livinglog", "twigs", "log", "boards" }
+
+------------------- 柴房 ------------------
 params.zxlogstore = createBox5x10Param()
-init5x10BoxSlot(params.zxlogstore)
+local logsdef = { "livinglog", "twigs", "log", "boards", "driftwood_log", "pinecone", "charcoal"}
 function params.zxlogstore.itemtestfn(container, item, slot)
 	---@diagnostic disable-next-line: undefined-field
 	if table.contains(logsdef, item.prefab) then return true end
@@ -275,21 +252,11 @@ function params.zxlogstore.itemtestfn(container, item, slot)
 end
 
 
-local huneydefs = { "medal_withered_royaljelly", "royal_jelly", "honey" }
-params.zxhoneyjar = {
-	widget =
-	{
-		slotpos = {},
-		slotbg = {},
-		animbank = "zx5x5_honey",
-		animbuild = "zx5x5_honey",
-		pos = default_pos.zx_box,
-		side_align_tip = 160,
-	},
-	type = "chest",
-}
+
+------------------- 蜂蜜蜜罐 ------------------
 local honeyslotbg = { image = "zx_slotbg_honey.tex", atlas = "images/zx_slotbg_honey.xml" }
-init5x5BoxSlot(params.zxhoneyjar, honeyslotbg)
+params.zxhoneyjar = createBox5x5Param("zx5x5_honey", honeyslotbg)
+local huneydefs = { "medal_withered_royaljelly", "royal_jelly", "honey" }
 function params.zxhoneyjar.itemtestfn(container, item, slot)
 	---@diagnostic disable-next-line: undefined-field
 	return table.contains(huneydefs, item.prefab)
@@ -297,52 +264,25 @@ end
 
 
 
-params.zxashcan =
-{
-    widget =
-    {
-        slotpos = {},
-        animbank = "ui_chest_3x3",
-        animbuild = "ui_chest_3x3",
-        pos = Vector3(0, 200, 0),
-        side_align_tip = 160,
-		buttoninfo={
-			text = "销毁",
-			position = Vector3(0, -140, 0),
-			fn = function (inst, doer)
-				if inst.components.container ~= nil then
-					inst.btnfn(inst, doer)
-				elseif inst.replica.container ~= nil and not inst.replica.container:IsBusy() then
-					SendRPCToServer(RPC.DoWidgetButtonAction, nil, inst, nil)
-				end
-			end,
-		}
-    },
-    type = "chest",
+------------------- 垃圾桶 ------------------
+params.zxashcan = creatBox3x3Param()
+params.zxashcan.widget.buttoninfo = {
+	text = STRINGS.ZXDESTROY,
+	position = Vector3(0, -140, 0),
+	fn = function (inst, doer)
+		if inst.components.container ~= nil then
+			inst.btnfn(inst, doer)
+		elseif inst.replica.container ~= nil and not inst.replica.container:IsBusy() then
+			SendRPCToServer(RPC.DoWidgetButtonAction, nil, inst, nil)
+		end
+	end,
 }
 
-for y = 2, 0, -1 do
-    for x = 0, 2 do
-        table.insert(params.zxashcan.widget.slotpos, Vector3(80 * x - 80 * 2 + 80, 80 * y - 80 * 2 + 80, 0))
-    end
-end
 
 
-
+------------------- 蛋篮子 ------------------
+params.zxeggbasket = createBox5x5Param()
 local eggbasketdef = { "bird_egg", "rottenegg", "tallbirdegg" }
-params.zxeggbasket = {
-	widget =
-	{
-		slotpos = {},
-		slotbg = {},
-		animbank = "ui_zx_5x5",
-		animbuild = "ui_zx_5x5",
-		pos = default_pos.zx_box,
-		side_align_tip = 160,
-	},
-	type = "chest",
-}
-init5x5BoxSlot(params.zxeggbasket)
 function params.zxeggbasket.itemtestfn(container, item, slot)
 	---@diagnostic disable-next-line: undefined-field
 	return table.contains(eggbasketdef, item.prefab)
@@ -371,7 +311,7 @@ local zx_containers= {
 --如果他优先级比我高 这一段生效
 for k,mod in pairs(ModManager.mods) do 
 	if mod and mod.SHOWME_STRINGS then      
-		if mod.postinitfns and mod.postinitfns.PrefabPostInit and mod.postinitfns.PrefabPostInit.treasurechest then     --是的 箱子的寻物已经加上去了
+		if mod.postinitfns and mod.postinitfns.PrefabPostInit and mod.postinitfns.PrefabPostInit.treasurechest then
 			for _, v in ipairs(zx_containers) do
 				mod.postinitfns.PrefabPostInit[v] = mod.postinitfns.PrefabPostInit.treasurechest
 			end
