@@ -66,6 +66,20 @@
         "AddComponentAction",
         "AddStategraphPostInit",
         "AddActionQueuerAction",
-        "MakeCharacterPhysics"
+        "MakeCharacterPhysics",
+        "CommonHandlers",
+        "State",
+        "EventHandler",
+        "CommonStates",
+        "TimeEvent",
+        "PlayFootstep",
+        "FRAMES",
+        "StateGraph",
+        "WhileNode",
+        "PriorityNode",
+        "Brain",
+        "Wander",
+        "BT",
+        "RemovePhysicsColliders"
     ]
 }
