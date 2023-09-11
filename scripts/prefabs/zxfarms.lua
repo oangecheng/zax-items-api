@@ -22,16 +22,16 @@ end
 
 
 local function onHatch(inst, doer, seed)
-   inst.components.timer:StartTimer(TIMER_HATCH, 30)
+    print("onHatch")
+   inst.components.timer:StartTimer(TIMER_HATCH, 5)
    inst.components.zxfarm:SetIsHatching(true)
 end
 
 
-local function onTimeDone(inst, name)
-    if name == TIMER_HATCH then
-        inst.components.zxfarm:SpawnChild()
-        inst.components.zxfarm:SetIsHatching(false)
-    end
+local function onTimeDone(inst, data)
+    print("1")
+    inst.components.zxfarm:SpawnChild()
+    inst.components.zxfarm:SetIsHatching(false)
 end
 
 
@@ -72,8 +72,8 @@ local function MakeFlower(flower_name)
         inst:ListenForEvent("timerdone", onTimeDone)
 
         inst:AddComponent("zxfarm")
-        inst.components.zxfarm:SetSeed("bird_egg")
-        inst.components.zxfarm:SetChild("zxperd")
+        inst.components.zxfarm:SetHatchItem("bird_egg")
+        inst.components.zxfarm:SetChild("zxfarmperd")
         inst.components.zxfarm:SetOnHatch(onHatch)
         inst.components.zxfarm:SetOnChildSpawn(onChildSpawn)
         

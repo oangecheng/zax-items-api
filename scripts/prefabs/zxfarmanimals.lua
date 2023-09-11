@@ -6,17 +6,15 @@ local MAX_DELTA = 3.5
 
 
 local function findNextPosition(inst)
-    if inst.x == nil then 
-       local x,y,z = inst.Transform:GetWorldPosition() 
-       inst.x = x
-       inst.y = y
-       inst.z = z
+    local pt = inst.components.zxanimal:GetFarmPostion()
+    if pt then
+        local dx = math.random(MIN_DELTA, MAX_DELTA)
+        dx = math.random() < 0.5 and dx or -dx
+        local dz = math.random(MIN_DELTA, MAX_DELTA)
+        dz = math.random() < 0.5 and dz or -dz
+        return Vector3(pt.x + dx, pt.y, pt.z + dz)
     end
-    local dx = math.random(MIN_DELTA, MAX_DELTA)
-    dx = math.random() < 0.5 and dx or -dx
-    local dz = math.random(MIN_DELTA, MAX_DELTA)
-    dz = math.random() < 0.5 and dz or -dz
-    return Vector3(inst.x + dx, 0, inst.z + dz)
+    return nil
 end
 
 
@@ -60,6 +58,7 @@ local function MakeAnimal(animal, data)
         inst:AddComponent("locomotor")
         inst.components.locomotor.runspeed = 2
         inst.components.locomotor.walkspeed = 2
+        inst:AddComponent("zxanimal")
     
         inst:SetStateGraph("ZxAnimalSG")
         inst:AddComponent("inspectable")
@@ -69,7 +68,9 @@ local function MakeAnimal(animal, data)
         local time = math.random(5, 10)
         inst:DoPeriodicTask(time, function ()
             local p = findNextPosition(inst)
-            inst.components.locomotor:GoToPoint(p, nil, false)
+            if p then
+                inst.components.locomotor:GoToPoint(p, nil, false)
+            end
         end)
     
         return inst

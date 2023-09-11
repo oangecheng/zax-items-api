@@ -33,7 +33,7 @@ end
 ---@return boolean
 function Farm:CanHatch(item)
     return self.item and item and self.item == item.prefab 
-        and self.childcnt < self.childmax
+        and self:GetChildCnt() < self.childmax
         and (not self.ishatching)
 end
 
@@ -65,9 +65,12 @@ end
 
 
 function Farm:SpawnChild()
+    print("2")
     if self.child and self:GetChildCnt() < self.childmax then
         local ent = SpawnPrefab(self.child)
+        print("3")
         if ent then
+            print("4")
             local x,y,z = self.inst.Transform:GetWorldPosition()
             table.insert(self.childs, ent.GUID)
             ent.Transform:SetPosition(x, y, z)
