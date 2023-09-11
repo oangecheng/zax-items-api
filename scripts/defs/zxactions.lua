@@ -46,6 +46,19 @@ local actions = {
             return false
 		end,
 		state = "domediumaction",
+    },
+
+    {
+        id = "ZXHATCH",
+        str = "孵化",
+        fn = function (act)
+            local farm = act.target.components.zxfarm
+            if act.doer and act.invobject and farm:CanHatch(act.invobject) then
+                farm:Hatch(act.invobject, act.doer)
+                return true
+            end
+            return false
+        end
     }
 }
 
@@ -61,6 +74,13 @@ local componentactions = {
 					return doer ~= nil and target and target:HasTag("haha")
 				end,
 			},
+
+            {
+                action = "ZXHATCH",
+                testfn = function(inst, doer, target, acts, right)
+                    return doer and target:HasTag("zxfarm")
+                end
+            }
         },
     },
 
@@ -75,7 +95,7 @@ local componentactions = {
 				end,
 			},
         },
-    }
+    },
 }
 
 

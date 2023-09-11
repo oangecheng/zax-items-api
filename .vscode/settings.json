@@ -80,9 +80,11 @@
         "Brain",
         "Wander",
         "BT",
-        "RemovePhysicsColliders"
+        "RemovePhysicsColliders",
+        "TheNet"
     ],
     "Lua.diagnostics.disable": [
-        "trailing-space"
+        "trailing-space",
+        "unused-function"
     ]
 }
