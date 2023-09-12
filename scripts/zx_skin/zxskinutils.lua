@@ -90,7 +90,7 @@ end
 registerSkin("zxskintool", "0000", "zxskintool1", 0, ZX_SKINTYPE.FREE, true)
 registerSkin("zxskintool", "0001", "zxskintool2", 0, ZX_SKINTYPE.FREE)
 registerSkin("zx_granary_veggie", "0010", "zx_granary_veggie", 0, ZX_SKINTYPE.FREE, true)
-registerSkin("zx_granary_veggie", "0011", "zxgranaryveggie1" , 0, ZX_SKINTYPE.FREE)
+registerSkin("zx_granary_veggie", "0011", "zxgranaryveggie1" , 0, ZX_SKINTYPE.CUSTOM)
 
 
 -- 花丛
