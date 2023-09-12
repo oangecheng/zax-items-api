@@ -34,7 +34,7 @@ end)
 --- @return boolean true 可以更换
 function Skinable:CanChangeSkin(doer)
     local skins = userskins(doer, self)
-    return #skins > 1
+    return #skins >= 1
 
 end
 
@@ -45,7 +45,7 @@ function Skinable:ChangeSkin(doer)
     local skins = userskins(doer, self)
     if next(skins) ~= nil then
         local size = #skins
-        local index = 0
+        local index = nil
         if self.skinid ~= nil then
             for i, v in ipairs(skins) do
                 if v.id == self.skinid then
@@ -54,8 +54,11 @@ function Skinable:ChangeSkin(doer)
                 end
             end
         end
-
-        index = index + 1 > size and 1 or index + 1
+        if index == nil then
+            index = 1
+        else
+            index = index + 1 > size and 1 or index + 1
+        end
         reskin(self, skins[index])
     end
 end
