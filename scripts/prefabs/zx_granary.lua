@@ -140,6 +140,4 @@ end
 
 return 
     makeGranary("zx_granary_meat"),
-	MakePlacer("zx_granary_meat_placer", "zx_granary_meat", "zx_granary_meat", "idle"),
-    makeGranary("zx_granary_veggie"),
-    MakePlacer("zx_granary_veggie_placer", "zx_granary_veggie", "zx_granary_veggie", "idle")
+	MakePlacer("zx_granary_meat_placer", "zx_granary_meat", "zx_granary_meat", "idle")

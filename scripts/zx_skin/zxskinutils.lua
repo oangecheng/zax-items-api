@@ -3,6 +3,8 @@ local isCh = ZXTUNING.isCh
 local skinnamesdef = {
     ["0000"] = isCh and "暗夜杖" or "dark staff",
     ["0001"] = isCh and "仙女杖"  or "fairy staff",
+    ["0010"] = isCh and "经典" or "custom",
+    ["0011"] = isCh and "潘多拉魔盒" or "pandro chest",
     ["1000"] = isCh and "紫色酢浆草" or "oxalis",
     ["1001"] = isCh and "小雏菊花丛" or "daisy",
     ["1002"] = isCh and "绣球花" or "hydrangea",
@@ -55,6 +57,13 @@ end
 
 
 
+---comment
+---@param prefab string
+---@param skinid string
+---@param file string
+---@param index number
+---@param skintype number
+---@param isdefault any
 local function registerSkin(prefab, skinid, file, index, skintype, isdefault)
     skinlist[prefab] = skinlist[prefab] or {}
     skinlist[prefab].data = skinlist[prefab].data or {}
@@ -80,6 +89,9 @@ end
 -- 法杖
 registerSkin("zxskintool", "0000", "zxskintool1", 0, ZX_SKINTYPE.FREE, true)
 registerSkin("zxskintool", "0001", "zxskintool2", 0, ZX_SKINTYPE.FREE)
+registerSkin("zx_granary_veggie", "0010", "zx_granary_veggie", 0, ZX_SKINTYPE.FREE, true)
+registerSkin("zx_granary_veggie", "0011", "zxgranaryveggie1" , 0, ZX_SKINTYPE.FREE)
+
 
 -- 花丛
 registerSkin("zxflowerbush", "1000", "zxoxalis",     1, ZX_SKINTYPE.FREE, true)

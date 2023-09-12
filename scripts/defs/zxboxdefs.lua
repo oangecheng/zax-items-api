@@ -1,5 +1,35 @@
 
 
+local granaryveggie = {
+    placeanim = "idle",
+    initskin = ZxGetPrefabDefaultSkin("zx_granary_veggie");
+
+    oninitfn = function (inst)
+        inst.AnimState:PlayAnimation("idle", true)
+    end,
+
+    onopenfn = function (inst, doer)
+        inst.SoundEmitter:PlaySound("saltydog/common/saltbox/open")
+    end,
+
+    onclosefn = function (inst, doer)
+        inst.AnimState:PlayAnimation("idle", true)
+        inst.SoundEmitter:PlaySound("saltydog/common/saltbox/close")
+    end,
+
+
+    onbuildfn = function (inst)
+    end,
+
+    onhitfn = function (inst, doer)
+
+    end,
+}
+
+
+
+
+
 local function getHoneyJarAnim(inst, isopen)
     local container = inst.components.container
     if container == nil then return nil end
@@ -191,6 +221,7 @@ local boxs = {
     ["zxashcan"]   = ashcan,
     ["zxeggbasket"] = eggbasket,
     ["zx_hay_cart"] = haycart,
+    ["zx_granary_veggie"] = granaryveggie,
 }
 
 return  boxs
