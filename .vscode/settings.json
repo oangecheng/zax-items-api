@@ -85,6 +85,7 @@
     ],
     "Lua.diagnostics.disable": [
         "trailing-space",
-        "unused-function"
+        "unused-function",
+        "deprecated"
     ]
 }

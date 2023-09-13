@@ -20,22 +20,21 @@ local function onChildSpawn(inst, child)
 end
 
 
+local function MakeFarm(name, farm)
 
-local function onHatch(inst, doer, seed)
-    print("onHatch")
-   inst.components.timer:StartTimer(TIMER_HATCH, 5)
-   inst.components.zxfarm:SetIsHatching(true)
-end
+    local function onHatch(inst, doer, seed)
+        inst.components.timer:StartTimer(TIMER_HATCH, farm.hatchtime)
+        inst.components.zxfarm:SetIsHatching(true)
+     end
+     
+     
+     local function onTimeDone(inst, data)
+        if data.name == TIMER_HATCH then
+            inst.components.zxfarm:SpawnChild()
+            inst.components.zxfarm:SetIsHatching(false)
+        end
+     end
 
-
-local function onTimeDone(inst, data)
-    print("1")
-    inst.components.zxfarm:SpawnChild()
-    inst.components.zxfarm:SetIsHatching(false)
-end
-
-
-local function MakeFlower(flower_name)
 
     local function fn()
         local inst = CreateEntity()
@@ -72,17 +71,23 @@ local function MakeFlower(flower_name)
         inst:ListenForEvent("timerdone", onTimeDone)
 
         inst:AddComponent("zxfarm")
-        inst.components.zxfarm:SetHatchItem("bird_egg")
-        inst.components.zxfarm:SetChild("zxfarmperd")
+        inst.components.zxfarm:SetHatchItem(farm.hatchitem)
+        inst.components.zxfarm:SetChild(farm.animal)
         inst.components.zxfarm:SetOnHatch(onHatch)
         inst.components.zxfarm:SetOnChildSpawn(onChildSpawn)
         
         return inst
     end
     
-    return Prefab(flower_name, fn, assets, nil)
+    return Prefab(name, fn, assets, nil)
 end
 
 
-return MakeFlower("zxfarm"),
-MakePlacer("zxfarm_placer", "zx_flower", "zx_flower", "zx_flower_1")
+local FARMS = require "defs/zxfarmdefs"
+local farmlist = {}
+for k, v in pairs(FARMS) do
+    table.insert(farmlist, MakeFarm(k, v))
+    table.insert(farmlist, MakePlacer(k.."_placer", "zx_flower", "zx_flower", "zx_flower_1"))
+    -- table.insert(farmlist, MakePlacer(k.."_placer", v.initskin.file, v.initskin.file, v.initanim))
+end
+return unpack(farmlist)

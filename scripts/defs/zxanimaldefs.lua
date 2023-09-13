@@ -24,7 +24,7 @@ local farmperd = {
 
 
 
-local farmpig = {
+local farmpigman = {
     assets = {
         Asset("ANIM", "anim/ds_pig_basic.zip"),
         Asset("ANIM", "anim/ds_pig_actions.zip"),
@@ -59,7 +59,7 @@ local farmpig = {
 
 
 
-local farmcow = {
+local farmbeefalo = {
 
     assets = {
         Asset("ANIM", "anim/beefalo_basic.zip"),
@@ -103,7 +103,7 @@ local farmcow = {
 
 
 local def  = {}
-def.zxfarmperd = farmperd
-def.zxfarmpig = farmpig
-def.zxfarmcow = farmcow
+def.zxperd    = farmperd
+def.zxpigman  = farmpigman
+def.zxbeefalo = farmbeefalo
 return def
