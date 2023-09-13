@@ -3,10 +3,12 @@
 
 local MIN_DELTA = 1
 local MAX_DELTA = 3.5
+local ANIM_SIZE = 0.3
 
 
+---计算动物下个位置
 local function findNextPosition(inst)
-    local pt = inst.components.zxanimal:GetFarmPostion()
+    local pt = inst.components.zxanimal:GetFarmPosition()
     if pt then
         local dx = math.random(MIN_DELTA, MAX_DELTA)
         dx = math.random() < 0.5 and dx or -dx
@@ -20,8 +22,8 @@ end
 
 
 local function MakeAnimal(animal, data)
-
     local assets = data.assets
+    local anim = data.anim
 
     local function fn()
         local inst = CreateEntity()
@@ -35,36 +37,35 @@ local function MakeAnimal(animal, data)
     
         MakeCharacterPhysics(inst, 1, 0)
         RemovePhysicsColliders(inst)
-
-        inst.DynamicShadow:SetSize(0.5, .75)
-        if data.face == 6 then
-            inst.Transform:SetSixFaced()
-        else
-            inst.Transform:SetFourFaced()
-        end
         inst.Physics:Stop()
+        inst.DynamicShadow:SetSize(0.5, .75)
+        data.initfunc(inst)
 
-        inst.AnimState:SetBank(data.anim.bank)
-        inst.AnimState:SetBuild(data.anim.build)
-        inst.AnimState:SetScale(0.3, 0.3, 0.3)
+        inst.AnimState:SetBank(anim.bank)
+        inst.AnimState:SetBuild(anim.build)
+        local size = anim.size and anim.size or ANIM_SIZE
+        inst.AnimState:SetScale(size, size, size)
         inst.AnimState:PlayAnimation("idle_loop", true)
-        inst.AnimState:Hide("HEAT")
+        if anim.extrafunc then
+            anim.extrafunc(inst)
+        end
 
         inst.entity:SetPristine()
         if not TheWorld.ismastersim then
             return inst
         end
 
+        inst.sound = data.sound
+
         inst:AddComponent("locomotor")
-        inst.components.locomotor.runspeed = 2
-        inst.components.locomotor.walkspeed = 2
+        inst.components.locomotor.runspeed = data.walkspeed
+        inst.components.locomotor.walkspeed = data.walkspeed
         inst:AddComponent("zxanimal")
-    
-        inst:SetStateGraph("ZxAnimalSG")
+        inst:SetStateGraph("FarmAnimalSG")
         inst:AddComponent("inspectable")
 
-  
-
+        -- 5~10s移动一次
+        -- 暂时用这个策略，后面根据反馈优化
         local time = math.random(5, 10)
         inst:DoPeriodicTask(time, function ()
             local p = findNextPosition(inst)
@@ -77,9 +78,6 @@ local function MakeAnimal(animal, data)
     end
     
     return Prefab(animal, fn, assets, nil)
-
-
-
 end
 
 

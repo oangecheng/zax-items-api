@@ -58,7 +58,8 @@ local actions = {
                 return true
             end
             return false
-        end
+        end,
+        state = "dolongaction",
     }
 }
 

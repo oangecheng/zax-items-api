@@ -7,10 +7,14 @@ local events = {
 }
 
 
-local function Gobble(inst)
-    inst.SoundEmitter:PlaySound("dontstarve/creatures/perd/gobble")
+local function playIdleSound(inst)
+    if inst.sound then
+        inst.SoundEmitter:PlaySound(inst.sound)
+    end
 end
 
+
+-- 后面再加其他的动作，比如吃东西，睡觉
 local states = {
     State {
         name = "idle",
@@ -18,7 +22,7 @@ local states = {
 
         onenter = function(inst)
             inst.Physics:Stop()
-            Gobble(inst)
+            playIdleSound(inst)
             inst.AnimState:PlayAnimation("idle_loop", true)
         end,
 
@@ -33,15 +37,7 @@ local states = {
 
 
 
-CommonStates.AddWalkStates(states, {
-    walktimeline = {
-        TimeEvent(0, PlayFootstep),
-        TimeEvent(12 * FRAMES, PlayFootstep),
-    },
-})
-
-
-
+CommonStates.AddWalkStates(states, {})
 CommonStates.AddIdle(states, "idle")
 
-return StateGraph("ZxAnimalSG", states, events, "idle", actionhandlers)
+return StateGraph("FarmAnimalSG", states, events, "idle", actionhandlers)

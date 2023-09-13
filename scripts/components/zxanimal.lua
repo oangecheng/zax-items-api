@@ -18,7 +18,7 @@ end
 
 ---获取农场位置
 ---@return any
-function Animal:GetFarmPostion()
+function Animal:GetFarmPosition()
     return self.pt
 end
 

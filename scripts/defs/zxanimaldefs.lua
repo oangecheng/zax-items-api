@@ -7,11 +7,19 @@ local farmperd = {
         Asset("SOUND", "sound/perd.fsb"),
     },
 
+    initfunc = function (inst)
+        inst.Transform:SetFourFaced()
+    end,
+
     anim = {
         bank = "perd",
         build = "perd",
         idle = "idle_loop"
     },
+
+
+    walkspeed = 2,
+    sound = "dontstarve/creatures/perd/gobble"
 }
 
 
@@ -34,11 +42,19 @@ local farmpig = {
         Asset("ANIM", "anim/merm_actions.zip"),
     },
 
+    initfunc = function (inst)
+        inst.Transform:SetFourFaced()
+    end,
+
+
     anim = {
         bank = "pigman",
         build = "pig_build",
         idle = "idle_loop"
     },
+
+    walkspeed = 2,
+    sound = "dontstarve/pig/grunt",
 }
 
 
@@ -67,13 +83,21 @@ local farmcow = {
         Asset("MINIMAP_IMAGE", "beefalo_domesticated"),
     },
 
+    initfunc = function (inst)
+        inst.Transform:SetSixFaced()
+    end,
+
     anim = {
         bank = "beefalo",
         build = "beefalo_build",
-        idle = "idle_loop"
+        idle = "idle_loop",
+        extrafunc = function (inst)
+            inst.AnimState:Hide("HEAT")
+        end
     },
 
-    face = 6;
+    walkspeed = 1,
+    sound = "dontstarve/beefalo/yell",
 }
 
 
