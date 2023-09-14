@@ -111,7 +111,6 @@ local function updateLightState(inst)
         local g = #inst.components.container:FindItems(IsGreenSpore)
         local b = #inst.components.container:FindItems(IsBlueSpore)
         inst.Light:SetColour(colour_tint[g+b + 1] + r/11, colour_tint[r+b + 1] + g/11, colour_tint[r+g + 1] + b/11)
-        inst.AnimState:SetMultColour(mult_tint[g+b + 1], mult_tint[r+b + 1], mult_tint[r+g + 1], 1)
     else
         config = empty_light_str
         inst.Light:SetColour(.65, .65, .5)
@@ -132,6 +131,7 @@ local function onhit(inst, worker)
 end
 
 local function open(inst)
+    updateLightState(inst)
 	inst.Light:Enable(true)
 	inst.AnimState:PlayAnimation("open", true)
     inst.SoundEmitter:PlaySound(sound)
@@ -189,7 +189,6 @@ local function MakeLight(name, initSkinId)
         inst.entity:AddNetwork()
         inst.entity:AddLight()
 
-        updateLightState(inst)
         inst.Light:Enable(false)
 
         inst:AddTag("zxlight")
@@ -228,6 +227,7 @@ local function MakeLight(name, initSkinId)
 
         inst:ListenForEvent("onbuilt", onbuild)
         inst:WatchWorldState("isnight", tryopen)
+        updateLightState(inst)
         tryopen(inst, TheWorld.state.isnight)
 
 

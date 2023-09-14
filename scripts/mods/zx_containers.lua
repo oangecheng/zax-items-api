@@ -182,7 +182,7 @@ params.zx_granary_meat.widget.buttoninfo = {
 
 local meat_types = { FOODTYPE.MEAT,}
 local meat_whitelist = {"spoiled_food","spoiled_fish","spoiled_fish_small","rottenegg",}
-params.zx_granary_meat.itemtestfn= function(container, item, slot)
+params.zx_granary_meat.itemtestfn = function(container, item, slot)
 	if item == nil then return false end
 	for _,v in ipairs(meat_types) do
 		local tag = "edible_"..v
@@ -250,7 +250,7 @@ params.zxlight = {
 }
 
 params.zxlight.itemtestfn = function(container, item, slot)
-    return (item:HasTag("lightbattery") or item:HasTag("lightcontainer")) and not container.inst:HasTag("burnt")
+    return (item:HasTag("lightbattery") or item:HasTag("lightcontainer") or item:HasTag("spore")) and not container.inst:HasTag("burnt")
 end
 
 

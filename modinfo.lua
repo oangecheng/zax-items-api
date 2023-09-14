@@ -91,7 +91,8 @@ configuration_options =
 			{description = ch and "较小" or "small", data = 0.5},
 			{description = ch and "默认" or "default", data = 1},
 			{description = ch and "超大" or "large", data = 2},
-		}
+		},
+		default = 1,
 	},
 
 

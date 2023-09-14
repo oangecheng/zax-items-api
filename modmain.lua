@@ -12,7 +12,7 @@ ZXTUNING.IS_CH = GetModConfigData("zx_items_language") == "ch"
 ZXTUNING.LIGHT_RADIUS_MULTI = GetModConfigData("zxlightradius") or 1
 
 
-modimport(ZXTUNING.isCh and "utils/strings_ch.lua" or "utils/strings_eng.lua")
+modimport(ZXTUNING.IS_CH and "utils/strings_ch.lua" or "utils/strings_eng.lua")
 
 
 require("zx_skin/zxskinutils")
