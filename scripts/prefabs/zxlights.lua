@@ -1,6 +1,12 @@
+require("prefabs/mushtree_spores")
+
 local PREABLE = "zxlight"
+
 local assets = ZxGetPrefabAnimAsset(PREABLE)
+table.insert(assets, Asset("ANIM", "anim/ui_lamp_1x4.zip"))
 local defalutSKin = ZxGetPrefabDefaultSkin(PREABLE)
+---打开关闭的声音
+local sound = "dontstarve/common/together/mushroom_lamp/lantern_1_on"
 
 -- 放置孢子
 local light_str = {
@@ -128,14 +134,14 @@ end
 local function open(inst)
 	inst.Light:Enable(true)
 	inst.AnimState:PlayAnimation("open", true)
-	inst.lightson = true
+    inst.SoundEmitter:PlaySound(sound)
 end
 
 
 local function close(inst)
     inst.Light:Enable(false)
     inst.AnimState:PlayAnimation("close")
-    inst.lightson = false
+    inst.SoundEmitter:PlaySound(sound)
 end
 
 
@@ -186,6 +192,7 @@ local function MakeLight(name, initSkinId)
         updateLightState(inst)
         inst.Light:Enable(false)
 
+        inst:AddTag("zxlight")
         inst:AddTag("structure")
         MakeObstaclePhysics(inst, .2)
 
