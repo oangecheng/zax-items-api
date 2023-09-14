@@ -73,6 +73,9 @@
         "AddModRPCHandler",
         "MOD_RPC",
         "SendModRPCToServer",
-        "MakeInventoryFloatable"
+        "MakeInventoryFloatable",
+        "MUSHTREE_SPORE_RED",
+        "MUSHTREE_SPORE_GREEN",
+        "MUSHTREE_SPORE_BLUE"
     ]
 }

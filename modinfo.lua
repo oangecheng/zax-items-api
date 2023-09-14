@@ -82,6 +82,19 @@ configuration_options =
 		default = 0,
 	},
 
+
+	Title(ch and "永亮灯设置" or "Perpetual light settings"),
+	{
+		name  = "zxlightradius",
+		label = ch and "光照范围" or "light radius",
+		options = {
+			{description = ch and "较小" or "small", data = 0.5},
+			{description = ch and "默认" or "default", data = 1},
+			{description = ch and "超大" or "large", data = 2},
+		}
+	},
+
+
 	Title(ch and "其他物品" or "other items"),
 	{
 		name = "zx_meatrack",

@@ -231,6 +231,30 @@ end
 
 
 
+------------------- 永亮灯 ------------------
+params.zxlight = {
+    widget = {
+        slotpos = {
+            Vector3(0, 64 + 32 + 8 + 4, 0),
+            Vector3(0, 32 + 4, 0),
+            Vector3(0, -(32 + 4), 0),
+            Vector3(0, -(64 + 32 + 8 + 4), 0),
+        },
+        animbank = "ui_lamp_1x4",
+        animbuild = "ui_lamp_1x4",
+        pos = Vector3(200, 0, 0),
+        side_align_tip = 100,
+    },
+    acceptsstacks = false,
+    type = "cooker",
+}
+
+params.zxlight.itemtestfn = function(container, item, slot)
+    return (item:HasTag("lightbattery") or item:HasTag("lightcontainer")) and not container.inst:HasTag("burnt")
+end
+
+
+
 ------------------- 干草车 ------------------
 params.zx_hay_cart = createBox5x10Param()
 --- 草、芦苇

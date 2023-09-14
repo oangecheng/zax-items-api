@@ -1,5 +1,5 @@
 
-local isCh = ZXTUNING.isCh
+local isCh = ZXTUNING.IS_CH
 local skinnamesdef = {
     ["0000"] = isCh and "暗夜杖" or "dark staff",
     ["0001"] = isCh and "仙女杖"  or "fairy staff",

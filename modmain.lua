@@ -8,8 +8,8 @@ TUNING.ZX_GRANARY_DIFFICULT = GetModConfigData("zx_granary_difficult")
 -- 一些其他物品
 TUNING.ZX_MEATRACK = GetModConfigData("zx_meatrack")
 TUNING.ZX_BEEBOX = GetModConfigData("zx_beebox")
-
-ZXTUNING.isCh = GetModConfigData("zx_items_language") == "ch"
+ZXTUNING.IS_CH = GetModConfigData("zx_items_language") == "ch"
+ZXTUNING.LIGHT_RADIUS_MULTI = GetModConfigData("zxlightradius") or 1
 
 
 modimport(ZXTUNING.isCh and "utils/strings_ch.lua" or "utils/strings_eng.lua")
