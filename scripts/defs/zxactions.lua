@@ -81,7 +81,7 @@ local componentactions = {
             {
                 action = "ZXSHOPOPEN",
                 testfn = function(inst,doer,actions,right)
-                    return doer ~= nil and inst and inst:HasTag("zxskintool")
+                    return doer ~= nil and inst and inst:HasTag("zxshop")
                 end
             }
         }

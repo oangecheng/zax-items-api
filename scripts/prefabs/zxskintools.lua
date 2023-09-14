@@ -64,12 +64,14 @@ local function onequip(inst, owner)
     owner.AnimState:OverrideSymbol("swap_object", symbol, "swap")
     owner.AnimState:Show("ARM_carry")
     owner.AnimState:Hide("ARM_normal")
+    inst:AddTag("zxshop")
 end
 
 local function onunequip(inst, owner)
     inst.zxowener = nil
     owner.AnimState:Hide("ARM_carry")
     owner.AnimState:Show("ARM_normal")
+    inst:RemoveTag("zxshop")
 end
 
 local function tool_fn()

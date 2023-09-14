@@ -22,9 +22,14 @@ end
 
 local Skinable = Class(function (self, inst)
     self.inst = inst
-    local skin =  ZxGetPrefabDefaultSkin(inst.prefab)
-    self.skinid = skin.id
-    reskin(self, skin)
+    -- 这里必须延迟一下，不然prefab是空的，因为时序问题还没赋值
+    self.inst:DoTaskInTime(0, function ()
+        if self.skinid == nil then
+            local skin =  ZxGetPrefabDefaultSkin(self.inst.prefab)
+            self.skinid = skin.id
+            reskin(self, skin)
+        end
+    end)
 end)
 
 
