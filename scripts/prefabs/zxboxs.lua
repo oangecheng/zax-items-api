@@ -78,7 +78,7 @@ local function MakeZxBox(prefabname, data)
 	    inst:AddTag("wildfirepriority")
         inst:AddTag("chest")
 
-	    MakeObstaclePhysics(inst, 0.3)
+	    MakeObstaclePhysics(inst, 0.5)
         if skin == nil then
             return inst
         end

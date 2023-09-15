@@ -19,7 +19,6 @@ require("zx_skin/zxskinutils")
 
 
 PrefabFiles = {
-	"zx_granary",
 	"zx_placers",
     "zx_flower",
     "zx_light",

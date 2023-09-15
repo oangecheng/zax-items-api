@@ -4,7 +4,9 @@ local skinnamesdef = {
     ["0000"] = isCh and "暗夜杖" or "dark staff",
     ["0001"] = isCh and "仙女杖"  or "fairy staff",
     ["0010"] = isCh and "经典" or "custom",
-    ["0011"] = isCh and "潘多拉魔盒" or "pandro chest",
+    ["0011"] = isCh and "浮生的潘多拉魔盒" or "pandro chest",
+    ["0100"] = isCh and "经典" or "custom",
+    ["0101"] = isCh and "浮生的肉铺" or "ocean meat granary",
     ["1000"] = isCh and "紫色酢浆草" or "oxalis",
     ["1001"] = isCh and "小雏菊花丛" or "daisy",
     ["1002"] = isCh and "绣球花" or "hydrangea",
@@ -81,16 +83,16 @@ local function registerSkin(prefab, skinid, file, index, skintype, isdefault)
     --- 用文件名命名动画文件
     skin.bank = file
     skin.build = file
-    
-    table.sort(skinlist[prefab].data, function(a,b) return a.id < b.id end)
     table.insert(skinlist[prefab].data, skin)
 end
 
 -- 法杖
 registerSkin("zxskintool", "0000", "zxskintool1", 0, ZX_SKINTYPE.FREE, true)
 registerSkin("zxskintool", "0001", "zxskintool2", 0, ZX_SKINTYPE.FREE)
-registerSkin("zx_granary_veggie", "0010", "zx_granary_veggie", 0, ZX_SKINTYPE.FREE, true)
-registerSkin("zx_granary_veggie", "0011", "zxgranaryveggie1" , 0, ZX_SKINTYPE.CUSTOM)
+registerSkin("zx_granary_veggie", "0010", "zx_granary_veggie", 0.1, ZX_SKINTYPE.FREE, true)
+registerSkin("zx_granary_veggie", "0011", "zxgranaryveggie1" , 0.1, ZX_SKINTYPE.CUSTOM)
+registerSkin("zx_granary_meat", "0100", "zx_granary_meat", 0.2, ZX_SKINTYPE.FREE, true)
+registerSkin("zx_granary_meat", "0101", "zxgranarymeat1", 0.2, ZX_SKINTYPE.CUSTOM)
 
 
 -- 花丛

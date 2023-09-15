@@ -1,6 +1,7 @@
 
 
 local granaryveggie = {
+    isicebox = true,
     placeanim = "idle",
     initskin = ZxGetPrefabDefaultSkin("zx_granary_veggie");
 
@@ -26,6 +27,34 @@ local granaryveggie = {
     end,
 }
 
+
+
+local granarymeat = {
+    isicebox = true,
+    placeanim = "idle",
+    initskin = ZxGetPrefabDefaultSkin("zx_granary_meat");
+
+    oninitfn = function (inst)
+        inst.AnimState:PlayAnimation("idle", true)
+    end,
+
+    onopenfn = function (inst, doer)
+        inst.SoundEmitter:PlaySound("saltydog/common/saltbox/open")
+    end,
+
+    onclosefn = function (inst, doer)
+        inst.AnimState:PlayAnimation("idle", true)
+        inst.SoundEmitter:PlaySound("saltydog/common/saltbox/close")
+    end,
+
+
+    onbuildfn = function (inst)
+    end,
+
+    onhitfn = function (inst, doer)
+
+    end,
+}
 
 
 
@@ -222,6 +251,7 @@ local boxs = {
     ["zxeggbasket"] = eggbasket,
     ["zx_hay_cart"] = haycart,
     ["zx_granary_veggie"] = granaryveggie,
+    ["zx_granary_meat"] = granarymeat,
 }
 
 return  boxs
