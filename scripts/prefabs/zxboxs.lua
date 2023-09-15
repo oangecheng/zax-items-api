@@ -115,7 +115,7 @@ local function MakeZxBox(prefabname, data)
         -- 可以用锤子拆
         inst:AddComponent("workable")
         inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
-        inst.components.workable:SetWorkLeft(3)
+        inst.components.workable:SetWorkLeft(5)
         inst.components.workable:SetOnFinishCallback(onHammered)
         inst.components.workable:SetOnWorkCallback(onHit)
 

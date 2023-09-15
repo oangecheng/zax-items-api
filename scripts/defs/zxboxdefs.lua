@@ -49,10 +49,13 @@ local granarymeat = {
 
 
     onbuildfn = function (inst)
+        inst.AnimState:PlayAnimation("onbuild")
+        inst.AnimState:PushAnimation("idle")
     end,
 
     onhitfn = function (inst, doer)
-
+        inst.AnimState:PlayAnimation("onhit")
+        inst.AnimState:PushAnimation("idle")
     end,
 }
 

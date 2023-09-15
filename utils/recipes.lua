@@ -34,8 +34,8 @@ AddRecipe2(
 	TECH.SCIENCE_TWO,
 	{
 		placer = "zx_granary_meat_placer",
-        atlas = "images/zxskins/zx_granary_meat/zx_granary_meat.xml",
-        image = "zx_granary_meat.tex",
+        atlas = "images/zxskins/zx_granary_meat/zxgranarymeat.xml",
+        image = "zxgranarymeat.tex",
     },
 	{"STRUCTURES", "CONTAINERS"}
 )

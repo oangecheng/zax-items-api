@@ -91,7 +91,7 @@ registerSkin("zxskintool", "0000", "zxskintool1", 0, ZX_SKINTYPE.FREE, true)
 registerSkin("zxskintool", "0001", "zxskintool2", 0, ZX_SKINTYPE.FREE)
 registerSkin("zx_granary_veggie", "0010", "zx_granary_veggie", 0.1, ZX_SKINTYPE.FREE, true)
 registerSkin("zx_granary_veggie", "0011", "zxgranaryveggie1" , 0.1, ZX_SKINTYPE.CUSTOM)
-registerSkin("zx_granary_meat", "0100", "zx_granary_meat", 0.2, ZX_SKINTYPE.FREE, true)
+registerSkin("zx_granary_meat", "0100", "zxgranarymeat", 0.2, ZX_SKINTYPE.FREE, true)
 registerSkin("zx_granary_meat", "0101", "zxgranarymeat1", 0.2, ZX_SKINTYPE.CUSTOM)
 
 
