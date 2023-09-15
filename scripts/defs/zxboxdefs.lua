@@ -141,22 +141,40 @@ local ashcan = {
 
 
 
+local function logstoreAnim(inst)
+    local container = inst.components.container
+    if container == nil then return "empty" end
+    if container:IsEmpty() then return "empty"
+    elseif container:IsFull() then return "full"
+    else return "half" end
+end
+
 local logstore = {
-    placeanim = "close",
+    placeanim = "empty",
     initskin = ZxGetPrefabDefaultSkin("zxlogstore");
 
     oninitfn = function (inst)
-        inst.AnimState:PlayAnimation("close")
+        inst.AnimState:PlayAnimation(logstoreAnim(inst))
     end,
 
     onopenfn = function (inst, doer)
         inst.SoundEmitter:PlaySound("saltydog/common/saltbox/open")
-        inst.AnimState:PlayAnimation("open")
     end,
 
     onclosefn = function (inst, doer)
+        inst.AnimState:PlayAnimation(logstoreAnim(inst))
         inst.SoundEmitter:PlaySound("saltydog/common/saltbox/close")
-        inst.AnimState:PlayAnimation("close")
+    end,
+
+
+    onbuildfn = function (inst)
+        inst.AnimState:PlayAnimation("onbuild")
+        inst.AnimState:PushAnimation("empty")
+    end,
+
+    onhitfn = function (inst, doer)
+        inst.AnimState:PlayAnimation("onhit")
+        inst.AnimState:PushAnimation(logstoreAnim(inst))
     end,
 
 }

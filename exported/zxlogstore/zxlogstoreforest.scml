@@ -7,7 +7,7 @@
         <file id="3" name="images/door_open.png" width="500" height="499" pivot_x="0" pivot_y="1"/>
     </folder>
     <entity id="0" name="zxlogstoreforest">
-        <animation id="0" name="close" length="1000">
+        <animation id="0" name="empty" length="400">
             <mainline>
                 <key id="0">
                     <object_ref id="0" name="main" folder="0" file="0" abs_x="0" abs_y="0" abs_pivot_x="0.45" abs_pivot_y="0.2" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
@@ -31,27 +31,127 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="1" name="open" length="1000">
+        <animation id="1" name="half" length="400">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="main_000" folder="0" file="0" abs_x="0" abs_y="0" abs_pivot_x="0.45" abs_pivot_y="0.2" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
-                    <object_ref id="1" name="decorate_000" folder="0" file="2" abs_x="-20" abs_y="327" abs_pivot_x="0.414343" abs_pivot_y="0.828685" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
-                    <object_ref id="2" name="door_open" folder="0" file="3" abs_x="-410" abs_y="397" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="0" name="main" folder="0" file="0" abs_x="0" abs_y="0" abs_pivot_x="0.45" abs_pivot_y="0.2" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" name="door" folder="0" file="1" abs_x="-61.764706" abs_y="-29.411765" abs_pivot_x="0.318725" abs_pivot_y="0.153386" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" name="decorate" folder="0" file="2" abs_x="-20" abs_y="327" abs_pivot_x="0.414343" abs_pivot_y="0.828685" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
                 </key>
             </mainline>
-            <timeline id="0" name="main_000">
+            <timeline id="0" name="main">
                 <key id="0" spin="0">
                     <object folder="0" file="0" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="1" name="decorate_000">
+            <timeline id="1" name="door">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-61.764706" y="-29.411765" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="decorate">
                 <key id="0" spin="0">
                     <object folder="0" file="2" x="-20" y="327" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="2" name="door_open">
+        </animation>
+        <animation id="2" name="full" length="400">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="main" folder="0" file="0" abs_x="0" abs_y="0" abs_pivot_x="0.45" abs_pivot_y="0.2" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" name="door" folder="0" file="1" abs_x="-61.764706" abs_y="-29.411765" abs_pivot_x="0.318725" abs_pivot_y="0.153386" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" name="decorate" folder="0" file="2" abs_x="-20" abs_y="327" abs_pivot_x="0.414343" abs_pivot_y="0.828685" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="main">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" x="-410" y="397" angle="0"/>
+                    <object folder="0" file="0" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="door">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-61.764706" y="-29.411765" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="decorate">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-20" y="327" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="onbuild" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="main" folder="0" file="0" abs_x="0" abs_y="0" abs_pivot_x="0.45" abs_pivot_y="0.2" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" name="door" folder="0" file="1" abs_x="-61.764706" abs_y="-29.411765" abs_pivot_x="0.318725" abs_pivot_y="0.153386" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" name="decorate" folder="0" file="2" abs_x="-20" abs_y="327" abs_pivot_x="0.414343" abs_pivot_y="0.828685" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="main">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="door">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-61.764706" y="-29.411765" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="decorate">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-20" y="327" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="onhit" length="400">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="main" folder="0" file="0" abs_x="0" abs_y="0" abs_pivot_x="0.45" abs_pivot_y="0.2" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" name="door" folder="0" file="1" abs_x="-61.764706" abs_y="-29.411765" abs_pivot_x="0.318725" abs_pivot_y="0.153386" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" name="decorate" folder="0" file="2" abs_x="-20" abs_y="327" abs_pivot_x="0.414343" abs_pivot_y="0.828685" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                </key>
+                <key id="1" time="130">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="1" z_index="2"/>
+                </key>
+                <key id="2" time="260">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="2" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="2" z_index="2"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="main">
+                <key id="0">
+                    <object folder="0" file="0" angle="0"/>
+                </key>
+                <key id="1" time="130" spin="-1">
+                    <object folder="0" file="0" y="30" angle="5"/>
+                </key>
+                <key id="2" time="260">
+                    <object folder="0" file="0" y="30" angle="355"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="door">
+                <key id="0">
+                    <object folder="0" file="1" x="-61.764706" y="-29.411765" angle="0"/>
+                </key>
+                <key id="1" time="130" spin="-1">
+                    <object folder="0" file="1" x="-61.764706" y="1.41176" angle="5"/>
+                </key>
+                <key id="2" time="260">
+                    <object folder="0" file="1" x="-61.764706" y="17.4292" angle="355"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="decorate">
+                <key id="0">
+                    <object folder="0" file="2" x="-20" y="327" angle="0"/>
+                </key>
+                <key id="1" time="130" spin="-1">
+                    <object folder="0" file="2" x="-20" y="357" angle="5"/>
+                </key>
+                <key id="2" time="260">
+                    <object folder="0" file="2" x="-20" y="372.55556" angle="355"/>
                 </key>
             </timeline>
         </animation>

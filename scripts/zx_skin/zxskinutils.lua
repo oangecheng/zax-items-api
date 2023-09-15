@@ -22,6 +22,7 @@ local skinnamesdef = {
     ["1254"] = isCh and "小蛛灯" or "flower lamp",
     ["1255"] = isCh and "星星灯" or "flower lamp",
     ["1300"] = isCh and "森林小屋" or "forest house",
+    ["1301"] = isCh and "柴胡" or "cottage",
     ["1400"] = isCh and "甜心花蜜罐" or "sweety honey jar",
     ["1500"] = isCh and "复古竹艺" or "bamboo art",
     ["1600"] = isCh and "木质手推车" or "trolley",
@@ -114,12 +115,21 @@ registerSkin("zxlight",  "1254", "zxstartalllight", 3, ZX_SKINTYPE.CUSTOM)
 registerSkin("zxlight",  "1255", "zxstarshortlight",3, ZX_SKINTYPE.CUSTOM)
 -- 柴房
 registerSkin("zxlogstore", "1300", "zxlogstoreforest", 4, ZX_SKINTYPE.FREE, true)
+registerSkin("zxlogstore", "1301", "zxlogstore1", 4, ZX_SKINTYPE.SPONSOR)
+
 -- 蜂蜜罐子
 registerSkin("zxhoneyjar", "1400", "zxhoneyjar1", 5, ZX_SKINTYPE.FREE, true)
 -- 蛋篮子
 registerSkin("zxeggbasket", "1500", "zxeggbasket1", 6, ZX_SKINTYPE.FREE, true)
 -- 草车
 registerSkin("zx_hay_cart", "1600", "zxhaycart1",  7, ZX_SKINTYPE.FREE, true)
+
+
+--- 有些动画制作的时候尺寸不佳
+--- 通过这个修改动画的尺寸
+local animscales = {
+    ["1301"] = 1.3
+}
 
 
 
@@ -147,6 +157,8 @@ for k, v in pairs(skinlist) do
             value.skinfunc = function (inst)
                 inst.AnimState:SetBank(value.bank)
                 inst.AnimState:SetBuild(value.build)
+                local scale = animscales[value.id] or 1
+                inst.AnimState:SetScale(scale, scale, scale)
                 tryChangeSymbol(inst, value)
                 tryChangeInventoryitem(inst, value)
             end        
