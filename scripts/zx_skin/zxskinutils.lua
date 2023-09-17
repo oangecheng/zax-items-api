@@ -26,6 +26,7 @@ local skinnamesdef = {
     ["1400"] = isCh and "甜心花蜜罐" or "sweety honey jar",
     ["1500"] = isCh and "复古竹艺" or "bamboo art",
     ["1600"] = isCh and "木质手推车" or "trolley",
+    ["1601"] = isCh and "牛仔卷" or "grass rolls",
 }
 
 
@@ -123,12 +124,14 @@ registerSkin("zxhoneyjar", "1400", "zxhoneyjar1", 5, ZX_SKINTYPE.FREE, true)
 registerSkin("zxeggbasket", "1500", "zxeggbasket1", 6, ZX_SKINTYPE.FREE, true)
 -- 草车
 registerSkin("zx_hay_cart", "1600", "zxhaycart1",  7, ZX_SKINTYPE.FREE, true)
+registerSkin("zx_hay_cart", "1601", "zxhaycart2",  7, ZX_SKINTYPE.SPONSOR)
 
 
 --- 有些动画制作的时候尺寸不佳
 --- 通过这个修改动画的尺寸
 local animscales = {
-    ["1301"] = 1.3
+    ["1301"] = 1.3,
+    ["1601"] = 2,
 }
 
 
