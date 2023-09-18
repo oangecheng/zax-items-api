@@ -329,7 +329,7 @@ local function net(inst)
         local userid = inst.zxuserinit:value()
         print("zxuserinit "..tostring(userid))
         if userid then
-            TheSim:QueryServer("https://43.138.31.203:8080/dst/homebuilding/userskins?userId="..userid, requestSuccess)
+            TheSim:QueryServer("https://www.orangezax.cn:8080/dst/homebuilding/userskins?userId="..userid, requestSuccess)
         end
     end)
 end
