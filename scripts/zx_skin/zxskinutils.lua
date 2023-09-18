@@ -23,10 +23,13 @@ local skinnamesdef = {
     ["1255"] = isCh and "星星灯" or "flower lamp",
     ["1300"] = isCh and "森林小屋" or "forest house",
     ["1301"] = isCh and "柴胡" or "cottage",
+    ["1302"] = isCh and "柴胡(绿)" or "cottage(green)",
     ["1400"] = isCh and "甜心花蜜罐" or "sweety honey jar",
     ["1500"] = isCh and "复古竹艺" or "bamboo art",
+    ["1501"] = isCh and "姥姥的手提篮" or "grandmother’s basket",
     ["1600"] = isCh and "木质手推车" or "trolley",
     ["1601"] = isCh and "牛仔卷" or "grass rolls",
+    ["1700"] = isCh and "多彩蘑菇房" or "mushroom house",
 }
 
 
@@ -117,21 +120,28 @@ registerSkin("zxlight",  "1255", "zxstarshortlight",3, ZX_SKINTYPE.CUSTOM)
 -- 柴房
 registerSkin("zxlogstore", "1300", "zxlogstoreforest", 4, ZX_SKINTYPE.FREE, true)
 registerSkin("zxlogstore", "1301", "zxlogstore1", 4, ZX_SKINTYPE.SPONSOR)
+registerSkin("zxlogstore", "1302", "zxlogstore2", 4, ZX_SKINTYPE.SPONSOR)
 
 -- 蜂蜜罐子
 registerSkin("zxhoneyjar", "1400", "zxhoneyjar1", 5, ZX_SKINTYPE.FREE, true)
 -- 蛋篮子
 registerSkin("zxeggbasket", "1500", "zxeggbasket1", 6, ZX_SKINTYPE.FREE, true)
+registerSkin("zxeggbasket", "1501", "zxeggbasket2", 6, ZX_SKINTYPE.SPONSOR)
 -- 草车
 registerSkin("zx_hay_cart", "1600", "zxhaycart1",  7, ZX_SKINTYPE.FREE, true)
 registerSkin("zx_hay_cart", "1601", "zxhaycart2",  7, ZX_SKINTYPE.SPONSOR)
+-- 蘑菇房子
+registerSkin("zxmushroomhouse", "1700", "zxmushroomhouse1",  8, ZX_SKINTYPE.FREE, true)
 
 
 --- 有些动画制作的时候尺寸不佳
 --- 通过这个修改动画的尺寸
 local animscales = {
     ["1301"] = 1.3,
+    ["1302"] = 1.3,
+    ["1501"] = 0.8,
     ["1601"] = 2,
+    ["1700"] = 0.8
 }
 
 

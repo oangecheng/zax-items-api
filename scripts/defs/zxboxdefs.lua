@@ -1,4 +1,14 @@
 
+--- 三个阶段动画
+local function threePhaseAnim(inst)
+    local container = inst.components.container
+    if container == nil then return "empty" end
+    if container:IsEmpty() then return "empty"
+    elseif container:IsFull() then return "full"
+    else return "half" end
+end
+
+
 
 local granaryveggie = {
     isicebox = true,
@@ -264,6 +274,36 @@ local haycart = {
 
 
 
+local mushroomHouse = {
+    placeanim = "empty",
+    initskin = ZxGetPrefabDefaultSkin("zxmushroomhouse");
+
+    oninitfn = function (inst)
+        inst.AnimState:PlayAnimation(threePhaseAnim(inst))
+    end,
+
+    onopenfn = function (inst, doer)
+        inst.SoundEmitter:PlaySound("saltydog/common/saltbox/open")
+    end,
+
+    onclosefn = function (inst, doer)
+        inst.AnimState:PlayAnimation(threePhaseAnim(inst))
+        inst.SoundEmitter:PlaySound("saltydog/common/saltbox/close")
+    end,
+
+
+    onbuildfn = function (inst)
+        inst.AnimState:PlayAnimation("onbuild")
+        inst.AnimState:PushAnimation("empty")
+    end,
+
+    onhitfn = function (inst, doer)
+        inst.AnimState:PlayAnimation("onhit")
+        inst.AnimState:PushAnimation(threePhaseAnim(inst))
+    end,
+}
+
+
 
 local boxs = {
     ["zxhoneyjar"] = honeyjar,
@@ -273,6 +313,7 @@ local boxs = {
     ["zx_hay_cart"] = haycart,
     ["zx_granary_veggie"] = granaryveggie,
     ["zx_granary_meat"] = granarymeat,
+    ["zxmushroomhouse"] = mushroomHouse,
 }
 
 return  boxs

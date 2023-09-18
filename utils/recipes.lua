@@ -185,3 +185,17 @@ AddRecipe2(
     },
 	{"STRUCTURES", "CONTAINERS"}
 )
+
+
+-- 蘑菇房子
+AddRecipe2(
+	"zxmushroomhouse",
+	{Ingredient("boards", 5), Ingredient("red_cap", 1), Ingredient("green_cap", 1), Ingredient("blue_cap", 1)},
+	TECH.SCIENCE_TWO,
+	{
+		placer = "zxmushroomhouse_placer",
+        atlas = "images/zxskins/zxmushroomhouse/zxmushroomhouse1.xml",
+        image = "zxmushroomhouse1.tex",
+    },
+	{"STRUCTURES", "CONTAINERS"}
+)
