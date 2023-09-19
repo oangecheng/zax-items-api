@@ -1,4 +1,5 @@
 ZXTUNING = {
     IS_CH = true,
-    LIGHT_RADIUS_MULTI = 1
+    LIGHT_RADIUS_MULTI = 1,
+    BOX_FRESH_RATE = 0.2
 }

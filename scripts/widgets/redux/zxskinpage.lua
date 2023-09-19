@@ -111,16 +111,16 @@ function GridPage:BuildSkinScrollGrid()
 		w.skin_spinner.text:SetPosition(0, 12)
 
 		--购买按钮
-		w.buy_button = w.cell_root:AddChild(
+		w.skin_button = w.cell_root:AddChild(
 			TEMPLATES.StandardButton(
 				nil,
-				"使用",--按钮文字
-				{60, 30}--按钮尺寸
+				STRINGS.ZXUSE,
+				{60, 30}
 			)
 		)
-		w.buy_button:SetTextSize(18)
-		w.buy_button:SetPosition(0, -95, 0)
-		w.buy_button:Hide()
+		w.skin_button:SetTextSize(18)
+		w.skin_button:SetPosition(0, -95, 0)
+		w.skin_button:Hide()
 
 		
 		--皮肤选项卡展示
@@ -136,8 +136,8 @@ function GridPage:BuildSkinScrollGrid()
 			end
 
 			if root.holder and root.holder.prefab == prefab then
-				w.buy_button:Show()
-				w.buy_button:SetOnClick(function ()
+				w.skin_button:Show()
+				w.skin_button:SetOnClick(function ()
 					root.holder:useskinclient(skin.id)
 				end)
 			end
@@ -147,7 +147,7 @@ function GridPage:BuildSkinScrollGrid()
 		local _OnControl = w.cell_root.OnControl
 		w.cell_root.OnControl = function(_, control, down)
 			if w.skin_spinner.focus or (control == CONTROL_PREVVALUE or control == CONTROL_NEXTVALUE) then if w.skin_spinner:IsVisible() then w.skin_spinner:OnControl(control, down) end return true end
-			if w.buy_button.focus or (control == CONTROL_PREVVALUE or control == CONTROL_NEXTVALUE) then if w.buy_button:IsVisible() then w.buy_button:OnControl(control, down) end return true end
+			if w.skin_button.focus or (control == CONTROL_PREVVALUE or control == CONTROL_NEXTVALUE) then if w.skin_button:IsVisible() then w.skin_button:OnControl(control, down) end return true end
 			return _OnControl(_, control, down)
 		end
 

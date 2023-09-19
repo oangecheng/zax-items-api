@@ -161,7 +161,7 @@ AddRecipe2(
 -- 蛋篮子
 AddRecipe2(
 	"zxeggbasket",
-	{Ingredient("boards", 1), Ingredient("cutstone", 5)},
+	{Ingredient("rope", 2), Ingredient("twigs", 10)},
 	TECH.SCIENCE_TWO,
 	{
 		placer = "zxeggbasket_placer",

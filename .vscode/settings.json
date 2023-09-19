@@ -76,6 +76,7 @@
         "MakeInventoryFloatable",
         "MUSHTREE_SPORE_RED",
         "MUSHTREE_SPORE_GREEN",
-        "MUSHTREE_SPORE_BLUE"
+        "MUSHTREE_SPORE_BLUE",
+        "subfmt"
     ]
 }

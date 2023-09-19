@@ -48,7 +48,10 @@ STRINGS.RECIPE_DESC.ZX_WELL = "A lot of water!"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZX_WELL = "Farming is much more convenient now!"
 
 
-
+-- 法杖
+STRINGS.NAMES.ZXSKINTOOL = "Skin staff"
+STRINGS.RECIPE_DESC.ZXSKINTOOL = "Change the style of mod items!"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXSKINTOOL = "It's amazing!"
 
 -- 花丛
 STRINGS.NAMES.ZXFLOWERBUSH = "Flowerbush"
@@ -87,3 +90,4 @@ STRINGS.ZX_SKIN_PAGE_NOTICE = "The mysterious way to get it..."
 STRINGS.ZX_SKIN_HAS = "owned"
 STRINGS.ZX_SKIN_NOT_HAS = "not owned"
 STRINGS.ZXDESTROY = "destroy"
+STRINGS.ZXUSE = "use"

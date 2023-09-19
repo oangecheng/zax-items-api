@@ -5,24 +5,27 @@ local VERSION = "0.3.1"
 
 -- 名称
 name = "建家党狂喜(more items)"
+
+
 -- 描述
-description = 
-ch and 
-[[
-	版本 0.3.1
-	交流&bug反馈群 600710976                
-	一些额外的物品，提升游戏体验,
-	支持使用魔法扫帚给物品换肤
-	持续更新中...
-]]
-or 
-[[
-	version 0.3.1                       
-	more items to improve game experience，
-	You can build items to decorate your base.
-	support change skin by reskin tool
-	Continuous updates...
-]]
+description = ch and
+
+"版本 "..VERSION.."\n"
+.."交流&bug反馈群 600710976 \n"
+.."大版本更新内容:\n"
+.."1. 建家党专属法杖切换物品样式，法杖拥有两种风格，自行选择佩戴\n"
+.."2. 新增了蜂蜜罐、鸡蛋篮、蘑菇小屋等物品\n"
+.."3. 永亮灯可以自己调节颜色，配置方式等同官方蘑菇灯\n"
+.."4. 永亮灯可以设置光照范围，默认初始值为5，放满物品为10，放置的物品不会腐烂\n"
+.."5. 具备保鲜的箱子兼容勋章，保鲜设置不为永鲜或者返鲜时，可使用不朽宝石升级\n"
+
+or
+
+"version "..VERSION.."\n"
+.."More items to improve game experience.\n"
+.."You can use skin staff change the item's style. \n"
+.."Add honey jar, egg basket, mushroom house. \n"
+
 
 
 author = "Zax"
@@ -45,8 +48,8 @@ local function Title(name)
 	}
 end
 
-configuration_options = 
-{
+configuration_options = {
+	
 	Title(ch and "基础设置" or "base settings"),
 	{
 		name = "zx_items_language",
@@ -57,8 +60,8 @@ configuration_options =
 		},
 		default = "ch",
 	},
-	
-	Title(ch and "粮仓设置" or "granary settings"),
+
+	Title(ch and "箱子设置" or "container settings"),
 	{
 		name = "zx_granary_freshrate",
 		label = ch and "保鲜设置" or "keep freshness settings",
@@ -73,7 +76,7 @@ configuration_options =
 	},
 	{
 		name = "zx_granary_difficult",
-		label = ch and "建造难度" or "difficulty of construction",
+		label = ch and "粮仓建造难度" or "difficulty of granary",
 		options = {
 			{description = ch and "默认" or "default", data = 0},
 			{description = ch and "简单" or "esay", data = 1},
