@@ -34,7 +34,7 @@ PrefabFiles = {
 
 Assets = {
     Asset("ANIM", "anim/ui_zx_5x10.zip"),
-    Asset("ANIM", "anim/ui_zx_5x5.zip"),
+    Asset("ANIM", "anim/zx5x5_normal.zip"),
     Asset("ANIM", "anim/zx5x5_honey.zip"),
 
     Asset("ANIM", "anim/ui_chest_3x3.zip"),

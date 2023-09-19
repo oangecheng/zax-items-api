@@ -38,8 +38,8 @@ local function createBox5x5Param(anim, slotbg)
 		{
 			slotpos = {},
 			slotbg = slotbg and {} or nil,
-			animbank = anim and anim or "ui_zx_5x5",
-			animbuild = anim and anim or "ui_zx_5x5",
+			animbank = anim and anim or "zx5x5_normal",
+			animbuild = anim and anim or "zx5x5_normal",
 			pos = default_pos,
 			side_align_tip = 160,
 		},
