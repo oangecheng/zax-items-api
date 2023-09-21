@@ -30,6 +30,8 @@ local skinnamesdef = {
     ["1600"] = isCh and "木质手推车" or "trolley",
     ["1601"] = isCh and "牛仔卷" or "grass rolls",
     ["1700"] = isCh and "多彩蘑菇房" or "mushroom house",
+    ["1800"] = isCh and "多彩蔷薇" or "rosebush well",
+    ["1801"] = isCh and "宫廷风" or "court style",
 }
 
 
@@ -132,6 +134,11 @@ registerSkin("zx_hay_cart", "1600", "zxhaycart1",  7, ZX_SKINTYPE.FREE, true)
 registerSkin("zx_hay_cart", "1601", "zxhaycart2",  7, ZX_SKINTYPE.SPONSOR)
 -- 蘑菇房子
 registerSkin("zxmushroomhouse", "1700", "zxmushroomhouse1",  8, ZX_SKINTYPE.FREE, true)
+-- 水井
+registerSkin("zx_well", "1800", "zx_well", 9, ZX_SKINTYPE.FREE, true)
+registerSkin("zx_well", "1801", "zxwell1", 9, ZX_SKINTYPE.SPONSOR)
+
+
 
 
 --- 有些动画制作的时候尺寸不佳
@@ -141,7 +148,8 @@ local animscales = {
     ["1302"] = 1.3,
     ["1501"] = 0.8,
     ["1601"] = 2,
-    ["1700"] = 0.8
+    ["1700"] = 0.8,
+    ["1801"] = 1.5,
 }
 
 
@@ -271,7 +279,7 @@ function ZxFindSkin(prefab, skinid)
                 return v
             end
         else
-            if v.type == ZX_SKINTYPE.FREE then
+            if v.isdefault then
                return v
             end
         end

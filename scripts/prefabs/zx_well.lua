@@ -1,8 +1,5 @@
-local assets = {
-    Asset("ANIM", "anim/zx_well.zip"),
-	Asset("ATLAS", "images/inventoryimages/zx_well.xml"),
-	Asset("IMAGE", "images/inventoryimages/zx_well.tex"),
-}
+
+local assets = ZxGetPrefabAnimAsset("zx_well")
 
 local prefabs = {
     "collapse_small",
@@ -20,7 +17,7 @@ end
 
 -- 挨锤
 local function onHit(inst, worker)
-    inst.AnimState:PlayAnimation("hit")
+    inst.AnimState:PlayAnimation("onhit")
 	inst.AnimState:PushAnimation("idle")
 end
 
@@ -42,14 +39,14 @@ local function fn()
     inst.entity:AddNetwork()
     inst.entity:AddSoundEmitter()
 	
-	MakeObstaclePhysics(inst, 1)
+	MakeObstaclePhysics(inst, 0.8)
 	inst:SetPhysicsRadiusOverride(1)
 
     inst.MiniMapEntity:SetIcon("zx_well.tex")
 
     inst.AnimState:SetBank("zx_well")
     inst.AnimState:SetBuild("zx_well")
-    inst.AnimState:PlayAnimation("idle",true)
+    inst.AnimState:PlayAnimation("idle")
 
     MakeSnowCoveredPristine(inst)
 
@@ -65,12 +62,13 @@ local function fn()
     inst:AddComponent("watersource")
     inst:AddComponent("inspectable")
     inst:AddComponent("lootdropper")
+    inst:AddComponent("zxskinable")
 
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
     inst.components.workable:SetWorkLeft(5)
     inst.components.workable:SetOnFinishCallback(onHammered)
-    -- inst.components.workable:SetOnWorkCallback(onHit)
+    inst.components.workable:SetOnWorkCallback(onHit)
 
     inst:ListenForEvent("onbuilt", onBuilt)
     -- 如果没有做雪覆盖的动画，这个函数是没有意义的

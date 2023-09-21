@@ -54,21 +54,6 @@ AddRecipe2(
 
 
 
--- 水井
-AddRecipe2(
-    "zx_well",
-    {Ingredient("goldenshovel", 1), Ingredient("cutstone", 5), Ingredient("boards", 2), Ingredient("rope", 1)},
-    TECH.SCIENCE_TWO,
-    {
-        placer = "zx_well_placer",
-        atlas = "images/inventoryimages/zx_well.xml",
-        image = "zx_well.tex",
-    },
-    {"GARDENING", "STRUCTURES"}
-)
-
-
-
 
 --------------------------------- 下面可以换肤 --------------------------------------
 -- 法杖
@@ -198,4 +183,19 @@ AddRecipe2(
         image = "zxmushroomhouse1.tex",
     },
 	{"STRUCTURES", "CONTAINERS"}
+)
+
+
+
+-- 水井
+AddRecipe2(
+    "zx_well",
+    {Ingredient("goldenshovel", 1), Ingredient("cutstone", 5), Ingredient("boards", 2), Ingredient("rope", 1)},
+    TECH.SCIENCE_TWO,
+    {
+        placer = "zx_well_placer",
+        atlas = "images/zxskins/zx_well/zx_well.xml",
+        image = "zx_well.tex",
+    },
+    {"GARDENING", "STRUCTURES"}
 )
