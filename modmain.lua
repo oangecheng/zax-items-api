@@ -52,7 +52,6 @@ Assets = {
 
 modimport("scripts/mods/zx_containers.lua")
 modimport("utils/recipes.lua")
-modimport("utils/minimap.lua")
 modimport("scripts/mods/zxhook.lua")
 
 
@@ -64,6 +63,8 @@ for k, v in pairs(ZxGetAllSkins()) do
         table.insert(Assets, Asset("IMAGE", path..s.file..".tex"))
     end
 end
+
+modimport("utils/minimap.lua")
 
 
 

@@ -16,6 +16,7 @@ local skinnamesdef = {
     ["1211"] = isCh and "铃兰花灯" or "flower lamp",
     ["1212"] = isCh and "POPO" or "bubble lamp",
     ["1213"] = isCh and "浮生儿" or "panda lamp",
+    ["1214"] = isCh and "小果赖" or "lucky panda",
     ["1250"] = isCh and "猫猫灯(左)" or "black kitty(left)",
     ["1251"] = isCh and "猫猫灯(右)" or "black kitty(right)",
     ["1252"] = isCh and "典藏卡基米(左)" or "cat lamp",
@@ -115,6 +116,7 @@ registerSkin("zxlight",  "1202", "zxmushroomlight", 3, ZX_SKINTYPE.FREE)
 registerSkin("zxlight",  "1211", "zxflowerlight",   3, ZX_SKINTYPE.SPONSOR)
 registerSkin("zxlight",  "1212", "zxbubblelight",   3, ZX_SKINTYPE.SPONSOR)
 registerSkin("zxlight",  "1213", "zxlight2",        3, ZX_SKINTYPE.SPONSOR)
+registerSkin("zxlight",  "1214", "zxlight3",        3, ZX_SKINTYPE.SPONSOR)
 
 registerSkin("zxlight",  "1250", "zxcatllight",     3, ZX_SKINTYPE.CUSTOM)
 registerSkin("zxlight",  "1251", "zxcatrlight",     3, ZX_SKINTYPE.CUSTOM)
@@ -134,7 +136,7 @@ registerSkin("zxeggbasket", "1500", "zxeggbasket1", 6, ZX_SKINTYPE.FREE, true)
 registerSkin("zxeggbasket", "1501", "zxeggbasket2", 6, ZX_SKINTYPE.SPONSOR)
 -- 草车
 registerSkin("zx_hay_cart", "1600", "zxhaycart1",  7, ZX_SKINTYPE.FREE, true)
-registerSkin("zx_hay_cart", "1601", "zxhaycart2",  7, ZX_SKINTYPE.SPONSOR)
+registerSkin("zx_hay_cart", "1601", "zxhaycart2",  7, ZX_SKINTYPE.FREE)
 -- 蘑菇房子
 registerSkin("zxmushroomhouse", "1700", "zxmushroomhouse1",  8, ZX_SKINTYPE.FREE, true)
 -- 水井
@@ -148,6 +150,7 @@ registerSkin("zx_well", "1801", "zxwell1", 9, ZX_SKINTYPE.SPONSOR)
 --- 通过这个修改动画的尺寸
 local animscales = {
     ["1213"] = 1.5,
+    ["1214"] = 0.8,
     ["1301"] = 1.3,
     ["1302"] = 1.3,
     ["1501"] = 0.8,
