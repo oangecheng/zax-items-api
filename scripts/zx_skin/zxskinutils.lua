@@ -15,6 +15,7 @@ local skinnamesdef = {
     ["1202"] = isCh and "蘑菇灯" or "mushroom lamp",
     ["1211"] = isCh and "铃兰花灯" or "flower lamp",
     ["1212"] = isCh and "POPO" or "bubble lamp",
+    ["1213"] = isCh and "浮生儿" or "panda lamp",
     ["1250"] = isCh and "猫猫灯(左)" or "black kitty(left)",
     ["1251"] = isCh and "猫猫灯(右)" or "black kitty(right)",
     ["1252"] = isCh and "典藏卡基米(左)" or "cat lamp",
@@ -113,6 +114,8 @@ registerSkin("zxlight",  "1200", "zxgardenlight",   3, ZX_SKINTYPE.FREE, true)
 registerSkin("zxlight",  "1202", "zxmushroomlight", 3, ZX_SKINTYPE.FREE)
 registerSkin("zxlight",  "1211", "zxflowerlight",   3, ZX_SKINTYPE.SPONSOR)
 registerSkin("zxlight",  "1212", "zxbubblelight",   3, ZX_SKINTYPE.SPONSOR)
+registerSkin("zxlight",  "1213", "zxlight2",        3, ZX_SKINTYPE.SPONSOR)
+
 registerSkin("zxlight",  "1250", "zxcatllight",     3, ZX_SKINTYPE.CUSTOM)
 registerSkin("zxlight",  "1251", "zxcatrlight",     3, ZX_SKINTYPE.CUSTOM)
 registerSkin("zxlight",  "1252", "zxcatsleftlight", 3, ZX_SKINTYPE.CUSTOM)
@@ -144,6 +147,7 @@ registerSkin("zx_well", "1801", "zxwell1", 9, ZX_SKINTYPE.SPONSOR)
 --- 有些动画制作的时候尺寸不佳
 --- 通过这个修改动画的尺寸
 local animscales = {
+    ["1213"] = 1.5,
     ["1301"] = 1.3,
     ["1302"] = 1.3,
     ["1501"] = 0.8,
