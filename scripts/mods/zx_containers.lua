@@ -203,7 +203,7 @@ end
 
 ------------------- 菜仓 ------------------
 params.zx_granary_veggie = createBox5x10Param()
-params.zx_granary_meat.widget.buttoninfo = {
+params.zx_granary_veggie.widget.buttoninfo = {
 	text = "整理",
 	position = Vector3(0, -230, 0),
 	fn = containerSortFn,

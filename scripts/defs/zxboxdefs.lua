@@ -201,6 +201,7 @@ local function eggBasketAnim(inst)
 end
 
 local eggbasket = {
+    isicebox = true;
     placeanim = "empty",
     initskin = ZxGetPrefabDefaultSkin("zxeggbasket");
 
@@ -275,6 +276,7 @@ local haycart = {
 
 
 local mushroomHouse = {
+    isicebox = true;
     placeanim = "empty",
     initskin = ZxGetPrefabDefaultSkin("zxmushroomhouse");
 
