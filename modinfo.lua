@@ -1,7 +1,7 @@
 ---@diagnostic disable: lowercase-global
 local ch = locale == "zh" or locale == "zhr"
 
-local VERSION = "0.3.1"
+local VERSION = "0.3.2"
 
 -- 名称
 name = "建家党狂喜(more items)"
@@ -12,6 +12,7 @@ description = ch and
 
 "版本 "..VERSION.."\n"
 .."交流&bug反馈群 600710976 \n"
+.."团队成员 @浮生 @兔子\n"
 .."大版本更新内容:\n"
 .."1. 建家党专属法杖切换物品样式，法杖拥有两种风格，自行选择佩戴\n"
 .."2. 新增了蜂蜜罐、鸡蛋篮、蘑菇小屋等物品\n"
@@ -22,6 +23,7 @@ description = ch and
 or
 
 "version "..VERSION.."\n"
+.."team member @浮生 @兔子\n"
 .."More items to improve game experience.\n"
 .."You can use skin staff change the item's style. \n"
 .."Add honey jar, egg basket, mushroom house. \n"
