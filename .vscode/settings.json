@@ -77,6 +77,13 @@
         "MUSHTREE_SPORE_RED",
         "MUSHTREE_SPORE_GREEN",
         "MUSHTREE_SPORE_BLUE",
-        "subfmt"
+        "subfmt",
+        "MakeCharacterPhysics",
+        "RemovePhysicsColliders",
+        "CommonHandlers",
+        "State",
+        "CommonStates",
+        "StateGraph",
+        "EventHandler"
     ]
 }

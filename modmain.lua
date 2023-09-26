@@ -28,6 +28,8 @@ PrefabFiles = {
     "zxboxs",
     "zxlights",
     "zxskintools",
+    "zxfarms",
+    "zxanimals",
     -- "zxtestprefab"
 }
 
