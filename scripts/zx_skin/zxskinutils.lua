@@ -27,6 +27,8 @@ local skinnamesdef = {
     ["1301"] = isCh and "柴胡(白)" or "cottage",
     ["1302"] = isCh and "柴胡(绿)" or "cottage(green)",
     ["1400"] = isCh and "甜心花蜜罐" or "sweety honey jar",
+    ["1411"] = isCh and "花盈琉璃瓶" or "glazed vase",
+
     ["1500"] = isCh and "复古竹艺" or "bamboo art",
     ["1501"] = isCh and "姥姥的手提篮" or "grandmother’s basket",
     ["1600"] = isCh and "木质手推车" or "trolley",
@@ -131,6 +133,8 @@ registerSkin("zxlogstore", "1302", "zxlogstore2", 4, ZX_SKINTYPE.SPONSOR)
 
 -- 蜂蜜罐子
 registerSkin("zxhoneyjar", "1400", "zxhoneyjar1", 5, ZX_SKINTYPE.FREE, true)
+registerSkin("zxhoneyjar", "1411", "zxhoneyjar2", 5, ZX_SKINTYPE.SPONSOR)
+
 -- 蛋篮子
 registerSkin("zxeggbasket", "1500", "zxeggbasket1", 6, ZX_SKINTYPE.FREE, true)
 registerSkin("zxeggbasket", "1501", "zxeggbasket2", 6, ZX_SKINTYPE.SPONSOR)

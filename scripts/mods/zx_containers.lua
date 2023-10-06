@@ -319,7 +319,7 @@ params.zxmushroomhouse = createBox5x5Param()
 local mushroomdef = {"red_cap_cooked", "green_cap_cooked", "blue_cap_cooked", "moon_cap_cooked" }
 function params.zxmushroomhouse.itemtestfn(container, item, slot)
 	---@diagnostic disable-next-line: undefined-field
-	return table.contains(mushroomdef, item.prefab) or item:HasTag("spore") or item:HasTag("mushroom")
+	return table.contains(mushroomdef, item.prefab) or item:HasTag("spore") or item:HasTag("mushroom") or item:HasTag("medal_spore")
 end
 
 
