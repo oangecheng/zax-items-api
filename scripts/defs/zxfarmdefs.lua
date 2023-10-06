@@ -5,7 +5,7 @@ local perdfarm = {
     -- initskin = ZxGetPrefabDefaultSkin("zxperdfarm"),
     -- initanim = "idle",
 
-    hatchitem = "berd_egg",
+    hatchitem = "bird_egg",
     hatchtime = TUNING.TOTAL_DAY_TIME,
     animal    = "zxperd",
 

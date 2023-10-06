@@ -84,6 +84,10 @@
         "State",
         "CommonStates",
         "StateGraph",
-        "EventHandler"
+        "EventHandler",
+        "TheNet"
+    ],
+    "Lua.diagnostics.disable": [
+        "deprecated"
     ]
 }
