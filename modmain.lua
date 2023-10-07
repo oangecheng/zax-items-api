@@ -30,6 +30,7 @@ PrefabFiles = {
     "zxskintools",
     "zxfarms",
     "zxanimals",
+    "zxfarmland"
     -- "zxtestprefab"
 }
 

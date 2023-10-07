@@ -199,3 +199,18 @@ AddRecipe2(
     },
     {"GARDENING", "STRUCTURES"}
 )
+
+
+-- 水井
+AddRecipe2(
+    "zxperdfarm",
+    {Ingredient("cutgrass", 1)},
+    TECH.SCIENCE_TWO,
+    {
+        placer = "zx_well_placer",
+        atlas = "images/zxskins/zx_well/zx_well.xml",
+        image = "zx_well.tex",
+    },
+    {"GARDENING", "STRUCTURES"}
+)
+

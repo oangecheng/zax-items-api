@@ -3,7 +3,7 @@
 
 local MIN_DELTA = 1
 local MAX_DELTA = 3.5
-local ANIM_SIZE = 0.3
+local ANIM_SIZE = 0.4
 
 
 ---计算动物下个位置

@@ -2,9 +2,7 @@
 local TIMER_HATCH = "hatch"
 
 local assets = {
-    Asset("ANIM", "anim/zx_flower.zip"),	
-    Asset("ATLAS", "images/inventoryimages/zx_flower_1.xml"),
-    Asset("IMAGE", "images/inventoryimages/zx_flower_1.tex"),
+    Asset("ANIM", "anim/zxfarmperd1.zip")
 }
 
 
@@ -36,6 +34,13 @@ local function MakeFarm(name, farm)
      end
 
 
+     local function onBuild(inst)
+        local x,y,z = inst.Transform:GetWorldPosition()
+        local land = SpawnPrefab("zxfarmperd1_land")
+        land.Transform:SetPosition(x, y, z)
+     end
+
+
     local function fn()
         local inst = CreateEntity()
         inst.entity:AddTransform()
@@ -47,10 +52,11 @@ local function MakeFarm(name, farm)
         inst:AddTag("structure")
         inst:AddTag("zxfarm")
 
-        MakeObstaclePhysics(inst, .2)      
-        inst.AnimState:SetBank("zx_flower") 
-        inst.AnimState:SetBuild("zx_flower")
-        inst.AnimState:PlayAnimation("zx_flower_1")
+        MakeObstaclePhysics(inst, 1)
+        RemovePhysicsColliders(inst)
+        inst.AnimState:SetBank("zxfarmperd1") 
+        inst.AnimState:SetBuild("zxfarmperd1")
+        inst.AnimState:PlayAnimation("idle")
     
         inst.entity:SetPristine()
         
@@ -75,6 +81,8 @@ local function MakeFarm(name, farm)
         inst.components.zxfarm:SetChild(farm.animal)
         inst.components.zxfarm:SetOnHatch(onHatch)
         inst.components.zxfarm:SetOnChildSpawn(onChildSpawn)
+
+        inst:ListenForEvent("onbuilt", onBuild)
         
         return inst
     end
@@ -87,7 +95,7 @@ local FARMS = require "defs/zxfarmdefs"
 local farmlist = {}
 for k, v in pairs(FARMS) do
     table.insert(farmlist, MakeFarm(k, v))
-    table.insert(farmlist, MakePlacer(k.."_placer", "zx_flower", "zx_flower", "zx_flower_1"))
+    table.insert(farmlist, MakePlacer(k.."_placer", "zxfarmperd1", "zxfarmperd1", "idle"))
     -- table.insert(farmlist, MakePlacer(k.."_placer", v.initskin.file, v.initskin.file, v.initanim))
 end
 return unpack(farmlist)

@@ -6,7 +6,7 @@ local perdfarm = {
     -- initanim = "idle",
 
     hatchitem = "bird_egg",
-    hatchtime = TUNING.TOTAL_DAY_TIME,
+    hatchtime = 10,
     animal    = "zxperd",
 
     --- 每间隔300s生产一次
