@@ -6,10 +6,26 @@ local assets = {
 }
 
 
-local function onHarmmered(inst)
-    local fx = SpawnPrefab("petals")
+local function onHammered(inst, doer)
+    if inst.components.lootdropper then
+        inst.components.lootdropper:DropLoot()
+    end
+    local x,y,z = inst.Transform:GetWorldPosition()
+    local fx = SpawnPrefab("collapse_small")
     fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
+    fx:SetMaterial("wood")
     inst:Remove()
+
+    if x and y and z then
+        local ents = TheSim:FindEntities(x, y, z, 4, { "zxfarmitem" }, nil)
+        if ents then
+            for index, value in ipairs(ents) do
+                if value then
+                    value:Remove()
+                end
+            end
+        end
+    end
 end
 
 
@@ -23,22 +39,24 @@ local function MakeFarm(name, farm)
     local function onHatch(inst, doer, seed)
         inst.components.timer:StartTimer(TIMER_HATCH, farm.hatchtime)
         inst.components.zxfarm:SetIsHatching(true)
-     end
+    end
      
      
-     local function onTimeDone(inst, data)
+    local function onTimeDone(inst, data)
         if data.name == TIMER_HATCH then
             inst.components.zxfarm:SpawnChild()
             inst.components.zxfarm:SetIsHatching(false)
         end
-     end
+    end
 
 
-     local function onBuild(inst)
+    local function onBuild(inst)
         local x,y,z = inst.Transform:GetWorldPosition()
         local land = SpawnPrefab("zxfarmperd1_land")
         land.Transform:SetPosition(x, y, z)
-     end
+        local hatch = SpawnPrefab("zxhatchmachine")
+        hatch.Transform:SetPosition(x - 2, y, z + 2)
+    end
 
 
     local function fn()
@@ -68,7 +86,7 @@ local function MakeFarm(name, farm)
         inst:AddComponent("workable")
         inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
         inst.components.workable:SetWorkLeft(5)
-        inst.components.workable:SetOnFinishCallback(onHarmmered)
+        inst.components.workable:SetOnFinishCallback(onHammered)
     
         MakeMediumBurnable(inst)
         MakeSmallPropagator(inst)
@@ -81,7 +99,6 @@ local function MakeFarm(name, farm)
         inst.components.zxfarm:SetChild(farm.animal)
         inst.components.zxfarm:SetOnHatch(onHatch)
         inst.components.zxfarm:SetOnChildSpawn(onChildSpawn)
-
         inst:ListenForEvent("onbuilt", onBuild)
         
         return inst

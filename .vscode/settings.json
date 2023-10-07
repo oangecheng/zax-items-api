@@ -87,7 +87,8 @@
         "EventHandler",
         "TheNet",
         "ANIM_ORIENTATION",
-        "LAYER_BACKGROUND"
+        "LAYER_BACKGROUND",
+        "RemoveEntity"
     ],
     "Lua.diagnostics.disable": [
         "deprecated"
