@@ -34,6 +34,7 @@ local function MakeAnimal(animal, data)
         inst.entity:AddDynamicShadow()
         inst.entity:AddNetwork()
         inst:AddTag("character")
+        inst:AddTag("zxfarmitem")
     
         MakeCharacterPhysics(inst, 1, 0)
         RemovePhysicsColliders(inst)
@@ -61,6 +62,8 @@ local function MakeAnimal(animal, data)
         inst.components.locomotor.runspeed = data.walkspeed
         inst.components.locomotor.walkspeed = data.walkspeed
         inst:AddComponent("zxanimal")
+        inst:AddComponent("zxbundable")
+
         inst:SetStateGraph("ZxAnimalSG")
         inst:AddComponent("inspectable")
 

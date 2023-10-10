@@ -1,7 +1,7 @@
 local assets = {
     Asset("ANIM", "anim/zxfarmperd1.zip"),
     Asset("ANIM", "anim/zxmushroomhouse1.zip"),
-
+    Asset("ANIM", "anim/zxfarmhatch.zip"),
 }
 
 local prefabs = {
@@ -38,7 +38,8 @@ local function MakeLand(name)
         if not TheWorld.ismastersim then
             return inst
         end
-    
+
+        inst:AddComponent("zxbundable")
     
         return inst
     end
@@ -58,11 +59,11 @@ local function MakeItem(name)
         inst.entity:AddMiniMapEntity()
         inst.entity:AddNetwork()
     
-        inst.AnimState:SetScale(0.5,0.5,0.5)
     
-        inst.AnimState:SetBank("zxfarmperd1")
-        inst.AnimState:SetBuild("zxfarmperd1")
-        inst.AnimState:PlayAnimation("hatch")
+        inst.AnimState:SetBank("zxfarmhatch")
+        inst.AnimState:SetBuild("zxfarmhatch")
+        inst.AnimState:PlayAnimation("working", true)
+        inst.AnimState:SetScale(0.8, 0.8, 0.8)
     
         inst.entity:SetPristine()
     
@@ -73,8 +74,7 @@ local function MakeItem(name)
         if not TheWorld.ismastersim then
             return inst
         end
-    
-    
+        inst:AddComponent("zxbundable")
         return inst
     end
     

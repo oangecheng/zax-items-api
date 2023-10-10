@@ -210,6 +210,7 @@ AddRecipe2(
         placer = "zx_well_placer",
         atlas = "images/zxskins/zx_well/zx_well.xml",
         image = "zx_well.tex",
+        min_spacing = 4,
     },
     {"GARDENING", "STRUCTURES"}
 )

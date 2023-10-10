@@ -65,15 +65,15 @@ end
 
 
 function Farm:SpawnChild()
-    print("2")
     if self.child and self:GetChildCnt() < self.childmax then
         local ent = SpawnPrefab(self.child)
-        print("3")
         if ent then
-            print("4")
             local x,y,z = self.inst.Transform:GetWorldPosition()
             table.insert(self.childs, ent.GUID)
             ent.Transform:SetPosition(x, y, z)
+
+            local bundleId = self.inst.components.zxbundable:GetBundleId()
+            ent.components.zxbundable:SetBundleId(bundleId)
             if ent.components.zxanimal then
                 ent.components.zxanimal:SetFarmPosition(x, y, z)
             end

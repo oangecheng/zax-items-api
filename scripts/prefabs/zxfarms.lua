@@ -11,17 +11,19 @@ local function onHammered(inst, doer)
         inst.components.lootdropper:DropLoot()
     end
     local x,y,z = inst.Transform:GetWorldPosition()
+    local bundleId = inst.components.zxbundable:GetBundleId()
+
     local fx = SpawnPrefab("collapse_small")
     fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
     fx:SetMaterial("wood")
     inst:Remove()
 
     if x and y and z then
-        local ents = TheSim:FindEntities(x, y, z, 4, { "zxfarmitem" }, nil)
+        local ents = TheSim:FindEntities(x, y, z, 20, { "zxfarmitem" }, nil)
         if ents then
             for index, value in ipairs(ents) do
-                if value then
-                    value:Remove()
+                if value and value.components.zxbundable then
+                    value.components.zxbundable:Remove(bundleId)
                 end
             end
         end
@@ -52,10 +54,14 @@ local function MakeFarm(name, farm)
 
     local function onBuild(inst)
         local x,y,z = inst.Transform:GetWorldPosition()
+        local bundleId = inst.prefab.."x"..tostring(x).."y"..tostring(y).."z"..tostring(z)
+        inst.components.zxbundable:SetBundleId(bundleId)
         local land = SpawnPrefab("zxfarmperd1_land")
+        land.components.zxbundable:SetBundleId(bundleId)
         land.Transform:SetPosition(x, y, z)
         local hatch = SpawnPrefab("zxhatchmachine")
         hatch.Transform:SetPosition(x - 2, y, z + 2)
+        hatch.components.zxbundable:SetBundleId(bundleId)
     end
 
 
@@ -99,6 +105,8 @@ local function MakeFarm(name, farm)
         inst.components.zxfarm:SetChild(farm.animal)
         inst.components.zxfarm:SetOnHatch(onHatch)
         inst.components.zxfarm:SetOnChildSpawn(onChildSpawn)
+        inst:AddComponent('zxbundable')
+
         inst:ListenForEvent("onbuilt", onBuild)
         
         return inst
