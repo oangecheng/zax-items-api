@@ -77,6 +77,19 @@ local actions = {
             return false
         end,
         state = "dolongaction",
+    },
+
+    {
+        id = "ZXADDFOOD",
+        str = STRINGS.ZXACTION.ZXADDFOOD,
+        fn = function (act)
+            local farm = act.target.components.zxfarmfeeder
+            if act.doer and act.invobject and farm and farm:CanGiveFood(act.invobject, act.doer) then
+                farm:GiveFood(act.invobject, act.doer)
+                return true
+            end
+            return false, "FULL"
+        end
     }
 }
 
@@ -99,6 +112,13 @@ local componentactions = {
                     return doer and target:HasTag("zxfarm")
                 end
             },
+
+            {
+                action = "ZXADDFOOD",
+                testfn = function (inst, doer, target, acts, right)
+                    return doer and target:HasTag("ZXFARMFEEDER")
+                end
+            }
         },
     },
 

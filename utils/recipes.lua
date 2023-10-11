@@ -210,8 +210,38 @@ AddRecipe2(
         placer = "zx_well_placer",
         atlas = "images/zxskins/zx_well/zx_well.xml",
         image = "zx_well.tex",
-        min_spacing = 4,
+        min_spacing = 2,
     },
     {"GARDENING", "STRUCTURES"}
 )
+
+-- 水井
+AddRecipe2(
+    "zxfarmhatch",
+    {Ingredient("cutgrass", 2)},
+    TECH.SCIENCE_TWO,
+    {
+        placer = "zxfarmhatch_placer",
+        atlas = "images/zxskins/zx_well/zx_well.xml",
+        image = "zx_well.tex",
+        min_spacing = 2,
+    },
+    {"GARDENING", "STRUCTURES"}
+)
+
+
+-- 水井
+AddRecipe2(
+    "zxfarmbowl",
+    {Ingredient("cutgrass", 3)},
+    TECH.SCIENCE_TWO,
+    {
+        placer = "zxfarmbowl_placer",
+        atlas = "images/zxskins/zx_well/zx_well.xml",
+        image = "zx_well.tex",
+        min_spacing = 2,
+    },
+    {"GARDENING", "STRUCTURES"}
+)
+
 

@@ -9,6 +9,9 @@ local prefabs = {
     "collapse_small",
 }
 
+local FARMS = require "defs/zxfarmdefs"
+
+
 
 --- 农场物品被建造之后，push事件
 local function observeItemBuild(inst)
@@ -69,7 +72,7 @@ local function MakeHatchMachine(name)
     
         inst.AnimState:SetBank(name)
         inst.AnimState:SetBuild(name)
-        inst.AnimState:PlayAnimation("working", true)
+        inst.AnimState:PlayAnimation("idle")
         inst.AnimState:SetScale(0.8, 0.8, 0.8)
     
         inst.entity:SetPristine()
@@ -92,6 +95,19 @@ end
 
 
 local function MakeFarmBowl(name)
+
+    local function updateBowlState(inst)
+        local feeder = inst.components.zxfarmfeeder
+        if feeder:GetFoodNum() > feeder:GetMaxFoodNum() * 0.2 then
+            TheNet:Announce("充足的食物")
+            inst.AnimState:PlayAnimation("full")
+        else
+            TheNet:Announce("食物太少了")
+            inst.AnimState:PlayAnimation("empty")
+        end
+    end
+    
+
     local function fn()
 
         local inst = CreateEntity()
@@ -112,12 +128,27 @@ local function MakeFarmBowl(name)
         inst:AddTag("structure")
         inst:AddTag("NOBLOCK")
         inst:AddTag("zxfarmitem")
+        inst:AddTag("ZXFARMFEEDER")
     
         if not TheWorld.ismastersim then
             return inst
         end
         inst:AddComponent("zxbindable")
         observeItemBuild(inst)
+
+        inst:AddComponent("zxfarmfeeder")
+        inst.components.zxfarmfeeder:SetFoods(FARMS["zxperdfarm"].foods)
+        -- 给食物尝试驱动下生产
+        inst.components.zxfarmfeeder:SetOnGiveFoodFunc(function (_, foodnum)
+            updateBowlState(inst)
+        end)
+        -- 食物消耗之后变更下动画
+        inst.components.zxfarmfeeder:SetOnEatFoodFunc(function (_, foodnum)
+            updateBowlState(inst)
+        end)
+
+        
+
         return inst
     end
     return Prefab(name, fn, assets, prefabs)  

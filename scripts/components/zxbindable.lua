@@ -31,6 +31,7 @@ end
 function Bindable:Bind(id)
     if not self.bindId then
         self.bindId = id
+        ZXFarmBindItems(self.bindId, self.inst)
     end
 end
 
@@ -69,6 +70,8 @@ end
 
 function Bindable:OnLoad(data)
     self.bindId = data.bindId
+    print("bindinit  "..tostring(self.inst).."  "..self.bindId)
+    ZXFarmBindItems(self.bindId, self.inst)
 end
 
 

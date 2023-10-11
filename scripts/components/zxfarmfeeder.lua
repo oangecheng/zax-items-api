@@ -42,14 +42,20 @@ function FarmFeeder:CanGiveFood(food, doer)
 end
 
 
-function FarmFeeder:GiveFood(food)
-    if self.food and self.foodnum < self.maxfoodnum then
+function FarmFeeder:GiveFood(food, doer)
+    if self.foods and self.foodnum < self.maxfoodnum then
         ---@diagnostic disable-next-line: undefined-field
         local num = self.foods[food.prefab]
         if num then
+
             if food.components.stackable then
-                while self.foodnum < self.maxfoodnum do
+                local consume = true
+                while self.foodnum < self.maxfoodnum and consume do
                     self.foodnum = math.min(self.foodnum + num, self.maxfoodnum)
+                    print("GiveFood 3"..tostring(self.foodnum))
+                    if food and food.components.stackable:StackSize() <= 1 then
+                        consume = false
+                    end
                     food.components.stackable:Get():Remove()
                 end
             else

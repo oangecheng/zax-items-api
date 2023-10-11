@@ -59,9 +59,13 @@ local function onFarmItemBuild(inst, item)
     local fx, _, fz = inst.Transform:GetWorldPosition()
     local ix, _, iz = item.Transform:GetWorldPosition()
     local bindId = inst.components.zxbindable:GetBindId()
-    if bindId and math.abs(fx-ix) <= BIND_RADIUS and math.abs(fz-iz) <= BIND_RADIUS then
-        if item.components.zxbindable and item.components.zxbindable:CanBind() then
-            item.components.zxbindable:Bind(bindId)
+    -- 数据合法
+    if bindId and fx and ix then
+        -- 范围内
+        if math.abs(fx-ix) <= BIND_RADIUS and math.abs(fz-iz) <= BIND_RADIUS then
+            if item.components.zxbindable and item.components.zxbindable:CanBind() then
+                item.components.zxbindable:Bind(bindId)
+            end
         end
     end
 end
@@ -76,7 +80,7 @@ local function tryStartProduce(inst)
     local farmdata = FARMS[inst.prefab]
     local animcnt = inst.components.zxfarm:GetChildCnt()
     local foodneed = (farmdata.foodneed or 1) * animcnt
-    if animcnt > 0 and inst.components.zxfarmfeeder:EatFood(foodneed) then
+    if animcnt > 0 and ZXFarmEatFood(inst.components.zxbindable:GetBindId(), foodneed) then
         local time = farmdata.producetime * (1.1 - 0.1 * animcnt)
         inst.components.timer:StartTimer(TIMER_PRODUCE, time)
     end
@@ -91,7 +95,7 @@ local function onChildSpawn(inst, child)
     local farmdata = FARMS[inst.prefab]
     local foodneed = farmdata.foodneed or 1
 
-    if inst.components.zxfarmfeeder:EatFood(foodneed) then
+    if ZXFarmEatFood(inst.components.zxbindable:GetBindId(), foodneed) then
         if timer:TimerExists(TIMER_PRODUCE) then
             local timeleft = timer:GetTimeLeft(TIMER_PRODUCE) * 0.9
             timer:SetTimeLeft(TIMER_PRODUCE, timeleft)
@@ -104,22 +108,6 @@ end
 
 
 
-local function updateBowlState(inst)
-    local feeder = inst.components.zxfarmfeeder
-    if feeder:GetFoodNum() > feeder:GetMaxFoodNum() * 0.2 then
-        local bowl = findFoodBowl(inst)
-        if bowl then
-            TheNet:Announce("充足的食物")
-            -- bowl.AnimState:PlayAnimation("full")
-        end
-    else
-        local bowl = findFoodBowl(inst)
-        if bowl then
-            TheNet:Announce("食物太少了")
-            -- bowl.AnimState:PlayAnimation("empty")
-        end
-    end
-end
 
 
 
@@ -131,7 +119,7 @@ local function MakeFarm(name, farm)
         inst.components.zxfarm:SetIsHatching(true)
         local machine = findHatchMachine(inst)
         if machine then
-            machine.AnimState:PlayAnimation("working")
+            machine.AnimState:PlayAnimation("working", true)
         end
     end
      
@@ -140,6 +128,11 @@ local function MakeFarm(name, farm)
         if data.name == TIMER_HATCH then
             inst.components.zxfarm:SpawnChild()
             inst.components.zxfarm:SetIsHatching(false)
+            
+            local machine = findHatchMachine(inst)
+            if machine then
+                machine.AnimState:PlayAnimation("idle")
+            end
 
         elseif data.name == TIMER_PRODUCE then
             TheNet:Announce("生产了一个物品~")
@@ -201,24 +194,8 @@ local function MakeFarm(name, farm)
         inst.components.zxfarm:SetOnChildSpawn(onChildSpawn)
         inst:AddComponent("zxbindable")
 
-        --- 饲料盆组件
-        inst:AddComponent("zxfarmfeeder")
-        inst.components.zxfarmfeeder:SetFoods(farm.foods)
-        -- 给食物尝试驱动下生产
-        inst.components.zxfarmfeeder:SetOnGiveFoodFunc(function (_, foodnum)
-            updateBowlState(inst)
-            if not inst.components.timer:TimerExists(TIMER_PRODUCE) then
-                tryStartProduce(inst)
-            end
-        end)
-        -- 食物消耗之后变更下动画
-        inst.components.zxfarmfeeder:SetOnEatFoodFunc(function (_, foodnum)
-            updateBowlState(inst)
-        end)
-
-
         
-        TheWorld:ListenForEvent(ZXEVENTS, function (_, data)
+        TheWorld:ListenForEvent(ZXEVENTS.FARM_ITEM_BUILD, function (_, data)
             onFarmItemBuild(inst, data.item)
         end)
         inst:ListenForEvent("onbuilt", onBuild)
