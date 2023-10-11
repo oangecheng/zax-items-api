@@ -1,6 +1,10 @@
 
 local TIMER_HATCH = "hatch"
+local TIMER_PRODUCE = "produce"
 local BIND_RADIUS = 4
+
+local FARMS = require "defs/zxfarmdefs"
+
 
 local assets = {
     Asset("ANIM", "anim/zxfarmperd1.zip")
@@ -37,14 +41,14 @@ end
 --- 查找孵化器
 local function findHatchMachine(inst)
     local ents = findFarmItems(inst)
-    return ents and ents["zxhatchmachine"] or nil
+    return ents and ents["zxfarmhatch"] or nil
 end
 
 
 --- 查找饲料盆
 local function findFoodBowl(inst)
     local ents = findFarmItems(inst)
-    return ents and ents["zxfoodbowl"] or nil
+    return ents and ents["zxfarmbowl"] or nil
 end
 
 
@@ -64,9 +68,60 @@ end
 
 
 
+
+--- 尝试开始生产产品
+--- 需要有动物，需要有足够的食物
+--- todo 后续优化每个小动物独立绑定生产机制
+local function tryStartProduce(inst)
+    local farmdata = FARMS[inst.prefab]
+    local animcnt = inst.components.zxfarm:GetChildCnt()
+    local foodneed = (farmdata.foodneed or 1) * animcnt
+    if animcnt > 0 and inst.components.zxfarmfeeder:EatFood(foodneed) then
+        local time = farmdata.producetime * (1.1 - 0.1 * animcnt)
+        inst.components.timer:StartTimer(TIMER_PRODUCE, time)
+    end
+end
+
+
+
 local function onChildSpawn(inst, child)
     TheNet:Announce("小动物出生了~")
+
+    local timer = inst.components.timer
+    local farmdata = FARMS[inst.prefab]
+    local foodneed = farmdata.foodneed or 1
+
+    if inst.components.zxfarmfeeder:EatFood(foodneed) then
+        if timer:TimerExists(TIMER_PRODUCE) then
+            local timeleft = timer:GetTimeLeft(TIMER_PRODUCE) * 0.9
+            timer:SetTimeLeft(TIMER_PRODUCE, timeleft)
+        else
+            -- 第一个动物需要启动生产机制
+            tryStartProduce(inst)
+        end
+    end
 end
+
+
+
+local function updateBowlState(inst)
+    local feeder = inst.components.zxfarmfeeder
+    if feeder:GetFoodNum() > feeder:GetMaxFoodNum() * 0.2 then
+        local bowl = findFoodBowl(inst)
+        if bowl then
+            TheNet:Announce("充足的食物")
+            -- bowl.AnimState:PlayAnimation("full")
+        end
+    else
+        local bowl = findFoodBowl(inst)
+        if bowl then
+            TheNet:Announce("食物太少了")
+            -- bowl.AnimState:PlayAnimation("empty")
+        end
+    end
+end
+
+
 
 
 local function MakeFarm(name, farm)
@@ -85,6 +140,10 @@ local function MakeFarm(name, farm)
         if data.name == TIMER_HATCH then
             inst.components.zxfarm:SpawnChild()
             inst.components.zxfarm:SetIsHatching(false)
+
+        elseif data.name == TIMER_PRODUCE then
+            TheNet:Announce("生产了一个物品~")
+            tryStartProduce(inst)
         end
     end
 
@@ -140,7 +199,23 @@ local function MakeFarm(name, farm)
         inst.components.zxfarm:SetChild(farm.animal)
         inst.components.zxfarm:SetOnHatch(onHatch)
         inst.components.zxfarm:SetOnChildSpawn(onChildSpawn)
-        inst:AddComponent('zxbindable')
+        inst:AddComponent("zxbindable")
+
+        --- 饲料盆组件
+        inst:AddComponent("zxfarmfeeder")
+        inst.components.zxfarmfeeder:SetFoods(farm.foods)
+        -- 给食物尝试驱动下生产
+        inst.components.zxfarmfeeder:SetOnGiveFoodFunc(function (_, foodnum)
+            updateBowlState(inst)
+            if not inst.components.timer:TimerExists(TIMER_PRODUCE) then
+                tryStartProduce(inst)
+            end
+        end)
+        -- 食物消耗之后变更下动画
+        inst.components.zxfarmfeeder:SetOnEatFoodFunc(function (_, foodnum)
+            updateBowlState(inst)
+        end)
+
 
         
         TheWorld:ListenForEvent(ZXEVENTS, function (_, data)
@@ -155,7 +230,6 @@ local function MakeFarm(name, farm)
 end
 
 
-local FARMS = require "defs/zxfarmdefs"
 local farmlist = {}
 for k, v in pairs(FARMS) do
     table.insert(farmlist, MakeFarm(k, v))

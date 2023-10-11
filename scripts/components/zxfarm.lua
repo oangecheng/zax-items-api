@@ -4,7 +4,7 @@ local Farm = Class(function (self, inst)
     self.item = nil
     self.childmax = 10
     self.child = nil
-    self.childs = {}
+    self.childcount = 0
     self.ishatching = false
 end)
 
@@ -40,13 +40,13 @@ end
 
 function Farm:CheckHatchMachine()
     local ents = ZxFindFarmItems(self.inst)
-    return ents and ents["zxhatchmachine"] ~= nil
+    return ents and ents["zxfarmhatch"] ~= nil
 end
 
 
 function Farm:CheckFoodBowl()
     local ents = ZxFindFarmItems(self.inst)
-    return ents and ents["zxfoodbowl"] ~= nil
+    return ents and ents["zxfarmbowl"] ~= nil
 end
 
 
@@ -62,7 +62,7 @@ end
 
 
 function Farm:GetChildCnt()
-    return #self.childs
+    return self.childcount
 end
 
 
@@ -80,8 +80,8 @@ function Farm:SpawnChild()
     if self.child and self:GetChildCnt() < self.childmax then
         local ent = SpawnPrefab(self.child)
         if ent then
-            local x,y,z = self.inst.Transform:GetWorldPosition()
-            table.insert(self.childs, ent.GUID)
+            local x,y,z = self.inst.Transform:GetWorldPosition()            
+            self.childcount = self.childcount + 1
             ent.Transform:SetPosition(x, y, z)
 
             local bindId = self.inst.components.zxbindable:GetBindId()
@@ -99,14 +99,14 @@ end
 
 function Farm:OnSave()
     return {
-        childs = self.childs,
+        childcount = self.childcount,
         ishatching = self.ishatching
     }
 end
 
 
 function Farm:OnLoad(data)
-    self.childs = data.childs or {}
+    self.childcount = data.childcount or {}
     self.ishatching = data.ishatching or false
 end
 

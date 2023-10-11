@@ -2,6 +2,7 @@ local assets = {
     Asset("ANIM", "anim/zxfarmperd1.zip"),
     Asset("ANIM", "anim/zxmushroomhouse1.zip"),
     Asset("ANIM", "anim/zxfarmhatch.zip"),
+    Asset("ANIM", "anim/zxfarmbowl.zip")
 }
 
 local prefabs = {
@@ -55,7 +56,7 @@ local function MakeLand()
 end
 
 
-local function MakeHatchMachine()
+local function MakeHatchMachine(name)
     local function fn()
 
         local inst = CreateEntity()
@@ -66,8 +67,8 @@ local function MakeHatchMachine()
         inst.entity:AddNetwork()
     
     
-        inst.AnimState:SetBank("zxfarmhatch")
-        inst.AnimState:SetBuild("zxfarmhatch")
+        inst.AnimState:SetBank(name)
+        inst.AnimState:SetBuild(name)
         inst.AnimState:PlayAnimation("working", true)
         inst.AnimState:SetScale(0.8, 0.8, 0.8)
     
@@ -84,8 +85,45 @@ local function MakeHatchMachine()
         observeItemBuild(inst)
         return inst
     end
-    return Prefab("zxhatchmachine", fn, assets, prefabs)  
+    return Prefab(name, fn, assets, prefabs)  
 end
 
 
-return MakeLand(), MakeHatchMachine()
+
+
+local function MakeFarmBowl(name)
+    local function fn()
+
+        local inst = CreateEntity()
+        
+        inst.entity:AddTransform()
+        inst.entity:AddAnimState()
+        inst.entity:AddMiniMapEntity()
+        inst.entity:AddNetwork()
+    
+    
+        inst.AnimState:SetBank(name)
+        inst.AnimState:SetBuild(name)
+        inst.AnimState:PlayAnimation("empty")
+        inst.AnimState:SetScale(0.8, 0.8, 0.8)
+    
+        inst.entity:SetPristine()
+    
+        inst:AddTag("structure")
+        inst:AddTag("NOBLOCK")
+        inst:AddTag("zxfarmitem")
+    
+        if not TheWorld.ismastersim then
+            return inst
+        end
+        inst:AddComponent("zxbindable")
+        observeItemBuild(inst)
+        return inst
+    end
+    return Prefab(name, fn, assets, prefabs)  
+end
+
+
+return MakeLand(), 
+MakeHatchMachine("zxfarmhatch"), MakePlacer("zxfarmhatch_placer", "zxfarmhatch", "zxfarmhatch", "working"),
+MakeFarmBowl("zxfarmbowl"), MakePlacer("zxfarmbowl_placer", "zxfarmbowl", "zxfarmbowl", "empty")

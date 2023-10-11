@@ -92,6 +92,7 @@
         "SpawnSaveRecord"
     ],
     "Lua.diagnostics.disable": [
-        "deprecated"
+        "deprecated",
+        "trailing-space"
     ]
 }
