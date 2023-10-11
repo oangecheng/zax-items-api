@@ -60,9 +60,16 @@ local actions = {
 
     {
         id = "ZXHATCH",
-        str = "孵化",
+        str = STRINGS.ZXACTION.ZXHATCH,
         fn = function (act)
             local farm = act.target.components.zxfarm
+            if not farm:CheckHatchMachine() then
+                return false, "NO_MACHINE"
+            end
+            if not farm:CheckFoodBowl() then
+                return false, "NO_FOODBOWL"
+            end
+
             if act.doer and act.invobject and farm and farm:CanHatch(act.invobject) then
                 farm:Hatch(act.invobject, act.doer)
                 return true

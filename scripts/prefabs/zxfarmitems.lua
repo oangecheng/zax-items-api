@@ -9,7 +9,16 @@ local prefabs = {
 }
 
 
-local function MakeLand(name)
+--- 农场物品被建造之后，push事件
+local function observeItemBuild(inst)
+    inst:ListenForEvent("onbuilt", function (item)
+        TheWorld:PushEvent(ZXEVENTS.FARM_ITEM_BUILD, { item = item})
+    end)
+end
+
+
+
+local function MakeLand()
     local function fn()
 
         local inst = CreateEntity()
@@ -39,17 +48,14 @@ local function MakeLand(name)
             return inst
         end
 
-        inst:AddComponent("zxbundable")
-    
+        inst:AddComponent("zxbindable")
         return inst
     end
-    
-    return Prefab(name, fn, assets, prefabs)
-    
+    return Prefab("zxfarmland", fn, assets, prefabs)
 end
 
 
-local function MakeItem(name)
+local function MakeHatchMachine()
     local function fn()
 
         local inst = CreateEntity()
@@ -74,14 +80,12 @@ local function MakeItem(name)
         if not TheWorld.ismastersim then
             return inst
         end
-        inst:AddComponent("zxbundable")
+        inst:AddComponent("zxbindable")
+        observeItemBuild(inst)
         return inst
     end
-    
-    return Prefab(name, fn, assets, prefabs)
-    
+    return Prefab("zxhatchmachine", fn, assets, prefabs)  
 end
 
 
-return MakeLand("zxfarmperd1_land"),
-MakeItem("zxhatchmachine")
+return MakeLand(), MakeHatchMachine()

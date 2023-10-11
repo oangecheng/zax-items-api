@@ -62,7 +62,7 @@ local function MakeAnimal(animal, data)
         inst.components.locomotor.runspeed = data.walkspeed
         inst.components.locomotor.walkspeed = data.walkspeed
         inst:AddComponent("zxanimal")
-        inst:AddComponent("zxbundable")
+        inst:AddComponent("zxbindable")
 
         inst:SetStateGraph("ZxAnimalSG")
         inst:AddComponent("inspectable")

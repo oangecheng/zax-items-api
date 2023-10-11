@@ -38,6 +38,18 @@ function Farm:CanHatch(item)
 end
 
 
+function Farm:CheckHatchMachine()
+    local ents = ZxFindFarmItems(self.inst)
+    return ents and ents["zxhatchmachine"] ~= nil
+end
+
+
+function Farm:CheckFoodBowl()
+    local ents = ZxFindFarmItems(self.inst)
+    return ents and ents["zxfoodbowl"] ~= nil
+end
+
+
 
 function Farm:Hatch(item, doer)
     if self:CanHatch(item) then
@@ -72,8 +84,8 @@ function Farm:SpawnChild()
             table.insert(self.childs, ent.GUID)
             ent.Transform:SetPosition(x, y, z)
 
-            local bundleId = self.inst.components.zxbundable:GetBundleId()
-            ent.components.zxbundable:SetBundleId(bundleId)
+            local bindId = self.inst.components.zxbindable:GetBindId()
+            ent.components.zxbindable:Bind(bindId)
             if ent.components.zxanimal then
                 ent.components.zxanimal:SetFarmPosition(x, y, z)
             end

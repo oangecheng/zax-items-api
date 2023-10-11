@@ -1,34 +1,67 @@
 
 local TIMER_HATCH = "hatch"
+local BIND_RADIUS = 4
 
 local assets = {
     Asset("ANIM", "anim/zxfarmperd1.zip")
 }
 
 
+local function findFarmItems(inst)
+    return ZxFindFarmItems(inst)
+end
+
+
 local function onHammered(inst, doer)
     if inst.components.lootdropper then
         inst.components.lootdropper:DropLoot()
     end
-    local x,y,z = inst.Transform:GetWorldPosition()
-    local bundleId = inst.components.zxbundable:GetBundleId()
+
+    local ents = findFarmItems(inst)
+    if ents then
+        local bindId = inst.components.zxbindable:GetBindId()
+        for k, value in pairs(ents) do
+            value.components.zxbindable:Remove(bindId)
+        end
+    end
 
     local fx = SpawnPrefab("collapse_small")
     fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
     fx:SetMaterial("wood")
     inst:Remove()
 
-    if x and y and z then
-        local ents = TheSim:FindEntities(x, y, z, 20, { "zxfarmitem" }, nil)
-        if ents then
-            for index, value in ipairs(ents) do
-                if value and value.components.zxbundable then
-                    value.components.zxbundable:Remove(bundleId)
-                end
-            end
+
+end
+
+
+--- 查找孵化器
+local function findHatchMachine(inst)
+    local ents = findFarmItems(inst)
+    return ents and ents["zxhatchmachine"] or nil
+end
+
+
+--- 查找饲料盆
+local function findFoodBowl(inst)
+    local ents = findFarmItems(inst)
+    return ents and ents["zxfoodbowl"] or nil
+end
+
+
+
+--- 当农场的其他物品被建造时
+--- 如果在范围内，就将其与农场主体绑定
+local function onFarmItemBuild(inst, item)
+    local fx, _, fz = inst.Transform:GetWorldPosition()
+    local ix, _, iz = item.Transform:GetWorldPosition()
+    local bindId = inst.components.zxbindable:GetBindId()
+    if bindId and math.abs(fx-ix) <= BIND_RADIUS and math.abs(fz-iz) <= BIND_RADIUS then
+        if item.components.zxbindable and item.components.zxbindable:CanBind() then
+            item.components.zxbindable:Bind(bindId)
         end
     end
 end
+
 
 
 local function onChildSpawn(inst, child)
@@ -41,6 +74,10 @@ local function MakeFarm(name, farm)
     local function onHatch(inst, doer, seed)
         inst.components.timer:StartTimer(TIMER_HATCH, farm.hatchtime)
         inst.components.zxfarm:SetIsHatching(true)
+        local machine = findHatchMachine(inst)
+        if machine then
+            machine.AnimState:PlayAnimation("working")
+        end
     end
      
      
@@ -54,14 +91,12 @@ local function MakeFarm(name, farm)
 
     local function onBuild(inst)
         local x,y,z = inst.Transform:GetWorldPosition()
-        local bundleId = inst.prefab.."x"..tostring(x).."y"..tostring(y).."z"..tostring(z)
-        inst.components.zxbundable:SetBundleId(bundleId)
-        local land = SpawnPrefab("zxfarmperd1_land")
-        land.components.zxbundable:SetBundleId(bundleId)
+        local bindId = inst.prefab.."x"..tostring(x).."y"..tostring(y).."z"..tostring(z)
+        inst.components.zxbindable:Bind(bindId)
+
+        local land = SpawnPrefab("zxfarmland")
+        land.components.zxbindable:Bind(bindId)
         land.Transform:SetPosition(x, y, z)
-        local hatch = SpawnPrefab("zxhatchmachine")
-        hatch.Transform:SetPosition(x - 2, y, z + 2)
-        hatch.components.zxbundable:SetBundleId(bundleId)
     end
 
 
@@ -105,8 +140,12 @@ local function MakeFarm(name, farm)
         inst.components.zxfarm:SetChild(farm.animal)
         inst.components.zxfarm:SetOnHatch(onHatch)
         inst.components.zxfarm:SetOnChildSpawn(onChildSpawn)
-        inst:AddComponent('zxbundable')
+        inst:AddComponent('zxbindable')
 
+        
+        TheWorld:ListenForEvent(ZXEVENTS, function (_, data)
+            onFarmItemBuild(inst, data.item)
+        end)
         inst:ListenForEvent("onbuilt", onBuild)
         
         return inst

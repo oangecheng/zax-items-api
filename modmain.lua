@@ -1,5 +1,8 @@
 GLOBAL.setmetatable(env,{__index=function(t,k) return GLOBAL.rawget(GLOBAL,k) end})
+
 require("zxtuning")
+require("zxglobaldata")
+require("zxfunctions")
 
 
 -- 仓库保鲜
@@ -28,9 +31,10 @@ PrefabFiles = {
     "zxboxs",
     "zxlights",
     "zxskintools",
+
     "zxfarms",
-    "zxanimals",
-    "zxfarmland"
+    "zxfarmanimals",
+    "zxfarmitems"
     -- "zxtestprefab"
 }
 
