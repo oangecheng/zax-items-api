@@ -11,7 +11,7 @@ local perdfarm = {
     animalcnt = 10,
 
     --- 每间隔300s生产一次
-    producetime = TUNING.DAY_TIME_DEFAULT,
+    producetime = 10,
     products = { 
         ["bird_egg"] = 1 
     },

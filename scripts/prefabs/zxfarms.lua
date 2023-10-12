@@ -38,8 +38,16 @@ local function onFarmItemBuild(inst, item)
     local fx, _, fz = inst.Transform:GetWorldPosition()
     local ix, _, iz = item.Transform:GetWorldPosition()
     local bindId = inst.components.zxbindable:GetBindId()
+
     -- 数据合法
     if bindId and inst.farmdata and fx and ix then
+        if item:HasTag("ZXFEEDER") and ZXFarmHasFeeder(inst) then
+            return
+        end
+        if item:HasTag("ZXHATCHER") and ZXFarmHasHatcher(inst) then
+            return
+        end
+
         -- 范围内
         if math.abs(fx-ix) <= BIND_RADIUS and math.abs(fz-iz) <= BIND_RADIUS then
             if item.components.zxbindable and item.components.zxbindable:CanBind() then
@@ -109,6 +117,9 @@ local function MakeFarm(name, farm)
         inst.components.zxfarm:SetProduct(farm.products)
         inst.components.zxfarm:SetProduceTime(farm.producetime)
         inst.components.zxfarm:SetFoodNum(farm.foodnum)
+        inst.components.zxfarm:SetOnItemGetFunc(function (inst, items)
+            TheNet:Announce("生产一个鸡蛋")
+        end)
 
         inst:AddComponent("zxbindable")
         TheWorld:ListenForEvent(ZXEVENTS.FARM_ITEM_BUILD, function (_, data)

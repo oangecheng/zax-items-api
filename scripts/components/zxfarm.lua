@@ -61,6 +61,11 @@ function Farm:SetOnItemGetFunc(func)
 end
 
 
+function Farm:IsFull()
+    return self.childcount >= self.childmax
+end
+
+
 
 function Farm:AddFarmAnimal()
     if self.child and self:GetChildCnt() < self.childmax then
@@ -78,14 +83,14 @@ function Farm:AddFarmAnimal()
 
 
             local timer = self.inst.components.timer        
-            if ZXFarmEatFood(self.inst, self.foodnum or 1) then
-                if timer:TimerExists(ZXFARM_TIMERS.PRODUCE) then
+            if timer:TimerExists(ZXFARM_TIMERS.PRODUCE) then
+                if ZXFarmEatFood(self.inst, 1) then
                     local timeleft = timer:GetTimeLeft(ZXFARM_TIMERS.PRODUCE) * 0.9
                     timer:SetTimeLeft(ZXFARM_TIMERS.PRODUCE, timeleft)
-                else
-                    -- 第一个动物需要启动生产机制
-                    self:StartProduce()
-                end
+                end  
+            else
+                -- 第一个动物需要启动生产机制
+                self:StartProduce()
             end
 
             if self.onChildSpawn then
@@ -99,7 +104,6 @@ end
 function Farm:StartProduce()
     local inst = self.inst
     if inst.components.timer:TimerExists(ZXFARM_TIMERS.PRODUCE) then
-        ZXLog("tryStartProduce timer existed")
         return
     end
     local animcnt = self.childcount

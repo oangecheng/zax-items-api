@@ -34,7 +34,7 @@ PrefabFiles = {
 
     "zxfarms",
     "zxfarmanimals",
-    "ZXFarmGetBindItems"
+    "zxfarmitems"
     -- "zxtestprefab"
 }
 

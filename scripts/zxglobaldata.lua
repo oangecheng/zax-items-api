@@ -94,3 +94,19 @@ function ZXFarmEatFood(eater, num)
     end
     return false
 end
+
+
+function ZxFarmIsFull(inst)
+    local bindId = getBindId(inst)
+    if bindId then
+        local items = ZXFARMS[bindId]
+        if items then
+            for key, value in pairs(items) do
+                if value.components.zxfarm then
+                    return value.components.zxfarm:IsFull()
+                end
+            end
+        end
+    end
+    return false
+end

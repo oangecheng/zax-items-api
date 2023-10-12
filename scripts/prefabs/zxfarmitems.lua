@@ -84,6 +84,7 @@ local function MakeHatchMachine(name)
         end
         -- 添加timer，用于孵化计时
         inst:AddComponent("timer")
+        inst:AddComponent("inspectable")
 
         inst:AddComponent("zxhatcher")
         inst.components.zxhatcher:SetOnStartFunc(function ()
@@ -99,7 +100,9 @@ local function MakeHatchMachine(name)
         observeItemBuild(inst)
         inst:AddComponent("zxbindable")
         inst.components.zxbindable:SetOnBindFunc(function (_, _, data)
+            ZXLog("onBind 1")
             if not data then return end
+            ZXLog("onBind 2"..data.hatchitem)
             inst.components.zxhatcher:SetHatchSeed(data.hatchitem)
             inst.components.zxhatcher:SetHatchTime(data.hatchtime)
         end)
@@ -161,7 +164,7 @@ local function MakeFarmBowl(name)
         -- 给食物尝试驱动下生产
         inst.components.zxfeeder:SetOnGiveFoodFunc(function (_, foodnum)
             updateBowlState(inst)
-            ZxFarmPushEvent(ZXEVENTS.FARM_ADD_FOOD, { item = inst})
+            ZxFarmPushEvent(inst, ZXEVENTS.FARM_ADD_FOOD, { item = inst})
         end)
         -- 食物消耗之后变更下动画
         inst.components.zxfeeder:SetOnEatFoodFunc(function (_, foodnum)

@@ -69,7 +69,12 @@ local actions = {
                 if not ZXFarmHasFeeder(act.target) then
                     return false, "NO_FEEDER"
                 end
-                local hatcher = act.invobject.components.zxhatcher
+
+                if ZxFarmIsFull(act.target) then
+                    return false, "NO_SPACE"
+                end
+
+                local hatcher = act.target.components.zxhatcher
                 if hatcher then
                     if hatcher:IsWorking() then
                         return false, "BUSY"

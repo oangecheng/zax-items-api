@@ -5,7 +5,7 @@ local Hatcher = Class(function (self, inst)
     self.seed = nil
     self.time = 480 -- 默认一天时间
 
-    self.inst:ListenForEvent("timedone", function (_, data)
+    self.inst:ListenForEvent("timerdone", function (_, data)
         if data.name == ZXFARM_TIMERS.HATCH then
             if self.onStopFunc then
                 self.onStopFunc(self.inst)
