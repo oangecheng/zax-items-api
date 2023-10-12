@@ -11,17 +11,12 @@ local assets = {
 }
 
 
-local function findFarmItems(inst)
-    return ZxFindFarmItems(inst)
-end
-
-
 local function onHammered(inst, doer)
     if inst.components.lootdropper then
         inst.components.lootdropper:DropLoot()
     end
 
-    local ents = findFarmItems(inst)
+    local ents = ZXFarmItems(inst)
     if ents then
         local bindId = inst.components.zxbindable:GetBindId()
         for k, value in pairs(ents) do
@@ -40,15 +35,13 @@ end
 
 --- 查找孵化器
 local function findHatchMachine(inst)
-    local ents = findFarmItems(inst)
-    return ents and ents["zxfarmhatch"] or nil
+    return ZXFarmFindHatcher(inst)
 end
 
 
 --- 查找饲料盆
 local function findFoodBowl(inst)
-    local ents = findFarmItems(inst)
-    return ents and ents["zxfarmbowl"] or nil
+    return ZXFarmFindBowl(inst)
 end
 
 
@@ -77,10 +70,14 @@ end
 --- 需要有动物，需要有足够的食物
 --- todo 后续优化每个小动物独立绑定生产机制
 local function tryStartProduce(inst)
+    if inst.components.timer:TimerExists(TIMER_PRODUCE) then
+        ZXLog("tryStartProduce timer existed")
+        return
+    end
     local farmdata = FARMS[inst.prefab]
     local animcnt = inst.components.zxfarm:GetChildCnt()
     local foodneed = (farmdata.foodneed or 1) * animcnt
-    if animcnt > 0 and ZXFarmEatFood(inst.components.zxbindable:GetBindId(), foodneed) then
+    if animcnt > 0 and ZXFarmEatFood(inst, foodneed) then
         local time = farmdata.producetime * (1.1 - 0.1 * animcnt)
         inst.components.timer:StartTimer(TIMER_PRODUCE, time)
     end
@@ -95,7 +92,7 @@ local function onChildSpawn(inst, child)
     local farmdata = FARMS[inst.prefab]
     local foodneed = farmdata.foodneed or 1
 
-    if ZXFarmEatFood(inst.components.zxbindable:GetBindId(), foodneed) then
+    if ZXFarmEatFood(inst, foodneed) then
         if timer:TimerExists(TIMER_PRODUCE) then
             local timeleft = timer:GetTimeLeft(TIMER_PRODUCE) * 0.9
             timer:SetTimeLeft(TIMER_PRODUCE, timeleft)
@@ -162,6 +159,7 @@ local function MakeFarm(name, farm)
 
         inst:AddTag("structure")
         inst:AddTag("zxfarm")
+        inst:AddTag("ZXFARM_HOST")
 
         MakeObstaclePhysics(inst, 1)
         RemovePhysicsColliders(inst)
@@ -198,6 +196,10 @@ local function MakeFarm(name, farm)
         TheWorld:ListenForEvent(ZXEVENTS.FARM_ITEM_BUILD, function (_, data)
             onFarmItemBuild(inst, data.item)
         end)
+        inst:ListenForEvent(ZXEVENTS.FARM_ADD_FOOD, function (_, data)
+            tryStartProduce(inst)
+        end)
+
         inst:ListenForEvent("onbuilt", onBuild)
         
         return inst

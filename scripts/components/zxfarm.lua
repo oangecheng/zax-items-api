@@ -39,14 +39,12 @@ end
 
 
 function Farm:CheckHatchMachine()
-    local ents = ZxFindFarmItems(self.inst)
-    return ents and ents["zxfarmhatch"] ~= nil
+    return ZXFarmFindHatcher(self.inst) ~= nil
 end
 
 
 function Farm:CheckFoodBowl()
-    local ents = ZxFindFarmItems(self.inst)
-    return ents and ents["zxfarmbowl"] ~= nil
+    return ZXFarmFindBowl(self.inst) ~= nil
 end
 
 

@@ -141,6 +141,7 @@ local function MakeFarmBowl(name)
         -- 给食物尝试驱动下生产
         inst.components.zxfarmfeeder:SetOnGiveFoodFunc(function (_, foodnum)
             updateBowlState(inst)
+            ZxFarmPushEvent(ZXEVENTS.FARM_ADD_FOOD, { item = inst})
         end)
         -- 食物消耗之后变更下动画
         inst.components.zxfarmfeeder:SetOnEatFoodFunc(function (_, foodnum)
