@@ -62,17 +62,23 @@ local actions = {
         id = "ZXHATCH",
         str = STRINGS.ZXACTION.ZXHATCH,
         fn = function (act)
-            local farm = act.target.components.zxfarm
-            if not farm:CheckHatchMachine() then
-                return false, "NO_MACHINE"
-            end
-            if not farm:CheckFoodBowl() then
-                return false, "NO_FOODBOWL"
-            end
-
-            if act.doer and act.invobject and farm and farm:CanHatch(act.invobject) then
-                farm:Hatch(act.invobject, act.doer)
-                return true
+            if act.target and act.invobject then
+                if not ZxFarmHasHost(act.target) then
+                    return false, "NO_HOST"
+                end
+                if not ZXFarmHasFeeder(act.target) then
+                    return false, "NO_FEEDER"
+                end
+                local hatcher = act.invobject.components.zxhatcher
+                if hatcher then
+                    if hatcher:IsWorking() then
+                        return false, "BUSY"
+                    end
+                    if hatcher:CanHatch(act.invobject, act.doer) then
+                        hatcher:Hatch(act.invobject, act.doer)
+                        return true
+                    end
+                end
             end
             return false
         end,
@@ -83,13 +89,19 @@ local actions = {
         id = "ZXADDFOOD",
         str = STRINGS.ZXACTION.ZXADDFOOD,
         fn = function (act)
-            local farm = act.target.components.zxfarmfeeder
-            if act.doer and act.invobject and farm and farm:CanGiveFood(act.invobject, act.doer) then
-                farm:GiveFood(act.invobject, act.doer)
-                return true
+            local feeder = act.target.components.zxfeeder
+            if act.doer and act.invobject and feeder then
+                if feeder:IsFull() then
+                    return false, "FULL"
+                end
+                if feeder:CanGiveFood(act.invobject, act.doer)  then
+                    feeder:GiveFood(act.invobject, act.doer)
+                    return true
+                end
             end
-            return false, "FULL"
-        end
+            return false
+        end,
+        state = "domediumaction",
     }
 }
 
@@ -109,14 +121,14 @@ local componentactions = {
             {
                 action = "ZXHATCH",
                 testfn = function(inst, doer, target, acts, right)
-                    return doer and target:HasTag("zxfarm")
+                    return doer and target:HasTag("ZXHATCHER")
                 end
             },
 
             {
                 action = "ZXADDFOOD",
                 testfn = function (inst, doer, target, acts, right)
-                    return doer and target:HasTag("ZXFARMFEEDER")
+                    return doer and target:HasTag("ZXFEEDER")
                 end
             }
         },

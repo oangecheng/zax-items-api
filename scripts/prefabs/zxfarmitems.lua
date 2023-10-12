@@ -9,9 +9,6 @@ local prefabs = {
     "collapse_small",
 }
 
-local FARMS = require "defs/zxfarmdefs"
-
-
 
 --- 农场物品被建造之后，push事件
 local function observeItemBuild(inst)
@@ -80,12 +77,38 @@ local function MakeHatchMachine(name)
         inst:AddTag("structure")
         inst:AddTag("NOBLOCK")
         inst:AddTag("zxfarmitem")
+        inst:AddTag("ZXHATCHER")
     
         if not TheWorld.ismastersim then
             return inst
         end
-        inst:AddComponent("zxbindable")
+        -- 添加timer，用于孵化计时
+        inst:AddComponent("timer")
+
+        inst:AddComponent("zxhatcher")
+        inst.components.zxhatcher:SetOnStartFunc(function ()
+            inst.AnimState:PlayAnimation("working", true)
+        end)
+        inst.components.zxhatcher:SetOnStopFunc(function ()
+            ZxFarmPushEvent(inst, ZXEVENTS.FARM_HATCH_FINISHED, { item = inst })
+            inst.AnimState:PlayAnimation("idle")
+        end)
+
+
+        -- 农场组件绑定相关，绑定之后，设置孵化的物品和孵化时间
         observeItemBuild(inst)
+        inst:AddComponent("zxbindable")
+        inst.components.zxbindable:SetOnBindFunc(function (_, _, data)
+            if not data then return end
+            inst.components.zxhatcher:SetHatchSeed(data.hatchitem)
+            inst.components.zxhatcher:SetHatchTime(data.hatchtime)
+        end)
+        inst.components.zxbindable:SetOnUnBindFunc(function ()
+            inst.components.zxhatcher:SetHatchSeed(nil)
+            inst.components.zxhatcher:SetHatchTime(nil)
+        end)
+
+
         return inst
     end
     return Prefab(name, fn, assets, prefabs)  
@@ -97,7 +120,7 @@ end
 local function MakeFarmBowl(name)
 
     local function updateBowlState(inst)
-        local feeder = inst.components.zxfarmfeeder
+        local feeder = inst.components.zxfeeder
         if feeder:GetFoodNum() > feeder:GetMaxFoodNum() * 0.2 then
             TheNet:Announce("充足的食物")
             inst.AnimState:PlayAnimation("full")
@@ -128,26 +151,33 @@ local function MakeFarmBowl(name)
         inst:AddTag("structure")
         inst:AddTag("NOBLOCK")
         inst:AddTag("zxfarmitem")
-        inst:AddTag("ZXFARMFEEDER")
+        inst:AddTag("ZXFEEDER")
     
         if not TheWorld.ismastersim then
             return inst
         end
-        inst:AddComponent("zxbindable")
-        observeItemBuild(inst)
-
-        inst:AddComponent("zxfarmfeeder")
-        inst.components.zxfarmfeeder:SetFoods(FARMS["zxperdfarm"].foods)
+        
+        inst:AddComponent("zxfeeder")
         -- 给食物尝试驱动下生产
-        inst.components.zxfarmfeeder:SetOnGiveFoodFunc(function (_, foodnum)
+        inst.components.zxfeeder:SetOnGiveFoodFunc(function (_, foodnum)
             updateBowlState(inst)
             ZxFarmPushEvent(ZXEVENTS.FARM_ADD_FOOD, { item = inst})
         end)
         -- 食物消耗之后变更下动画
-        inst.components.zxfarmfeeder:SetOnEatFoodFunc(function (_, foodnum)
+        inst.components.zxfeeder:SetOnEatFoodFunc(function (_, foodnum)
             updateBowlState(inst)
         end)
 
+        -- 农场组件绑定，成功绑定，设置可以投放的食物参数
+        observeItemBuild(inst)
+        inst:AddComponent("zxbindable")
+        inst.components.zxbindable:SetOnBindFunc(function (_, _, data)
+            if not data then return end
+            inst.components.zxfeeder:SetFoods(data.foods)
+        end)
+        inst.components.zxbindable:SetOnUnBindFunc(function()
+            inst.components.zxfeeder:SetFoods(nil)
+        end)
         
 
         return inst

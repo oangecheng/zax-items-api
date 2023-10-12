@@ -1,6 +1,4 @@
 
-local TIMER_HATCH = "hatch"
-local TIMER_PRODUCE = "produce"
 local BIND_RADIUS = 4
 
 local FARMS = require "defs/zxfarmdefs"
@@ -16,7 +14,7 @@ local function onHammered(inst, doer)
         inst.components.lootdropper:DropLoot()
     end
 
-    local ents = ZXFarmItems(inst)
+    local ents = ZXFarmGetBindItems(inst)
     if ents then
         local bindId = inst.components.zxbindable:GetBindId()
         for k, value in pairs(ents) do
@@ -33,18 +31,6 @@ local function onHammered(inst, doer)
 end
 
 
---- 查找孵化器
-local function findHatchMachine(inst)
-    return ZXFarmFindHatcher(inst)
-end
-
-
---- 查找饲料盆
-local function findFoodBowl(inst)
-    return ZXFarmFindBowl(inst)
-end
-
-
 
 --- 当农场的其他物品被建造时
 --- 如果在范围内，就将其与农场主体绑定
@@ -53,98 +39,28 @@ local function onFarmItemBuild(inst, item)
     local ix, _, iz = item.Transform:GetWorldPosition()
     local bindId = inst.components.zxbindable:GetBindId()
     -- 数据合法
-    if bindId and fx and ix then
+    if bindId and inst.farmdata and fx and ix then
         -- 范围内
         if math.abs(fx-ix) <= BIND_RADIUS and math.abs(fz-iz) <= BIND_RADIUS then
             if item.components.zxbindable and item.components.zxbindable:CanBind() then
-                item.components.zxbindable:Bind(bindId)
+                item.components.zxbindable:Bind(bindId, inst.farmdata)
             end
         end
     end
 end
-
-
-
-
---- 尝试开始生产产品
---- 需要有动物，需要有足够的食物
---- todo 后续优化每个小动物独立绑定生产机制
-local function tryStartProduce(inst)
-    if inst.components.timer:TimerExists(TIMER_PRODUCE) then
-        ZXLog("tryStartProduce timer existed")
-        return
-    end
-    local farmdata = FARMS[inst.prefab]
-    local animcnt = inst.components.zxfarm:GetChildCnt()
-    local foodneed = (farmdata.foodneed or 1) * animcnt
-    if animcnt > 0 and ZXFarmEatFood(inst, foodneed) then
-        local time = farmdata.producetime * (1.1 - 0.1 * animcnt)
-        inst.components.timer:StartTimer(TIMER_PRODUCE, time)
-    end
-end
-
-
-
-local function onChildSpawn(inst, child)
-    TheNet:Announce("小动物出生了~")
-
-    local timer = inst.components.timer
-    local farmdata = FARMS[inst.prefab]
-    local foodneed = farmdata.foodneed or 1
-
-    if ZXFarmEatFood(inst, foodneed) then
-        if timer:TimerExists(TIMER_PRODUCE) then
-            local timeleft = timer:GetTimeLeft(TIMER_PRODUCE) * 0.9
-            timer:SetTimeLeft(TIMER_PRODUCE, timeleft)
-        else
-            -- 第一个动物需要启动生产机制
-            tryStartProduce(inst)
-        end
-    end
-end
-
-
-
-
 
 
 
 local function MakeFarm(name, farm)
-
-    local function onHatch(inst, doer, seed)
-        inst.components.timer:StartTimer(TIMER_HATCH, farm.hatchtime)
-        inst.components.zxfarm:SetIsHatching(true)
-        local machine = findHatchMachine(inst)
-        if machine then
-            machine.AnimState:PlayAnimation("working", true)
-        end
-    end
      
-     
-    local function onTimeDone(inst, data)
-        if data.name == TIMER_HATCH then
-            inst.components.zxfarm:SpawnChild()
-            inst.components.zxfarm:SetIsHatching(false)
-            
-            local machine = findHatchMachine(inst)
-            if machine then
-                machine.AnimState:PlayAnimation("idle")
-            end
-
-        elseif data.name == TIMER_PRODUCE then
-            TheNet:Announce("生产了一个物品~")
-            tryStartProduce(inst)
-        end
-    end
-
-
+    --- 建造主体的时候会生成地皮
     local function onBuild(inst)
         local x,y,z = inst.Transform:GetWorldPosition()
         local bindId = inst.prefab.."x"..tostring(x).."y"..tostring(y).."z"..tostring(z)
+        -- 数据就在主体结构这里，不需要绑定数据
         inst.components.zxbindable:Bind(bindId)
-
         local land = SpawnPrefab("zxfarmland")
-        land.components.zxbindable:Bind(bindId)
+        land.components.zxbindable:Bind(bindId, inst.farmdata)
         land.Transform:SetPosition(x, y, z)
     end
 
@@ -172,7 +88,11 @@ local function MakeFarm(name, farm)
         if not TheWorld.ismastersim then
             return inst
         end
+
+        inst.farmdata = farm
     
+        inst:AddComponent("timer")
+
         inst:AddComponent("inspectable")
         inst:AddComponent("workable")
         inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
@@ -182,22 +102,23 @@ local function MakeFarm(name, farm)
         MakeMediumBurnable(inst)
         MakeSmallPropagator(inst)
 
-        inst:AddComponent("timer")
-        inst:ListenForEvent("timerdone", onTimeDone)
 
         inst:AddComponent("zxfarm")
-        inst.components.zxfarm:SetHatchItem(farm.hatchitem)
         inst.components.zxfarm:SetChild(farm.animal)
-        inst.components.zxfarm:SetOnHatch(onHatch)
-        inst.components.zxfarm:SetOnChildSpawn(onChildSpawn)
-        inst:AddComponent("zxbindable")
+        inst.components.zxfarm:SetChildMaxCnt(farm.animalcnt)
+        inst.components.zxfarm:SetProduct(farm.products)
+        inst.components.zxfarm:SetProduceTime(farm.producetime)
+        inst.components.zxfarm:SetFoodNum(farm.foodnum)
 
-        
+        inst:AddComponent("zxbindable")
         TheWorld:ListenForEvent(ZXEVENTS.FARM_ITEM_BUILD, function (_, data)
             onFarmItemBuild(inst, data.item)
         end)
-        inst:ListenForEvent(ZXEVENTS.FARM_ADD_FOOD, function (_, data)
-            tryStartProduce(inst)
+        inst:ListenForEvent(ZXEVENTS.FARM_ADD_FOOD, function ()
+            inst.components.zxfarm:StartProduce()
+        end)
+        inst:ListenForEvent(ZXEVENTS.FARM_HATCH_FINISHED, function ()
+            inst.components.zxfarm:AddFarmAnimal()
         end)
 
         inst:ListenForEvent("onbuilt", onBuild)

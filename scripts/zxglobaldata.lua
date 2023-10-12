@@ -2,25 +2,23 @@
 
 ZXFARMS = {}
 
+ZXFARM_TIMERS = {
+    HATCH = "hatching",
+    PRODUCE = "producing",
+}
+
 
 local function getBindId(inst)
     return inst.components.zxbindable and inst.components.zxbindable:GetBindId() or nil
 end
 
 
-function ZXFarmItems(inst)
+function ZXFarmGetBindItems(inst)
     local bindId = getBindId(inst)
-    local x,y,z = inst.Transform:GetWorldPosition()
-    local ret = {}
-    if x and y and z and bindId then
-        local ents = TheSim:FindEntities(x, y, z, 6, { "zxfarmitem" }, nil)
-        for _, value in ipairs(ents) do
-            if value and value.components.zxbindable:GetBindId() == bindId then
-                ret[value.prefab] = value
-            end
-        end
+    if bindId then
+        return ZXFARMS[bindId] or {}
     end
-    return ret
+    return {}
 end
 
 
@@ -32,32 +30,11 @@ end
 
 
 
-function ZXFarmFindHatcher(inst)
+function ZXFarmHasHatcher(inst)
     local bindId = getBindId(inst)
     if bindId then
         local items = ZXFARMS[bindId] or {}
-        return items["zxfarmhatch"]
-    end
-end
-
-
-function ZXFarmFindBowl(inst)
-    local bindId = getBindId(inst)
-    if bindId then
-        local items = ZXFARMS[bindId] or {}
-        return items["zxfarmbowl"]
-    end
-end
-
-
-function ZXFarmEatFood(eater, num)
-    local bindId = getBindId(eater)
-    if bindId then
-        local items = ZXFARMS[bindId] or {}
-        local bowl = items["zxfarmbowl"]
-        if bowl then
-            return bowl.components.zxfarmfeeder:EatFood(num)
-        end
+        return items["zxfarmhatch"] ~= nil
     end
     return false
 end
@@ -80,17 +57,40 @@ end
 
 
 
-function ZxFarmGetHost(inst)
+function ZxFarmHasHost(inst)
     local bindId = getBindId(inst)
     if bindId then
         local items = ZXFARMS[bindId]
         if items then
             for key, value in pairs(items) do
                 if value:HasTag("ZXFARM_HOST") then
-                    return value
+                    return true
                 end
             end
         end
     end
-    return nil
+    return false
+end
+
+
+function ZXFarmHasFeeder(inst)
+    local bindId = getBindId(inst)
+    if bindId then
+        local items = ZXFARMS[bindId] or {}
+        return items["zxfarmbowl"] ~= nil
+    end
+    return false
+end
+
+
+function ZXFarmEatFood(eater, num)
+    local bindId = getBindId(eater)
+    if bindId then
+        local items = ZXFARMS[bindId] or {}
+        local bowl = items["zxfarmbowl"]
+        if bowl then
+            return bowl.components.zxfeeder:EatFood(num)
+        end
+    end
+    return false
 end

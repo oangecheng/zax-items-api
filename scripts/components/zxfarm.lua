@@ -1,61 +1,28 @@
 
 local Farm = Class(function (self, inst)
     self.inst = inst
-    self.item = nil
-    self.childmax = 10
-    self.child = nil
     self.childcount = 0
-    self.ishatching = false
+
+    self.child = nil
+    self.childmax = 10
+    self.time = 0
+    self.foodnum = 1
+    self.products = {}
+
+    self.inst:ListenForEvent("timerdone", function (_, data)
+        if data.name == ZXFARM_TIMERS.PRODUCE then
+            self:StartProduce()
+            if self.onItemGetFunc then
+                self.onItemGetFunc({})
+            end
+        end
+    end)
 end)
 
 
-function Farm:SetIsHatching(is)
-    self.ishatching = is
-end
 
-
----设置农场生产动物所需要的原材料
----@param prefab string 原料名称
-function Farm:SetHatchItem(prefab)
-    if self.item == nil then
-        self.item = prefab
-    end
-end
-
-
-function Farm:SetOnHatch(func)
-    self.onHatch = func
-end
-
-
----是否能够给予种子
----@param item table 物品实体
----@return boolean
-function Farm:CanHatch(item)
-    return self.item and item and self.item == item.prefab 
-        and self:GetChildCnt() < self.childmax
-        and (not self.ishatching)
-end
-
-
-function Farm:CheckHatchMachine()
-    return ZXFarmFindHatcher(self.inst) ~= nil
-end
-
-
-function Farm:CheckFoodBowl()
-    return ZXFarmFindBowl(self.inst) ~= nil
-end
-
-
-
-function Farm:Hatch(item, doer)
-    if self:CanHatch(item) then
-        if self.onHatch then
-            self.onHatch(self.inst, doer, item)
-            item:Remove()
-        end
-    end
+function Farm:SetChild(prefab)
+    self.child = prefab
 end
 
 
@@ -64,17 +31,38 @@ function Farm:GetChildCnt()
 end
 
 
+function Farm:SetChildMaxCnt(max)
+    self.max = max or 10
+end
+
+
+function Farm:SetProduceTime(time)
+    self.time = time
+end
+
+
+function Farm:SetFoodNum(num)
+    self.foodnum = num or 1
+end
+
+
+function Farm:SetProduct(items)
+    self.products = items or {}
+end
+
+
 function Farm:SetOnChildSpawn(func)
     self.onChildSpawn = func
 end
 
 
-function Farm:SetChild(prefab)
-    self.child = prefab
+function Farm:SetOnItemGetFunc(func)
+    self.onItemGetFunc = func
 end
 
 
-function Farm:SpawnChild()
+
+function Farm:AddFarmAnimal()
     if self.child and self:GetChildCnt() < self.childmax then
         local ent = SpawnPrefab(self.child)
         if ent then
@@ -87,6 +75,19 @@ function Farm:SpawnChild()
             if ent.components.zxanimal then
                 ent.components.zxanimal:SetFarmPosition(x, y, z)
             end
+
+
+            local timer = self.inst.components.timer        
+            if ZXFarmEatFood(self.inst, self.foodnum or 1) then
+                if timer:TimerExists(ZXFARM_TIMERS.PRODUCE) then
+                    local timeleft = timer:GetTimeLeft(ZXFARM_TIMERS.PRODUCE) * 0.9
+                    timer:SetTimeLeft(ZXFARM_TIMERS.PRODUCE, timeleft)
+                else
+                    -- 第一个动物需要启动生产机制
+                    self:StartProduce()
+                end
+            end
+
             if self.onChildSpawn then
                 self.onChildSpawn(self.inst, ent)
             end
@@ -95,17 +96,30 @@ function Farm:SpawnChild()
 end
 
 
+function Farm:StartProduce()
+    local inst = self.inst
+    if inst.components.timer:TimerExists(ZXFARM_TIMERS.PRODUCE) then
+        ZXLog("tryStartProduce timer existed")
+        return
+    end
+    local animcnt = self.childcount
+    local foodneed = (self.foodnum or 1) * animcnt
+    if self.time > 0 and animcnt > 0 and ZXFarmEatFood(inst, foodneed) then
+        local time = self.time * (1.1 - 0.1 * animcnt)
+        inst.components.timer:StartTimer(ZXFARM_TIMERS.PRODUCE, time)
+    end
+end
+
+
 function Farm:OnSave()
     return {
         childcount = self.childcount,
-        ishatching = self.ishatching
     }
 end
 
 
 function Farm:OnLoad(data)
     self.childcount = data.childcount or {}
-    self.ishatching = data.ishatching or false
 end
 
 
