@@ -29,6 +29,14 @@ function ZXFarmBindItems(bindId, item)
 end
 
 
+function ZXFarmUnbindItems(bindId, item)
+    local list = ZXFARMS[bindId]
+    if list then
+        list[item.prefab] = nil
+    end
+end
+
+
 
 function ZXFarmHasHatcher(inst)
     local bindId = getBindId(inst)
@@ -63,7 +71,7 @@ function ZxFarmHasHost(inst)
         local items = ZXFARMS[bindId]
         if items then
             for key, value in pairs(items) do
-                if value:HasTag("ZXFARM_HOST") then
+                if value and value:HasTag("ZXFARM_HOST") then
                     return true
                 end
             end

@@ -5,7 +5,7 @@ local FARMS = require "defs/zxfarmdefs"
 
 
 local assets = {
-    Asset("ANIM", "anim/zxfarmperd1.zip")
+    Asset("ANIM", "anim/zxperdfarm.zip")
 }
 
 
@@ -87,8 +87,8 @@ local function MakeFarm(name, farm)
 
         MakeObstaclePhysics(inst, 1)
         RemovePhysicsColliders(inst)
-        inst.AnimState:SetBank("zxfarmperd1") 
-        inst.AnimState:SetBuild("zxfarmperd1")
+        inst.AnimState:SetBank(name) 
+        inst.AnimState:SetBuild(name)
         inst.AnimState:PlayAnimation("idle")
     
         inst.entity:SetPristine()
@@ -144,7 +144,7 @@ end
 local farmlist = {}
 for k, v in pairs(FARMS) do
     table.insert(farmlist, MakeFarm(k, v))
-    table.insert(farmlist, MakePlacer(k.."_placer", "zxfarmperd1", "zxfarmperd1", "idle"))
+    table.insert(farmlist, MakePlacer(k.."_placer", k, k, "idle"))
     -- table.insert(farmlist, MakePlacer(k.."_placer", v.initskin.file, v.initskin.file, v.initanim))
 end
 return unpack(farmlist)

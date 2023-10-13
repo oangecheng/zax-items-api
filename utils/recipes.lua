@@ -207,7 +207,7 @@ AddRecipe2(
     {Ingredient("cutgrass", 1)},
     TECH.SCIENCE_TWO,
     {
-        placer = "zx_well_placer",
+        placer = "zxperdfarm_placer",
         atlas = "images/zxskins/zx_well/zx_well.xml",
         image = "zx_well.tex",
         min_spacing = 2,

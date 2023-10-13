@@ -1,5 +1,5 @@
 local assets = {
-    Asset("ANIM", "anim/zxfarmperd1.zip"),
+    Asset("ANIM", "anim/zxfarmland.zip"),
     Asset("ANIM", "anim/zxmushroomhouse1.zip"),
     Asset("ANIM", "anim/zxfarmhatch.zip"),
     Asset("ANIM", "anim/zxfarmbowl.zip")
@@ -29,14 +29,14 @@ local function MakeLand()
         inst.entity:AddMiniMapEntity()
         inst.entity:AddNetwork()
     
-        inst.AnimState:SetScale(1.5,1.5,1.5)
+        inst.AnimState:SetScale(2,2,2)
         inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
         inst.AnimState:SetLayer(LAYER_BACKGROUND)
         inst.AnimState:SetSortOrder(3)
     
-        inst.AnimState:SetBank("zxfarmperd1")
-        inst.AnimState:SetBuild("zxfarmperd1")
-        inst.AnimState:PlayAnimation("land")
+        inst.AnimState:SetBank("zxfarmland")
+        inst.AnimState:SetBuild("zxfarmland")
+        inst.AnimState:PlayAnimation("land1")
     
         inst.entity:SetPristine()
     
