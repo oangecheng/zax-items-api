@@ -258,7 +258,7 @@ end
 ------------------- 干草车 ------------------
 params.zx_hay_cart = createBox5x10Param()
 --- 草、芦苇
-local grassdef = { "cutgrass", "cutreeds" }
+local grassdef = { "cutgrass", "cutreeds", "rope" }
 function params.zx_hay_cart.itemtestfn(container, item, slot)
 	---@diagnostic disable-next-line: undefined-field
 	return table.contains(grassdef, item.prefab)

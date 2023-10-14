@@ -13,6 +13,7 @@ local skinnamesdef = {
     ["1100"] = isCh and "垃圾桶" or "ashcan",
     ["1200"] = isCh and "花园灯" or "garden lamp",
     ["1202"] = isCh and "蘑菇灯" or "mushroom lamp",
+    ["1203"] = isCh and "蜘蛛灯" or "spider lamp",
     ["1211"] = isCh and "铃兰花灯" or "flower lamp",
     ["1212"] = isCh and "POPO" or "bubble lamp",
     ["1213"] = isCh and "浮生儿" or "panda lamp",
@@ -27,10 +28,14 @@ local skinnamesdef = {
     ["1301"] = isCh and "柴胡(白)" or "cottage",
     ["1302"] = isCh and "柴胡(绿)" or "cottage(green)",
     ["1400"] = isCh and "甜心花蜜罐" or "sweety honey jar",
+    ["1401"] = isCh and "小熊蜜罐" or "bear honey jar",
     ["1411"] = isCh and "花盈琉璃瓶" or "glazed vase",
 
     ["1500"] = isCh and "复古竹艺" or "bamboo art",
     ["1501"] = isCh and "姥姥的手提篮" or "grandmother’s basket",
+    ["1502"] = isCh and "毛绒篮子" or "plush basket",
+    ["1503"] = isCh and "实木箱子" or "wood basket",
+
     ["1600"] = isCh and "木质手推车" or "trolley",
     ["1601"] = isCh and "牛仔卷" or "grass rolls",
     ["1700"] = isCh and "多彩蘑菇房" or "mushroom house",
@@ -115,6 +120,7 @@ registerSkin("zxashcan", "1100", "zxashcan",  2, ZX_SKINTYPE.FREE, true)
 --- 灯
 registerSkin("zxlight",  "1200", "zxgardenlight",   3, ZX_SKINTYPE.FREE, true)
 registerSkin("zxlight",  "1202", "zxmushroomlight", 3, ZX_SKINTYPE.FREE)
+registerSkin("zxlight",  "1203", "zxlight4",        3, ZX_SKINTYPE.FREE)
 registerSkin("zxlight",  "1211", "zxflowerlight",   3, ZX_SKINTYPE.SPONSOR)
 registerSkin("zxlight",  "1212", "zxbubblelight",   3, ZX_SKINTYPE.SPONSOR)
 registerSkin("zxlight",  "1213", "zxlight2",        3, ZX_SKINTYPE.SPONSOR)
@@ -133,11 +139,14 @@ registerSkin("zxlogstore", "1302", "zxlogstore2", 4, ZX_SKINTYPE.SPONSOR)
 
 -- 蜂蜜罐子
 registerSkin("zxhoneyjar", "1400", "zxhoneyjar1", 5, ZX_SKINTYPE.FREE, true)
+registerSkin("zxhoneyjar", "1401", "zxhoneyjar3", 5, ZX_SKINTYPE.FREE)
 registerSkin("zxhoneyjar", "1411", "zxhoneyjar2", 5, ZX_SKINTYPE.SPONSOR)
 
 -- 蛋篮子
 registerSkin("zxeggbasket", "1500", "zxeggbasket1", 6, ZX_SKINTYPE.FREE, true)
 registerSkin("zxeggbasket", "1501", "zxeggbasket2", 6, ZX_SKINTYPE.SPONSOR)
+registerSkin("zxeggbasket", "1502", "zxeggbasket3", 6, ZX_SKINTYPE.FREE)
+registerSkin("zxeggbasket", "1503", "zxeggbasket4", 6, ZX_SKINTYPE.FREE)
 -- 草车
 registerSkin("zx_hay_cart", "1600", "zxhaycart1",  7, ZX_SKINTYPE.FREE, true)
 registerSkin("zx_hay_cart", "1601", "zxhaycart2",  7, ZX_SKINTYPE.FREE)
@@ -158,6 +167,7 @@ local animscales = {
     ["1301"] = 1.3,
     ["1302"] = 1.3,
     ["1501"] = 0.8,
+    ["1503"] = 0.8,
     ["1601"] = 2,
     ["1700"] = 0.8,
     ["1801"] = 1.5,
