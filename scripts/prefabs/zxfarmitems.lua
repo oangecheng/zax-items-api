@@ -2,12 +2,73 @@ local assets = {
     Asset("ANIM", "anim/zxfarmland.zip"),
     Asset("ANIM", "anim/zxmushroomhouse1.zip"),
     Asset("ANIM", "anim/zxfarmhatch.zip"),
-    Asset("ANIM", "anim/zxfarmbowl.zip")
+    Asset("ANIM", "anim/zxfarmbowl.zip"),
+
+    Asset("ANIM", "anim/zxanimalsoul.zip"),
+    Asset("ATLAS", "images/inventoryimages/zxperd_soul.xml"),
+    Asset("ATLAS", "images/inventoryimages/zxbeefalo_soul.xml"),
+    Asset("ATLAS", "images/inventoryimages/zxpigman_soul.xml"),
+    Asset("ATLAS", "images/inventoryimages/zxgoat_soul.xml"),
+    Asset("IMAGE", "images/inventoryimages/zxperd_soul.tex"),
+    Asset("IMAGE", "images/inventoryimages/zxbeefalo_soul.tex"),
+    Asset("IMAGE", "images/inventoryimages/zxpigman_soul.tex"),
+    Asset("IMAGE", "images/inventoryimages/zxgoat_soul.tex"),
 }
 
 local prefabs = {
     "collapse_small",
 }
+
+
+
+local function MakeAnimalSoul(name)
+
+    local function ondropped(inst)
+        inst.AnimState:PlayAnimation("idle", false)
+    end
+    
+
+    local function fn()
+
+        local inst = CreateEntity()
+        
+        inst.entity:AddTransform()
+        inst.entity:AddAnimState()
+        inst.entity:AddMiniMapEntity()
+        inst.entity:AddNetwork()
+
+        MakeInventoryPhysics(inst)
+
+    
+        inst.AnimState:SetBank("zxanimalsoul")
+        inst.AnimState:SetBuild("zxanimalsoul")
+        inst.AnimState:SetScale(1.5,1.5,1.5)
+        inst.AnimState:PlayAnimation("idle", false)
+        if name ~= "zxperd_soul" then
+            inst.AnimState:OverrideSymbol("swap_soul", "zxanimalsoul", name)
+        end
+
+        inst.entity:SetPristine()
+        inst:AddTag("ZXSOUL")   
+
+        if not TheWorld.ismastersim then
+            return inst
+        end
+        inst:AddComponent("inspectable")
+        inst:AddComponent("inventoryitem")
+        inst.components.inventoryitem:SetOnDroppedFn(ondropped)
+        inst.components.inventoryitem.imagename = name
+        inst.components.inventoryitem.atlasname = "images/inventoryimages/"..name..".xml"
+
+        inst:AddComponent("stackable")
+        inst.components.stackable.maxsize = 20
+        return inst
+    end
+    return Prefab(name, fn, assets, prefabs)
+end
+
+
+
 
 
 --- 农场物品被建造之后，push事件
@@ -191,4 +252,5 @@ end
 
 return MakeLand(), 
 MakeHatchMachine("zxfarmhatch"), MakePlacer("zxfarmhatch_placer", "zxfarmhatch", "zxfarmhatch", "working"),
-MakeFarmBowl("zxfarmbowl"), MakePlacer("zxfarmbowl_placer", "zxfarmbowl", "zxfarmbowl", "empty")
+MakeFarmBowl("zxfarmbowl"), MakePlacer("zxfarmbowl_placer", "zxfarmbowl", "zxfarmbowl", "empty"),
+MakeAnimalSoul("zxperd_soul"), MakeAnimalSoul("zxpigman_soul"),MakeAnimalSoul("zxbeefalo_soul"), MakeAnimalSoul("zxgoat_soul")

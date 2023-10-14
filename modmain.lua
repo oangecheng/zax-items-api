@@ -51,7 +51,6 @@ Assets = {
     Asset("IMAGE", "images/inventoryimages/zx_beebox_hermit.tex"),
     Asset("ATLAS", "images/zx_slotbg_honey.xml"),
     Asset("IMAGE", "images/zx_slotbg_honey.tex"),
-
 }
 
 

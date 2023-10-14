@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+    <folder id="0" name="zxpigman_soul">
+        <file id="0" name="zxpigman_soul/zxpigmansoul.png" width="100" height="100" pivot_x="0.5" pivot_y="0.401961"/>
+    </folder>
+    <folder id="1" name="zxgoat_soul">
+        <file id="0" name="zxgoat_soul/zxgoat.png" width="100" height="100" pivot_x="0.578431" pivot_y="0.22549"/>
+    </folder>
+    <folder id="2" name="zxbeefalo_soul">
+        <file id="0" name="zxbeefalo_soul/zxbeefalo_soul.png" width="100" height="100" pivot_x="0.5" pivot_y="0.411765"/>
+    </folder>
+    <folder id="3" name="swap_soul">
+        <file id="0" name="swap_soul/zxperd.png" width="100" height="100" pivot_x="0.480392" pivot_y="0.333333"/>
+    </folder>
+    <entity id="0" name="zxanimalsoul">
+        <animation id="0" name="idle" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="zxperd" folder="3" file="0" abs_x="0" abs_y="0" abs_pivot_x="0.480392" abs_pivot_y="0.333333" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="zxperd">
+                <key id="0" spin="0">
+                    <object folder="3" file="0"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>
