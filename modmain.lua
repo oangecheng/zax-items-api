@@ -26,6 +26,8 @@ PrefabFiles = {
     "zx_flower",
     "zx_light",
     "zx_well",
+
+    "zxstone",
         
     "zxflowerbush",
     "zxboxs",

@@ -33,17 +33,22 @@ end
 
 function ZXFarmUnbindItems(bindId, item)
     local list = ZXFARMS[bindId]
-    if list then
-        list[item.prefab] = nil
-        if item.components.zxbindable then
-            item.components.zxbindable:Unbind()
-        end
-    end
-    if item:HasTag("ZXFARM_HOST") then
-        ZXFARMS[bindId] = nil
-        for key, value in pairs(list) do
-            if value.components.zxbindable then
-                value.components.zxbindable:Unbind()
+
+    if bindId and item then
+        if item:HasTag("ZXFARM_HOST") then
+            for k, value in pairs(list) do
+                if value.components.zxbindable then
+                    value.components.zxbindable:Unbind()
+                end
+                list[k] = nil
+            end
+            ZXFARMS[bindId] = nil
+        else
+            if list then
+                list[item.prefab] = nil
+                if item.components.zxbindable then
+                    item.components.zxbindable:Unbind()
+                end
             end
         end
     end
@@ -156,7 +161,7 @@ local function onHit(inst)
     
 end
 
-function ZXAddHarmmerdAction(inst, workcount)
+function ZXFarmAddHarmmerdAction(inst, workcount)
     inst:AddComponent("lootdropper")
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.HAMMER)

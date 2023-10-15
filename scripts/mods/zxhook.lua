@@ -61,3 +61,43 @@ if ZXTUNING.BOX_FRESH_RATE > 0 then
 		end
 	end
 end
+
+
+
+
+local lootdropper_loot={
+	mole = { 
+		zxstone = 0.5,
+	},
+}
+for k,v in pairs(lootdropper_loot) do
+	AddPrefabPostInit(k,function(inst)
+		if GLOBAL.TheWorld.ismastersim then
+			if inst.components.lootdropper then
+				for ik,iv in pairs(v) do
+					inst.components.lootdropper:AddChanceLoot(ik, iv)
+				end
+			end
+		end
+	end)
+end
+
+
+local stones = { 
+	["rock2"] = 0.5, 
+	["rock_avocado_fruit"] = 0.1 
+}
+for k,v in pairs(stones) do
+	AddPrefabPostInit(k, function (inst)
+		if GLOBAL.TheNet:GetIsServer() then
+			inst:ListenForEvent("worked", function (inst, data)
+				if math.random() <= v then
+					local loot = SpawnPrefab("zxstone")
+					LaunchAt(loot, inst, data.worker, 1.5, 1, nil, 90)
+				end
+			end)
+		end
+	end)
+end
+
+

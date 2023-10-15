@@ -9,27 +9,6 @@ local assets = {
 }
 
 
-local function onHammered(inst, doer)
- 
-    local ents = ZXFarmGetBindItems(inst)
-    if ents then
-        local bindId = inst.components.zxbindable:GetBindId()
-        for k, value in pairs(ents) do
-            value.components.zxbindable:Remove(bindId)
-        end
-    end
-
-    if inst.components.lootdropper then
-        inst.components.lootdropper:DropLoot()
-    end
-    local fx = SpawnPrefab("collapse_small")
-    fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
-    fx:SetMaterial("wood")
-    inst:Remove()
-
-end
-
-
 
 --- 当农场的其他物品被建造时
 --- 如果在范围内，就将其与农场主体绑定
@@ -65,7 +44,7 @@ local function MakeFarm(name, farm)
         local x,y,z = inst.Transform:GetWorldPosition()
         local bindId = inst.prefab.."x"..tostring(x).."y"..tostring(y).."z"..tostring(z)
         -- 数据就在主体结构这里，不需要绑定数据
-        inst.components.zxbindable:Bind(bindId)
+        inst.components.zxbindable:Bind(bindId, inst.farmdata)
         local land = SpawnPrefab("zxfarmland")
         land.components.zxbindable:Bind(bindId, inst.farmdata)
         land.Transform:SetPosition(x, y, z)
@@ -100,7 +79,7 @@ local function MakeFarm(name, farm)
     
         inst:AddComponent("timer")
         inst:AddComponent("inspectable")
-        ZXAddHarmmerdAction(inst, 5)
+        ZXFarmAddHarmmerdAction(inst, 5)
 
         MakeMediumBurnable(inst)
         MakeSmallPropagator(inst)
@@ -117,6 +96,10 @@ local function MakeFarm(name, farm)
         end)
 
         inst:AddComponent("zxbindable")
+        inst.components.zxbindable:SetOnUnBindFunc(function(_, _, _)
+            ZXLog("removefarm")
+            inst:Remove()
+        end)
         TheWorld:ListenForEvent(ZXEVENTS.FARM_ITEM_BUILD, function (_, data)
             onFarmItemBuild(inst, data.item)
         end)

@@ -202,7 +202,7 @@ local function MakeHatchMachine(name)
         -- 添加timer，用于孵化计时
         inst:AddComponent("timer")
         inst:AddComponent("inspectable")
-        ZXAddHarmmerdAction(inst)
+        ZXFarmAddHarmmerdAction(inst)
 
         inst:AddComponent("zxhatcher")
         inst.components.zxhatcher:SetOnStartFunc(function ()
@@ -291,7 +291,7 @@ local function MakeFarmBowl(name)
         end
         
         inst:AddComponent("zxfeeder")
-        ZXAddHarmmerdAction(inst)
+        ZXFarmAddHarmmerdAction(inst)
 
         -- 给食物尝试驱动下生产
         inst.components.zxfeeder:SetOnGiveFoodFunc(function (_, foodnum)
