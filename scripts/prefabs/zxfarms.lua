@@ -1,7 +1,7 @@
 
 local BIND_RADIUS = 4
 
-local FARMS = require "defs/zxfarmdefs"
+local FARMS = (require "defs/zxfarmdefs").farms
 
 
 local assets = {
@@ -10,10 +10,7 @@ local assets = {
 
 
 local function onHammered(inst, doer)
-    if inst.components.lootdropper then
-        inst.components.lootdropper:DropLoot()
-    end
-
+ 
     local ents = ZXFarmGetBindItems(inst)
     if ents then
         local bindId = inst.components.zxbindable:GetBindId()
@@ -22,11 +19,13 @@ local function onHammered(inst, doer)
         end
     end
 
+    if inst.components.lootdropper then
+        inst.components.lootdropper:DropLoot()
+    end
     local fx = SpawnPrefab("collapse_small")
     fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
     fx:SetMaterial("wood")
     inst:Remove()
-
 
 end
 
@@ -100,13 +99,9 @@ local function MakeFarm(name, farm)
         inst.farmdata = farm
     
         inst:AddComponent("timer")
-
         inst:AddComponent("inspectable")
-        inst:AddComponent("workable")
-        inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
-        inst.components.workable:SetWorkLeft(5)
-        inst.components.workable:SetOnFinishCallback(onHammered)
-    
+        ZXAddHarmmerdAction(inst, 5)
+
         MakeMediumBurnable(inst)
         MakeSmallPropagator(inst)
 

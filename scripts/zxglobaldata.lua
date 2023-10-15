@@ -23,9 +23,11 @@ end
 
 
 function ZXFarmBindItems(bindId, item)
-    local list = ZXFARMS[bindId] or {}
-    list[item.prefab] = item
-    ZXFARMS[bindId] = list
+    if bindId then
+        local list = ZXFARMS[bindId] or {}
+        list[item.prefab] = item
+        ZXFARMS[bindId] = list
+    end
 end
 
 
@@ -33,6 +35,17 @@ function ZXFarmUnbindItems(bindId, item)
     local list = ZXFARMS[bindId]
     if list then
         list[item.prefab] = nil
+        if item.components.zxbindable then
+            item.components.zxbindable:Unbind()
+        end
+    end
+    if item:HasTag("ZXFARM_HOST") then
+        ZXFARMS[bindId] = nil
+        for key, value in pairs(list) do
+            if value.components.zxbindable then
+                value.components.zxbindable:Unbind()
+            end
+        end
     end
 end
 
@@ -117,4 +130,37 @@ function ZxFarmIsFull(inst)
         end
     end
     return false
+end
+
+
+
+
+local function onHammered(inst)
+    if inst.components.lootdropper then
+        inst.components.lootdropper:DropLoot()
+    end
+    local fx = SpawnPrefab("collapse_small")
+    fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
+    fx:SetMaterial("wood")
+
+    local bindId = getBindId(inst)
+    if bindId then
+        ZXFarmUnbindItems(bindId, inst)
+    else
+        inst:Remove()
+    end
+end
+
+
+local function onHit(inst)
+    
+end
+
+function ZXAddHarmmerdAction(inst, workcount)
+    inst:AddComponent("lootdropper")
+    inst:AddComponent("workable")
+    inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
+    inst.components.workable:SetWorkLeft(workcount or 3)
+    inst.components.workable:SetOnFinishCallback(onHammered)
+    inst.components.workable:SetOnWorkCallback(onHit)
 end

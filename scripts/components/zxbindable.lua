@@ -21,13 +21,6 @@ function Bindable:SetOnUnBindFunc(func)
 end
 
 
---- 物品因为绑定关系被移除时的通知
---- @param func function
-function Bindable:SetOnRemoveFunc(func)
-    self.onRemoveFunc = func
-end
-
-
 --- 是否可以被绑定
 --- @return boolean  
 function Bindable:CanBind()
@@ -52,11 +45,11 @@ end
 
 --- 解除绑定
 function Bindable:Unbind()
+    if self.onUnBindFunc and self.bindId and self.shareData then
+        self.onUnBindFunc(self.inst, self.bindId, self.shareData)
+    end
     self.bindId = nil
     self.shareData = nil
-    if self.onUnBindFunc then
-        self.onUnBindFunc(self.inst)
-    end
 end
 
 
@@ -64,18 +57,6 @@ end
 --- @return string 绑定的id
 function Bindable:GetBindId()
     return self.bindId
-end
-
-
---- 通过绑定id去移除物品，id校验通过执行
---- @param bindId  string id
-function Bindable:Remove(bindId)
-    if bindId and self.bindId and bindId == self.bindId then
-        if self.onRemoveFunc then
-            self.onRemoveFunc(self.inst)
-        end
-        self.inst:Remove()
-    end
 end
 
 
@@ -91,7 +72,7 @@ function Bindable:OnLoad(data)
     self.bindId = data.bindId
     self.shareData = data.shareData
     ZXFarmBindItems(self.bindId, self.inst)
-    if self.onBindFunc then
+    if self.onBindFunc and self.bindId and self.shareData then
         self.onBindFunc(self.inst, self.bindId, self.shareData)
     end
 end
