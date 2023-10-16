@@ -133,6 +133,30 @@ local function observeItemBuild(inst)
 end
 
 
+local function net(inst)
+    inst.zxchangename = net_string(inst.GUID, "zxchangename", "zx_itemsapi_itemdirty")
+    inst:ListenForEvent("zx_itemsapi_itemdirty", function(inst)
+        local newname = inst.zxchangename:value()
+		if newname then
+			inst.displaynamefn = function(aaa)
+				return newname
+			end
+		end
+	end)
+end
+
+
+local function changeName(inst, suffix)
+    local name = STRINGS[string.upper(inst.prefab)]
+    if name and suffix then
+        local newname = name.."["..suffix.."]"
+        if inst.zxchangename then
+            inst.zxchangename:set(newname)
+        end
+    end
+end
+
+
 local function MakeLand()
     local function fn()
 
@@ -196,12 +220,22 @@ local function MakeHatchMachine(name)
         inst:AddTag("zxfarmitem")
         inst:AddTag("ZXHATCHER")
     
+        net(inst)
+
         if not TheWorld.ismastersim then
             return inst
         end
         -- 添加timer，用于孵化计时
         inst:AddComponent("timer")
         inst:AddComponent("inspectable")
+        inst.components.inspectable.descriptionfn = function (_, viewer)
+            if inst.components.zxhatcher:IsWorking() then
+                return STRINGS.ZXFARMHATCH_WORKING
+            else
+                return STRINGS.ZXFARMHATCH_IDLE
+            end
+        end
+
         ZXFarmAddHarmmerdAction(inst)
 
         inst:AddComponent("zxhatcher")
@@ -221,7 +255,9 @@ local function MakeHatchMachine(name)
             if not data then return end
             inst.components.zxhatcher:SetHatchSeed(data.hatchitem)
             inst.components.zxhatcher:SetHatchTime(data.hatchtime)
+            changeName(inst, STRINGS.ZX_HASBIND)
         end)
+
         inst.components.zxbindable:SetOnUnBindFunc(function (_, _, data)
             inst.components.zxhatcher:SetHatchSeed(nil)
             inst.components.zxhatcher:SetHatchTime(nil)
@@ -291,6 +327,11 @@ local function MakeFarmBowl(name)
         end
         
         inst:AddComponent("zxfeeder")
+        inst:AddComponent("inspectable")
+        inst.components.inspectable.descriptionfn = function (_, viewer)
+            local foodleft = inst.components.zxfeeder:GetFoodNum()
+            return string.format(STRINGS.ZXFARMBOWL_FOODLEFT, tostring(foodleft))
+        end
         ZXFarmAddHarmmerdAction(inst)
 
         -- 给食物尝试驱动下生产
@@ -316,6 +357,7 @@ local function MakeFarmBowl(name)
                 end
             end
             inst.components.zxfeeder:SetFoods(list)
+            changeName(inst, STRINGS.ZX_HASBIND)
         end)
         inst.components.zxbindable:SetOnUnBindFunc(function()
             inst.components.zxfeeder:SetFoods(nil)

@@ -79,6 +79,15 @@ local function MakeFarm(name, farm)
     
         inst:AddComponent("timer")
         inst:AddComponent("inspectable")
+        inst.components.inspectable.descriptionfn = function (_, viewer)
+            local childleft = inst.components.zxfarm:GetLeftChildNum()
+            if childleft > 0 then
+                return string.format(STRINGS.ZXFARM_SPACELEFT, childleft)
+            else
+                return STRINGS.ZXFARM_SPACENO
+            end
+        end
+
         ZXFarmAddHarmmerdAction(inst, 5)
 
         MakeMediumBurnable(inst)

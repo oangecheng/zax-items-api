@@ -90,7 +90,8 @@
         "LAYER_BACKGROUND",
         "RemoveEntity",
         "SpawnSaveRecord",
-        "LaunchAt"
+        "LaunchAt",
+        "ZXFarmAddHarmmerdAction"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

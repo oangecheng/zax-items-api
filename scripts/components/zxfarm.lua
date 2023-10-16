@@ -66,6 +66,11 @@ function Farm:IsFull()
 end
 
 
+function Farm:GetLeftChildNum()
+    return self.childmax - self.childcount
+end
+
+
 
 function Farm:AddFarmAnimal()
     if self.child and self:GetChildCnt() < self.childmax then
