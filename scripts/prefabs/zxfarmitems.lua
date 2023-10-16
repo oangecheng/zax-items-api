@@ -147,7 +147,7 @@ end
 
 
 local function changeName(inst, suffix)
-    local name = STRINGS[string.upper(inst.prefab)]
+    local name = STRINGS.NAMES[string.upper(inst.prefab)]
     if name and suffix then
         local newname = name.."["..suffix.."]"
         if inst.zxchangename then
@@ -198,6 +198,9 @@ end
 
 
 local function MakeHatchMachine(name)
+
+    local res = ZxGetPrefabAnimAsset(name)
+
     local function fn()
 
         local inst = CreateEntity()
@@ -238,6 +241,8 @@ local function MakeHatchMachine(name)
 
         ZXFarmAddHarmmerdAction(inst)
 
+        inst:AddComponent("zxskinable")
+
         inst:AddComponent("zxhatcher")
         inst.components.zxhatcher:SetOnStartFunc(function ()
             inst.AnimState:PlayAnimation("working", true)
@@ -277,7 +282,7 @@ local function MakeHatchMachine(name)
 
         return inst
     end
-    return Prefab(name, fn, assets, prefabs)  
+    return Prefab(name, fn, res, prefabs)  
 end
 
 
@@ -285,6 +290,8 @@ end
 
 
 local function MakeFarmBowl(name)
+
+    local res = ZxGetPrefabAnimAsset(name)
 
     local foodsdef = FARMS.foods
 
@@ -322,10 +329,12 @@ local function MakeFarmBowl(name)
         inst:AddTag("zxfarmitem")
         inst:AddTag("ZXFEEDER")
     
+        net(inst)
         if not TheWorld.ismastersim then
             return inst
         end
         
+        inst:AddComponent("zxskinable")
         inst:AddComponent("zxfeeder")
         inst:AddComponent("inspectable")
         inst.components.inspectable.descriptionfn = function (_, viewer)
@@ -367,7 +376,7 @@ local function MakeFarmBowl(name)
 
         return inst
     end
-    return Prefab(name, fn, assets, prefabs)  
+    return Prefab(name, fn, res, prefabs)  
 end
 
 

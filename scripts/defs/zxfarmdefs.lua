@@ -38,7 +38,21 @@ local perdfarm = {
 
 
 local pigfarm = {
+    hatchitem = "zxpigman_soul",
+    hatchtime = 10,
+    animal    = "zxpigman",
+    animalcnt = 10,
 
+    --- 每间隔300s生产一次
+    producetime = 50,
+    products = { 
+        ["bird_egg"] = 1 
+    },
+
+    foodnum = 1,
+    foods = { 
+        "zxfarmfood_normal"
+    },
 }
 
 
@@ -52,8 +66,8 @@ local cowfarm = {
 return {
     farms = {
         zxperdfarm = perdfarm,
-        zxpigfarm  = pigfarm,
-        zxcowfarm  = cowfarm,
+        zxpigmanfarm  = pigfarm,
+        zxbeefalofarm  = cowfarm,
     },
 
     souls = souls,

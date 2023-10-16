@@ -40,6 +40,7 @@ local function fn()
     end
     inst:AddComponent("inspectable")
     inst:AddComponent("inventoryitem")
+    inst.components.inventoryitem:SetSinks(true)
     inst.components.inventoryitem:SetOnDroppedFn(ondropped)
     inst.components.inventoryitem.imagename = "zxstone"
     inst.components.inventoryitem.atlasname = "images/inventoryimages/zxstone.xml"

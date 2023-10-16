@@ -5,8 +5,16 @@ local FARMS = (require "defs/zxfarmdefs").farms
 
 
 local assets = {
-    Asset("ANIM", "anim/zxperdfarm.zip")
+    -- Asset("ANIM", "anim/zxperdfarm.zip")
 }
+
+
+for k, v in pairs(FARMS) do
+    local res = ZxGetPrefabAnimAsset(k)
+    for _, iv in ipairs(res) do
+        table.insert(assets, iv)
+    end
+end
 
 
 
@@ -38,6 +46,8 @@ end
 
 
 local function MakeFarm(name, farm)
+
+ 
      
     --- 建造主体的时候会生成地皮
     local function onBuild(inst)
@@ -82,7 +92,7 @@ local function MakeFarm(name, farm)
         inst.components.inspectable.descriptionfn = function (_, viewer)
             local childleft = inst.components.zxfarm:GetLeftChildNum()
             if childleft > 0 then
-                return string.format(STRINGS.ZXFARM_SPACELEFT, childleft)
+                return string.format(STRINGS.ZXFARM_SPACELEFT, tostring(childleft))
             else
                 return STRINGS.ZXFARM_SPACENO
             end
@@ -93,6 +103,7 @@ local function MakeFarm(name, farm)
         MakeMediumBurnable(inst)
         MakeSmallPropagator(inst)
 
+        inst:AddComponent("zxskinable")
 
         inst:AddComponent("zxfarm")
         inst.components.zxfarm:SetChild(farm.animal)

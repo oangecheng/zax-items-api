@@ -21,6 +21,26 @@ modimport(ZXTUNING.IS_CH and "utils/strings_ch.lua" or "utils/strings_eng.lua")
 require("zx_skin/zxskinutils")
 
 
+
+Assets = {
+    Asset("ANIM", "anim/ui_zx_5x10.zip"),
+    Asset("ANIM", "anim/zx5x5_normal.zip"),
+    Asset("ANIM", "anim/zx5x5_honey.zip"),
+
+    Asset("ANIM", "anim/ui_chest_3x3.zip"),
+    Asset("ATLAS", "images/inventoryimages/zx_meatrack_hermit.xml"),
+    Asset("IMAGE", "images/inventoryimages/zx_meatrack_hermit.tex"),
+    Asset("ATLAS", "images/inventoryimages/zx_beebox_hermit.xml"),
+    Asset("IMAGE", "images/inventoryimages/zx_beebox_hermit.tex"),
+    Asset("ATLAS", "images/zx_slotbg_honey.xml"),
+    Asset("IMAGE", "images/zx_slotbg_honey.tex"),
+
+    Asset("ANIM", "anim/zxstone.zip"),
+    Asset("ATLAS", "images/inventoryimages/zxstone.xml"),
+    Asset("IMAGE", "images/inventoryimages/zxstone.tex")
+}
+
+
 PrefabFiles = {
 	"zx_placers",
     "zx_flower",
@@ -40,20 +60,6 @@ PrefabFiles = {
     -- "zxtestprefab"
 }
 
-
-Assets = {
-    Asset("ANIM", "anim/ui_zx_5x10.zip"),
-    Asset("ANIM", "anim/zx5x5_normal.zip"),
-    Asset("ANIM", "anim/zx5x5_honey.zip"),
-
-    Asset("ANIM", "anim/ui_chest_3x3.zip"),
-    Asset("ATLAS", "images/inventoryimages/zx_meatrack_hermit.xml"),
-    Asset("IMAGE", "images/inventoryimages/zx_meatrack_hermit.tex"),
-    Asset("ATLAS", "images/inventoryimages/zx_beebox_hermit.xml"),
-    Asset("IMAGE", "images/inventoryimages/zx_beebox_hermit.tex"),
-    Asset("ATLAS", "images/zx_slotbg_honey.xml"),
-    Asset("IMAGE", "images/zx_slotbg_honey.tex"),
-}
 
 
 

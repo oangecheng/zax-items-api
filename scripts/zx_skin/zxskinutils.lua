@@ -41,6 +41,12 @@ local skinnamesdef = {
     ["1700"] = isCh and "多彩蘑菇房" or "mushroom house",
     ["1800"] = isCh and "多彩蔷薇" or "rosebush well",
     ["1801"] = isCh and "宫廷风" or "court style",
+
+    ["1900"] = isCh and "花园巢" or "garden style",
+    ["1950"] = isCh and "石质盆" or "stone style",
+    ["2000"] = isCh and "乡野鸡舍" or "country style",
+    ["2100"] = isCh and "树干小屋" or "tree house",
+
 }
 
 
@@ -156,6 +162,14 @@ registerSkin("zxmushroomhouse", "1700", "zxmushroomhouse1",  8, ZX_SKINTYPE.FREE
 registerSkin("zx_well", "1800", "zx_well", 9, ZX_SKINTYPE.FREE, true)
 registerSkin("zx_well", "1801", "zxwell1", 9, ZX_SKINTYPE.SPONSOR)
 
+registerSkin("zxfarmhatch", "1900", "zxfarmhatch", 10, ZX_SKINTYPE.FREE, true)
+registerSkin("zxfarmbowl" , "1950", "zxfarmbowl", 11, ZX_SKINTYPE.FREE, true)
+-- 火鸡农场
+registerSkin("zxperdfarm", "2000", "zxperdfarm", 12, ZX_SKINTYPE.FREE, true)
+-- 猪人农场
+registerSkin("zxpigmanfarm", "2100", "zxpigmanfarm", 13, ZX_SKINTYPE.FREE, true)
+
+
 
 
 
@@ -171,6 +185,7 @@ local animscales = {
     ["1601"] = 2,
     ["1700"] = 0.8,
     ["1801"] = 1.5,
+    ["2100"] = 1.25
 }
 
 
