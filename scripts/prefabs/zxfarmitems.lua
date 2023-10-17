@@ -135,6 +135,7 @@ end
 
 local function net(inst)
     inst.zxchangename = net_string(inst.GUID, "zxchangename", "zx_itemsapi_itemdirty")
+    inst.zxextrainfo  = net_string(inst.GUID, "zxextrainfo" , "zx_itemsapi_itemdirty") 
     inst:ListenForEvent("zx_itemsapi_itemdirty", function(inst)
         local newname = inst.zxchangename:value()
 		if newname then
@@ -142,6 +143,9 @@ local function net(inst)
 				return newname
 			end
 		end
+
+        local extrainfo = inst.zxextrainfo:value()
+        inst.zxextrainfostr = extrainfo or nil
 	end)
 end
 
@@ -153,6 +157,15 @@ local function changeName(inst, suffix)
         if inst.zxchangename then
             inst.zxchangename:set(newname)
         end
+    end
+end
+
+
+--- 更新显示的额外信息
+--- @param info string 信息
+local function updateDisplayInfo(inst, info)
+    if inst.zxextrainfo and info then
+        inst.zxextrainfo:set(info)
     end
 end
 
@@ -291,19 +304,24 @@ end
 
 local function MakeFarmBowl(name)
 
+    local LEFT_RATIO = 0.3
+
     local res = ZxGetPrefabAnimAsset(name)
 
     local foodsdef = FARMS.foods
 
     local function updateBowlState(inst)
         local feeder = inst.components.zxfeeder
-        if feeder:GetFoodNum() > feeder:GetMaxFoodNum() * 0.2 then
+        if feeder:GetFoodNum() > feeder:GetFoodMaxNum() * LEFT_RATIO then
             TheNet:Announce("充足的食物")
             inst.AnimState:PlayAnimation("full")
         else
             TheNet:Announce("食物太少了")
             inst.AnimState:PlayAnimation("empty")
         end
+        local foodleft = feeder:GetFoodNum()
+        local info = "\n"..string.format(STRINGS.ZXFARMBOWL_FOODLEFT, tostring(foodleft))
+        updateDisplayInfo(inst, info)
     end
     
 
@@ -339,7 +357,10 @@ local function MakeFarmBowl(name)
         inst:AddComponent("inspectable")
         inst.components.inspectable.descriptionfn = function (_, viewer)
             local foodleft = inst.components.zxfeeder:GetFoodNum()
-            return string.format(STRINGS.ZXFARMBOWL_FOODLEFT, tostring(foodleft))
+            local foodmax  = inst.components.zxfeeder:GetFoodMaxNum()
+            if foodleft <= 0 then return STRINGS.ZXFARMBOWL_EMPTY
+            elseif foodleft < foodmax * LEFT_RATIO then return STRINGS.ZXFARMBOWL_NOTENOUGH
+            else return STRINGS.ZXFARMBOWL_ENOUGH end
         end
         ZXFarmAddHarmmerdAction(inst)
 
@@ -373,6 +394,9 @@ local function MakeFarmBowl(name)
             inst:Remove()
         end)
         
+        inst.OnLoad = function (_, data)
+            updateBowlState(inst)
+        end
 
         return inst
     end

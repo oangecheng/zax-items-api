@@ -18,12 +18,12 @@ function Feeder:SetOnEatFoodFunc(func)
 end
 
 
-function Feeder:SetMaxFoodNum(max)
+function Feeder:SetFoodMaxNum(max)
     self.maxfoodnum = max
 end
 
 
-function Feeder:GetMaxFoodNum()
+function Feeder:GetFoodMaxNum()
     return self.maxfoodnum
 end
 

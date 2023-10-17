@@ -101,3 +101,16 @@ for k,v in pairs(stones) do
 end
 
 
+
+
+--- 显示物品的额外信息
+AddClassPostConstruct("widgets/hoverer", function (hoverer)
+	local oldSetString = hoverer.text.SetString
+	hoverer.text.SetString = function(text,str)
+		local target = GLOBAL.TheInput:GetHUDEntityUnderMouse()
+		if target and target.GUID and target.zxextrainfostr then
+			str = str..target.zxextrainfostr
+		end
+		return oldSetString(text, str)
+	end
+end)
