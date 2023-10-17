@@ -9,44 +9,6 @@ end
 
 
 local actions = {
-    {
-		id = "ZXSTOREPUT",
-		str = STRINGS.ZXACTION.ZXSTOREPUT,
-		fn = function(act)
-            local st = act.target and act.target.components.zxstorable
-            if st and act.invobject and act.doer then
-                if st:CanStore(act.invobject, act.doer) then
-                    st:Store(act.invobject, act.doer)
-                    act.invobject:Remove()
-                    return true
-                end
-                
-            end
-        
-            return false
-		end,
-		state = "give",
-	},
-
-    {
-        id = "ZXSTORETAKE",
-		str = STRINGS.ZXACTION.ZXSTORETAKE,
-		fn = function(act)
-            local st = act.target.components.zxstorable
-            if st then
-                if st:CanTake(act.doer) then
-                    local item =  st:Take(act.doer)
-                    if item then
-                        act.doer.components.inventory:GiveItem(item)
-                    end
-                else
-                    return false, "EMPTY"
-                end
-            end
-            return false
-		end,
-		state = "domediumaction",
-    },
 
     {
         id = "ZXSHOPOPEN",
@@ -107,6 +69,19 @@ local actions = {
             return false
         end,
         state = "domediumaction",
+    },
+
+    {
+        id = "ZXFARMHARVEST",
+        str = STRINGS.ZXACTION.ZXFARMHARVEST,
+        fn = function (act)
+            local farm = act.target and act.target.components.zxfarm or nil
+            if farm and act.doer and farm:Harvest(act.doer) then
+                return true
+            end
+            return false, "EMPTY"
+        end,
+        state = "dolongaction",
     }
 }
 
@@ -116,12 +91,6 @@ local componentactions = {
         type = "USEITEM",
 		component = "inventoryitem",
 		tests = {
-			{
-				action = "ZXSTOREPUT",
-				testfn = function(inst, doer, target, acts, right)
-					return doer ~= nil and target and target:HasTag("haha")
-				end,
-			},
 
             {
                 action = "ZXHATCH",
@@ -154,12 +123,12 @@ local componentactions = {
 
     {
         type = "SCENE",
-		component = "zxstorable",
+		component = "zxfarm",
         tests = {
 			{
-				action = "ZXSTORETAKE",
+				action = "ZXFARMHARVEST",
 				testfn = function(inst, doer, _, _)
-					return doer ~= nil
+					return doer ~= nil and inst:HasTag("ZXFARM_HOST")
 				end,
 			},
         },
