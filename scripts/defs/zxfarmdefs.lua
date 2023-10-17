@@ -22,7 +22,7 @@ local foods = {
 local perdfarm = {
 
     hatchitem = "zxperd_soul",
-    hatchtime = HATCH_BASE_TIME,
+    hatchtime = ZXTUNING.DEBUG and 10 or HATCH_BASE_TIME,
     animal    = "zxperd",
     animalcnt = 10,
 
@@ -31,16 +31,20 @@ local perdfarm = {
         "zxfarmfood_normal"
     },
 
-    producetime = PRODUCE_BASE_TIME,
+    producetime = ZXTUNING.DEBUG and 10 or PRODUCE_BASE_TIME,
     producefunc = function (inst)
-        return math.random() <= 0.5 and "drumstick", 1 or  "bird_egg", 1
+        if math.random() <= 0.5 then
+            return { "drumstick", 1 }
+        else 
+            return { "bird_egg", 1 }
+        end
     end
 }
 
 
 local pigfarm = {
     hatchitem = "zxpigman_soul",
-    hatchtime = HATCH_BASE_TIME * 1.5,
+    hatchtime = ZXTUNING.DEBUG and 10 or HATCH_BASE_TIME * 1.5,
     animal    = "zxpigman",
     animalcnt = 10,
 
@@ -49,11 +53,15 @@ local pigfarm = {
         "zxfarmfood_normal"
     },
 
-    producetime = PRODUCE_BASE_TIME * 1.5,
+    producetime = ZXTUNING.DEBUG and 10 or PRODUCE_BASE_TIME * 1.5,
     producefunc = function (inst)
         -- 月圆的时候，必然生产2个猪皮
-        if TheWorld.state.isfullmoon then return "pigskin", 2 end
-        return math.random() <= 0.3 and "pigskin", 1  or  "meat", 1
+        if TheWorld.state.isfullmoon then return {"pigskin", 2} end
+        if math.random() <= 0.5 then
+            return {"pigskin", 1}
+        else
+            return { "meat", 1 }
+        end
     end
 }
 
@@ -61,7 +69,7 @@ local pigfarm = {
 
 local beefalofarm = {
     hatchitem = "zxbeefalo_soul",
-    hatchtime = HATCH_BASE_TIME * 2,
+    hatchtime = ZXTUNING.DEBUG and 10 or HATCH_BASE_TIME * 2,
     animal    = "zxbeefalo",
     animalcnt = 10,
 
@@ -70,15 +78,20 @@ local beefalofarm = {
         "zxfarmfood_normal"
     },
 
-    producetime = PRODUCE_BASE_TIME * 2,
+    producetime = ZXTUNING.DEBUG and 10 or PRODUCE_BASE_TIME * 2,
     producefunc = function (inst)
         -- 春天有百分之10的概率生产一个牛角
         if TheWorld.state.isspring then
             if math.random() <= 0.1 then
-                return "horn", 1
+                return {"horn", 1}
             end
         end
-        return math.random() <= 0.8 and "beefalowool", 2 or "meat",1
+
+        if math.random() < 0.3 then
+            return {"beefalowool", 2}
+        else
+            return { "meat", 1 }
+        end
     end
 }
 
@@ -87,7 +100,7 @@ local beefalofarm = {
 
 local goatfarm = {
     hatchitem = "zxgoat_soul",
-    hatchtime = HATCH_BASE_TIME * 2,
+    hatchtime = ZXTUNING.DEBUG and 10 or HATCH_BASE_TIME * 2,
     animal    = "zxgoat",
     animalcnt = 10,
 
@@ -96,15 +109,19 @@ local goatfarm = {
         "zxfarmfood_normal"
     },
 
-    producetime = PRODUCE_BASE_TIME * 3,
+    producetime = ZXTUNING.DEBUG and 10 or PRODUCE_BASE_TIME * 3,
     producefunc = function (inst)
         -- 春天下雨的时候有百分之10的概率生产一个奶
         if TheWorld.state.israining and TheWorld.state.isspring then
             if math.random() <= 0.1 then
-                return "goatmilk",1
+                return {"goatmilk", 1}
             end
         end
-        return math.random() <= 0.3 and "lightninggoathorn",1 or "meat",2
+        if math.random() <= 0.3 then
+            return { "lightninggoathorn", 1}
+        else
+            return { "meat", 2}
+        end
     end
 }
 

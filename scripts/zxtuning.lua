@@ -1,4 +1,5 @@
 ZXTUNING = {
+    DEBUG = true,
     IS_CH = true,
     LIGHT_RADIUS_MULTI = 1,
     BOX_FRESH_RATE = 0.2

@@ -130,8 +130,8 @@ local animalsouls = {
 	["goat"] = "zxgoat_soul",
 }
 
-local famrblueprint_ratio = 0.2
-local farmsoul_ratio = 0.1
+local famrblueprint_ratio = ZXTUNING.DEBUG and 0.8 or 0.2
+local farmsoul_ratio = ZXTUNING.DEBUG and 0.8 or 0.1
 
 local function dropFarmItems(inst, data)
 

@@ -14,15 +14,17 @@ end
 
 
 local function produce(self)
-    local animcnt = self.animalcnt
+    local animcnt = self.childcount
     local temp = nil
+    ZXLog("produce 1", animcnt)
     if self.producefunc and animcnt > 0 then
         temp = {}
         for i = 1, animcnt do
-            local product, num = self.producefunc(self.inst)
-            if product and num > 0 then
-                local originnum = temp[product] or 0
-                temp[product] = originnum + num
+            local product = self.producefunc(self.inst)
+            if product[1] and product[2] then
+                ZXLog("produce 1", product[1], product[2])
+                local originnum = temp[product[1]] or 0
+                temp[product[1]] = originnum + product[2]
             end
         end
     end
@@ -113,17 +115,18 @@ end
 
 
 function Farm:Harvest(doer)
-    if self.productions and doer.components.inventory then
+    if self.productions ~= nil and doer.components.inventory then
         for k, v in pairs(self.productions) do
+            ZXLog("Harvest", k, v)
             local items = ZXSpawnPrefabs(k, v)
             if items ~= nil then
                 for _, iv in ipairs(items) do
                     doer.components.inventory:GiveItem(iv)
                 end
-                self.productions = nil
-                return true
             end
         end
+        self.productions = nil
+        return true
     end
     return false
 end
