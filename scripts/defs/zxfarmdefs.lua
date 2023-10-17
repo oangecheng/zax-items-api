@@ -72,15 +72,42 @@ local beefalofarm = {
 
     producetime = PRODUCE_BASE_TIME * 2,
     producefunc = function (inst)
-        -- 春天有百分之5的概率生产一个牛角
+        -- 春天有百分之10的概率生产一个牛角
         if TheWorld.state.isspring then
-            if math.random() < 0.05 then
+            if math.random() <= 0.1 then
                 return "horn", 1
             end
         end
         return math.random() <= 0.8 and "beefalowool", 2 or "meat",1
     end
 }
+
+
+
+
+local goatfarm = {
+    hatchitem = "zxgoat_soul",
+    hatchtime = HATCH_BASE_TIME * 2,
+    animal    = "zxgoat",
+    animalcnt = 10,
+
+    foodnum = 3,
+    foods = { 
+        "zxfarmfood_normal"
+    },
+
+    producetime = PRODUCE_BASE_TIME * 3,
+    producefunc = function (inst)
+        -- 春天下雨的时候有百分之10的概率生产一个奶
+        if TheWorld.state.israining and TheWorld.state.isspring then
+            if math.random() <= 0.1 then
+                return "goatmilk",1
+            end
+        end
+        return math.random() <= 0.3 and "lightninggoathorn",1 or "meat",2
+    end
+}
+
 
 
 
