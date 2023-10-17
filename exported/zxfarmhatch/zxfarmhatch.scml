@@ -1,82 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
-    <folder id="0" name="swap_soul">
-        <file id="0" name="swap_soul/soul.png" width="100" height="100" pivot_x="0.5" pivot_y="0.5"/>
+    <folder id="0" name="body">
+        <file id="0" name="body/bottom.png" width="400" height="400" pivot_x="0.5" pivot_y="0.2"/>
+        <file id="1" name="body/ball.png" width="400" height="400" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="2" name="body/deco.png" width="400" height="400" pivot_x="0.5" pivot_y="0.2"/>
+        <file id="3" name="body/support.png" width="400" height="400" pivot_x="0.5" pivot_y="0.2"/>
     </folder>
-    <folder id="1" name="body">
-        <file id="0" name="body/main.png" width="400" height="400" pivot_x="0.5" pivot_y="0.1"/>
-        <file id="1" name="body/ball.png" width="400" height="400" pivot_x="0.5" pivot_y="0.1"/>
+    <folder id="1" name="swap_soul">
+        <file id="0" name="swap_soul/soul.png" width="100" height="100" pivot_x="0.480392" pivot_y="0.382353"/>
     </folder>
     <entity id="0" name="zxfarmhatch">
-        <animation id="0" name="working" length="4000">
+        <animation id="0" name="idle" length="400">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="main" folder="1" file="0" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
-                    <object_ref id="1" name="soul" folder="0" file="0" abs_x="15" abs_y="190" abs_pivot_x="0.5" abs_pivot_y="0.5" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="1"/>
-                    <object_ref id="2" name="ball" folder="1" file="1" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="2"/>
-                </key>
-                <key id="1" time="1000">
-                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
-                    <object_ref id="1" timeline="2" key="1" z_index="1"/>
-                    <object_ref id="2" timeline="1" key="1" z_index="2"/>
-                </key>
-                <key id="2" time="2000">
-                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
-                    <object_ref id="1" timeline="2" key="2" z_index="1"/>
-                    <object_ref id="2" timeline="1" key="2" z_index="2"/>
-                </key>
-                <key id="3" time="3000">
-                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
-                    <object_ref id="1" timeline="2" key="3" z_index="1"/>
-                    <object_ref id="2" timeline="1" key="3" z_index="2"/>
+                    <object_ref id="0" name="bottom" folder="0" file="0" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.2" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" name="support" folder="0" file="3" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.2" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="1"/>
+                    <object_ref id="2" name="deco" folder="0" file="2" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.2" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="3" key="0" z_index="2"/>
+                    <object_ref id="3" name="ball" folder="0" file="1" abs_x="0" abs_y="120" abs_pivot_x="0.5" abs_pivot_y="0.5" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="3"/>
                 </key>
             </mainline>
-            <timeline id="0" name="main">
+            <timeline id="0" name="bottom">
                 <key id="0" spin="0">
-                    <object folder="1" file="0" angle="0"/>
-                </key>
-                <key id="1" time="2000" spin="0">
-                    <object folder="1" file="0" angle="0"/>
+                    <object folder="0" file="0" angle="0"/>
                 </key>
             </timeline>
             <timeline id="1" name="ball">
                 <key id="0" spin="0">
-                    <object folder="1" file="1" angle="0"/>
-                </key>
-                <key id="1" time="1000" spin="0">
-                    <object folder="1" file="1" y="10" angle="0" a="0.6"/>
-                </key>
-                <key id="2" time="2000" spin="0">
-                    <object folder="1" file="1" angle="0"/>
-                </key>
-                <key id="3" time="3000" spin="0">
-                    <object folder="1" file="1" y="-10" angle="0" a="0.6"/>
+                    <object folder="0" file="1" y="120" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="2" name="soul">
+            <timeline id="2" name="support">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="15" y="190" angle="0"/>
+                    <object folder="0" file="3" angle="0"/>
                 </key>
-                <key id="1" time="1000" spin="0">
-                    <object folder="0" file="0" x="15" y="200" angle="0" a="0.6"/>
-                </key>
-                <key id="2" time="2000" spin="0">
-                    <object folder="0" file="0" x="15" y="190" angle="0"/>
-                </key>
-                <key id="3" time="3000" spin="0">
-                    <object folder="0" file="0" x="15" y="180" angle="0" a="0.6"/>
+            </timeline>
+            <timeline id="3" name="deco">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" angle="0"/>
                 </key>
             </timeline>
         </animation>
-        <animation id="1" name="idle" length="400">
+        <animation id="1" name="working" length="3000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="main_000" folder="1" file="0" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" name="bottom" folder="0" file="0" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.2" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" name="support" folder="0" file="3" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.2" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="1"/>
+                    <object_ref id="2" name="deco" folder="0" file="2" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.2" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="3" key="0" z_index="2"/>
+                    <object_ref id="3" name="soul" folder="1" file="0" abs_x="0" abs_y="110" abs_pivot_x="0.480392" abs_pivot_y="0.382353" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="4" key="0" z_index="3"/>
+                    <object_ref id="4" name="ball" folder="0" file="1" abs_x="0" abs_y="120" abs_pivot_x="0.5" abs_pivot_y="0.5" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="4"/>
+                </key>
+                <key id="1" time="1501">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="3" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="4" key="1" z_index="3"/>
+                    <object_ref id="4" timeline="1" key="1" z_index="4"/>
+                </key>
+                <key id="2" time="3000">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="3" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="4" key="2" z_index="3"/>
+                    <object_ref id="4" timeline="1" key="1" z_index="4"/>
                 </key>
             </mainline>
-            <timeline id="0" name="main_000">
+            <timeline id="0" name="bottom">
                 <key id="0" spin="0">
-                    <object folder="1" file="0"/>
+                    <object folder="0" file="0" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="ball">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" y="120" angle="0"/>
+                </key>
+                <key id="1" time="1501" spin="0">
+                    <object folder="0" file="1" y="170" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="support">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="deco">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="soul">
+                <key id="0">
+                    <object folder="1" file="0" y="110" angle="0"/>
+                </key>
+                <key id="1" time="1501">
+                    <object folder="1" file="0" y="160" angle="180" a="0.6"/>
+                </key>
+                <key id="2" time="3000">
+                    <object folder="1" file="0" y="110" angle="359"/>
                 </key>
             </timeline>
         </animation>

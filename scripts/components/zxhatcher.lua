@@ -52,9 +52,13 @@ function Hatcher:Hatch(item, doer)
     if not self:IsWorking() and self:CanHatch(item, doer) then
         self.inst.components.timer:StartTimer(ZXFARM_TIMERS.HATCH, self.time)
         if self.onStartFunc then
-            self.onStartFunc(self.inst)
+            self.onStartFunc(self.inst, self.seed)
         end
-        item:Remove()
+        if item.components.stackable then
+            item.components.stackable:Get()
+        else
+            item:Remove()
+        end
     end
 end
 

@@ -3,6 +3,7 @@ local assets = {
     Asset("ANIM", "anim/zxmushroomhouse1.zip"),
     Asset("ANIM", "anim/zxfarmhatch.zip"),
     Asset("ANIM", "anim/zxfarmbowl.zip"),
+    Asset("ANIM", "anim/zxanimalsoul.zip")
 }
 
 
@@ -138,6 +139,7 @@ local function net(inst)
     inst.zxextrainfo  = net_string(inst.GUID, "zxextrainfo" , "zx_itemsapi_itemdirty") 
     inst:ListenForEvent("zx_itemsapi_itemdirty", function(inst)
         local newname = inst.zxchangename:value()
+        ZXLog("bowl net 1", newname)
 		if newname then
 			inst.displaynamefn = function(aaa)
 				return newname
@@ -145,6 +147,7 @@ local function net(inst)
 		end
 
         local extrainfo = inst.zxextrainfo:value()
+        ZXLog("bowl net 2", extrainfo)
         inst.zxextrainfostr = extrainfo or nil
 	end)
 end
@@ -180,7 +183,7 @@ local function MakeLand()
         inst.entity:AddMiniMapEntity()
         inst.entity:AddNetwork()
     
-        inst.AnimState:SetScale(2,2,2)
+        inst.AnimState:SetScale(2, 2, 2)
         inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
         inst.AnimState:SetLayer(LAYER_BACKGROUND)
         inst.AnimState:SetSortOrder(3)
@@ -257,8 +260,9 @@ local function MakeHatchMachine(name)
         inst:AddComponent("zxskinable")
 
         inst:AddComponent("zxhatcher")
-        inst.components.zxhatcher:SetOnStartFunc(function ()
+        inst.components.zxhatcher:SetOnStartFunc(function (_, seed)
             inst.AnimState:PlayAnimation("working", true)
+            inst.AnimState:OverrideSymbol("swap_soul", "zxanimalsoul", seed)
         end)
         inst.components.zxhatcher:SetOnStopFunc(function ()
             ZxFarmPushEvent(inst, ZXEVENTS.FARM_HATCH_FINISHED, { item = inst })
@@ -312,14 +316,15 @@ local function MakeFarmBowl(name)
 
     local function updateBowlState(inst)
         local feeder = inst.components.zxfeeder
-        if feeder:GetFoodNum() > feeder:GetFoodMaxNum() * LEFT_RATIO then
-            TheNet:Announce("充足的食物")
+        local foodleft = feeder:GetFoodNum()
+        local foodmax  = feeder:GetFoodMaxNum()
+        if foodleft >= foodmax * 0.5 then
             inst.AnimState:PlayAnimation("full")
+        elseif foodleft >= foodmax * LEFT_RATIO then
+            inst.AnimState:PlayAnimation("half")
         else
-            TheNet:Announce("食物太少了")
             inst.AnimState:PlayAnimation("empty")
         end
-        local foodleft = feeder:GetFoodNum()
         local info = "\n"..string.format(STRINGS.ZXFARMBOWL_FOODLEFT, tostring(foodleft))
         updateDisplayInfo(inst, info)
     end

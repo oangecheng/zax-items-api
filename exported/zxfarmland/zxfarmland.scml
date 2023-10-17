@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
     <folder id="0" name="land">
-        <file id="0" name="land/1.png" width="600" height="600" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="0" name="land/1.png" width="800" height="800" pivot_x="0.5" pivot_y="0.5"/>
     </folder>
     <entity id="0" name="zxfarmland">
         <animation id="0" name="land1" length="1000">

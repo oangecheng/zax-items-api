@@ -108,6 +108,7 @@ AddClassPostConstruct("widgets/hoverer", function (hoverer)
 	local oldSetString = hoverer.text.SetString
 	hoverer.text.SetString = function(text,str)
 		local target = GLOBAL.TheInput:GetHUDEntityUnderMouse()
+		target = (target and target.widget and target.widget.parent ~= nil and target.widget.parent.item) or TheInput:GetWorldEntityUnderMouse() or nil
 		if target and target.GUID and target.zxextrainfostr then
 			str = str..target.zxextrainfostr
 		end
