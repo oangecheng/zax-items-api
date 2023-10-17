@@ -207,7 +207,7 @@ AddRecipe2(
 AddRecipe2(
     "zxperdfarm",
     {Ingredient("boards", 5), Ingredient("dug_berrybush", 1), Ingredient("zxstone", 10, "images/inventoryimages/zxstone.xml")},
-    TECH.SCIENCE_TWO,
+    TECH.LOST,
     {
         placer = "zxperdfarm_placer",
         atlas = "images/zxskins/zxperdfarm/zxperdfarm.xml",
@@ -222,7 +222,7 @@ AddRecipe2(
 AddRecipe2(
     "zxpigmanfarm",
     {Ingredient("boards", 5), Ingredient("pigskin", 1), Ingredient("zxstone", 10, "images/inventoryimages/zxstone.xml")},
-    TECH.SCIENCE_TWO,
+    TECH.LOST,
     {
         placer = "zxpigmanfarm_placer",
         atlas = "images/zxskins/zxpigmanfarm/zxpigmanfarm.xml",
@@ -237,7 +237,7 @@ AddRecipe2(
 AddRecipe2(
     "zxfarmhatch",
     {Ingredient("gears", 1), Ingredient("twigs", 5), Ingredient("zxstone", 5, "images/inventoryimages/zxstone.xml") },
-    TECH.SCIENCE_TWO,
+    TECH.LOST,
     {
         placer = "zxfarmhatch_placer",
         atlas = "images/zxskins/zxfarmhatch/zxfarmhatch.xml",
@@ -252,7 +252,7 @@ AddRecipe2(
 AddRecipe2(
     "zxfarmbowl",
     {Ingredient("cutstone", 2), Ingredient("zxstone", 3, "images/inventoryimages/zxstone.xml") },
-    TECH.SCIENCE_TWO,
+    TECH.LOST,
     {
         placer = "zxfarmbowl_placer",
         atlas = "images/zxskins/zxfarmbowl/zxfarmbowl.xml",
@@ -269,7 +269,7 @@ AddRecipe2(
 AddRecipe2(
     "zxfarmfood_normal",
     {Ingredient("corn", 2), Ingredient("berries", 2), Ingredient("monstermeat", 1), },
-    TECH.SCIENCE_TWO,
+    TECH.LOST,
     {
         atlas="images/inventoryimages/zxfarmfood_normal.xml",
         image="zxfarmfood_normal.tex",
