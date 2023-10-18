@@ -1,6 +1,5 @@
 local assets = {
     Asset("ANIM", "anim/zxfarmland.zip"),
-    Asset("ANIM", "anim/zxmushroomhouse1.zip"),
     Asset("ANIM", "anim/zxfarmhatch.zip"),
     Asset("ANIM", "anim/zxfarmbowl.zip"),
     Asset("ANIM", "anim/zxanimalsoul.zip")
@@ -253,7 +252,8 @@ local function MakeHatchMachine(name)
         inst:AddComponent("zxhatcher")
         inst.components.zxhatcher:SetOnStartFunc(function (_, seed)
             inst.AnimState:PlayAnimation("working", true)
-            inst.AnimState:OverrideSymbol("swap_soul", "zxanimalsoul", seed)
+            local anim = (seed == "zxperd_soul") and "swap_soul" or seed
+            inst.AnimState:OverrideSymbol("swap_soul", "zxanimalsoul", anim)
         end)
         inst.components.zxhatcher:SetOnStopFunc(function ()
             ZxFarmPushEvent(inst, ZXEVENTS.FARM_HATCH_FINISHED, { item = inst })
@@ -390,6 +390,7 @@ local function MakeFarmBowl(name)
             inst:Remove()
         end)
         
+        updateBowlState(inst)
         inst.OnLoad = function (_, data)
             updateBowlState(inst)
         end

@@ -153,17 +153,17 @@ local function dropFarmItems(inst, data)
 			if not builder:KnowsRecipe(farm)then
 				lootChance(farm.."_blueprint", famrblueprint_ratio)
 			else
-				local soul = animalsouls[data.victim]
+				local soul = animalsouls[data.victim.prefab]
 				lootChance(soul, farmsoul_ratio)
-			end
-
-			if not builder:KnowsRecipe("zxfarmhatch")then
-				lootChance("zxfarmhatch_blueprint", famrblueprint_ratio)
-			end
-
-			if not builder:KnowsRecipe("zxfarmbowl") then
-				lootChance("zxfarmbowl_blueprint", famrblueprint_ratio)
-			end
+				
+				if not builder:KnowsRecipe("zxfarmhatch")then
+					lootChance("zxfarmhatch_blueprint", famrblueprint_ratio)
+				end
+	
+				if not builder:KnowsRecipe("zxfarmbowl") then
+					lootChance("zxfarmbowl_blueprint", famrblueprint_ratio)
+				end
+			end	
 		end
 	end		
 end

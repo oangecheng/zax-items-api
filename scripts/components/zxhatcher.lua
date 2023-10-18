@@ -57,7 +57,7 @@ function Hatcher:Hatch(item, doer)
             self.onStartFunc(self.inst, self.seed)
         end
         if item.components.stackable then
-            item.components.stackable:Get()
+            item.components.stackable:Get():Remove()
         else
             item:Remove()
         end

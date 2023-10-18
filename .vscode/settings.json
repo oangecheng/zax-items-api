@@ -91,7 +91,8 @@
         "RemoveEntity",
         "SpawnSaveRecord",
         "LaunchAt",
-        "ZXFarmAddHarmmerdAction"
+        "ZXFarmAddHarmmerdAction",
+        "ZXFarmObserveItemBuild"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
