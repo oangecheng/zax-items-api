@@ -19,7 +19,12 @@ local farmperd = {
 
 
     walkspeed = 2,
-    sound = "dontstarve/creatures/perd/gobble"
+    sound = "dontstarve/creatures/perd/gobble",
+    loots = {
+        "drumstick",
+        "drumstick",
+        "zxperd_soul"
+    }
 }
 
 
@@ -55,6 +60,11 @@ local farmpigman = {
 
     walkspeed = 2,
     sound = "dontstarve/pig/grunt",
+    loots = {
+        "meat",
+        "pigskin",
+        "zxpigman_soul"
+    }
 }
 
 
@@ -98,6 +108,12 @@ local farmbeefalo = {
 
     walkspeed = 1,
     sound = "dontstarve/beefalo/yell",
+    loots = {
+        "beefalowool",
+        "beefalowool",
+        "meat",
+        "zxbeefalo_soul"
+    }
 }
 
 

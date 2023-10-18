@@ -1,12 +1,7 @@
 
-local BIND_RADIUS = 4
-
+local DISTANCE = 4
 local FARMS = (require "defs/zxfarmdefs").farms
-
-
-local assets = {
-    -- Asset("ANIM", "anim/zxperdfarm.zip")
-}
+local assets = {}
 
 
 for k, v in pairs(FARMS) do
@@ -17,27 +12,48 @@ for k, v in pairs(FARMS) do
 end
 
 
+local function isValidBuilder(host, item)
+    if item:HasTag("ZXFEEDER") then
+        return not ZXFarmHasFeeder(host)
+    elseif item:HasTag("ZXHATCHER") then
+        return not ZXFarmHasHatcher(host)
+    end
+    return false
+end
+
+
+local function isValidDistance(host, item)
+    local fx, _, fz = host.Transform:GetWorldPosition()
+    local ix, _, iz = item.Transform:GetWorldPosition()
+    if fx and ix then
+        return math.abs(fx-ix) <= DISTANCE and math.abs(fz-iz) <= DISTANCE
+    else
+        if fx == nil then
+            host:Remove()
+        end 
+        if ix == nil then
+            item:Remove()
+        end
+    end
+    return false
+end
+
+
 
 --- 当农场的其他物品被建造时
 --- 如果在范围内，就将其与农场主体绑定
-local function onFarmItemBuild(inst, item)
-    local fx, _, fz = inst.Transform:GetWorldPosition()
-    local ix, _, iz = item.Transform:GetWorldPosition()
-    local bindId = inst.components.zxbindable:GetBindId()
+local function onFarmItemBuild(host, item)
+    -- 先判定农场有没有绑定过物品
+    if not isValidBuilder(host, item) then
+        return
+    end
 
-    -- 数据合法
-    if bindId and inst.farmdata and fx and ix then
-        if item:HasTag("ZXFEEDER") and ZXFarmHasFeeder(inst) then
-            return
-        end
-        if item:HasTag("ZXHATCHER") and ZXFarmHasHatcher(inst) then
-            return
-        end
-
-        -- 范围内
-        if math.abs(fx-ix) <= BIND_RADIUS and math.abs(fz-iz) <= BIND_RADIUS then
-            if item.components.zxbindable and item.components.zxbindable:CanBind() then
-                item.components.zxbindable:Bind(bindId, inst.farmdata)
+    local bindId = host.components.zxbindable:GetBindId()
+    if bindId and host.farmdata then
+        if isValidDistance(host, item) then
+            local bindable = item.components.zxbindable
+            if bindable and bindable:CanBind() then
+                bindable:Bind(bindId, host.farmdata)
             end
         end
     end
@@ -45,18 +61,16 @@ end
 
 
 
-local function MakeFarm(name, farm)
-
- 
+local function MakeFarm(name, data)
      
     --- 建造主体的时候会生成地皮
     local function onBuild(inst)
         local x,y,z = inst.Transform:GetWorldPosition()
         local bindId = inst.prefab.."x"..tostring(x).."y"..tostring(y).."z"..tostring(z)
         -- 数据就在主体结构这里，不需要绑定数据
-        inst.components.zxbindable:Bind(bindId, inst.farmdata)
+        inst.components.zxbindable:Bind(bindId, data)
         local land = SpawnPrefab("zxfarmland")
-        land.components.zxbindable:Bind(bindId, inst.farmdata)
+        land.components.zxbindable:Bind(bindId, data)
         land.Transform:SetPosition(x, y, z)
     end
 
@@ -84,11 +98,11 @@ local function MakeFarm(name, farm)
             return inst
         end
 
-        inst.farmdata = farm
+        inst.farmdata = data
     
         inst:AddComponent("timer")
         inst:AddComponent("inspectable")
-        inst.components.inspectable.descriptionfn = function (_, viewer)
+        inst.components.inspectable.descriptionfn = function (_, _)
             local childleft = inst.components.zxfarm:GetLeftChildNum()
             if childleft > 0 then
                 return string.format(STRINGS.ZXFARM_SPACELEFT, tostring(childleft))
@@ -105,28 +119,28 @@ local function MakeFarm(name, farm)
         inst:AddComponent("zxskinable")
 
         inst:AddComponent("zxfarm")
-        inst.components.zxfarm:SetChild(farm.animal)
-        inst.components.zxfarm:SetChildMaxCnt(farm.animalcnt)
-        inst.components.zxfarm:SetProduceFunc(farm.producefunc)
-        inst.components.zxfarm:SetProduceTime(farm.producetime)
-        inst.components.zxfarm:SetFoodNum(farm.foodnum)
+        inst.components.zxfarm:SetChild(data.animal)
+        inst.components.zxfarm:SetChildMaxCnt(data.animalcnt)
+        inst.components.zxfarm:SetProduceFunc(data.producefunc)
+        inst.components.zxfarm:SetProduceTime(data.producetime)
+        inst.components.zxfarm:SetFoodNum(data.foodnum)
 
         inst:AddComponent("zxbindable")
         inst.components.zxbindable:SetOnUnBindFunc(function(_, _, _)
-            ZXLog("removefarm")
             inst:Remove()
         end)
-        TheWorld:ListenForEvent(ZXEVENTS.FARM_ITEM_BUILD, function (_, data)
-            onFarmItemBuild(inst, data.item)
-        end)
+   
+        --- 监听农场事件推送
         inst:ListenForEvent(ZXEVENTS.FARM_ADD_FOOD, function ()
             inst.components.zxfarm:StartProduce()
         end)
         inst:ListenForEvent(ZXEVENTS.FARM_HATCH_FINISHED, function ()
             inst.components.zxfarm:AddFarmAnimal()
         end)
-
         inst:ListenForEvent("onbuilt", onBuild)
+        inst:ListenForEvent(ZXEVENTS.FARM_ITEM_BUILD, function (_, event)
+            onFarmItemBuild(inst, event.item)
+        end)
         
         return inst
     end

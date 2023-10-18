@@ -125,15 +125,6 @@ end
 
 
 
-
---- 农场物品被建造之后，push事件
-local function observeItemBuild(inst)
-    inst:ListenForEvent("onbuilt", function (item)
-        TheWorld:PushEvent(ZXEVENTS.FARM_ITEM_BUILD, { item = item})
-    end)
-end
-
-
 local function net(inst)
     inst.zxchangename = net_string(inst.GUID, "zxchangename", "zx_itemsapi_itemdirty")
     inst.zxextrainfo  = net_string(inst.GUID, "zxextrainfo" , "zx_itemsapi_itemdirty") 
@@ -271,7 +262,7 @@ local function MakeHatchMachine(name)
 
 
         -- 农场组件绑定相关，绑定之后，设置孵化的物品和孵化时间
-        observeItemBuild(inst)
+        ZXFarmObserveItemBuild(inst)
         inst:AddComponent("zxbindable")
         inst.components.zxbindable:SetOnBindFunc(function (_, _, data)
             if not data then return end
@@ -380,7 +371,7 @@ local function MakeFarmBowl(name)
         end)
 
         -- 农场组件绑定，成功绑定，设置可以投放的食物参数
-        observeItemBuild(inst)
+        ZXFarmObserveItemBuild(inst)
         inst:AddComponent("zxbindable")
         inst.components.zxbindable:SetOnBindFunc(function (_, _, data)
             if not data then return end

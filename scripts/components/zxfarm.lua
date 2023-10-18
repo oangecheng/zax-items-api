@@ -16,13 +16,11 @@ end
 local function produce(self)
     local animcnt = self.childcount
     local temp = nil
-    ZXLog("produce 1", animcnt)
     if self.producefunc and animcnt > 0 then
         temp = {}
         for i = 1, animcnt do
             local product = self.producefunc(self.inst)
             if product[1] and product[2] then
-                ZXLog("produce 1", product[1], product[2])
                 local originnum = temp[product[1]] or 0
                 temp[product[1]] = originnum + product[2]
             end
@@ -117,7 +115,6 @@ end
 function Farm:Harvest(doer)
     if self.productions ~= nil and doer.components.inventory then
         for k, v in pairs(self.productions) do
-            ZXLog("Harvest", k, v)
             local items = ZXSpawnPrefabs(k, v)
             if items ~= nil then
                 for _, iv in ipairs(items) do
@@ -141,7 +138,8 @@ function Farm:AddFarmAnimal()
             ent.Transform:SetPosition(x, y, z)
 
             local bindId = self.inst.components.zxbindable:GetBindId()
-            ent.components.zxbindable:Bind(bindId)
+            ent.components.zxbindable:Bind(bindId, self.inst.farmdata)
+
             if ent.components.zxanimal then
                 ent.components.zxanimal:SetFarmPosition(x, y, z)
             end
