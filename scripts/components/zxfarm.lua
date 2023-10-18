@@ -1,6 +1,6 @@
 
 local PRODUCTION_MAX_CNT = 100
-
+local TIMER = "produce"
 
 local function productionsCnt(self)
     local sum = 0
@@ -54,7 +54,7 @@ local Farm = Class(function (self, inst)
     self.foodnum = 1
 
     self.inst:ListenForEvent("timerdone", function (_, data)
-        if data.name == ZXFARM_TIMERS.PRODUCE then
+        if data.name == TIMER then
             produce(self)
             self:StartProduce()
         end
@@ -148,10 +148,10 @@ function Farm:AddFarmAnimal()
 
 
             local timer = self.inst.components.timer        
-            if timer:TimerExists(ZXFARM_TIMERS.PRODUCE) then
+            if timer:TimerExists(TIMER) then
                 if ZXFarmEatFood(self.inst, 1) then
-                    local timeleft = timer:GetTimeLeft(ZXFARM_TIMERS.PRODUCE) * 0.9
-                    timer:SetTimeLeft(ZXFARM_TIMERS.PRODUCE, timeleft)
+                    local timeleft = timer:GetTimeLeft(TIMER) * 0.9
+                    timer:SetTimeLeft(TIMER, timeleft)
                 end  
             else
                 -- 第一个动物需要启动生产机制
@@ -173,13 +173,13 @@ function Farm:StartProduce()
     end
 
     local inst = self.inst
-    if inst.components.timer:TimerExists(ZXFARM_TIMERS.PRODUCE) then
+    if inst.components.timer:TimerExists(TIMER) then
         return
     end
     local animcnt = self.childcount
     local foodneed = (self.foodnum or 1) * animcnt
     if self.time > 0 and animcnt > 0 and ZXFarmEatFood(inst, foodneed) then
-        inst.components.timer:StartTimer(ZXFARM_TIMERS.PRODUCE, self.time)
+        inst.components.timer:StartTimer(TIMER, self.time)
     end
 end
 

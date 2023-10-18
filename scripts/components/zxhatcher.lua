@@ -1,4 +1,6 @@
 
+local TIMER = "hatching"
+
 
 local Hatcher = Class(function (self, inst)
     self.inst = inst
@@ -6,7 +8,7 @@ local Hatcher = Class(function (self, inst)
     self.time = 480 -- 默认一天时间
 
     self.inst:ListenForEvent("timerdone", function (_, data)
-        if data.name == ZXFARM_TIMERS.HATCH then
+        if data.name == TIMER then
             if self.onStopFunc then
                 self.onStopFunc(self.inst)
             end        
@@ -39,7 +41,7 @@ end
 
 
 function Hatcher:IsWorking()
-    return self.inst.components.timer:TimerExists(ZXFARM_TIMERS.HATCH)
+    return self.inst.components.timer:TimerExists(TIMER)
 end
 
 
@@ -50,7 +52,7 @@ end
 
 function Hatcher:Hatch(item, doer)
     if not self:IsWorking() and self:CanHatch(item, doer) then
-        self.inst.components.timer:StartTimer(ZXFARM_TIMERS.HATCH, self.time)
+        self.inst.components.timer:StartTimer(TIMER, self.time)
         if self.onStartFunc then
             self.onStartFunc(self.inst, self.seed)
         end

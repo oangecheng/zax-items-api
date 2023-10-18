@@ -2,12 +2,6 @@
 
 ZXFARMS = {}
 
-ZXFARM_TIMERS = {
-    HATCH = "hatching",
-    PRODUCE = "producing",
-}
-
-
 local function getBindId(inst)
     return inst.components.zxbindable and inst.components.zxbindable:GetBindId() or nil
 end
