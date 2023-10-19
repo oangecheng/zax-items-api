@@ -88,6 +88,54 @@ configuration_options = {
 	},
 
 
+	Title(ch and "农场设置" or "farm settings"),
+	{
+		name = "zxperd_size",
+		label = ch and "小火鸡尺寸设置" or "farm perd size settings",
+		options = {
+			{description = ch and "默认" or "default", data = 0.4},
+			{description = ch and "小" or "esay", data = 0.3},
+			{description = ch and "较大" or "difficult", data = 0.5},
+			{description = ch and "大" or "difficult", data = 0.6},
+		},
+		default = 0.4
+	},
+	{
+		name = "zxpigman_size",
+		label = ch and "小猪人尺寸设置" or "farm pigman size settings",
+		options = {
+			{description = ch and "默认" or "default", data = 0.4},
+			{description = ch and "小" or "esay", data = 0.3},
+			{description = ch and "较大" or "difficult", data = 0.5},
+			{description = ch and "大" or "difficult", data = 0.6},
+		},
+		default = 0.4
+	},
+	{
+		name = "zxbeefalo_size",
+		label = ch and "小野牛尺寸设置" or "farm beefalo size settings",
+		options = {
+			{description = ch and "默认" or "default", data = 0.4},
+			{description = ch and "小" or "esay", data = 0.3},
+			{description = ch and "较大" or "difficult", data = 0.5},
+			{description = ch and "大" or "difficult", data = 0.6},
+		},
+		default = 0.4
+	},
+	{
+		name = "zxgoat_size",
+		label = ch and "小山羊尺寸设置" or "farm goat size settings",
+		options = {
+			{description = ch and "默认" or "default", data = 0.4},
+			{description = ch and "小" or "esay", data = 0.3},
+			{description = ch and "较大" or "difficult", data = 0.5},
+			{description = ch and "大" or "difficult", data = 0.6},
+		},
+		default = 0.4
+	},
+
+
+
 	Title(ch and "永亮灯设置" or "Perpetual light settings"),
 	{
 		name  = "zxlightradius",

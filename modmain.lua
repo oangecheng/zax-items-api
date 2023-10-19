@@ -11,9 +11,16 @@ TUNING.ZX_GRANARY_DIFFICULT = GetModConfigData("zx_granary_difficult")
 -- 一些其他物品
 TUNING.ZX_MEATRACK = GetModConfigData("zx_meatrack")
 TUNING.ZX_BEEBOX = GetModConfigData("zx_beebox")
+
+
 ZXTUNING.IS_CH = GetModConfigData("zx_items_language") == "ch"
 ZXTUNING.LIGHT_RADIUS_MULTI = GetModConfigData("zxlightradius") or 1
 ZXTUNING.BOX_FRESH_RATE = TUNING.ZX_GRANARY_FRESHRATE or 0.2
+ZXTUNING.ZXPERD_SIZE = GetModConfigData("zxperd_size") or 0.4
+ZXTUNING.ZXPIGMAN_SIZE = GetModConfigData("zxpigman_size") or 0.4
+ZXTUNING.ZXBEEFALO_SIZE = GetModConfigData("zxbeefalo_size") or 0.4
+ZXTUNING.ZXGOAT_SIZE = GetModConfigData("zxgoat_size") or 0.4
+
 
 modimport(ZXTUNING.IS_CH and "utils/strings_ch.lua" or "utils/strings_eng.lua")
 

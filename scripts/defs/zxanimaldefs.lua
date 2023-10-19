@@ -14,7 +14,8 @@ local farmperd = {
     anim = {
         bank = "perd",
         build = "perd",
-        idle = "idle_loop"
+        idle = "idle_loop",
+        size = ZXTUNING.ZXPERD_SIZE,
     },
 
 
@@ -33,18 +34,7 @@ local farmpigman = {
     assets = {
         Asset("ANIM", "anim/ds_pig_basic.zip"),
         Asset("ANIM", "anim/ds_pig_actions.zip"),
-        Asset("ANIM", "anim/ds_pig_attacks.zip"),
-        Asset("ANIM", "anim/ds_pig_boat_jump.zip"),
-        Asset("ANIM", "anim/pig_build.zip"),
-        Asset("ANIM", "anim/pigspotted_build.zip"),
-        Asset("ANIM", "anim/pig_guard_build.zip"),
-        Asset("ANIM", "anim/pigman_yotb.zip"),
-        Asset("ANIM", "anim/werepig_build.zip"),
-        Asset("ANIM", "anim/werepig_basic.zip"),
-        Asset("ANIM", "anim/werepig_actions.zip"),
-        Asset("ANIM", "anim/pig_token.zip"),
         Asset("SOUND", "sound/pig.fsb"),
-        Asset("ANIM", "anim/merm_actions.zip"),
     },
 
     initfunc = function (inst)
@@ -55,7 +45,8 @@ local farmpigman = {
     anim = {
         bank = "pigman",
         build = "pig_build",
-        idle = "idle_loop"
+        idle = "idle_loop",
+        size = ZXTUNING.ZXPIGMAN_SIZE,
     },
 
     walkspeed = 2,
@@ -101,6 +92,7 @@ local farmbeefalo = {
         bank = "beefalo",
         build = "beefalo_build",
         idle = "idle_loop",
+        size = ZXTUNING.ZXBEEFALO_SIZE,
         extrafunc = function (inst)
             inst.AnimState:Hide("HEAT")
         end
