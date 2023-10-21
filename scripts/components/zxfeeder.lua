@@ -2,7 +2,7 @@
 
 local Feeder = Class(function (self, inst)
     self.inst = inst
-    self.maxfoodnum = 100
+    self.maxfoodnum = 120
     self.foods = {}
     self.foodnum = 0
 end)

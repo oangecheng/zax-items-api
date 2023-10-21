@@ -72,7 +72,7 @@ end
 
 
 function Farm:SetChildMaxCnt(max)
-    self.max = max or 10
+    self.childmax = max or 10
 end
 
 
@@ -123,6 +123,7 @@ function Farm:Harvest(doer)
             end
         end
         self.productions = nil
+        self:StartProduce()
         return true
     end
     return false

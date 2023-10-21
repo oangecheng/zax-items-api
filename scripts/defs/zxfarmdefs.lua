@@ -46,7 +46,7 @@ local pigfarm = {
     hatchitem = "zxpigman_soul",
     hatchtime = ZXTUNING.DEBUG and 10 or HATCH_BASE_TIME * 1.5,
     animal    = "zxpigman",
-    animalcnt = 10,
+    animalcnt = 8,
 
     foodnum = 2,
     foods = { 
@@ -71,7 +71,7 @@ local beefalofarm = {
     hatchitem = "zxbeefalo_soul",
     hatchtime = ZXTUNING.DEBUG and 10 or HATCH_BASE_TIME * 2,
     animal    = "zxbeefalo",
-    animalcnt = 10,
+    animalcnt = 6,
 
     foodnum = 2,
     foods = { 
@@ -87,7 +87,7 @@ local beefalofarm = {
             end
         end
 
-        if math.random() < 0.3 then
+        if math.random() <= 0.7 then
             return {"beefalowool", 2}
         else
             return { "meat", 1 }
@@ -100,9 +100,9 @@ local beefalofarm = {
 
 local goatfarm = {
     hatchitem = "zxgoat_soul",
-    hatchtime = ZXTUNING.DEBUG and 10 or HATCH_BASE_TIME * 2,
+    hatchtime = ZXTUNING.DEBUG and 10 or HATCH_BASE_TIME * 3,
     animal    = "zxgoat",
-    animalcnt = 10,
+    animalcnt = 6,
 
     foodnum = 3,
     foods = { 
@@ -120,7 +120,7 @@ local goatfarm = {
         if math.random() <= 0.3 then
             return { "lightninggoathorn", 1}
         else
-            return { "meat", 2}
+            return { "meat", 1}
         end
     end
 }
@@ -132,7 +132,8 @@ return {
     farms = {
         zxperdfarm = perdfarm,
         zxpigmanfarm  = pigfarm,
-        -- zxbeefalofarm  = beefalofarm,
+        zxbeefalofarm  = beefalofarm,
+        zxgoatfarm = goatfarm,
     },
 
     souls = souls,

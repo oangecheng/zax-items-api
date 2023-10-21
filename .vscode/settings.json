@@ -92,7 +92,9 @@
         "SpawnSaveRecord",
         "LaunchAt",
         "ZXFarmAddHarmmerdAction",
-        "ZXFarmObserveItemBuild"
+        "ZXFarmObserveItemBuild",
+        "TimeEvent",
+        "FRAMES"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

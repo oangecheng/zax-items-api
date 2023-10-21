@@ -122,13 +122,15 @@ end)
 local famrblueprints = {
 	 ["perd"] = "zxperdfarm",
 	 ["pigman"] = "zxpigmanfarm",
+	 ["beefalo"] = "zxbeefalofarm",
+	 ["lightninggoat"] = "zxgoatfarm"
 }
 
 local animalsouls = {
 	["perd"] = "zxperd_soul",
 	["pigman"] = "zxpigman_soul",
 	["beefalo"] = "zxbeefalo_soul",
-	["goat"] = "zxgoat_soul",
+	["lightninggoat"] = "zxgoat_soul",
 }
 
 local famrblueprint_ratio = ZXTUNING.DEBUG and 0.8 or 0.2

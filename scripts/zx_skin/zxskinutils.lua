@@ -38,15 +38,17 @@ local skinnamesdef = {
 
     ["1600"] = isCh and "木质手推车" or "trolley",
     ["1601"] = isCh and "牛仔卷" or "grass rolls",
+    ["1602"] = isCh and "秋日草垛" or "autumn haystacks",
     ["1700"] = isCh and "多彩蘑菇房" or "mushroom house",
     ["1800"] = isCh and "多彩蔷薇" or "rosebush well",
     ["1801"] = isCh and "宫廷风" or "court style",
 
     ["1900"] = isCh and "花园巢" or "garden style",
     ["1950"] = isCh and "石质盆" or "stone style",
-    ["2000"] = isCh and "乡野鸡舍" or "country style",
-    ["2100"] = isCh and "树干小屋" or "tree house",
-
+    ["2000"] = isCh and "浆果鸡舍" or "berry house",
+    ["2100"] = isCh and "树干猪屋" or "tree house",
+    ["2200"] = isCh and "乡野牛棚" or "country cow shed",
+    ["2300"] = isCh and "草原羊圈" or "country sheepfold",
 }
 
 
@@ -156,6 +158,8 @@ registerSkin("zxeggbasket", "1503", "zxeggbasket4", 6, ZX_SKINTYPE.FREE)
 -- 草车
 registerSkin("zx_hay_cart", "1600", "zxhaycart1",  7, ZX_SKINTYPE.FREE, true)
 registerSkin("zx_hay_cart", "1601", "zxhaycart2",  7, ZX_SKINTYPE.FREE)
+registerSkin("zx_hay_cart", "1602", "zxhaycart3",  7, ZX_SKINTYPE.SPONSOR)
+
 -- 蘑菇房子
 registerSkin("zxmushroomhouse", "1700", "zxmushroomhouse1",  8, ZX_SKINTYPE.FREE, true)
 -- 水井
@@ -164,11 +168,15 @@ registerSkin("zx_well", "1801", "zxwell1", 9, ZX_SKINTYPE.SPONSOR)
 
 registerSkin("zxfarmhatch", "1900", "zxfarmhatch", 10, ZX_SKINTYPE.FREE, true)
 registerSkin("zxfarmbowl" , "1950", "zxfarmbowl", 11, ZX_SKINTYPE.FREE, true)
+
 -- 火鸡农场
 registerSkin("zxperdfarm", "2000", "zxperdfarm", 12, ZX_SKINTYPE.FREE, true)
 -- 猪人农场
 registerSkin("zxpigmanfarm", "2100", "zxpigmanfarm", 13, ZX_SKINTYPE.FREE, true)
-
+-- 皮弗娄牛农场
+registerSkin("zxbeefalofarm", "2200", "zxbeefalofarm", 14, ZX_SKINTYPE.FREE, true)
+-- 山羊农场
+registerSkin("zxgoatfarm", "2300", "zxgoatfarm", 15, ZX_SKINTYPE.FREE, true)
 
 
 

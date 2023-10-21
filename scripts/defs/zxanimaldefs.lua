@@ -65,23 +65,7 @@ local farmbeefalo = {
     assets = {
         Asset("ANIM", "anim/beefalo_basic.zip"),
         Asset("ANIM", "anim/beefalo_actions.zip"),
-        Asset("ANIM", "anim/beefalo_actions_domestic.zip"),
-        Asset("ANIM", "anim/beefalo_actions_quirky.zip"),
-        Asset("ANIM", "anim/beefalo_build.zip"),
-        Asset("ANIM", "anim/beefalo_shaved_build.zip"),
-        Asset("ANIM", "anim/beefalo_baby_build.zip"),
-        Asset("ANIM", "anim/beefalo_domesticated.zip"),
-        Asset("ANIM", "anim/beefalo_personality_docile.zip"),
-        Asset("ANIM", "anim/beefalo_personality_ornery.zip"),
-        Asset("ANIM", "anim/beefalo_personality_pudgy.zip"),
-        Asset("ANIM", "anim/beefalo_skin_change.zip"),
-        Asset("ANIM", "anim/beefalo_carrat_idles.zip"),
-        Asset("ANIM", "anim/yotc_carrat_colour_swaps.zip"),
-        Asset("ANIM", "anim/beefalo_carry.zip"),
-        Asset("ANIM", "anim/beefalo_fx.zip"),
-        Asset("ANIM", "anim/poop_cloud.zip"),
         Asset("SOUND", "sound/beefalo.fsb"),
-        Asset("MINIMAP_IMAGE", "beefalo_domesticated"),
     },
 
     initfunc = function (inst)
@@ -110,8 +94,45 @@ local farmbeefalo = {
 
 
 
+
+local farmgoat = {
+
+    assets = {
+        Asset("ANIM", "anim/lightning_goat_build.zip"),
+        Asset("ANIM", "anim/lightning_goat_shocked_build.zip"),
+        Asset("ANIM", "anim/lightning_goat_basic.zip"),
+        Asset("ANIM", "anim/lightning_goat_actions.zip"),
+        Asset("SOUND", "sound/lightninggoat.fsb"),
+    },
+
+    initfunc = function (inst)
+        inst.Transform:SetFourFaced()
+    end,
+    sg = "ZxGoatSG",
+    anim = {
+        bank = "lightning_goat",
+        build = "lightning_goat_build",
+        idle = "idle_loop",
+        size = ZXTUNING.ZXBEEFALO_SIZE,
+        extrafunc = function (inst)
+            inst.AnimState:Hide("fx")
+        end
+    },
+
+    walkspeed = 1,
+    sound = "dontstarve_DLC001/creatures/lightninggoat/jacobshorn",
+    loots = {
+        "meat",
+        "meat",
+        "zxgoat_soul"
+    }
+}
+
+
+
 local def  = {}
 def.zxperd    = farmperd
 def.zxpigman  = farmpigman
 def.zxbeefalo = farmbeefalo
+def.zxgoat    = farmgoat
 return def

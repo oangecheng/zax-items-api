@@ -221,7 +221,7 @@ AddRecipe2(
 -- 猪人农场
 AddRecipe2(
     "zxpigmanfarm",
-    {Ingredient("boards", 5), Ingredient("pigskin", 1), Ingredient("zxstone", 10, "images/inventoryimages/zxstone.xml")},
+    {Ingredient("boards", 5), Ingredient("pigskin", 2), Ingredient("zxstone", 10, "images/inventoryimages/zxstone.xml")},
     TECH.LOST,
     {
         placer = "zxpigmanfarm_placer",
@@ -231,6 +231,37 @@ AddRecipe2(
     },
     {"GARDENING", "STRUCTURES"}
 )
+
+-- 皮弗娄牛农场
+AddRecipe2(
+    "zxbeefalofarm",
+    {Ingredient("boards", 5), Ingredient("horn", 1), Ingredient("zxstone", 10, "images/inventoryimages/zxstone.xml")},
+    TECH.LOST,
+    {
+        placer = "zxbeefalofarm_placer",
+        atlas = "images/zxskins/zxbeefalofarm/zxbeefalofarm.xml",
+        image = "zxbeefalofarm.tex",
+        min_spacing = 2,
+    },
+    {"GARDENING", "STRUCTURES"}
+)
+
+
+-- 山羊农场
+AddRecipe2(
+    "zxgoatfarm",
+    {Ingredient("boards", 5), Ingredient("lightninggoathorn", 1), Ingredient("zxstone", 10, "images/inventoryimages/zxstone.xml")},
+    TECH.LOST,
+    {
+        placer = "zxgoatfarm_placer",
+        atlas = "images/zxskins/zxgoatfarm/zxgoatfarm.xml",
+        image = "zxgoatfarm.tex",
+        min_spacing = 2,
+    },
+    {"GARDENING", "STRUCTURES"}
+)
+
+
 
 
 -- 孵化器

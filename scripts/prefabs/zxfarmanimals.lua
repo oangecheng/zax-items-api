@@ -71,8 +71,7 @@ local function MakeAnimal(animal, data)
             inst.components.lootdropper:DropLoot()
             inst:Remove()
         end)
-
-        inst:SetStateGraph("ZxAnimalSG")
+        inst:SetStateGraph(data.sg or "ZxAnimalSG")
         inst:AddComponent("inspectable")
 
         -- 5~10s移动一次

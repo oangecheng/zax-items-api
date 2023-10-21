@@ -90,7 +90,7 @@ local function MakeFarm(name, data)
         RemovePhysicsColliders(inst)
         inst.AnimState:SetBank(name) 
         inst.AnimState:SetBuild(name)
-        inst.AnimState:PlayAnimation("idle")
+        inst.AnimState:PlayAnimation("idle", true)
     
         inst.entity:SetPristine()
         
