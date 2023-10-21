@@ -1,3 +1,25 @@
+
+---- 动作相关
+STRINGS.ZXACTION = {
+	ZXSHOPOPEN = "Open a shop",
+	ZXHATCH = "Hatch",
+	ZXADDFOOD = "Add food",
+	ZXFARMHARVEST = "Harvest product",
+}
+
+STRINGS.CHARACTERS.GENERIC.ACTIONFAIL.ZXHATCH = {
+	NO_HOST = "There are no usable farms nearby!",
+	NO_FEEDER = "There is no available feed basin nearby!",
+	BUSY = "A new life is hatching!",
+	NO_SPACE = "The farm is already crowded with small animals!"
+}
+STRINGS.CHARACTERS.GENERIC.ACTIONFAIL.ZXADDFOOD = {
+	FULL = "The feed is overflowing!",
+}
+STRINGS.CHARACTERS.GENERIC.ACTIONFAIL.ZXFARMHARVEST = {
+	EMPTY = "There's nothing in here!",
+}
+
 STRINGS.NAMES.ZX_GRANARY_VEGGIE = "Vegetable granary"
 STRINGS.RECIPE_DESC.ZX_GRANARY_VEGGIE = "It can store a lot of vegetables!"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZX_GRANARY_VEGGIE = "The vegetables inside are fresh!"
@@ -83,6 +105,62 @@ STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXEGGBASKET = "cute basket!"
 STRINGS.NAMES.ZXMUSHROOMHOUSE = "Mushroom house"
 STRINGS.RECIPE_DESC.ZXMUSHROOMHOUSE = "can store a lot of mushroom!"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXMUSHROOMHOUSE = "beautiful house!"
+
+
+
+-- 建家石
+STRINGS.NAMES.ZXSTONE= "Home building stone"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXSTONE = "a magical building materials ~"
+
+
+-- 魂魄
+STRINGS.NAMES.ZXPERD_SOUL = "Perd's soul."
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXPERD_SOUL = "Put it in a Perd farm incubator and something amazing happens!"
+STRINGS.NAMES.ZXPIGMAN_SOUL = "Pigman's soul"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXPIGMAN_SOUL = "Put it in the Pigman Farm incubator and something amazing happens!"
+STRINGS.NAMES.ZXBEEFALO_SOUL = "Beefalo's soul"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXBEEFALO_SOUL = "Put it in the incubator at the Beefalo farm and something amazing happens!"
+STRINGS.NAMES.ZXGOAT_SOUL= "Goat's soul"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXGOAT_SOUL = "Put it in the goat farm incubator and something amazing happens!"
+-- 饲料
+STRINGS.NAMES.ZXFARMFOOD_NORMAL= "Universal feed"
+STRINGS.RECIPE_DESC.ZXFARMFOOD_NORMAL = "Used to feed hungry animals!"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXFARMFOOD_NORMAL = "It's full of nutrients!"
+
+STRINGS.ZX_HASBIND = "Bound"
+STRINGS.ZXFARM_SPACELEFT = "free space:%s"
+STRINGS.ZXFARM_SPACENO = "The farm was already crowded with small animals!"
+STRINGS.NAMES.ZXPERDFARM = "Perd farm"
+STRINGS.RECIPE_DESC.ZXPERDFARM = "A place where young perd can play together!"
+STRINGS.NAMES.ZXPIGMANFARM = "Pigman farm"
+STRINGS.RECIPE_DESC.ZXPIGMANFARM = "This is Pigman territory!"
+STRINGS.NAMES.ZXBEEFALOFARM = "Beefalo farm"
+STRINGS.RECIPE_DESC.ZXBEEFALOFARM = "Pull the hair of your cattle here as much as you like!"
+STRINGS.NAMES.ZXGOATFARM = "Goat farm"
+STRINGS.RECIPE_DESC.ZXGOATFARM = "This is Big Wolf's favorite goat village!"
+
+STRINGS.NAMES.ZXFARMHATCH = "Incubator"
+STRINGS.RECIPE_DESC.ZXFARMHATCH = "Used to hatch small animals!"
+STRINGS.ZXFARMHATCH_WORKING = "A little life is in the making~"
+STRINGS.ZXFARMHATCH_IDLE= "Full of life energy~"
+
+
+STRINGS.NAMES.ZXPERD = "Little Perd"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXPERD = "Can it play basketball?"
+STRINGS.NAMES.ZXPIGMAN = "Little Pigman"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXPIGMAN = "You're a good person.!"
+STRINGS.NAMES.ZXBEEFALO = "Little Cow"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXBEEFALO = "Brave Niuniu is not afraid of difficulties！"
+STRINGS.NAMES.ZXGOAT = "Little Goat"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXGOAT = "Don't look at me. I'm just a sheep~"
+
+
+STRINGS.NAMES.ZXFARMBOWL = "Feeding bowl"
+STRINGS.RECIPE_DESC.ZXFARMBOWL = "Used to hold food for small animals!"
+STRINGS.ZXFARMBOWL_FOODLEFT = "Feed surplus: %s"
+STRINGS.ZXFARMBOWL_EMPTY = "There's nothing left~"
+STRINGS.ZXFARMBOWL_NOTENOUGH = "There's not much feed left. Let's add it~"
+STRINGS.ZXFARMBOWL_ENOUGH = "There was plenty of feed and the little animals were full~"
 
 
 STRINGS.ZX_SKIN_PAGE_TITLE = "Items shop"
