@@ -129,7 +129,6 @@ local function net(inst)
     inst.zxextrainfo  = net_string(inst.GUID, "zxextrainfo" , "zx_itemsapi_itemdirty") 
     inst:ListenForEvent("zx_itemsapi_itemdirty", function(inst)
         local newname = inst.zxchangename:value()
-        ZXLog("bowl net 1", newname)
 		if newname then
 			inst.displaynamefn = function(aaa)
 				return newname
@@ -137,7 +136,6 @@ local function net(inst)
 		end
 
         local extrainfo = inst.zxextrainfo:value()
-        ZXLog("bowl net 2", extrainfo)
         inst.zxextrainfostr = extrainfo or nil
 	end)
 end

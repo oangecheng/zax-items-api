@@ -73,13 +73,11 @@ function Feeder:GiveFood(food, doer)
             end
         end
     end
-    ZXLog("GiveFood", self.foodnum)
 end
 
 
 
 function Feeder:EatFood(num)
-    ZXLog("EatFood", self.foodnum, num)
     if self.foodnum >= num then
         self.foodnum = self.foodnum - num
         if self.onEatFoodFunc then

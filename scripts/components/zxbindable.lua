@@ -32,7 +32,6 @@ end
 --- @param id string 绑定的id，需要唯一性
 --- @param shareData any 共享的数据
 function Bindable:Bind(id, shareData)
-    ZXLog("Bind", self.inst.prefab)
     if not self.bindId and id then
         self.bindId = id
         self.shareData = shareData
@@ -46,7 +45,6 @@ end
 
 --- 解除绑定
 function Bindable:Unbind()
-    ZXLog("Unbind", self.onUnBindFunc, self.bindId)
     if self.onUnBindFunc and self.bindId and self.shareData then
         self.onUnBindFunc(self.inst, self.bindId, self.shareData)
     end

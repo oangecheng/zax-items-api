@@ -112,6 +112,9 @@ AddClassPostConstruct("widgets/hoverer", function (hoverer)
 		if target and target.GUID and target.zxextrainfostr then
 			str = str..target.zxextrainfostr
 		end
+		if target and ZXTUNING.DEBUG then
+			str = str.."\n"..tostring(target.prefab)
+		end
 		return oldSetString(text, str)
 	end
 end)

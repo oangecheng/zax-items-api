@@ -268,7 +268,7 @@ end
 
 ------------------- 柴房 ------------------
 params.zxlogstore = createBox5x10Param()
-local logsdef = { "livinglog", "twigs", "log", "boards", "driftwood_log", "pinecone", "charcoal"}
+local logsdef = { "livinglog", "twigs", "log", "boards", "driftwood_log", "pinecone", "charcoal", "twiggy_nut", "palmcone_seed"}
 function params.zxlogstore.itemtestfn(container, item, slot)
 	---@diagnostic disable-next-line: undefined-field
 	if table.contains(logsdef, item.prefab) then return true end

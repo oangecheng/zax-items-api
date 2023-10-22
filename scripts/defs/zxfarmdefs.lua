@@ -1,7 +1,7 @@
 
 -- 基准时间，以一只鸡一天消耗一个饲料，生产一个鸡腿为基准值
 -- 每个动物的生产的物品是独立的
-local PRODUCE_BASE_TIME = TUNING.TOTAL_DAY_TIME
+local PRODUCE_BASE_TIME = TUNING.TOTAL_DAY_TIME * 2.5
 local HATCH_BASE_TIME = TUNING.TOTAL_DAY_TIME * 0.5
 
 local souls = {
