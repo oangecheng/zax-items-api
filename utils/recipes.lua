@@ -300,7 +300,7 @@ AddRecipe2(
 AddRecipe2(
     "zxfarmfood_normal",
     {Ingredient("corn", 2), Ingredient("berries", 2), Ingredient("monstermeat", 1), },
-    TECH.LOST,
+    TECH.SCIENCE_TWO,
     {
         atlas="images/inventoryimages/zxfarmfood_normal.xml",
         image="zxfarmfood_normal.tex",
