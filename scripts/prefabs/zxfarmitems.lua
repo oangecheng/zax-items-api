@@ -59,7 +59,7 @@ local function MakeFarmFood(name)
         inst.components.inventoryitem.atlasname = "images/inventoryimages/"..name..".xml"
 
         inst:AddComponent("stackable")
-        inst.components.stackable.maxsize = 40
+        inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
         return inst
     end
     return Prefab(name, fn, foodassets, prefabs)
@@ -115,7 +115,7 @@ local function MakeAnimalSoul(name)
         inst.components.inventoryitem.atlasname = "images/inventoryimages/"..name..".xml"
 
         inst:AddComponent("stackable")
-        inst.components.stackable.maxsize = 20
+        inst.components.stackable.maxsize = TUNING.STACK_SIZE_MEDITEM
         return inst
     end
     return Prefab(name, fn, soulassets, prefabs)
