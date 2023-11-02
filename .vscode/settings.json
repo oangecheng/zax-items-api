@@ -94,7 +94,8 @@
         "ZXFarmAddHarmmerdAction",
         "ZXFarmObserveItemBuild",
         "TimeEvent",
-        "FRAMES"
+        "FRAMES",
+        "AddPrefabPostInitAny"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

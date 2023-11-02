@@ -23,11 +23,7 @@ local function fn()
     inst:AddTag("structure")
 
     MakeObstaclePhysics(inst, .2)
-
-    --- 默认用酢浆草
-    inst.AnimState:SetBank("zxoxalis") 
-    inst.AnimState:SetBuild("zxoxalis")
-    inst.AnimState:PlayAnimation("idle")
+    ZxInitItemForClient(inst, "zxflowerbush", "idle")
 
     inst.entity:SetPristine()
     
@@ -36,7 +32,7 @@ local function fn()
     end
 
     inst:AddComponent("inspectable")
-    inst:AddComponent("zxskinable")
+    ZxInitItemForServer(inst, "zxflowerbush")
 
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.HAMMER)

@@ -55,13 +55,14 @@ end
 ---@param defscale number|nil 初始化大小，不传为1
 function ZxInitItemForServer(inst, prefab, defscale)
     local defskin = ZxGetPrefabDefaultSkin(prefab)
-    inst:AddComponent("zxresizeable")
+    if inst.components.zxresizeable == nil then
+        inst:AddComponent("zxresizeable")
+    end
     inst.components.zxresizeable:SetScale(defscale or 1)
     if defskin ~= nil then
         inst:AddComponent("zxskinable")
         inst.components.zxskinable:SetSkinChangedFunc(function(_, skinid)
             local scale = ZxGetSkinScale(skinid)
-            ZXLog("changeskin", skinid, scale)
             inst.components.zxresizeable:SetScale(scale)
         end)
     end
