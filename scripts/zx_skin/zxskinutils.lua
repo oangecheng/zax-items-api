@@ -399,3 +399,8 @@ function ZxGetUserSkinFromServer(inst)
     end
 end
 
+
+
+function ZxGetSkinScale(skinid)
+    return animscales[skinid] or 1
+end

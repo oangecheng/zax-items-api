@@ -29,3 +29,39 @@ function ZXSpawnPrefabs(prefab, num)
 
     return nil
 end
+
+
+
+
+---初始化物品的样式和形态，只能在客户端调用
+---如果有特殊需要，用的官方皮肤的，不要调用此函数
+---@param inst any 物品
+---@param prefab string 物品代码
+---@param anim string 初始动画
+---@param loop boolean|nil 是否循环播放
+function ZxInitItemForClient(inst, prefab, anim, loop)
+    local defskin = ZxGetPrefabDefaultSkin(prefab)
+    if defskin == nil then return end
+    inst.AnimState:SetBank(defskin.bank)
+    inst.AnimState:SetBuild(defskin.build)    
+    inst.AnimState:PlayAnimation(anim, loop)
+end
+
+
+
+---初始化物品的样式和形态，按需添加换肤功能
+---@param inst table 预制物
+---@param prefab string 物品代码
+---@param defscale number|nil 初始化大小，不传为1
+function ZxInitItemForServer(inst, prefab, defscale)
+    local defskin = ZxGetPrefabDefaultSkin(prefab)
+    inst:AddComponent("zxresizeable")
+    inst.components.zxresizeable:SetScale(defscale or 1)
+    if defskin ~= nil then
+        inst:AddComponent("zxskinable")
+        inst.components.zxskinable:SetSkinChangedFunc(function(_, skinid)
+            local scale = ZxGetSkinScale(skinid)
+            inst.components.zxresizeable:SetScale(scale)
+        end)
+    end
+end

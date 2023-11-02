@@ -1,3 +1,11 @@
+-- 法杖模式
+local MODE_SKIN    = 1
+local MODE_MIRROR  = 2
+local MODE_ENLARGE = 3
+local MODE_SHRINK  = 4
+local SIZE = MODE_SHRINK
+
+
 local assets = {
     Asset("ANIM", "anim/zxskintool1.zip"),
     Asset("ANIM", "anim/swap_zxskintool1.zip"),
@@ -29,24 +37,80 @@ local function spawnFx(inst)
 end
 
 
-local function spellCB(tool, target, pos, doer)
+local function changeSkin(target, doer)
     if doer and target and target.components.zxskinable then
         target.components.zxskinable:ChangeSkin(doer)
         spawnFx(target)
     end
+end 
+
+
+local function trySay(player, msg)
+    if player.components.talker then
+        player.components.talker:Say(msg)
+    end
 end
 
 
-local function can_cast_fn(doer, target, pos)
-    if doer and target and target.components.zxskinable then
-        return target.components.zxskinable:CanChangeSkin(doer)
+local function doAnimAction(tool, target, player)
+    local resizeable = target.components.zxresizeable
+    if resizeable then
+        if tool.mode == MODE_MIRROR then
+            resizeable:Mirror(player)
+            spawnFx(target)
+            trySay(player, "转过来瞧瞧")
+        elseif tool.mode == MODE_ENLARGE then
+            resizeable:Enlarge(player)
+            spawnFx(target)
+            trySay(player, "大大大")
+        elseif tool.mode == MODE_SHRINK then
+            resizeable:Shrink(player)
+            spawnFx(target)
+            trySay(player, "小小小")
+        end
     end
-    return false
+end
+
+
+
+local function spellCB(tool, target, pos, doer)
+    local player = doer or tool.zxowener
+    if tool.mode == MODE_SKIN then
+        changeSkin(target, player)
+    else
+        doAnimAction(tool, target, player)
+    end
+end
+
+
+local function can_cast_fn(inst, doer, target, pos)
+    local player = doer or inst.zxowener
+    if not (player and target) then
+       return false
+    end
+    if inst.mode == MODE_SKIN then
+        local skinable = target.components.zxskinable
+        return skinable and skinable:CanChangeSkin(player)
+    else
+        return target.components.zxresizeable ~= nil
+    end
 end
 
 
 
 local function net(inst)
+    inst.zxchangename = net_string(inst.GUID, "zxchangename", "zx_itemsapi_itemdirty")
+    inst:ListenForEvent("zx_itemsapi_itemdirty", function(inst)
+        local newname = inst.zxchangename:value()
+		if newname then
+			inst.displaynamefn = function(aaa)
+				return newname
+			end
+		end
+        local extrainfo = inst.zxextrainfo:value()
+        inst.zxextrainfostr = extrainfo or nil
+	end)
+
     inst.useskinclient = function(inst, skinid)
         if TheWorld.ismastersim and skinid then
             inst.components.zxskinable:SetSkin(skinid)
@@ -55,6 +119,17 @@ local function net(inst)
         end
     end
 end
+
+local function changeName(inst, mode)
+    local name = STRINGS.NAMES[string.upper(inst.prefab)]
+    if name and mode then
+        local newname = name.."["..mode.."]"
+        if inst.zxchangename then
+            inst.zxchangename:set(newname)
+        end
+    end
+end
+
 
 
 
@@ -65,13 +140,17 @@ local function onequip(inst, owner)
     owner.AnimState:Show("ARM_carry")
     owner.AnimState:Hide("ARM_normal")
     inst:AddTag("zxshop")
+    inst:RemoveTag("zxswitchmode")
 end
+
+
 
 local function onunequip(inst, owner)
     inst.zxowener = nil
     owner.AnimState:Hide("ARM_carry")
     owner.AnimState:Show("ARM_normal")
     inst:RemoveTag("zxshop")
+    inst:AddTag("zxswitchmode")
 end
 
 local function tool_fn()
@@ -119,7 +198,9 @@ local function tool_fn()
     inst.components.spellcaster.veryquickcast = true
     inst.components.spellcaster.canusefrominventory  = false
     inst.components.spellcaster:SetSpellFn(spellCB)
-    inst.components.spellcaster:SetCanCastFn(can_cast_fn)
+    inst.components.spellcaster:SetCanCastFn(function (doer, target, pos)
+        return can_cast_fn(inst, doer, target, pos)
+    end)
 
     inst:AddComponent("fuel")
     inst.components.fuel.fuelvalue = TUNING.MED_FUEL
@@ -130,6 +211,22 @@ local function tool_fn()
 
     inst.openShop = function ()
         inst.zxshopopen:set(true)
+    end
+
+    inst.mode = MODE_SKIN
+    inst.switchMode = function ()
+        local m = inst.mode or MODE_SKIN
+        local next = (m + 1) % SIZE
+        inst.mode = next
+        changeName(inst, inst.mode)
+    end
+
+    inst.OnLoad = function (_, data)
+        inst.mode = data.mode or MODE_SKIN
+        changeName(inst, inst.mode)
+    end
+    inst.OnSave = function (_, data)
+        data.mode = inst.mode
     end
 
     inst._cached_reskinname = {}

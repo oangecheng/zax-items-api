@@ -2,6 +2,7 @@
 ---- 动作相关
 STRINGS.ZXACTION = {
 	ZXSHOPOPEN = "Open a shop",
+	ZXSWITCHMODE = "Switch mode",
 	ZXHATCH = "Hatch",
 	ZXADDFOOD = "Add food",
 	ZXFARMHARVEST = "Harvest product",

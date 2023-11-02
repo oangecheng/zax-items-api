@@ -2,6 +2,7 @@
 ---- 动作相关
 STRINGS.ZXACTION = {
 	ZXSHOPOPEN = "打开小店",
+	ZXSWITCHMODE = "切换模式",
 	ZXHATCH = "孵化",
 	ZXADDFOOD = "添加饲料",
 	ZXFARMHARVEST = "收获产品",

@@ -21,6 +21,18 @@ local actions = {
     },
 
     {
+        id = "ZXSWITCHMODE",
+        str = STRINGS.ZXACTION.ZXSWITCHMODE,
+        fn = function (act)
+            if act.invobject and act.invobject.switchMode then
+                act.invobject.switchMode()
+                return true
+            end
+            return false
+        end
+    },
+
+    {
         id = "ZXHATCH",
         str = STRINGS.ZXACTION.ZXHATCH,
         fn = function (act)
@@ -116,6 +128,12 @@ local componentactions = {
                 action = "ZXSHOPOPEN",
                 testfn = function(inst,doer,actions,right)
                     return doer ~= nil and inst and inst:HasTag("zxshop")
+                end
+            }, 
+            {
+                action = "ZXSWITCHMODE",
+                testfn = function (inst,doer,actions,right)
+                    return doer ~= nil and inst and inst:HasTag("zxswitchmode") and right
                 end
             }
         }

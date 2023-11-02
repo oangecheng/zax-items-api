@@ -31,6 +31,7 @@ end
 
 local function fn()
 
+    local name = "zx_well"
     local inst = CreateEntity()
     
     inst.entity:AddTransform()
@@ -42,11 +43,8 @@ local function fn()
 	MakeObstaclePhysics(inst, 0.8)
 	inst:SetPhysicsRadiusOverride(1)
 
-    inst.MiniMapEntity:SetIcon("zx_well.tex")
-
-    inst.AnimState:SetBank("zx_well")
-    inst.AnimState:SetBuild("zx_well")
-    inst.AnimState:PlayAnimation("idle")
+    inst.MiniMapEntity:SetIcon(name..".tex")
+    ZxInitItemForClient(inst, name, "idle", false)
 
     MakeSnowCoveredPristine(inst)
 
@@ -62,7 +60,8 @@ local function fn()
     inst:AddComponent("watersource")
     inst:AddComponent("inspectable")
     inst:AddComponent("lootdropper")
-    inst:AddComponent("zxskinable")
+    
+    ZxInitItemForServer(inst, name)
 
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.HAMMER)

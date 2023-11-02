@@ -16,6 +16,9 @@ local function reskin(self, skin)
     if skin and skin.skinfunc then
         self.skinid = skin.id
         skin.skinfunc(self.inst)
+        if self.onSkinChangeFunc then
+            self.onSkinChangeFunc(self.inst, self.skinid)
+        end
     end
 end
 
@@ -43,6 +46,10 @@ function Skinable:CanChangeSkin(doer)
 
 end
 
+
+function Skinable:SetSkinChangedFunc(func)
+    self.onSkinChangeFunc = func
+end
 
 
 function Skinable:ChangeSkin(doer)
