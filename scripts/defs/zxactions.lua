@@ -133,7 +133,7 @@ local componentactions = {
             {
                 action = "ZXSWITCHMODE",
                 testfn = function (inst,doer,actions,right)
-                    return doer ~= nil and inst and inst:HasTag("zxswitchmode") and right
+                    return doer ~= nil and inst and inst:HasTag("zxswitchmode")
                 end
             }
         }

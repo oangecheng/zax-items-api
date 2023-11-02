@@ -3,7 +3,28 @@ local MODE_SKIN    = 1
 local MODE_MIRROR  = 2
 local MODE_ENLARGE = 3
 local MODE_SHRINK  = 4
-local SIZE = MODE_SHRINK
+local SIZE = MODE_SHRINK + 1
+
+local isch = ZXTUNING.IS_CH
+
+local modes = {
+    [MODE_SKIN] = { 
+        name = isch and "换肤模式" or "Skin Mode",
+        msg  = isch and "换一种感觉" or "Rotate",
+    },
+    [MODE_MIRROR] = { 
+        name = isch and "镜像模式" or "Mirror Mode",
+        msg  = isch and "转过来瞧瞧" or "Rotate",
+    },
+    [MODE_ENLARGE] = { 
+        name = isch and "放大模式" or "Enlarge Mode",
+        msg  = isch and "大!大!大!" or "Bigger!",
+    },
+    [MODE_SHRINK] = { 
+        name = isch and "缩小模式" or "Shrink mode",
+        msg  = isch and "小!小!小!" or "Smaller!",
+    },
+}
 
 
 local assets = {
@@ -25,11 +46,14 @@ local prefabs = {
 
 --生成特效
 local function spawnFx(inst)
+    local resizeable = inst.components.zxresizeable
+    local multi = resizeable and resizeable:GetScale() or 1
+
     local offset = {y=0.5,scale=1.2}
 	local fx = SpawnPrefab("explode_reskin")
 	local x,y,z=inst.Transform:GetWorldPosition()
 	local offset_y = offset and offset.y or 0
-	local scale = offset and offset.scale or 1
+	local scale = (offset and offset.scale or 1) * multi
 	if fx then
 		fx.Transform:SetScale(scale, scale, scale)
 		fx.Transform:SetPosition(x,y+offset_y,z)
@@ -45,7 +69,8 @@ local function changeSkin(target, doer)
 end 
 
 
-local function trySay(player, msg)
+local function trySay(player, mode)
+    local msg = modes[mode].msg
     if player.components.talker then
         player.components.talker:Say(msg)
     end
@@ -53,21 +78,18 @@ end
 
 
 local function doAnimAction(tool, target, player)
-    local resizeable = target.components.zxresizeable
+    local resizeable = target and target.components.zxresizeable
+    local mode = tool.mode
     if resizeable then
-        if tool.mode == MODE_MIRROR then
+        if mode == MODE_MIRROR then
             resizeable:Mirror(player)
-            spawnFx(target)
-            trySay(player, "转过来瞧瞧")
-        elseif tool.mode == MODE_ENLARGE then
+        elseif mode == MODE_ENLARGE then
             resizeable:Enlarge(player)
-            spawnFx(target)
-            trySay(player, "大大大")
-        elseif tool.mode == MODE_SHRINK then
+        elseif mode == MODE_SHRINK then
             resizeable:Shrink(player)
-            spawnFx(target)
-            trySay(player, "小小小")
         end
+        spawnFx(target)
+        trySay(player, tool.mode)
     end
 end
 
@@ -107,8 +129,6 @@ local function net(inst)
 				return newname
 			end
 		end
-        local extrainfo = inst.zxextrainfo:value()
-        inst.zxextrainfostr = extrainfo or nil
 	end)
 
     inst.useskinclient = function(inst, skinid)
@@ -123,7 +143,7 @@ end
 local function changeName(inst, mode)
     local name = STRINGS.NAMES[string.upper(inst.prefab)]
     if name and mode then
-        local newname = name.."["..mode.."]"
+        local newname = name.."["..tostring(modes[mode].name).."]"
         if inst.zxchangename then
             inst.zxchangename:set(newname)
         end
@@ -217,7 +237,7 @@ local function tool_fn()
     inst.switchMode = function ()
         local m = inst.mode or MODE_SKIN
         local next = (m + 1) % SIZE
-        inst.mode = next
+        inst.mode = math.max(next, 1)
         changeName(inst, inst.mode)
     end
 

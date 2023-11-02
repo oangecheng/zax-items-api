@@ -43,6 +43,11 @@ function ResizeAble:SetScale(scale)
 end
 
 
+function ResizeAble:GetScale()
+    return calcScale(self)
+end
+
+
 ---是否可以放大
 ---@return boolean
 function ResizeAble:CanEnlarge()
