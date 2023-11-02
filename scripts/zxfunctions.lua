@@ -61,6 +61,7 @@ function ZxInitItemForServer(inst, prefab, defscale)
         inst:AddComponent("zxskinable")
         inst.components.zxskinable:SetSkinChangedFunc(function(_, skinid)
             local scale = ZxGetSkinScale(skinid)
+            ZXLog("changeskin", skinid, scale)
             inst.components.zxresizeable:SetScale(scale)
         end)
     end

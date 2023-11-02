@@ -196,20 +196,17 @@ local function MakeLight(name, initSkinId)
         MakeObstaclePhysics(inst, .2)
 
 
-        inst.AnimState:SetBank(defalutSKin.bank)
-        inst.AnimState:SetBuild(defalutSKin.build)
-        inst.AnimState:PlayAnimation("close")
-
+        ZxInitItemForClient(inst, PREABLE, "close")
         inst.entity:SetPristine()
 
         if not TheWorld.ismastersim then
             return inst
         end
 
+        ZxInitItemForServer(inst, PREABLE)
+
         inst:AddComponent("inspectable")
         inst:AddComponent("lootdropper")
-        inst:AddComponent("zxskinable")
-
 
         inst:AddComponent("workable")
         inst.components.workable:SetWorkAction(ACTIONS.HAMMER)

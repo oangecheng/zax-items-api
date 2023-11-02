@@ -36,7 +36,7 @@ nil,
 ---设置大小
 ---@param scale number
 function ResizeAble:SetScale(scale)
-    if scale ~= nil and scale ~= self.orgscale then
+    if scale ~= nil then
         self.orgscale = scale
         updateAnimState(self)
     end
