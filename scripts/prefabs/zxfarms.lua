@@ -88,15 +88,15 @@ local function MakeFarm(name, data)
 
         MakeObstaclePhysics(inst, 1)
         RemovePhysicsColliders(inst)
-        inst.AnimState:SetBank(name) 
-        inst.AnimState:SetBuild(name)
-        inst.AnimState:PlayAnimation("idle", true)
-    
+
+        ZxInitItemForClient(inst, name, "idle", true)
         inst.entity:SetPristine()
         
         if not TheWorld.ismastersim then
             return inst
         end
+
+        ZxInitItemForServer(inst, name)
 
         inst.farmdata = data
     
@@ -115,8 +115,6 @@ local function MakeFarm(name, data)
 
         MakeMediumBurnable(inst)
         MakeSmallPropagator(inst)
-
-        inst:AddComponent("zxskinable")
 
         inst:AddComponent("zxfarm")
         inst.components.zxfarm:SetChild(data.animal)

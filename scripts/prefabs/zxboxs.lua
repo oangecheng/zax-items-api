@@ -82,17 +82,19 @@ local function MakeZxBox(prefabname, data)
         if skin == nil then
             return inst
         end
-	
+
+        ZxInitItemForClient(inst, prefabname)
         inst.MiniMapEntity:SetIcon(skin.tex)
-        inst.AnimState:SetBank(skin.file)
-        inst.AnimState:SetBuild(skin.file)
         inst.entity:SetPristine()
+        
         if data.oninitfn then
             data.oninitfn(inst)
         end
         if not TheWorld.ismastersim then
             return inst
         end
+
+        ZxInitItemForServer(inst, prefabname)
 
         inst:ListenForEvent("onbuilt", data.onbuildfn)
 
@@ -111,7 +113,6 @@ local function MakeZxBox(prefabname, data)
         inst.components.container.skipclosesnd = true
         inst.components.container.skipopensnd = true
 
-        inst:AddComponent("zxskinable")
         -- 可以用锤子拆
         inst:AddComponent("workable")
         inst.components.workable:SetWorkAction(ACTIONS.HAMMER)

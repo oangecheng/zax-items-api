@@ -203,6 +203,8 @@ end
 
 local function MakeHatchMachine(name)
 
+    local scale = 0.8
+
     local res = ZxGetPrefabAnimAsset(name)
 
     local function fn()
@@ -218,7 +220,10 @@ local function MakeHatchMachine(name)
         inst.AnimState:SetBank(name)
         inst.AnimState:SetBuild(name)
         inst.AnimState:PlayAnimation("idle")
-        inst.AnimState:SetScale(0.8, 0.8, 0.8)
+        
+        ZxInitItemForClient(inst, name, "idle")
+
+        inst.AnimState:SetScale(scale, scale, scale)
     
         inst.entity:SetPristine()
     
@@ -243,9 +248,10 @@ local function MakeHatchMachine(name)
             end
         end
 
+        ZxInitItemForServer(inst, name, scale)
         ZXFarmAddHarmmerdAction(inst)
 
-        inst:AddComponent("zxskinable")
+        
 
         inst:AddComponent("zxhatcher")
         inst.components.zxhatcher:SetOnStartFunc(function (_, seed)
@@ -321,6 +327,7 @@ local function MakeFarmBowl(name)
 
     local function fn()
 
+        local scale = 0.8
         local inst = CreateEntity()
         
         inst.entity:AddTransform()
@@ -329,10 +336,8 @@ local function MakeFarmBowl(name)
         inst.entity:AddNetwork()
     
     
-        inst.AnimState:SetBank(name)
-        inst.AnimState:SetBuild(name)
-        inst.AnimState:PlayAnimation("empty")
-        inst.AnimState:SetScale(0.8, 0.8, 0.8)
+        ZxInitItemForClient(inst, name, "empty")
+        inst.AnimState:SetScale(scale, scale, scale)
     
         inst.entity:SetPristine()
     
@@ -346,7 +351,6 @@ local function MakeFarmBowl(name)
             return inst
         end
         
-        inst:AddComponent("zxskinable")
         inst:AddComponent("zxfeeder")
         inst:AddComponent("inspectable")
         inst.components.inspectable.descriptionfn = function (_, viewer)
@@ -356,6 +360,8 @@ local function MakeFarmBowl(name)
             elseif foodleft < foodmax * LEFT_RATIO then return STRINGS.ZXFARMBOWL_NOTENOUGH
             else return STRINGS.ZXFARMBOWL_ENOUGH end
         end
+
+        ZxInitItemForServer(inst, name, scale)
         ZXFarmAddHarmmerdAction(inst)
 
         -- 给食物尝试驱动下生产

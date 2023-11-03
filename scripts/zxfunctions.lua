@@ -37,14 +37,16 @@ end
 ---如果有特殊需要，用的官方皮肤的，不要调用此函数
 ---@param inst any 物品
 ---@param prefab string 物品代码
----@param anim string 初始动画
+---@param anim string|nil 初始动画
 ---@param loop boolean|nil 是否循环播放
 function ZxInitItemForClient(inst, prefab, anim, loop)
     local defskin = ZxGetPrefabDefaultSkin(prefab)
     if defskin == nil then return end
     inst.AnimState:SetBank(defskin.bank)
-    inst.AnimState:SetBuild(defskin.build)    
-    inst.AnimState:PlayAnimation(anim, loop)
+    inst.AnimState:SetBuild(defskin.build)
+    if anim then
+        inst.AnimState:PlayAnimation(anim, loop)
+    end    
 end
 
 

@@ -1,6 +1,6 @@
+local PREFAB = "zxflowerbush"
 
-
-local assets = ZxGetPrefabAnimAsset("zxflowerbush")
+local assets = ZxGetPrefabAnimAsset(PREFAB)
 
 
 local function onHammered(inst)
@@ -23,7 +23,7 @@ local function fn()
     inst:AddTag("structure")
 
     MakeObstaclePhysics(inst, .2)
-    ZxInitItemForClient(inst, "zxflowerbush", "idle")
+    ZxInitItemForClient(inst, PREFAB, "idle")
 
     inst.entity:SetPristine()
     
@@ -32,7 +32,7 @@ local function fn()
     end
 
     inst:AddComponent("inspectable")
-    ZxInitItemForServer(inst, "zxflowerbush")
+    ZxInitItemForServer(inst, PREFAB)
 
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
@@ -45,5 +45,5 @@ local function fn()
     return inst
 end
 
-return Prefab("zxflowerbush", fn, assets, nil),
-MakePlacer("zxflowerbush_placer", "zxoxalis", "zxoxalis", "idle")
+return Prefab(PREFAB, fn, assets, nil),
+MakePlacer(PREFAB.."_placer", "zxoxalis", "zxoxalis", "idle")
