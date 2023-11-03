@@ -95,7 +95,11 @@
         "ZXFarmObserveItemBuild",
         "TimeEvent",
         "FRAMES",
-        "AddPrefabPostInitAny"
+        "AddPrefabPostInitAny",
+        "MAX_HUD_SCALE",
+        "Image",
+        "BODYTEXTFONT",
+        "SetAutopaused"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
