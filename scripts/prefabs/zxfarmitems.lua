@@ -291,6 +291,16 @@ local function MakeHatchMachine(name)
             inst:Remove()
         end)
 
+        inst.OnLoad = function (inst, data)
+            local hatcher = inst.components.zxhatcher
+            if hatcher:IsWorking() and hatcher:GetSeed() ~= nil then
+                local seed = hatcher:GetSeed()
+                inst.AnimState:PlayAnimation("working", true)
+                local anim = (seed == "zxperd_soul") and "swap_soul" or seed
+                inst.AnimState:OverrideSymbol("swap_soul", "zxanimalsoul", anim)
+            end
+        end
+
 
         return inst
     end

@@ -23,6 +23,11 @@ function Hatcher:SetHatchSeed(seed)
 end
 
 
+function Hatcher:GetSeed()
+    return self.seed
+end
+
+
 --- 设置孵化器参数
 --- @param time number 物品名称
 function Hatcher:SetHatchTime(time)
