@@ -161,44 +161,6 @@ local function updateDisplayInfo(inst, info)
 end
 
 
-local function MakeLand()
-    local function fn()
-
-        local inst = CreateEntity()
-        
-        inst.entity:AddTransform()
-        inst.entity:AddAnimState()
-        inst.entity:AddMiniMapEntity()
-        inst.entity:AddNetwork()
-    
-        inst.AnimState:SetScale(2, 2, 2)
-        inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
-        inst.AnimState:SetLayer(LAYER_BACKGROUND)
-        inst.AnimState:SetSortOrder(3)
-    
-        inst.AnimState:SetBank("zxfarmland")
-        inst.AnimState:SetBuild("zxfarmland")
-        inst.AnimState:PlayAnimation("land1")
-    
-        inst.entity:SetPristine()
-    
-        inst:AddTag("structure")
-        inst:AddTag("NOBLOCK")
-        inst:AddTag("NOCLICK")
-        inst:AddTag("zxfarmitem")
-    
-        if not TheWorld.ismastersim then
-            return inst
-        end
-
-        inst:AddComponent("zxbindable")
-        inst.components.zxbindable:SetOnUnBindFunc(function ()
-            inst:Remove()
-        end)
-        return inst
-    end
-    return Prefab("zxfarmland", fn, assets, prefabs)
-end
 
 
 local function MakeHatchMachine(name)
@@ -424,7 +386,7 @@ for k, _ in pairs(FARMS.foods) do
 end
 
 
-return MakeLand(), 
+return
 MakeHatchMachine("zxfarmhatch"), MakePlacer("zxfarmhatch_placer", "zxfarmhatch", "zxfarmhatch", "working"),
 MakeFarmBowl("zxfarmbowl"), MakePlacer("zxfarmbowl_placer", "zxfarmbowl", "zxfarmbowl", "empty"),
 unpack(items)

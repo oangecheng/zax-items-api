@@ -18,6 +18,9 @@ local function updateAnimState(self)
     local scale = calcScale(self)
     local x = self.mirror and -1 or 1
     self.inst.AnimState:SetScale(scale * x, scale, scale)
+    if self.onChangedFunc then
+        self.onChangedFunc(self.inst, self.scale, self.mirror)
+    end
 end
 
 
@@ -31,6 +34,13 @@ nil,
     scale  = updateAnimState,
     mirror = updateAnimState
 })
+
+
+---设置监听
+---@param func function
+function ResizeAble:SetOnChangedFunc(func)
+    self.onChangedFunc = func
+end
 
 
 ---设置大小

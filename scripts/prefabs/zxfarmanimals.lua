@@ -6,13 +6,22 @@ local MAX_DELTA = 3.5
 local ANIM_SIZE = 0.4
 
 
+---获取位移范围
+---@return number 最大
+---@return number 最小
+local function getMaxAndMinDelta()
+    return MAX_DELTA * ZXTUNING.FARM_AREA, MIN_DELTA * ZXTUNING.FARM_AREA
+end
+
+
 ---计算动物下个位置
 local function findNextPosition(inst)
     local pt = inst.components.zxanimal:GetFarmPosition()
     if pt then
-        local dx = math.random(MIN_DELTA, MAX_DELTA)
+        local max, min = getMaxAndMinDelta()
+        local dx = math.random(min, max)
         dx = math.random() < 0.5 and dx or -dx
-        local dz = math.random(MIN_DELTA, MAX_DELTA)
+        local dz = math.random(min, max)
         dz = math.random() < 0.5 and dz or -dz
         return Vector3(pt.x + dx, pt.y, pt.z + dz)
     end

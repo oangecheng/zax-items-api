@@ -16,6 +16,8 @@ TUNING.ZX_BEEBOX = GetModConfigData("zx_beebox")
 ZXTUNING.IS_CH = GetModConfigData("zx_items_language") == "ch"
 ZXTUNING.LIGHT_RADIUS_MULTI = GetModConfigData("zxlightradius") or 1
 ZXTUNING.BOX_FRESH_RATE = TUNING.ZX_GRANARY_FRESHRATE or 0.2
+
+ZXTUNING.FARM_AREA   = GetModConfigData("zxfarmarea")
 ZXTUNING.ZXPERD_SIZE = GetModConfigData("zxperd_size") or 0.4
 ZXTUNING.ZXPIGMAN_SIZE = GetModConfigData("zxpigman_size") or 0.4
 ZXTUNING.ZXBEEFALO_SIZE = GetModConfigData("zxbeefalo_size") or 0.4

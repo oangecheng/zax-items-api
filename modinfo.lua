@@ -89,6 +89,19 @@ configuration_options = {
 
 
 	Title(ch and "农场设置" or "farm settings"),
+
+	{
+		name = "zxfarmarea",
+		label = ch and "范围设置" or "farm area settings",
+		options = {
+			{description = ch and "2格地皮" or "2 turfs size", data = 1},
+			{description = ch and "3格地皮" or "3 turfs size", data = 1.5},
+			{description = ch and "4格地皮" or "4 turfs size", data = 2},
+			{description = ch and "5格地皮" or "5 turfs size", data = 2.5},
+		},
+		default = 1
+	},
+
 	{
 		name = "zxperd_size",
 		label = ch and "小火鸡尺寸设置" or "farm perd size settings",

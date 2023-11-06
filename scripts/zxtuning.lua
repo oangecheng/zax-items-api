@@ -9,6 +9,8 @@ ZXTUNING = {
     ZXPIGMAN_SIZE = 0.4,
     ZXBEEFALO_SIZE = 0.4,
     ZXGOAT_SIZE = 0.4,
+
+    FARM_AREA = 1
 }
 
 

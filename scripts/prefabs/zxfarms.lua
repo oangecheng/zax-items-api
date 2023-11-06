@@ -4,6 +4,16 @@ local FARMS = (require "defs/zxfarmdefs").farms
 local assets = {}
 
 
+local function getDistance()
+    return DISTANCE * ZXTUNING.FARM_AREA
+end
+
+
+local prefabs = {
+    "collapse_small",
+}
+
+
 for k, v in pairs(FARMS) do
     local res = ZxGetPrefabAnimAsset(k)
     for _, iv in ipairs(res) do
@@ -25,8 +35,10 @@ end
 local function isValidDistance(host, item)
     local fx, _, fz = host.Transform:GetWorldPosition()
     local ix, _, iz = item.Transform:GetWorldPosition()
+
+    local distance = getDistance()
     if fx and ix then
-        return math.abs(fx-ix) <= DISTANCE and math.abs(fz-iz) <= DISTANCE
+        return math.abs(fx-ix) <= distance and math.abs(fz-iz) <= distance
     else
         if fx == nil then
             host:Remove()
@@ -147,10 +159,53 @@ local function MakeFarm(name, data)
 end
 
 
+
+
+local function MakeLand()
+    local function fn()
+
+        local inst = CreateEntity()
+        
+        inst.entity:AddTransform()
+        inst.entity:AddAnimState()
+        inst.entity:AddMiniMapEntity()
+        inst.entity:AddNetwork()
+    
+        local scale = 2 * ZXTUNING.FARM_AREA
+        inst.AnimState:SetScale(scale, scale, scale)
+        inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
+        inst.AnimState:SetLayer(LAYER_BACKGROUND)
+        inst.AnimState:SetSortOrder(3)
+    
+        inst.AnimState:SetBank("zxfarmland")
+        inst.AnimState:SetBuild("zxfarmland")
+        inst.AnimState:PlayAnimation("land1")
+    
+        inst.entity:SetPristine()
+    
+        inst:AddTag("structure")
+        inst:AddTag("NOBLOCK")
+        inst:AddTag("NOCLICK")
+        inst:AddTag("zxfarmitem")
+    
+        if not TheWorld.ismastersim then
+            return inst
+        end
+
+        inst:AddComponent("zxbindable")
+        inst.components.zxbindable:SetOnUnBindFunc(function ()
+            inst:Remove()
+        end)
+        return inst
+    end
+    return Prefab("zxfarmland", fn, assets, prefabs)
+end
+
+
 local farmlist = {}
+table.insert( farmlist, MakeLand())
 for k, v in pairs(FARMS) do
     table.insert(farmlist, MakeFarm(k, v))
     table.insert(farmlist, MakePlacer(k.."_placer", k, k, "idle"))
-    -- table.insert(farmlist, MakePlacer(k.."_placer", v.initskin.file, v.initskin.file, v.initanim))
 end
 return unpack(farmlist)
