@@ -43,7 +43,6 @@ local function fn()
 	MakeObstaclePhysics(inst, 0.8)
 	inst:SetPhysicsRadiusOverride(1)
 
-    inst.MiniMapEntity:SetIcon(name..".tex")
     ZxInitItemForClient(inst, name, "idle", false)
 
     MakeSnowCoveredPristine(inst)

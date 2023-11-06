@@ -84,7 +84,6 @@ local function MakeZxBox(prefabname, data)
         end
 
         ZxInitItemForClient(inst, prefabname)
-        inst.MiniMapEntity:SetIcon(skin.tex)
         inst.entity:SetPristine()
         
         if data.oninitfn then

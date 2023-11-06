@@ -87,7 +87,6 @@ for k, v in pairs(ZxGetAllSkins()) do
     end
 end
 
-modimport("utils/minimap.lua")
 
 
 
@@ -111,6 +110,7 @@ end
 
 modimport("scripts/zxui.lua")
 modimport("scripts/zxrpc.lua")
+modimport("scripts/mods/minimap.lua")
 
 
 
