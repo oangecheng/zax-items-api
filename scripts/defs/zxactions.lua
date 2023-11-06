@@ -14,7 +14,7 @@ local actions = {
         id = "ZXSHOPOPEN",
 		str = STRINGS.ZXACTION.ZXSHOPOPEN,
 		fn = function(act)
-            act.doer:ShowPopUp(POPUPS.ZXSKIN, true, act.invobject)
+            act.doer:ShowPopUp(POPUPS.ZXTOOL, true, act.invobject)
             return true
 		end,
 		state = "give",

@@ -1,4 +1,6 @@
 local ZxSkinPopupScreen = require "screens/zxskinscreen"--皮肤界面
+local ZxSkinToolScreen = require "screens/zxselectscreen"--法杖选项界面
+
 
 
 AddClassPostConstruct("screens/playerhud",function(self, anim, owner)
@@ -17,6 +19,23 @@ AddClassPostConstruct("screens/playerhud",function(self, anim, owner)
             self.zxskinscreen = nil
         end
 	end
+
+    --添加考试界面
+	self.ShowZxToolScreen = function(_, attach, hasdictionary)
+		if attach == nil then
+			return
+		end
+		self.zxtoolscreen = ZxSkinToolScreen(self.owner, attach, hasdictionary)
+		self:OpenScreenUnderPause(self.zxtoolscreen)
+		return self.zxtoolscreen
+	end
+
+	self.CloseZxToolScreen = function(_)
+		if self.zxtoolscreen then
+			self.zxtoolscreen:Close()
+			self.zxtoolscreen = nil
+		end
+	end
 end)
 
 
@@ -33,6 +52,17 @@ POPUPS.ZXSKIN.fn = function(inst, show, holder)
 end
 
 
+
+AddPopup("ZXTOOL")
+POPUPS.ZXTOOL.fn = function(inst, show, attach, hasdictionary)
+    if inst.HUD then
+        if not show then
+            inst.HUD:CloseZxSkinScreen()
+        elseif not inst.HUD:ShowZxSkinScreen(attach, hasdictionary) then
+            POPUPS.ZXTOOL:Close(inst)
+        end
+    end
+end
 
 -- local skinentry = require("widgets/zxskinentry")
 -- AddClassPostConstruct("widgets/controls", function(self)
