@@ -99,7 +99,12 @@
         "MAX_HUD_SCALE",
         "Image",
         "BODYTEXTFONT",
-        "SetAutopaused"
+        "SetAutopaused",
+        "Brain",
+        "PriorityNode",
+        "WhileNode",
+        "Wander",
+        "BT"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
