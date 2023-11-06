@@ -1,8 +1,8 @@
 -- 法杖模式
-local MODE_SKIN    = 1
-local MODE_MIRROR  = 2
-local MODE_ENLARGE = 3
-local MODE_SHRINK  = 4
+local MODE_SKIN    = 0
+local MODE_MIRROR  = 1
+local MODE_ENLARGE = 2
+local MODE_SHRINK  = 3
 local SIZE = MODE_SHRINK + 1
 
 local isch = ZXTUNING.IS_CH
@@ -138,6 +138,14 @@ local function net(inst)
             SendModRPCToServer(MOD_RPC.zx_itemsapi.UseSkin, inst, skinid)
         end
     end
+
+    inst.switchMode = function(inst, mode)
+        if TheWorld.ismastersim and mode then
+            inst.SetMode(mode)
+        else
+            SendModRPCToServer(MOD_RPC.zx_itemsapi.SwitchMode, inst, mode)
+        end
+    end
 end
 
 local function changeName(inst, mode)
@@ -160,7 +168,6 @@ local function onequip(inst, owner)
     owner.AnimState:Show("ARM_carry")
     owner.AnimState:Hide("ARM_normal")
     inst:AddTag("zxshop")
-    inst:RemoveTag("zxswitchmode")
 end
 
 
@@ -170,7 +177,6 @@ local function onunequip(inst, owner)
     owner.AnimState:Hide("ARM_carry")
     owner.AnimState:Show("ARM_normal")
     inst:RemoveTag("zxshop")
-    inst:AddTag("zxswitchmode")
 end
 
 local function tool_fn()
@@ -234,10 +240,8 @@ local function tool_fn()
     end
 
     inst.mode = MODE_SKIN
-    inst.switchMode = function ()
-        local m = inst.mode or MODE_SKIN
-        local next = (m + 1) % SIZE
-        inst.mode = math.max(next, 1)
+    inst.SetMode = function (mode)
+        inst.mode = mode
         changeName(inst, inst.mode)
     end
 

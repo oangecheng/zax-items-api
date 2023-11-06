@@ -104,7 +104,8 @@
         "PriorityNode",
         "WhileNode",
         "Wander",
-        "BT"
+        "BT",
+        "net_int"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

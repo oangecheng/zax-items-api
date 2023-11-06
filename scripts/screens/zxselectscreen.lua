@@ -18,6 +18,8 @@ local ZXToolScreen =
         self.owner = owner
         self.attach = attach
 
+        ZXLog("Screen", owner.prefab, attach.prefab)
+
         self.isopen = false
 
         self._scrnw, self._scrnh = TheSim:GetScreenSize()--屏幕宽高
@@ -74,16 +76,15 @@ local ZXToolScreen =
         self.title:SetPosition(0, 200, 0)--坐标
         self.title:SetRegionSize(250, 50)--设置区域大小
         self.title:SetHAlign(ANCHOR_MIDDLE)
-		self.title:SetString(STRINGS.MEDAL_UI.LISTEN_QUESTION)
+		self.title:SetString("选择模式")
         self.title:SetColour(1, 1, 1, 1)--默认颜色
 
-        --题目内容
-        self.content = self.destspanel:AddChild(Text(BODYTEXTFONT, 24))
-        self.content:SetPosition(0, 150, 0)--坐标
-        self.content:SetRegionSize(250, 150)--设置区域大小
-        self.content:SetHAlign(ANCHOR_LEFT)
-        self.content:SetMultilineTruncatedString("\t我是内容，哈哈哈哈", 6, 250, 18, true, true)
-        self.content:SetColour(1, 1, 1, 1)--默认颜色
+        -- self.content = self.destspanel:AddChild(Text(BODYTEXTFONT, 24))
+        -- self.content:SetPosition(0, 150, 0)--坐标
+        -- self.content:SetRegionSize(250, 150)--设置区域大小
+        -- self.content:SetHAlign(ANCHOR_LEFT)
+        -- self.content:SetMultilineTruncatedString("\t我是内容，哈哈哈哈", 6, 250, 18, true, true)
+        -- self.content:SetColour(1, 1, 1, 1)--默认颜色
 
         self:InitButton()
         if hasdictionary then
@@ -102,30 +103,38 @@ local button_data={
         name="option_btn1",
         text="换肤模式",
         fn=function(self)
-            self:MakeChoice(1)
+            self:MakeChoice(0)
         end
     },
     {--选项B
         name="option_btn2",
         text="镜像模式",
         fn=function(self)
-            self:MakeChoice(2)
+            self:MakeChoice(1)
         end
     },
     {--选项C
         name="option_btn3",
         text="放大模式",
         fn=function(self)
-            self:MakeChoice(3)
+            self:MakeChoice(2)
         end
     },
     {--选项D
         name="option_btn4",
         text= "缩小模式",
         fn=function(self)
-            self:MakeChoice(4)
+            self:MakeChoice(3)
         end
     },
+
+    {
+        name = "option_btn5",
+        text = "打开小店",
+        fn = function (self)
+            self:MakeChoice(4)
+        end
+    }
 }
 
 --初始化选项按钮
@@ -138,10 +147,10 @@ function ZXToolScreen:InitButton()
                     v.fn(self)
                 end,
                 v.text,--按钮文字
-                {200, 40}--按钮尺寸
+                {200, 50}--按钮尺寸
             )
         )
-        self[v.name]:SetPosition(0, 50-40*i)
+        self[v.name]:SetPosition(0, 150-50*i)
     end
 end
 
@@ -151,8 +160,12 @@ end
 
 --做出选择
 function ZXToolScreen:MakeChoice(answer)
-    -- do action
     self:OnCancel()
+    if answer == 4 then
+        self.owner.HUD:ShowZxSkinScreen(self.attach)
+    else
+        self.attach.switchMode(self.attach, answer)
+    end
 end
 
 --关闭
@@ -161,7 +174,7 @@ function ZXToolScreen:OnCancel()
         return
     end
 	--关闭界面
-    self.owner.HUD:CloseMedalExamScreen()
+    self.owner.HUD:CloseZxToolScreen()
 end
 
 --其他控制

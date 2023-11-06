@@ -1,7 +1,9 @@
 
 local DISTANCE = 4
 local FARMS = (require "defs/zxfarmdefs").farms
-local assets = {}
+local assets = {
+    Asset("ANIM", "anim/zxfarmland.zip"),
+}
 
 
 local function getDistance()

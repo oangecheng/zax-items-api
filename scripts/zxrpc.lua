@@ -7,3 +7,12 @@ AddModRPCHandler(
 		inst:useskinclient(skinid)
 	end
 )
+
+
+AddModRPCHandler(
+	"Zx_itemsapi",
+	"SwitchMode",
+	function (_, inst, mode)
+		inst:switchMode(mode)
+	end
+)

@@ -107,9 +107,11 @@ configuration_options = {
 		label = ch and "小火鸡尺寸设置" or "farm perd size settings",
 		options = {
 			{description = ch and "默认" or "default", data = 0.4},
-			{description = ch and "小" or "esay", data = 0.3},
-			{description = ch and "较大" or "difficult", data = 0.5},
-			{description = ch and "大" or "difficult", data = 0.6},
+			{description = ch and "小" or "small", data = 0.3},
+			{description = ch and "较大" or "big", data = 0.5},
+			{description = ch and "大" or "large", data = 0.6},
+			{description = ch and "原版" or "origin", data = 1},
+
 		},
 		default = 0.4
 	},
@@ -118,9 +120,10 @@ configuration_options = {
 		label = ch and "小猪人尺寸设置" or "farm pigman size settings",
 		options = {
 			{description = ch and "默认" or "default", data = 0.4},
-			{description = ch and "小" or "esay", data = 0.3},
-			{description = ch and "较大" or "difficult", data = 0.5},
-			{description = ch and "大" or "difficult", data = 0.6},
+			{description = ch and "小" or "small", data = 0.3},
+			{description = ch and "较大" or "big", data = 0.5},
+			{description = ch and "大" or "large", data = 0.6},
+			{description = ch and "原版" or "origin", data = 1},
 		},
 		default = 0.4
 	},
@@ -129,9 +132,11 @@ configuration_options = {
 		label = ch and "小野牛尺寸设置" or "farm beefalo size settings",
 		options = {
 			{description = ch and "默认" or "default", data = 0.4},
-			{description = ch and "小" or "esay", data = 0.3},
-			{description = ch and "较大" or "difficult", data = 0.5},
-			{description = ch and "大" or "difficult", data = 0.6},
+			{description = ch and "小"   or "small"  , data = 0.3},
+			{description = ch and "较大" or "big"    , data = 0.5},
+			{description = ch and "大"   or "large"  , data = 0.6},
+			{description = ch and "原版" or "origin" , data = 1  },
+
 		},
 		default = 0.4
 	},
@@ -140,9 +145,11 @@ configuration_options = {
 		label = ch and "小山羊尺寸设置" or "farm goat size settings",
 		options = {
 			{description = ch and "默认" or "default", data = 0.4},
-			{description = ch and "小" or "esay", data = 0.3},
-			{description = ch and "较大" or "difficult", data = 0.5},
-			{description = ch and "大" or "difficult", data = 0.6},
+			{description = ch and "小" or "small", data = 0.3},
+			{description = ch and "较大" or "big", data = 0.5},
+			{description = ch and "大" or "large", data = 0.6},
+			{description = ch and "原版" or "origin", data = 1},
+
 		},
 		default = 0.4
 	},

@@ -57,8 +57,8 @@ AddPopup("ZXTOOL")
 POPUPS.ZXTOOL.fn = function(inst, show, attach, hasdictionary)
     if inst.HUD then
         if not show then
-            inst.HUD:CloseZxSkinScreen()
-        elseif not inst.HUD:ShowZxSkinScreen(attach, hasdictionary) then
+            inst.HUD:CloseZxToolScreen()
+        elseif not inst.HUD:ShowZxToolScreen(attach, hasdictionary) then
             POPUPS.ZXTOOL:Close(inst)
         end
     end
