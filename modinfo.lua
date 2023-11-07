@@ -89,6 +89,15 @@ configuration_options = {
 
 
 	Title(ch and "农场设置" or "farm settings"),
+	{
+		name = "zxfarmenable",
+		label = ch and "启用农场功能" or "enable animal farm",
+		options = {
+			{description = ch and "启用" or "enable" , data = true},
+			{description = ch and "关闭" or "disable", data = false},
+		},
+		default = true
+	},
 
 	{
 		name = "zxfarmarea",
@@ -98,6 +107,30 @@ configuration_options = {
 			{description = ch and "3格地皮" or "3 turfs size", data = 1.5},
 			{description = ch and "4格地皮" or "4 turfs size", data = 2},
 			{description = ch and "5格地皮" or "5 turfs size", data = 2.5},
+		},
+		default = 1
+	},
+
+	{
+		name = "zxfarmdroprate",
+		label = ch and "农场物品掉落几率" or "farm items drop ratio",
+		options = {
+			{ description = ch and "默认" or "default", data = 1 },
+			{ description = ch and "低" or "low", data = 0.5 },
+			{ description = ch and "高" or "high", data = 2 },
+			{ description = ch and "很高" or "super", data = 3 },
+		},
+		default = 1
+	},
+
+	{
+		name = "zxfarmtimemulti",
+		label = ch and "农场耗时设置" or "farm time setting",
+		options = {
+			{ description = ch and "默认" or "default", data = 1 },
+			{ description = ch and "慢" or "slow", data = 2 },
+			{ description = ch and "快" or "quick", data = 0.75 },
+			{ description = ch and "极快" or "super", data = 0.5 },
 		},
 		default = 1
 	},

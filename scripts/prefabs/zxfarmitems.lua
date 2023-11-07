@@ -232,7 +232,7 @@ local function MakeHatchMachine(name)
         inst.components.zxbindable:SetOnBindFunc(function (_, _, data)
             if not data then return end
             inst.components.zxhatcher:SetHatchSeed(data.hatchitem)
-            inst.components.zxhatcher:SetHatchTime(data.hatchtime)
+            inst.components.zxhatcher:SetHatchTime(data.hatchtime * ZXTUNING.FARM_TIME_MULTI)
             changeName(inst, STRINGS.ZX_HASBIND)
         end)
 

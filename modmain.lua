@@ -1,7 +1,6 @@
 GLOBAL.setmetatable(env,{__index=function(t,k) return GLOBAL.rawget(GLOBAL,k) end})
 
 require("zxtuning")
-require("zxfarmmanager")
 require("zxfunctions")
 
 
@@ -17,16 +16,21 @@ ZXTUNING.IS_CH = GetModConfigData("zx_items_language") == "ch"
 ZXTUNING.LIGHT_RADIUS_MULTI = GetModConfigData("zxlightradius") or 1
 ZXTUNING.BOX_FRESH_RATE = TUNING.ZX_GRANARY_FRESHRATE or 0.2
 
-ZXTUNING.FARM_AREA   = GetModConfigData("zxfarmarea")
-ZXTUNING.ZXPERD_SIZE = GetModConfigData("zxperd_size") or 0.4
-ZXTUNING.ZXPIGMAN_SIZE = GetModConfigData("zxpigman_size") or 0.4
+
+ZXTUNING.FARM_ENABLE     = GetModConfigData("zxfarmenable")
+ZXTUNING.FARM_AREA       = GetModConfigData("zxfarmarea")
+ZXTUNING.FRAM_DROP_RATIO = GetModConfigData("zxfarmdroprate")
+ZXTUNING.FARM_TIME_MULTI  = GetModConfigData("zxfarmtimemulti")
+
+
+ZXTUNING.ZXPERD_SIZE    = GetModConfigData("zxperd_size") or 0.4
+ZXTUNING.ZXPIGMAN_SIZE  = GetModConfigData("zxpigman_size") or 0.4
 ZXTUNING.ZXBEEFALO_SIZE = GetModConfigData("zxbeefalo_size") or 0.4
-ZXTUNING.ZXGOAT_SIZE = GetModConfigData("zxgoat_size") or 0.4
+ZXTUNING.ZXGOAT_SIZE    = GetModConfigData("zxgoat_size") or 0.4
+
 
 
 modimport(ZXTUNING.IS_CH and "utils/strings_ch.lua" or "utils/strings_eng.lua")
-
-
 require("zx_skin/zxskinutils")
 
 
@@ -50,35 +54,7 @@ Assets = {
 }
 
 
-PrefabFiles = {
-	"zx_placers",
-    "zx_flower",
-    "zx_light",
-    "zx_well",
-
-    "zxstone",
-        
-    "zxflowerbush",
-    "zxboxs",
-    "zxlights",
-    "zxskintools",
-
-    "zxfarms",
-    "zxfarmanimals",
-    "zxfarmitems"
-    -- "zxtestprefab"
-}
-
-
-
-
-
-modimport("scripts/mods/zx_containers.lua")
-modimport("utils/recipes.lua")
-modimport("scripts/mods/zxhook.lua")
-
-
-
+----加载所有的预览图
 for k, v in pairs(ZxGetAllSkins()) do
     local path = "images/zxskins/"..k.."/"
     for i, s in ipairs(v.data) do
@@ -89,14 +65,54 @@ end
 
 
 
+PrefabFiles = {
+	"zx_placers",
+    "zx_flower",
+    "zx_light",
+    "zx_well",
+        
+    "zxflowerbush",
+    "zxboxs",
+    "zxlights",
+    "zxskintools",
+    "zxstone",
+}
+
+
+
+
+
+
+modimport("scripts/mods/zx_containers.lua")
+modimport("utils/recipes.lua")
+modimport("scripts/mods/zxhook.lua")
+modimport("scripts/zxui.lua")
+modimport("scripts/zxrpc.lua")
+modimport("scripts/mods/minimap.lua")
+modimport("scripts/zxactionhook.lua")
+
+
+--- 选择是否加载农场功能
+local farmprefabs = {
+    "zxfarms",
+    "zxfarmanimals",
+    "zxfarmitems"
+}
+if ZXTUNING.FARM_ENABLE then
+    require("zxfarmmanager")
+    modimport("scripts/mods/zxfarminit")
+    for _, v in ipairs(farmprefabs) do
+        table.insert(PrefabFiles, v)
+    end
+end
+
+
 
 AddPlayerPostInit(function(inst)
    ZxGetUserSkinFromServer(inst)
 end)
 
 
---- 动作hook
-modimport("scripts/zxactionhook.lua")
 
 
 -- 原版物品其他mod可能也有
@@ -108,9 +124,6 @@ if TUNING.ZX_BEEBOX then
     modimport("scripts/mods/zx_beebox.lua")
 end
 
-modimport("scripts/zxui.lua")
-modimport("scripts/zxrpc.lua")
-modimport("scripts/mods/minimap.lua")
 
 
 

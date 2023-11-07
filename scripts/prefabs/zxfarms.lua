@@ -134,7 +134,7 @@ local function MakeFarm(name, data)
         inst.components.zxfarm:SetChild(data.animal)
         inst.components.zxfarm:SetChildMaxCnt(data.animalcnt)
         inst.components.zxfarm:SetProduceFunc(data.producefunc)
-        inst.components.zxfarm:SetProduceTime(data.producetime)
+        inst.components.zxfarm:SetProduceTime(data.producetime * ZXTUNING.FARM_TIME_MULTI)
         inst.components.zxfarm:SetFoodNum(data.foodnum)
 
         inst:AddComponent("zxbindable")

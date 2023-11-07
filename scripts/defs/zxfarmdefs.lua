@@ -88,7 +88,7 @@ local beefalofarm = {
         end
 
         if math.random() <= 0.7 then
-            return {"beefalowool", 2}
+            return {"beefalowool", 4}
         else
             return { "meat", 1 }
         end
@@ -113,11 +113,11 @@ local goatfarm = {
     producefunc = function (inst)
         -- 春天下雨的时候有百分之10的概率生产一个奶
         if TheWorld.state.israining and TheWorld.state.isspring then
-            if math.random() <= 0.1 then
+            if math.random() <= 0.3 then
                 return {"goatmilk", 1}
             end
         end
-        if math.random() <= 0.3 then
+        if math.random() <= 0.5 then
             return { "lightninggoathorn", 1}
         else
             return { "meat", 1}

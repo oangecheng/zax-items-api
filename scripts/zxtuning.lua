@@ -10,7 +10,11 @@ ZXTUNING = {
     ZXBEEFALO_SIZE = 0.4,
     ZXGOAT_SIZE = 0.4,
 
-    FARM_AREA = 1
+    ---农场配置
+    FARM_ENABLE = true,
+    FARM_AREA = 1,
+    FRAM_DROP_RATIO = 1,
+    FARM_TIME_MULTI = 1,
 }
 
 
