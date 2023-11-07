@@ -83,9 +83,10 @@ local function MakeFarm(name, data)
         local bindId = inst.prefab.."x"..tostring(x).."y"..tostring(y).."z"..tostring(z)
         -- 数据就在主体结构这里，不需要绑定数据
         inst.components.zxbindable:Bind(bindId, data)
-        local land = SpawnPrefab("zxfarmland")
-        land.components.zxbindable:Bind(bindId, data)
-        land.Transform:SetPosition(x, y, z)
+        -- 移除地皮
+        -- local land = SpawnPrefab("zxfarmland")
+        -- land.components.zxbindable:Bind(bindId, data)
+        -- land.Transform:SetPosition(x, y, z)
     end
 
 
@@ -205,7 +206,7 @@ end
 
 
 local farmlist = {}
-table.insert( farmlist, MakeLand())
+-- table.insert( farmlist, MakeLand())
 for k, v in pairs(FARMS) do
     table.insert(farmlist, MakeFarm(k, v))
     table.insert(farmlist, MakePlacer(k.."_placer", k, k, "idle"))

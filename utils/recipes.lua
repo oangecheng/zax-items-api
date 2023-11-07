@@ -206,112 +206,113 @@ AddRecipe2(
 )
 
 
+if ZXTUNING.FARM_ENABLE then
+    -- 火鸡农场
+    AddRecipe2(
+        "zxperdfarm",
+        { Ingredient("boards", 5), Ingredient("dug_berrybush", 1),
+            Ingredient("zxstone", 10, "images/inventoryimages/zxstone.xml") },
+        TECH.LOST,
+        {
+            placer = "zxperdfarm_placer",
+            atlas = "images/zxskins/zxperdfarm/zxperdfarm.xml",
+            image = "zxperdfarm.tex",
+            min_spacing = 2,
+        },
+        { "GARDENING", "STRUCTURES" }
+    )
 
 
--- 火鸡农场
-AddRecipe2(
-    "zxperdfarm",
-    {Ingredient("boards", 5), Ingredient("dug_berrybush", 1), Ingredient("zxstone", 10, "images/inventoryimages/zxstone.xml")},
-    TECH.LOST,
-    {
-        placer = "zxperdfarm_placer",
-        atlas = "images/zxskins/zxperdfarm/zxperdfarm.xml",
-        image = "zxperdfarm.tex",
-        min_spacing = 2,
-    },
-    {"GARDENING", "STRUCTURES"}
-)
+    -- 猪人农场
+    AddRecipe2(
+        "zxpigmanfarm",
+        { Ingredient("boards", 5), Ingredient("pigskin", 2),
+            Ingredient("zxstone", 10, "images/inventoryimages/zxstone.xml") },
+        TECH.LOST,
+        {
+            placer = "zxpigmanfarm_placer",
+            atlas = "images/zxskins/zxpigmanfarm/zxpigmanfarm.xml",
+            image = "zxpigmanfarm.tex",
+            min_spacing = 2,
+        },
+        { "GARDENING", "STRUCTURES" }
+    )
+
+    -- 皮弗娄牛农场
+    AddRecipe2(
+        "zxbeefalofarm",
+        { Ingredient("boards", 5), Ingredient("horn", 1), Ingredient("zxstone", 10, "images/inventoryimages/zxstone.xml") },
+        TECH.LOST,
+        {
+            placer = "zxbeefalofarm_placer",
+            atlas = "images/zxskins/zxbeefalofarm/zxbeefalofarm.xml",
+            image = "zxbeefalofarm.tex",
+            min_spacing = 2,
+        },
+        { "GARDENING", "STRUCTURES" }
+    )
 
 
--- 猪人农场
-AddRecipe2(
-    "zxpigmanfarm",
-    {Ingredient("boards", 5), Ingredient("pigskin", 2), Ingredient("zxstone", 10, "images/inventoryimages/zxstone.xml")},
-    TECH.LOST,
-    {
-        placer = "zxpigmanfarm_placer",
-        atlas = "images/zxskins/zxpigmanfarm/zxpigmanfarm.xml",
-        image = "zxpigmanfarm.tex",
-        min_spacing = 2,
-    },
-    {"GARDENING", "STRUCTURES"}
-)
-
--- 皮弗娄牛农场
-AddRecipe2(
-    "zxbeefalofarm",
-    {Ingredient("boards", 5), Ingredient("horn", 1), Ingredient("zxstone", 10, "images/inventoryimages/zxstone.xml")},
-    TECH.LOST,
-    {
-        placer = "zxbeefalofarm_placer",
-        atlas = "images/zxskins/zxbeefalofarm/zxbeefalofarm.xml",
-        image = "zxbeefalofarm.tex",
-        min_spacing = 2,
-    },
-    {"GARDENING", "STRUCTURES"}
-)
-
-
--- 山羊农场
-AddRecipe2(
-    "zxgoatfarm",
-    {Ingredient("boards", 5), Ingredient("lightninggoathorn", 1), Ingredient("zxstone", 10, "images/inventoryimages/zxstone.xml")},
-    TECH.LOST,
-    {
-        placer = "zxgoatfarm_placer",
-        atlas = "images/zxskins/zxgoatfarm/zxgoatfarm.xml",
-        image = "zxgoatfarm.tex",
-        min_spacing = 2,
-    },
-    {"GARDENING", "STRUCTURES"}
-)
-
-
-
-
--- 孵化器
-AddRecipe2(
-    "zxfarmhatch",
-    {Ingredient("gears", 1), Ingredient("twigs", 5), Ingredient("zxstone", 5, "images/inventoryimages/zxstone.xml") },
-    TECH.LOST,
-    {
-        placer = "zxfarmhatch_placer",
-        atlas = "images/zxskins/zxfarmhatch/zxfarmhatch.xml",
-        image = "zxfarmhatch.tex",
-        min_spacing = 2,
-    },
-    {"GARDENING", "STRUCTURES"}
-)
-
-
--- 饲料盆
-AddRecipe2(
-    "zxfarmbowl",
-    {Ingredient("cutstone", 2), Ingredient("zxstone", 3, "images/inventoryimages/zxstone.xml") },
-    TECH.LOST,
-    {
-        placer = "zxfarmbowl_placer",
-        atlas = "images/zxskins/zxfarmbowl/zxfarmbowl.xml",
-        image = "zxfarmbowl.tex",
-        min_spacing = 2,
-    },
-    {"GARDENING", "STRUCTURES"}
-)
+    -- 山羊农场
+    AddRecipe2(
+        "zxgoatfarm",
+        { Ingredient("boards", 5), Ingredient("lightninggoathorn", 1),
+            Ingredient("zxstone", 10, "images/inventoryimages/zxstone.xml") },
+        TECH.LOST,
+        {
+            placer = "zxgoatfarm_placer",
+            atlas = "images/zxskins/zxgoatfarm/zxgoatfarm.xml",
+            image = "zxgoatfarm.tex",
+            min_spacing = 2,
+        },
+        { "GARDENING", "STRUCTURES" }
+    )
 
 
 
 
--- 通用型饲料
-AddRecipe2(
-    "zxfarmfood_normal",
-    {Ingredient("corn", 2), Ingredient("berries", 2), Ingredient("monstermeat", 1), },
-    TECH.SCIENCE_TWO,
-    {
-        atlas="images/inventoryimages/zxfarmfood_normal.xml",
-        image="zxfarmfood_normal.tex",
-    },
-    {"GARDENING"}
-)
+    -- 孵化器
+    AddRecipe2(
+        "zxfarmhatch",
+        { Ingredient("gears", 1), Ingredient("twigs", 5), Ingredient("zxstone", 5, "images/inventoryimages/zxstone.xml") },
+        TECH.LOST,
+        {
+            placer = "zxfarmhatch_placer",
+            atlas = "images/zxskins/zxfarmhatch/zxfarmhatch.xml",
+            image = "zxfarmhatch.tex",
+            min_spacing = 2,
+        },
+        { "GARDENING", "STRUCTURES" }
+    )
+
+
+    -- 饲料盆
+    AddRecipe2(
+        "zxfarmbowl",
+        { Ingredient("cutstone", 2), Ingredient("zxstone", 3, "images/inventoryimages/zxstone.xml") },
+        TECH.LOST,
+        {
+            placer = "zxfarmbowl_placer",
+            atlas = "images/zxskins/zxfarmbowl/zxfarmbowl.xml",
+            image = "zxfarmbowl.tex",
+            min_spacing = 2,
+        },
+        { "GARDENING", "STRUCTURES" }
+    )
+
+    -- 通用型饲料
+    AddRecipe2(
+        "zxfarmfood_normal",
+        { Ingredient("corn", 2), Ingredient("berries", 2), Ingredient("monstermeat", 1), },
+        TECH.SCIENCE_TWO,
+        {
+            atlas = "images/inventoryimages/zxfarmfood_normal.xml",
+            image = "zxfarmfood_normal.tex",
+        },
+        { "GARDENING" }
+    )
+end
+
 
 
 -- 建家石

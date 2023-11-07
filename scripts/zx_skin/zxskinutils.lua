@@ -45,14 +45,17 @@ local skinnamesdef = {
     ["1800"] = isCh and "多彩蔷薇" or "rosebush well",
     ["1801"] = isCh and "宫廷风" or "court style",
 
-    ["1900"] = isCh and "花园巢" or "garden style",
-    ["1950"] = isCh and "石质盆" or "stone style",
+    ["1900"] = isCh and "花园巢"   or "garden style",
+    ["1950"] = isCh and "石质盆"   or "stone style",
     ["2000"] = isCh and "浆果鸡舍" or "berry house",
     ["2001"] = isCh and "小鸡菇菇" or "chicken and mushroom",
-
     ["2100"] = isCh and "树干猪屋" or "tree house",
+    ["2101"] = isCh and "小猪摇篮" or "pig cradle",
     ["2200"] = isCh and "乡野牛棚" or "country cow shed",
+    ["2201"] = isCh and "牛仔帽"   or "Cowboy hat",
     ["2300"] = isCh and "草原羊圈" or "country sheepfold",
+    ["2301"] = isCh and "小羊羔裹" or "lamb wrap",
+
 }
 
 
@@ -181,10 +184,16 @@ registerSkin("zxperdfarm", "2001", "zxperdfarm1", 12, ZX_SKINTYPE.SPONSOR)
 
 -- 猪人农场
 registerSkin("zxpigmanfarm", "2100", "zxpigmanfarm", 13, ZX_SKINTYPE.FREE, true)
+registerSkin("zxpigmanfarm", "2101", "zxpigmanfarm1", 13, ZX_SKINTYPE.SPONSOR)
+
 -- 皮弗娄牛农场
 registerSkin("zxbeefalofarm", "2200", "zxbeefalofarm", 14, ZX_SKINTYPE.FREE, true)
+registerSkin("zxbeefalofarm", "2201", "zxbeefalofarm1", 14, ZX_SKINTYPE.SPONSOR)
+
 -- 山羊农场
 registerSkin("zxgoatfarm", "2300", "zxgoatfarm", 15, ZX_SKINTYPE.FREE, true)
+registerSkin("zxgoatfarm", "2301", "zxgoatfarm1", 15, ZX_SKINTYPE.SPONSOR)
+
 
 
 
