@@ -1,4 +1,9 @@
 
+local function registerRecipe()
+    
+end
+
+
 local granary_ingredient
 
 -- 困难
@@ -308,3 +313,15 @@ AddRecipe2(
     {"GARDENING"}
 )
 
+
+-- 建家石
+AddRecipe2(
+    "zxstone",
+    {Ingredient("goldnugget", 2), Ingredient("flint", 1)},
+    TECH.SCIENCE_TWO,
+    {
+        atlas="images/inventoryimages/zxstone.xml",
+        image="zxstone.tex",
+    },
+    {"REFINE"}
+)
