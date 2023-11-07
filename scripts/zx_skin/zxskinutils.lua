@@ -47,6 +47,9 @@ local skinnamesdef = {
 
     ["1900"] = isCh and "花园巢"   or "garden style",
     ["1950"] = isCh and "石质盆"   or "stone style",
+    ["1951"] = isCh and "小木箱"   or "small chest",
+    ["1952"] = isCh and "蘑菇桩"   or "mushroom stump",
+
     ["2000"] = isCh and "浆果鸡舍" or "berry house",
     ["2001"] = isCh and "小鸡菇菇" or "chicken and mushroom",
     ["2100"] = isCh and "树干猪屋" or "tree house",
@@ -176,7 +179,10 @@ registerSkin("zx_well", "1800", "zx_well", 9, ZX_SKINTYPE.FREE, true)
 registerSkin("zx_well", "1801", "zxwell1", 9, ZX_SKINTYPE.SPONSOR)
 
 registerSkin("zxfarmhatch", "1900", "zxfarmhatch", 10, ZX_SKINTYPE.FREE, true)
-registerSkin("zxfarmbowl" , "1950", "zxfarmbowl", 11, ZX_SKINTYPE.FREE, true)
+registerSkin("zxfarmbowl" , "1950", "zxfarmbowl" , 11, ZX_SKINTYPE.FREE, true)
+registerSkin("zxfarmbowl" , "1951", "zxfarmbowl1", 11, ZX_SKINTYPE.FREE)
+registerSkin("zxfarmbowl" , "1952", "zxfarmbowl2", 11, ZX_SKINTYPE.SPONSOR)
+
 
 -- 火鸡农场
 registerSkin("zxperdfarm", "2000", "zxperdfarm", 12, ZX_SKINTYPE.FREE, true)
