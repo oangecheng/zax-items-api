@@ -36,7 +36,12 @@ local assets = {
     Asset("ANIM", "anim/zxskintool2.zip"),
     Asset("ANIM", "anim/swap_zxskintool2.zip"),
     Asset("ATLAS", "images/zxskins/zxskintool/zxskintool2.xml"),
-    Asset("IMAGE", "images/zxskins/zxskintool/zxskintool2.tex")
+    Asset("IMAGE", "images/zxskins/zxskintool/zxskintool2.tex"),
+
+    Asset("ANIM", "anim/zxskintool3.zip"),
+    Asset("ANIM", "anim/swap_zxskintool3.zip"),
+    Asset("ATLAS", "images/zxskins/zxskintool/zxskintool3.xml"),
+    Asset("IMAGE", "images/zxskins/zxskintool/zxskintool3.tex")
 }
 
 local prefabs = {

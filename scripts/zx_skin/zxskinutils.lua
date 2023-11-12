@@ -2,15 +2,23 @@
 local isCh = ZXTUNING.IS_CH
 local skinnamesdef = {
     ["0000"] = isCh and "暗夜杖" or "dark staff",
-    ["0001"] = isCh and "仙女杖"  or "fairy staff",
+    ["0001"] = isCh and "仙女杖" or "fairy staff",
+    ["0002"] = isCh and "天使杖" or "angel staff",
+
     ["0010"] = isCh and "经典" or "custom",
     ["0011"] = isCh and "浮生的潘多拉魔盒" or "pandro chest",
+    ["0012"] = isCh and "兔子气球" or "rabbit chest",
+
     ["0100"] = isCh and "经典" or "custom",
     ["0101"] = isCh and "浮生的肉铺" or "ocean meat granary",
+
     ["1000"] = isCh and "紫色酢浆草" or "oxalis",
     ["1001"] = isCh and "小雏菊花丛" or "daisy",
     ["1002"] = isCh and "绣球花" or "hydrangea",
+
     ["1100"] = isCh and "垃圾桶" or "ashcan",
+    ["1101"] = isCh and "甜甜圈" or "donut",
+
 
     ["1200"] = isCh and "花园灯" or "garden lamp",
     ["1202"] = isCh and "蘑菇灯" or "mushroom lamp",
@@ -29,6 +37,7 @@ local skinnamesdef = {
     ["1300"] = isCh and "森林小屋" or "forest house",
     ["1301"] = isCh and "柴胡(白)" or "cottage",
     ["1302"] = isCh and "柴胡(绿)" or "cottage(green)",
+
     ["1400"] = isCh and "甜心花蜜罐" or "sweety honey jar",
     ["1401"] = isCh and "小熊蜜罐" or "bear honey jar",
     ["1411"] = isCh and "花盈琉璃瓶" or "glazed vase",
@@ -41,7 +50,9 @@ local skinnamesdef = {
     ["1600"] = isCh and "木质手推车" or "trolley",
     ["1601"] = isCh and "牛仔卷" or "grass rolls",
     ["1602"] = isCh and "秋日草垛" or "autumn haystacks",
+
     ["1700"] = isCh and "多彩蘑菇房" or "mushroom house",
+
     ["1800"] = isCh and "多彩蔷薇" or "rosebush well",
     ["1801"] = isCh and "宫廷风" or "court style",
 
@@ -123,8 +134,12 @@ end
 -- 法杖
 registerSkin("zxskintool", "0000", "zxskintool1", 0, ZX_SKINTYPE.FREE, true)
 registerSkin("zxskintool", "0001", "zxskintool2", 0, ZX_SKINTYPE.FREE)
+registerSkin("zxskintool", "0002", "zxskintool3", 0, ZX_SKINTYPE.FREE)
+
 registerSkin("zx_granary_veggie", "0010", "zx_granary_veggie", 0.1, ZX_SKINTYPE.FREE, true)
 registerSkin("zx_granary_veggie", "0011", "zxgranaryveggie1" , 0.1, ZX_SKINTYPE.CUSTOM)
+registerSkin("zx_granary_veggie", "0012", "zxgranaryveggie2" , 0.1, ZX_SKINTYPE.CUSTOM)
+
 registerSkin("zx_granary_meat", "0100", "zxgranarymeat", 0.2, ZX_SKINTYPE.FREE, true)
 registerSkin("zx_granary_meat", "0101", "zxgranarymeat1", 0.2, ZX_SKINTYPE.CUSTOM)
 
@@ -135,6 +150,8 @@ registerSkin("zxflowerbush", "1001", "zxdaisy",      1, ZX_SKINTYPE.FREE)
 registerSkin("zxflowerbush", "1002", "zxhydrangea",  1, ZX_SKINTYPE.FREE)
 -- 垃圾桶
 registerSkin("zxashcan", "1100", "zxashcan",  2, ZX_SKINTYPE.FREE, true)
+registerSkin("zxashcan", "1101", "zxashcan1",  2, ZX_SKINTYPE.FREE)
+
 --- 灯
 registerSkin("zxlight",  "1200", "zxgardenlight",   3, ZX_SKINTYPE.FREE, true)
 registerSkin("zxlight",  "1202", "zxmushroomlight", 3, ZX_SKINTYPE.FREE)
@@ -179,6 +196,8 @@ registerSkin("zx_well", "1800", "zx_well", 9, ZX_SKINTYPE.FREE, true)
 registerSkin("zx_well", "1801", "zxwell1", 9, ZX_SKINTYPE.SPONSOR)
 
 registerSkin("zxfarmhatch", "1900", "zxfarmhatch", 10, ZX_SKINTYPE.FREE, true)
+registerSkin("zxfarmhatch", "1901", "zxfarmhatch1", 10, ZX_SKINTYPE.SPONSOR)
+
 registerSkin("zxfarmbowl" , "1950", "zxfarmbowl" , 11, ZX_SKINTYPE.FREE, true)
 registerSkin("zxfarmbowl" , "1951", "zxfarmbowl1", 11, ZX_SKINTYPE.FREE)
 registerSkin("zxfarmbowl" , "1952", "zxfarmbowl2", 11, ZX_SKINTYPE.SPONSOR)
@@ -207,6 +226,7 @@ registerSkin("zxgoatfarm", "2301", "zxgoatfarm1", 15, ZX_SKINTYPE.SPONSOR)
 --- 有些动画制作的时候尺寸不佳
 --- 通过这个修改动画的尺寸
 local animscales = {
+    ["0012"] = 1.5,
     ["1213"] = 1.5,
     ["1214"] = 0.8,
     ["1301"] = 1.3,
@@ -217,6 +237,7 @@ local animscales = {
     ["1700"] = 0.8,
     ["1801"] = 1.5,
     ["1900"] = 0.8,
+    ["1901"] = 0.5,
     ["2100"] = 1.5
 }
 
