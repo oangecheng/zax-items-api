@@ -2,10 +2,16 @@
 --- 三个阶段动画
 local function threePhaseAnim(inst)
     local container = inst.components.container
-    if container == nil then return "empty" end
-    if container:IsEmpty() then return "empty"
-    elseif container:IsFull() then return "full"
-    else return "half" end
+    if container ~= nil and not container:IsEmpty() then
+        local nums = container:NumItems()
+        local max  = container:GetNumSlots()
+        if nums >= max * 0.5 then
+            return "full"
+        else
+            return "half"
+        end
+    end
+    return "empty"
 end
 
 
