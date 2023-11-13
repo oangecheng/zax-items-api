@@ -66,6 +66,9 @@ local function MakeAnimal(animal, data)
             return inst
         end
 
+        -- 初始化农场
+        ZXFarmItemInitFunc(inst)
+
         inst.sound = data.sound
 
         inst:AddComponent("locomotor")
@@ -78,7 +81,6 @@ local function MakeAnimal(animal, data)
         inst:AddComponent("zxbindable")
         inst.components.zxbindable:SetOnUnBindFunc(function ()
             inst.components.lootdropper:DropLoot()
-            inst:Remove()
         end)
         inst:SetStateGraph(data.sg or "ZxAnimalSG")
         inst:AddComponent("inspectable")

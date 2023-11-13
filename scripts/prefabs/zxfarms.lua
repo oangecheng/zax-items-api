@@ -121,7 +121,11 @@ local function MakeFarm(name, data)
             end
         end
 
-        ZXFarmAddHarmmerdAction(inst, 5)
+        ZXFarmItemInitFunc(inst, 5)
+        inst.onhitfn = function ()
+            inst.AnimState:PlayAnimation("onhit")
+            inst.AnimState:PushAnimation("idle")
+        end
 
         MakeMediumBurnable(inst)
         MakeSmallPropagator(inst)
@@ -153,7 +157,7 @@ local function MakeFarm(name, data)
         return inst
     end
     
-    return Prefab(name, fn, assets, nil)
+    return Prefab(name, fn, assets, prefabs)
 end
 
 

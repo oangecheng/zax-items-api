@@ -182,10 +182,10 @@ local function removeBindItem(item, bindId)
         else
             local bindable = item.components.zxbindable
             if bindable then
-                bindable:Unbind()
                 if data.host then
                     bindable:Dispatch(false, FARMS[data.host])
                 end
+                bindable:Unbind()
             end
         end
     end
@@ -204,16 +204,26 @@ local function onHammered(inst)
 end
 
 
-function ZXFarmAddHarmmerdAction(inst, workcount)
-    inst:AddComponent("lootdropper")
-    inst:AddComponent("workable")
-    inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
-    inst.components.workable:SetWorkLeft(workcount or 3)
-    inst.components.workable:SetOnFinishCallback(onHammered)
-    inst.components.workable:SetOnWorkCallback(onHit)
+
+function ZXFarmItemInitFunc(inst, workcount)
+    
+    if inst:HasTag("structure") then
+        inst:AddComponent("lootdropper")
+        inst:AddComponent("workable")
+        inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
+        inst.components.workable:SetWorkLeft(workcount or 3)
+        inst.components.workable:SetOnFinishCallback(onHammered)
+        inst.components.workable:SetOnWorkCallback(function ()
+            if inst.onhitfn then
+                inst.onhitfn(inst)
+            end
+        end)
+    end
+    
 
     inst:ListenForEvent("onremove", function ()
         local bindId = getBindId(inst)
+        ZXLog("onremove", bindId, inst.prefab)
         if bindId then
             removeBindItem(inst, bindId)
         end

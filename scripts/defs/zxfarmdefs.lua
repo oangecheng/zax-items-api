@@ -158,8 +158,8 @@ return {
         zxpigmanfarm  = pigfarm,
         zxbeefalofarm  = beefalofarm,
         zxgoatfarm = goatfarm,
-        zxkoalefantfarm_w = koalefantFarm(true),
-        zxkoalefantfarm_s = koalefantFarm(false)
+        -- zxkoalefantfarm_w = koalefantFarm(true),
+        -- zxkoalefantfarm_s = koalefantFarm(false)
     },
 
     souls = souls,

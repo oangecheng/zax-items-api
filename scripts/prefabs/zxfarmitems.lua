@@ -210,9 +210,7 @@ local function MakeHatchMachine(name)
         end
 
         ZxInitItemForServer(inst, name, scale)
-        ZXFarmAddHarmmerdAction(inst)
-
-        
+        ZXFarmItemInitFunc(inst)
 
         inst:AddComponent("zxhatcher")
         inst.components.zxhatcher:SetOnStartFunc(function (_, seed)
@@ -332,7 +330,7 @@ local function MakeFarmBowl(name)
         end
 
         ZxInitItemForServer(inst, name, scale)
-        ZXFarmAddHarmmerdAction(inst)
+        ZXFarmItemInitFunc(inst)
 
         -- 给食物尝试驱动下生产
         inst.components.zxfeeder:SetOnGiveFoodFunc(function (_, foodnum)

@@ -91,7 +91,7 @@
         "RemoveEntity",
         "SpawnSaveRecord",
         "LaunchAt",
-        "ZXFarmAddHarmmerdAction",
+        "ZXFarmItemInitFunc",
         "ZXFarmObserveItemBuild",
         "TimeEvent",
         "FRAMES",
