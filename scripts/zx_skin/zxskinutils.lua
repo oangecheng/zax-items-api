@@ -11,6 +11,7 @@ local skinnamesdef = {
 
     ["0100"] = isCh and "经典" or "custom",
     ["0101"] = isCh and "浮生的肉铺" or "ocean meat granary",
+    ["0102"] = isCh and "猫猫与花" or "cat and flower",
 
     ["1000"] = isCh and "紫色酢浆草" or "oxalis",
     ["1001"] = isCh and "小雏菊花丛" or "daisy",
@@ -18,6 +19,7 @@ local skinnamesdef = {
 
     ["1100"] = isCh and "垃圾桶" or "ashcan",
     ["1101"] = isCh and "甜甜圈" or "donut",
+    ["1102"] = isCh and "呆呆南瓜" or "pumpkin",
 
 
     ["1200"] = isCh and "花园灯" or "garden lamp",
@@ -33,6 +35,8 @@ local skinnamesdef = {
     ["1253"] = isCh and "典藏卡基米(右)" or "cat lamp",
     ["1254"] = isCh and "小蛛灯" or "flower lamp",
     ["1255"] = isCh and "星星灯" or "flower lamp",
+    ["1256"] = isCh and "韦伯" or "weber lamp",
+
     
     ["1300"] = isCh and "森林小屋" or "forest house",
     ["1301"] = isCh and "柴胡(白)" or "cottage",
@@ -136,12 +140,13 @@ registerSkin("zxskintool", "0000", "zxskintool1", 0, ZX_SKINTYPE.FREE, true)
 registerSkin("zxskintool", "0001", "zxskintool2", 0, ZX_SKINTYPE.FREE)
 registerSkin("zxskintool", "0002", "zxskintool3", 0, ZX_SKINTYPE.FREE)
 
+-- 粮仓
 registerSkin("zx_granary_veggie", "0010", "zx_granary_veggie", 0.1, ZX_SKINTYPE.FREE, true)
 registerSkin("zx_granary_veggie", "0011", "zxgranaryveggie1" , 0.1, ZX_SKINTYPE.CUSTOM)
 registerSkin("zx_granary_veggie", "0012", "zxgranaryveggie2" , 0.1, ZX_SKINTYPE.CUSTOM)
-
 registerSkin("zx_granary_meat", "0100", "zxgranarymeat", 0.2, ZX_SKINTYPE.FREE, true)
 registerSkin("zx_granary_meat", "0101", "zxgranarymeat1", 0.2, ZX_SKINTYPE.CUSTOM)
+registerSkin("zx_granary_meat", "0102", "zxgranarymeat2", 0.2, ZX_SKINTYPE.SPONSOR)
 
 
 -- 花丛
@@ -151,14 +156,19 @@ registerSkin("zxflowerbush", "1002", "zxhydrangea",  1, ZX_SKINTYPE.FREE)
 -- 垃圾桶
 registerSkin("zxashcan", "1100", "zxashcan",  2, ZX_SKINTYPE.FREE, true)
 registerSkin("zxashcan", "1101", "zxashcan1",  2, ZX_SKINTYPE.FREE)
+registerSkin("zxashcan", "1102", "zxashcan2",  2, ZX_SKINTYPE.FREE)
+
 
 --- 灯
 registerSkin("zxlight",  "1200", "zxgardenlight",   3, ZX_SKINTYPE.FREE, true)
 registerSkin("zxlight",  "1202", "zxmushroomlight", 3, ZX_SKINTYPE.FREE)
+registerSkin("zxlight",  "1203", "zxlight4",        3, ZX_SKINTYPE.FREE)
+
 registerSkin("zxlight",  "1211", "zxflowerlight",   3, ZX_SKINTYPE.SPONSOR)
 registerSkin("zxlight",  "1212", "zxbubblelight",   3, ZX_SKINTYPE.SPONSOR)
 registerSkin("zxlight",  "1213", "zxlight2",        3, ZX_SKINTYPE.SPONSOR)
 registerSkin("zxlight",  "1214", "zxlight3",        3, ZX_SKINTYPE.SPONSOR)
+
 
 registerSkin("zxlight",  "1250", "zxcatllight",     3, ZX_SKINTYPE.CUSTOM)
 registerSkin("zxlight",  "1251", "zxcatrlight",     3, ZX_SKINTYPE.CUSTOM)
@@ -166,7 +176,7 @@ registerSkin("zxlight",  "1252", "zxcatsleftlight", 3, ZX_SKINTYPE.CUSTOM)
 registerSkin("zxlight",  "1253", "zxcatsrightlight",3, ZX_SKINTYPE.CUSTOM)
 registerSkin("zxlight",  "1254", "zxstartalllight", 3, ZX_SKINTYPE.CUSTOM)
 registerSkin("zxlight",  "1255", "zxstarshortlight",3, ZX_SKINTYPE.CUSTOM)
-registerSkin("zxlight",  "1256", "zxlight4",        3, ZX_SKINTYPE.CUSTOM)
+registerSkin("zxlight",  "1256", "zxlight5",        3, ZX_SKINTYPE.CUSTOM)
 
 
 -- 柴房
@@ -229,6 +239,7 @@ local animscales = {
     ["0012"] = 1.5,
     ["1213"] = 1.5,
     ["1214"] = 0.8,
+    ["1256"] = 0.8,
     ["1301"] = 1.3,
     ["1302"] = 1.3,
     ["1501"] = 0.8,

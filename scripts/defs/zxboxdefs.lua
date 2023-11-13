@@ -135,11 +135,18 @@ local ashcan = {
     end,
 
     onopenfn = function (inst, doer)
+        inst.AnimState:PlayAnimation("open")
         inst.SoundEmitter:PlaySound("saltydog/common/saltbox/open")
     end,
 
     onclosefn = function (inst, doer)
+        inst.AnimState:PlayAnimation("close")
         inst.SoundEmitter:PlaySound("saltydog/common/saltbox/close")
+    end,
+
+    onhitfn = function (inst, doer)
+        inst.AnimState:PlayAnimation("onhit")
+        inst.AnimState:PushAnimation("close")
     end,
 
     btnfn = function (inst, doer)
