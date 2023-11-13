@@ -138,9 +138,6 @@ local function MakeFarm(name, data)
         inst.components.zxfarm:SetFoodNum(data.foodnum)
 
         inst:AddComponent("zxbindable")
-        inst.components.zxbindable:SetOnUnBindFunc(function(_, _, _)
-            inst:Remove()
-        end)
    
         --- 监听农场事件推送
         inst:ListenForEvent(ZXEVENTS.FARM_ADD_FOOD, function ()
