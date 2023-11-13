@@ -4,6 +4,7 @@ local zxfarmdata = {}
 local tagfeeder = "ZXFEEDER"
 local taghost = "ZXFARM_HOST"
 local taghatcher = "ZXHATCHER"
+local FARMS = (require "defs/zxfarmdefs").farms
 
 --- 查找绑定id
 --- @param inst table 
@@ -11,6 +12,12 @@ local taghatcher = "ZXHATCHER"
 local function getBindId(inst)
     local bindable = inst.components.zxbindable
     return bindable and bindable:GetBindId() or nil
+end
+
+
+local function getFarmItems(bindId)
+    local data = zxfarmdata[bindId]
+    return data and data.items or {}
 end
 
 
@@ -29,7 +36,7 @@ end
 local function findItemByTag(inst, tag)
     local bindId = getBindId(inst)
     if bindId then
-        local items = zxfarmdata[bindId] or {}
+        local items = getFarmItems(bindId)
         for _, v in pairs(items) do
             if v:HasTag(tag) then
                 return v
@@ -40,6 +47,14 @@ local function findItemByTag(inst, tag)
 end
 
 
+local function dispatchBind(inst, data)
+    if (not inst.calledbind) and inst.components.zxbindable then
+        inst.components.zxbindable:Dispatch(true, data)
+        inst.calledbind = true
+    end
+end
+
+
 
 --- 绑定物品，需要提供id
 --- @param bindId string 绑定id，具备唯一性
@@ -47,9 +62,29 @@ end
 function ZXFarmBindItems(bindId, item)
     local key = itemkey(item)
     if bindId and item and key then
-        local list = zxfarmdata[bindId] or {}
+
+        local data = zxfarmdata[bindId] or {}
+        local list = data.items or {}
         list[key] = item
-        zxfarmdata[bindId] = list
+        data.items = list
+
+        if item:HasTag(taghost) then
+            --- 主体绑定的时候通知所有子物品
+            data.host = item.prefab
+            for _, v in pairs(list) do
+                if v then
+                    dispatchBind(v, FARMS[data.host])
+                end
+            end
+        else
+            -- 子物品绑定的时候，自己刷新下状态
+            if data.host then
+                dispatchBind(item, FARMS[data.host])
+            end
+        end
+
+        zxfarmdata[bindId] = data
+
     end
 end
 
@@ -59,7 +94,7 @@ end
 function ZxFarmPushEvent(pusher, event, data)
     local bindId = getBindId(pusher)
     if bindId then
-        local items = zxfarmdata[bindId]
+        local items = getFarmItems(bindId)
         if items then
             for _, value in pairs(items) do
                 if value and value ~= pusher then
@@ -76,9 +111,9 @@ end
 --- 建造的物品
 function ZXFarmObserveItemBuild(item)
     item:ListenForEvent("onbuilt", function (inst)
-        for _, list in pairs(zxfarmdata) do
-            if list ~= nil then
-                for k, v in pairs(list) do
+        for _, data in pairs(zxfarmdata) do
+            if data ~= nil and data.items ~= nil then
+                for k, v in pairs(data.items) do
                     if v ~= nil and v:HasTag(taghost) then
                         v:PushEvent(ZXEVENTS.FARM_ITEM_BUILD, { item = item })
                     end
@@ -133,23 +168,23 @@ end
 --- @param bindId string 绑定id
 local function removeBindItem(item, bindId)
     if bindId and item then
-        local list = zxfarmdata[bindId]
+
+        local data = zxfarmdata[bindId]
+        local list = data and data.items or {}
 
         if item:HasTag(taghost) then
             for k, value in pairs(list) do
-                if value.components.zxbindable then
-                    value.components.zxbindable:Unbind()
+                if value ~= item then
+                    value:Remove()
                 end
-                list[k] = nil
             end
             zxfarmdata[bindId] = nil
-
         else
-            local key = itemkey(item)
-            if list and key ~= nil then
-                list[key] = nil
-                if item.components.zxbindable then
-                    item.components.zxbindable:Unbind()
+            local bindable = item.components.zxbindable
+            if bindable then
+                bindable:Unbind()
+                if data.host then
+                    bindable:Dispatch(false, FARMS[data.host])
                 end
             end
         end
@@ -165,19 +200,9 @@ local function onHammered(inst)
     local fx = SpawnPrefab("collapse_small")
     fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
     fx:SetMaterial("wood")
-
-    local bindId = getBindId(inst)
-    if bindId then
-        removeBindItem(inst, bindId)
-    else
-        inst:Remove()
-    end
+    inst:Remove()
 end
 
-
-local function onHit(inst)
-    
-end
 
 function ZXFarmAddHarmmerdAction(inst, workcount)
     inst:AddComponent("lootdropper")
@@ -186,4 +211,11 @@ function ZXFarmAddHarmmerdAction(inst, workcount)
     inst.components.workable:SetWorkLeft(workcount or 3)
     inst.components.workable:SetOnFinishCallback(onHammered)
     inst.components.workable:SetOnWorkCallback(onHit)
+
+    inst:ListenForEvent("onremove", function ()
+        local bindId = getBindId(inst)
+        if bindId then
+            removeBindItem(inst, bindId)
+        end
+    end)
 end

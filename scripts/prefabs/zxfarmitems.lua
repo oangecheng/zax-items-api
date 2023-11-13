@@ -249,7 +249,6 @@ local function MakeHatchMachine(name)
                     end
                 end
             end
-            inst:Remove()
         end)
 
         inst.OnLoad = function (inst, data)
@@ -360,9 +359,9 @@ local function MakeFarmBowl(name)
             inst.components.zxfeeder:SetFoods(list)
             changeName(inst, STRINGS.ZX_HASBIND)
         end)
+
         inst.components.zxbindable:SetOnUnBindFunc(function()
             inst.components.zxfeeder:SetFoods(nil)
-            inst:Remove()
         end)
         
         updateBowlState(inst)

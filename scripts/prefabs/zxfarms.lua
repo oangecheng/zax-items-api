@@ -63,11 +63,11 @@ local function onFarmItemBuild(host, item)
     end
 
     local bindId = host.components.zxbindable:GetBindId()
-    if bindId and host.farmdata then
+    if bindId then
         if isValidDistance(host, item) then
             local bindable = item.components.zxbindable
             if bindable and bindable:CanBind() then
-                bindable:Bind(bindId, host.farmdata)
+                bindable:Bind(bindId)
             end
         end
     end
@@ -81,12 +81,7 @@ local function MakeFarm(name, data)
     local function onBuild(inst)
         local x,y,z = inst.Transform:GetWorldPosition()
         local bindId = inst.prefab.."x"..tostring(x).."y"..tostring(y).."z"..tostring(z)
-        -- 数据就在主体结构这里，不需要绑定数据
-        inst.components.zxbindable:Bind(bindId, data)
-        -- 移除地皮
-        -- local land = SpawnPrefab("zxfarmland")
-        -- land.components.zxbindable:Bind(bindId, data)
-        -- land.Transform:SetPosition(x, y, z)
+        inst.components.zxbindable:Bind(bindId)
     end
 
 
@@ -162,51 +157,7 @@ local function MakeFarm(name, data)
 end
 
 
-
-
-local function MakeLand()
-    local function fn()
-
-        local inst = CreateEntity()
-        
-        inst.entity:AddTransform()
-        inst.entity:AddAnimState()
-        inst.entity:AddMiniMapEntity()
-        inst.entity:AddNetwork()
-    
-        local scale = 2 * ZXTUNING.FARM_AREA
-        inst.AnimState:SetScale(scale, scale, scale)
-        inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
-        inst.AnimState:SetLayer(LAYER_BACKGROUND)
-        inst.AnimState:SetSortOrder(3)
-    
-        inst.AnimState:SetBank("zxfarmland")
-        inst.AnimState:SetBuild("zxfarmland")
-        inst.AnimState:PlayAnimation("land1")
-    
-        inst.entity:SetPristine()
-    
-        inst:AddTag("structure")
-        inst:AddTag("NOBLOCK")
-        inst:AddTag("NOCLICK")
-        inst:AddTag("zxfarmitem")
-    
-        if not TheWorld.ismastersim then
-            return inst
-        end
-
-        inst:AddComponent("zxbindable")
-        inst.components.zxbindable:SetOnUnBindFunc(function ()
-            inst:Remove()
-        end)
-        return inst
-    end
-    return Prefab("zxfarmland", fn, assets, prefabs)
-end
-
-
 local farmlist = {}
--- table.insert( farmlist, MakeLand())
 for k, v in pairs(FARMS) do
     table.insert(farmlist, MakeFarm(k, v))
     table.insert(farmlist, MakePlacer(k.."_placer", k, k, "idle"))

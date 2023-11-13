@@ -139,7 +139,7 @@ function Farm:AddFarmAnimal()
             ent.Transform:SetPosition(x, y, z)
 
             local bindId = self.inst.components.zxbindable:GetBindId()
-            ent.components.zxbindable:Bind(bindId, self.inst.farmdata)
+            ent.components.zxbindable:Bind(bindId)
 
             if ent.components.zxanimal then
                 ent.components.zxanimal:SetFarmPosition(x, y, z)

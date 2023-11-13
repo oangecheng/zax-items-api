@@ -3,7 +3,6 @@
 local Bindable = Class(function (self, inst)
     self.inst = inst
     self.bindId = nil
-    self.shareData = nil
 end)
 
 
@@ -30,26 +29,32 @@ end
 
 --- 设置绑定的id，多个绑定物品的id应该是一致的
 --- @param id string 绑定的id，需要唯一性
---- @param shareData any 共享的数据
-function Bindable:Bind(id, shareData)
+function Bindable:Bind(id)
     if not self.bindId and id then
         self.bindId = id
-        self.shareData = shareData
         ZXFarmBindItems(self.bindId, self.inst)
-        if self.onBindFunc then
-            self.onBindFunc(self.inst, self.bindId, self.shareData)
-        end
     end
 end
 
 
 --- 解除绑定
 function Bindable:Unbind()
-    if self.onUnBindFunc and self.bindId and self.shareData then
-        self.onUnBindFunc(self.inst, self.bindId, self.shareData)
-    end
     self.bindId = nil
-    self.shareData = nil
+end
+
+
+function Bindable:Dispatch(isbind, data)
+    if self.bindId and data then
+        if isbind then
+            if self.onBindFunc then
+                self.onBindFunc(self.inst, self.bindId, data)
+            end
+        else
+            if self.onUnBindFunc then
+                self.onUnBindFunc(self.inst, self.bindId, data)
+            end
+        end
+    end
 end
 
 
@@ -63,18 +68,13 @@ end
 function Bindable:OnSave()
     return {
         bindId = self.bindId,
-        shareData = self.shareData
     }
 end
 
 
 function Bindable:OnLoad(data)
     self.bindId = data.bindId
-    self.shareData = data.shareData
     ZXFarmBindItems(self.bindId, self.inst)
-    if self.onBindFunc and self.bindId and self.shareData then
-        self.onBindFunc(self.inst, self.bindId, self.shareData)
-    end
 end
 
 
