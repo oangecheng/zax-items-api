@@ -127,6 +127,30 @@ local goatfarm = {
 
 
 
+local function koalefantFarm(iswinter)
+    local truck = iswinter and "trunk_winter" or "trunk_summer"
+    return {
+        hatchitem = iswinter and "zxkoalefant_w_soul" or "zxkoalefant_s_soul",
+        hatchtime = ZXTUNING.DEBUG and 10 or HATCH_BASE_TIME * 3,
+        animal    = iswinter and "zxkoalefant_w" or "zxkoalefant_s",
+        animalcnt = 4,
+        foodnum = 3,
+        foods = { 
+            "zxfarmfood_normal"
+        },
+        producetime = ZXTUNING.DEBUG and 10 or PRODUCE_BASE_TIME * 3,
+
+        producefunc = function (inst)
+            if math.random() <= 0.5 then
+                return { truck, 1}
+            else
+                return { "meat", 1}
+            end
+        end
+    }
+end 
+
+
 
 return {
     farms = {
@@ -134,6 +158,8 @@ return {
         zxpigmanfarm  = pigfarm,
         zxbeefalofarm  = beefalofarm,
         zxgoatfarm = goatfarm,
+        zxkoalefantfarm_w = koalefantFarm(true),
+        zxkoalefantfarm_s = koalefantFarm(false)
     },
 
     souls = souls,

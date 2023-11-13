@@ -129,10 +129,48 @@ local farmgoat = {
 }
 
 
+local function farmKoalefant(iswinter)
+
+    local build = iswinter and "koalefant_winter_build" or "koalefant_summer_build"
+    local soul  = iswinter and "zxkoalefant_w_soul" or "zxkoalefant_s_soul"
+
+    return {
+        assets = {
+            Asset("ANIM", "anim/koalefant_basic.zip"),
+            Asset("ANIM", "anim/koalefant_actions.zip"),
+            Asset("ANIM", "anim/koalefant_winter_build.zip"),
+            Asset("ANIM", "anim/koalefant_summer_build.zip"),
+            Asset("SOUND", "sound/koalefant.fsb"),
+        },
+    
+        initfunc = function (inst)
+            inst.Transform:SetSixFaced()
+        end,
+    
+        anim = {
+            bank = "koalefant",
+            build = build,
+            idle = "idle_loop",
+            size = ZXTUNING.ZXKOALEFANT_SIZE,
+        },
+    
+        walkspeed = 1,
+        sound = nil,
+        loots = { "meat", "meat", soul }
+    }
+end 
+
+
+
+
+
 
 local def  = {}
-def.zxperd    = farmperd
-def.zxpigman  = farmpigman
-def.zxbeefalo = farmbeefalo
-def.zxgoat    = farmgoat
+def.zxperd      = farmperd
+def.zxpigman    = farmpigman
+def.zxbeefalo   = farmbeefalo
+def.zxgoat      = farmgoat
+def.zxkoalefant_w = farmKoalefant(true)
+def.zxkoalefant_s = farmKoalefant(false)
+
 return def

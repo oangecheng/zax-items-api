@@ -9,6 +9,7 @@ ZXTUNING = {
     ZXPIGMAN_SIZE = 0.4,
     ZXBEEFALO_SIZE = 0.4,
     ZXGOAT_SIZE = 0.4,
+    ZXKOALEFANT_SIZE = 0.4,
 
     ---农场配置
     FARM_ENABLE = true,

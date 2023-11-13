@@ -187,6 +187,20 @@ configuration_options = {
 		default = 0.4
 	},
 
+	{
+		name = "zxkoalefant_size",
+		label = ch and "考拉象大小设置" or "farm koalefant size settings",
+		options = {
+			{description = ch and "默认" or "default", data = 0.4},
+			{description = ch and "小" or "small", data = 0.3},
+			{description = ch and "较大" or "big", data = 0.5},
+			{description = ch and "大" or "large", data = 0.6},
+			{description = ch and "原版" or "origin", data = 1},
+
+		},
+		default = 0.4
+	},
+
 
 
 	Title(ch and "永亮灯设置" or "Perpetual light settings"),
