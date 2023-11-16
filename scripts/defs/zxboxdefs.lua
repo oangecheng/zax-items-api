@@ -15,6 +15,38 @@ local function threePhaseAnim(inst)
 end
 
 
+local function obtainNormalBox(prefab, icebox)
+    local sound_open  = "saltydog/common/saltbox/open"
+    local sound_close = "saltydog/common/saltbox/close"
+
+    return {
+        isicebox = icebox;
+        placeanim = "empty",
+        initskin = ZxGetPrefabDefaultSkin(prefab),
+        oninitfn = function(inst)
+            inst.AnimState:PlayAnimation(threePhaseAnim(inst))
+        end,
+        onopenfn = function(inst, doer)
+            inst.SoundEmitter:PlaySound(sound_open)
+        end,
+        onclosefn = function(inst, doer)
+            inst.AnimState:PlayAnimation(threePhaseAnim(inst))
+            inst.SoundEmitter:PlaySound(sound_close)
+        end,
+
+        onbuildfn = function(inst)
+            inst.AnimState:PlayAnimation("onbuild")
+            inst.AnimState:PushAnimation("empty")
+        end,
+
+        onhitfn = function(inst, doer)
+            inst.AnimState:PlayAnimation("onhit")
+            inst.AnimState:PushAnimation(threePhaseAnim(inst))
+        end,
+    }
+end
+
+
 
 local granaryveggie = {
     isicebox = true,
@@ -162,173 +194,18 @@ local ashcan = {
 }
 
 
-
-
-local function logstoreAnim(inst)
-    local container = inst.components.container
-    if container == nil then return "empty" end
-    if container:IsEmpty() then return "empty"
-    elseif container:IsFull() then return "full"
-    else return "half" end
-end
-
-local logstore = {
-    placeanim = "empty",
-    initskin = ZxGetPrefabDefaultSkin("zxlogstore");
-
-    oninitfn = function (inst)
-        inst.AnimState:PlayAnimation(logstoreAnim(inst))
-    end,
-
-    onopenfn = function (inst, doer)
-        inst.SoundEmitter:PlaySound("saltydog/common/saltbox/open")
-    end,
-
-    onclosefn = function (inst, doer)
-        inst.AnimState:PlayAnimation(logstoreAnim(inst))
-        inst.SoundEmitter:PlaySound("saltydog/common/saltbox/close")
-    end,
-
-
-    onbuildfn = function (inst)
-        inst.AnimState:PlayAnimation("onbuild")
-        inst.AnimState:PushAnimation("empty")
-    end,
-
-    onhitfn = function (inst, doer)
-        inst.AnimState:PlayAnimation("onhit")
-        inst.AnimState:PushAnimation(logstoreAnim(inst))
-    end,
-
-}
-
-
-
-
-local function eggBasketAnim(inst)
-    local container = inst.components.container
-    if container == nil then return "empty" end
-    if container:IsEmpty() then return "empty"
-    elseif container:IsFull() then return "full"
-    else return "half" end
-end
-
-local eggbasket = {
-    isicebox = true;
-    placeanim = "empty",
-    initskin = ZxGetPrefabDefaultSkin("zxeggbasket");
-
-    oninitfn = function (inst)
-        inst.AnimState:PlayAnimation(eggBasketAnim(inst))
-    end,
-
-    onopenfn = function (inst, doer)
-        inst.SoundEmitter:PlaySound("saltydog/common/saltbox/open")
-    end,
-
-    onclosefn = function (inst, doer)
-        inst.AnimState:PlayAnimation(eggBasketAnim(inst))
-        inst.SoundEmitter:PlaySound("saltydog/common/saltbox/close")
-    end,
-
-
-    onbuildfn = function (inst)
-        inst.AnimState:PlayAnimation("onbuild")
-        inst.AnimState:PushAnimation("empty")
-    end,
-
-    onhitfn = function (inst, doer)
-        inst.AnimState:PlayAnimation("onhit")
-        inst.AnimState:PushAnimation(eggBasketAnim(inst))
-    end,
-}
-
-
-
-
-
-local function haycartAnim(inst)
-    local container = inst.components.container
-    if container == nil then return "empty" end
-    if container:IsEmpty() then return "empty"
-    elseif container:IsFull() then return "full"
-    else return "half" end
-end
-
-local haycart = {
-    placeanim = "empty",
-    initskin = ZxGetPrefabDefaultSkin("zx_hay_cart");
-
-    oninitfn = function (inst)
-        inst.AnimState:PlayAnimation(haycartAnim(inst))
-    end,
-
-    onopenfn = function (inst, doer)
-        inst.SoundEmitter:PlaySound("saltydog/common/saltbox/open")
-    end,
-
-    onclosefn = function (inst, doer)
-        inst.AnimState:PlayAnimation(haycartAnim(inst))
-        inst.SoundEmitter:PlaySound("saltydog/common/saltbox/close")
-    end,
-
-
-    onbuildfn = function (inst)
-        inst.AnimState:PlayAnimation("onbuild")
-        inst.AnimState:PushAnimation("empty")
-    end,
-
-    onhitfn = function (inst, doer)
-        inst.AnimState:PlayAnimation("onhit")
-        inst.AnimState:PushAnimation(haycartAnim(inst))
-    end,
-}
-
-
-
-
-
-local mushroomHouse = {
-    isicebox = true;
-    placeanim = "empty",
-    initskin = ZxGetPrefabDefaultSkin("zxmushroomhouse");
-
-    oninitfn = function (inst)
-        inst.AnimState:PlayAnimation(threePhaseAnim(inst))
-    end,
-
-    onopenfn = function (inst, doer)
-        inst.SoundEmitter:PlaySound("saltydog/common/saltbox/open")
-    end,
-
-    onclosefn = function (inst, doer)
-        inst.AnimState:PlayAnimation(threePhaseAnim(inst))
-        inst.SoundEmitter:PlaySound("saltydog/common/saltbox/close")
-    end,
-
-
-    onbuildfn = function (inst)
-        inst.AnimState:PlayAnimation("onbuild")
-        inst.AnimState:PushAnimation("empty")
-    end,
-
-    onhitfn = function (inst, doer)
-        inst.AnimState:PlayAnimation("onhit")
-        inst.AnimState:PushAnimation(threePhaseAnim(inst))
-    end,
-}
-
-
-
 local boxs = {
     ["zxhoneyjar"] = honeyjar,
-    ["zxlogstore"] = logstore,
     ["zxashcan"]   = ashcan,
-    ["zxeggbasket"] = eggbasket,
-    ["zx_hay_cart"] = haycart,
     ["zx_granary_veggie"] = granaryveggie,
     ["zx_granary_meat"] = granarymeat,
-    ["zxmushroomhouse"] = mushroomHouse,
+
+    ["zxlogstore"] = obtainNormalBox("zxlogstore"),
+    ["zxeggbasket"] = obtainNormalBox("zxeggbasket", true),
+    ["zx_hay_cart"] = obtainNormalBox("zx_hay_cart"),
+    ["zxmushroomhouse"] = obtainNormalBox("zxmushroomhouse", true),
+    ["zxboxmine"] = obtainNormalBox("zxboxmine"),
+    ["zxboxgem"]  = obtainNormalBox("zxboxgem")
 }
 
 return  boxs

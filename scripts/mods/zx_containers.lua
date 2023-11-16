@@ -1,5 +1,6 @@
 local cooking = require("cooking")
 local containers = require "containers"
+local zxboxes = require "defs.zxboxdefs"
 
 
 local default_pos = Vector3(0, 220, 0)
@@ -324,7 +325,22 @@ end
 
 
 
+------------------- 石头仓库 ------------------
+params.zxboxmine = createBox5x10Param()
+local zxboxmine = { }
+function params.zxboxmine.itemtestfn(container, item, slot)
+	--- 鼹鼠可以偷的都认为是矿石
+	return item:HasTag("molebait")
+end
 
+
+------------------- 宝石箱子 ------------------
+params.zxboxgem = createBox5x10Param()
+local zxboxgem = { "immortal_gem" }
+function params.zxboxgem.itemtestfn(container, item, slot)
+	---@diagnostic disable-next-line: undefined-field
+	return item:HasTag("gem") or table.contains(zxboxgem, item.prefab)
+end
 
 
 
@@ -338,22 +354,19 @@ end
 
 --兼容show me的绿色索引，代码参考自风铃草大佬的穹妹--------
 --我是参考的勋章，哈哈----
-local zx_containers= {
-	"zx_granary_meat",
-	"zx_granary_veggie",
-}
+
 --如果他优先级比我高 这一段生效
 for k,mod in pairs(ModManager.mods) do 
 	if mod and mod.SHOWME_STRINGS then      
 		if mod.postinitfns and mod.postinitfns.PrefabPostInit and mod.postinitfns.PrefabPostInit.treasurechest then
-			for _, v in ipairs(zx_containers) do
-				mod.postinitfns.PrefabPostInit[v] = mod.postinitfns.PrefabPostInit.treasurechest
+			for box, _ in pairs(zxboxes) do
+				mod.postinitfns.PrefabPostInit[box] = mod.postinitfns.PrefabPostInit.treasurechest
 			end
 		end
 	end
 end
 --如果他优先级比我低 那下面这一段生效
 TUNING.MONITOR_CHESTS = TUNING.MONITOR_CHESTS or {}
-for _, v in ipairs(zx_containers) do
-	TUNING.MONITOR_CHESTS[v] = true
+for box, _ in pairs(zxboxes) do
+	TUNING.MONITOR_CHESTS[box] = true
 end

@@ -34,6 +34,7 @@ local function fn()
 
     inst.entity:SetPristine()
     inst:AddTag("ZXSTONE")   
+    inst:AddTag("molebait")
 
     if not TheWorld.ismastersim then
         return inst
