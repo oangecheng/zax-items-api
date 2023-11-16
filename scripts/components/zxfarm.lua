@@ -76,7 +76,19 @@ function Farm:SetChildMaxCnt(max)
 end
 
 
+function Farm:GetChildMaxCnt(max)
+    self.childmax = max or 10
+end
+
+
 function Farm:SetProduceTime(time)
+    if self.time ~= 0 and time ~= 0  and self.time ~= time then
+        local timer = self.inst.components.timer        
+        if timer and timer:TimerExists(TIMER) then
+            local left = timer:GetTimeLeft(TIMER) * (time / self.time)
+            timer:SetTimeLeft(TIMER, left)
+        end
+    end
     self.time = time
 end
 

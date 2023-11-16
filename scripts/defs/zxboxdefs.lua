@@ -204,8 +204,8 @@ local boxs = {
     ["zxeggbasket"] = obtainNormalBox("zxeggbasket", true),
     ["zx_hay_cart"] = obtainNormalBox("zx_hay_cart"),
     ["zxmushroomhouse"] = obtainNormalBox("zxmushroomhouse", true),
-    ["zxboxmine"] = obtainNormalBox("zxboxmine"),
-    ["zxboxgem"]  = obtainNormalBox("zxboxgem")
+    -- ["zxboxmine"] = obtainNormalBox("zxboxmine"),
+    -- ["zxboxgem"]  = obtainNormalBox("zxboxgem")
 }
 
 return  boxs

@@ -6,6 +6,7 @@ STRINGS.ZXACTION = {
 	ZXHATCH = "Hatch",
 	ZXADDFOOD = "Add food",
 	ZXFARMHARVEST = "Harvest product",
+	UPGRADE = "Upgrade",
 }
 
 STRINGS.CHARACTERS.GENERIC.ACTIONFAIL.ZXHATCH = {
@@ -19,6 +20,11 @@ STRINGS.CHARACTERS.GENERIC.ACTIONFAIL.ZXADDFOOD = {
 }
 STRINGS.CHARACTERS.GENERIC.ACTIONFAIL.ZXFARMHARVEST = {
 	EMPTY = "There's nothing in here!",
+}
+
+STRINGS.CHARACTERS.GENERIC.ACTIONFAIL.ZXUPGRADE = {
+	MAX = "Already max!",
+	INVALID_ITEM = "Change the material and retry!"
 }
 
 STRINGS.NAMES.ZX_GRANARY_VEGGIE = "Vegetable granary"
@@ -129,7 +135,6 @@ STRINGS.RECIPE_DESC.ZXFARMFOOD_NORMAL = "Used to feed hungry animals!"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXFARMFOOD_NORMAL = "It's full of nutrients!"
 
 STRINGS.ZX_HASBIND = "Bound"
-STRINGS.ZXFARM_SPACELEFT = "free space:%s"
 STRINGS.ZXFARM_SPACENO = "The farm was already crowded with small animals!"
 STRINGS.NAMES.ZXPERDFARM = "Perd farm"
 STRINGS.RECIPE_DESC.ZXPERDFARM = "A place where young perd can play together!"

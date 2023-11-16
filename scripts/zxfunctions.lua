@@ -3,6 +3,12 @@ function ZXLog(msg, info1, info2, info3)
 end
 
 
+function ZXSay(doer, msg)
+    if doer and doer.components.talker then
+        doer.components.talker:Say(tostring(msg))
+    end
+end
+
 
 function ZXSpawnPrefabs(prefab, num)
     local temp = SpawnPrefab(prefab)

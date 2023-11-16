@@ -11,16 +11,6 @@ end
 local actions = {
 
     {
-        id = "ZXSHOPOPEN",
-		str = STRINGS.ZXACTION.ZXSHOPOPEN,
-		fn = function(act)
-            act.doer:ShowPopUp(POPUPS.ZXTOOL, true, act.invobject)
-            return true
-		end,
-		state = "give",
-    },
-
-    {
         id = "ZXSWITCHMODE",
         str = STRINGS.ZXACTION.ZXSWITCHMODE,
         fn = function (act)
@@ -94,6 +84,25 @@ local actions = {
             return false, "EMPTY"
         end,
         state = "dolongaction",
+    },
+
+    {
+        id  = "ZXUPGRADE",
+        str = STRINGS.ZXACTION.UPGRADE,
+        fn  =  function (act)
+            local up = act.target and act.target.components.zxupgradable
+            if up and act.invobject then
+                if up:IsMax() then
+                    return false, "MAX"
+                elseif not up:IsValidMaterial(act.invobject) then
+                    return false, "INVALID_ITEM"
+                else
+                    up:Upgrade()
+                    return true
+                end
+            end
+            return false
+        end
     }
 }
 
@@ -116,6 +125,13 @@ local componentactions = {
                 testfn = function (inst, doer, target, acts, right)
                     return doer and target:HasTag("ZXFEEDER")
                 end
+            },
+
+            {
+                action = "ZXUPGRADE",
+                testfn = function (inst, doer, target, acts, right)
+                    return target:HasTag("ZXUPGRADE") and inst:HasTag("ZXUPGRADE_MATERIAL")
+                end
             }
         },
     },
@@ -124,12 +140,6 @@ local componentactions = {
         type = "INVENTORY",
         component = "inventoryitem",
         tests = {
-            {
-                action = "ZXSHOPOPEN",
-                testfn = function(inst,doer,actions,right)
-                    return doer ~= nil and inst and inst:HasTag("zxshop")
-                end
-            }, 
             {
                 action = "ZXSWITCHMODE",
                 testfn = function (inst,doer,actions,right)

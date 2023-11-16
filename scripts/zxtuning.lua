@@ -15,7 +15,7 @@ ZXTUNING = {
     FARM_ENABLE = true,
     FARM_AREA = 1,
     FRAM_DROP_RATIO = 1,
-    FARM_TIME_MULTI = 1,
+    FOOD_MAX_NUM = 120,
 }
 
 

@@ -190,7 +190,6 @@ local function MakeHatchMachine(name)
     
         inst:AddTag("structure")
         inst:AddTag("NOBLOCK")
-        inst:AddTag("zxfarmitem")
         inst:AddTag("ZXHATCHER")
     
         net(inst)
@@ -230,7 +229,7 @@ local function MakeHatchMachine(name)
         inst.components.zxbindable:SetOnBindFunc(function (_, _, data)
             if not data then return end
             inst.components.zxhatcher:SetHatchSeed(data.hatchitem)
-            inst.components.zxhatcher:SetHatchTime(data.hatchtime * ZXTUNING.FARM_TIME_MULTI)
+            inst.components.zxhatcher:SetHatchTime(data.hatchtime)
             changeName(inst, STRINGS.ZX_HASBIND)
         end)
 
@@ -288,7 +287,8 @@ local function MakeFarmBowl(name)
         else
             inst.AnimState:PlayAnimation("empty")
         end
-        local info = "\n"..string.format(STRINGS.ZXFARMBOWL_FOODLEFT, tostring(foodleft))
+        local str = tostring(foodleft).."/"..tostring(foodmax)
+        local info = "\n"..string.format(STRINGS.ZXFARMBOWL_FOODLEFT, str)
         updateDisplayInfo(inst, info)
     end
     
@@ -311,8 +311,8 @@ local function MakeFarmBowl(name)
     
         inst:AddTag("structure")
         inst:AddTag("NOBLOCK")
-        inst:AddTag("zxfarmitem")
         inst:AddTag("ZXFEEDER")
+        inst:AddTag("ZXUPGRADE")
     
         net(inst)
         if not TheWorld.ismastersim then
@@ -361,6 +361,17 @@ local function MakeFarmBowl(name)
         inst.components.zxbindable:SetOnUnBindFunc(function()
             inst.components.zxfeeder:SetFoods(nil)
         end)
+
+        inst:AddComponent("zxupgradable")
+        inst.components.zxupgradable:SetMax(1)
+        inst.components.zxupgradable:SetMaterialTestFn(function (_, item, lv)
+            return item.prefab == "thulecite"
+        end)
+        inst.components.zxupgradable:SetOnUpgradeFn(function (_, lv)
+            inst.components.zxfeeder:SetFoodMaxNum(ZXTUNING.FOOD_MAX_NUM * (1 + lv))
+            updateBowlState(inst)
+        end)
+
         
         updateBowlState(inst)
         inst.OnLoad = function (_, data)

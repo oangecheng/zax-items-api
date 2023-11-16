@@ -44,7 +44,6 @@ local function MakeAnimal(animal, data)
         inst.entity:AddNetwork()
         inst:AddTag("character")
         inst:AddTag("ZXFARM_ANIMAL")
-        inst:AddTag("zxfarmitem")
     
         MakeCharacterPhysics(inst, 1, 0)
         RemovePhysicsColliders(inst)
