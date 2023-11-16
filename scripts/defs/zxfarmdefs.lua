@@ -4,6 +4,7 @@
 local PRODUCE_BASE_TIME = TUNING.TOTAL_DAY_TIME * 2.5
 local HATCH_BASE_TIME = TUNING.TOTAL_DAY_TIME * 0.5
 
+
 local souls = {
     "zxperd_soul",
     "zxpigman_soul",
@@ -11,6 +12,24 @@ local souls = {
     "zxgoat_soul",
 }
 
+
+local materials = {
+    "purplegem",
+    "greengem",
+    "opalpreciousgem"
+}
+
+
+local function obtainFarmUpgrade()
+    return {
+        maxlv = 3,
+        testfn = function (inst, item, lv)
+            local index = math.min(lv + 1, #materials)
+            local needitem = materials[index]
+            return needitem == item.prefab
+        end
+    }
+end
 
 
 local foods = {
@@ -31,6 +50,8 @@ local perdfarm = {
         "zxfarmfood_normal"
     },
 
+    upgrade = obtainFarmUpgrade(),
+
     producetime = ZXTUNING.DEBUG and 10 or PRODUCE_BASE_TIME,
     producefunc = function (inst)
         if math.random() <= 0.5 then
@@ -38,7 +59,8 @@ local perdfarm = {
         else 
             return { "bird_egg", 1 }
         end
-    end
+    end,
+
 }
 
 
@@ -52,6 +74,8 @@ local pigfarm = {
     foods = { 
         "zxfarmfood_normal"
     },
+
+    upgrade = obtainFarmUpgrade(),
 
     producetime = ZXTUNING.DEBUG and 10 or PRODUCE_BASE_TIME * 1.5,
     producefunc = function (inst)
@@ -77,6 +101,8 @@ local beefalofarm = {
     foods = { 
         "zxfarmfood_normal"
     },
+
+    upgrade = obtainFarmUpgrade(),
 
     producetime = ZXTUNING.DEBUG and 10 or PRODUCE_BASE_TIME * 2,
     producefunc = function (inst)
@@ -109,6 +135,8 @@ local goatfarm = {
         "zxfarmfood_normal"
     },
 
+    upgrade = obtainFarmUpgrade(),
+
     producetime = ZXTUNING.DEBUG and 10 or PRODUCE_BASE_TIME * 3,
     producefunc = function (inst)
         -- 春天下雨的时候有百分之10的概率生产一个奶
@@ -138,8 +166,10 @@ local function koalefantFarm(iswinter)
         foods = { 
             "zxfarmfood_normal"
         },
-        producetime = ZXTUNING.DEBUG and 10 or PRODUCE_BASE_TIME * 3,
 
+        upgrade = obtainFarmUpgrade(),
+
+        producetime = ZXTUNING.DEBUG and 10 or PRODUCE_BASE_TIME * 3,
         producefunc = function (inst)
             if math.random() <= 0.5 then
                 return { truck, 1}

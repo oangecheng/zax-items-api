@@ -2,7 +2,7 @@
 
 local Feeder = Class(function (self, inst)
     self.inst = inst
-    self.maxfoodnum = 120
+    self.maxfoodnum = ZXTUNING.FOOD_MAX_NUM
     self.foods = {}
     self.foodnum = 0
 end)

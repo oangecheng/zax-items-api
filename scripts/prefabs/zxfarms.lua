@@ -16,6 +16,7 @@ local prefabs = {
 }
 
 
+
 for k, v in pairs(FARMS) do
     local res = ZxGetPrefabAnimAsset(k)
     for _, iv in ipairs(res) do
@@ -74,8 +75,36 @@ local function onFarmItemBuild(host, item)
 end
 
 
+local function net(inst)
+    inst.zxextrainfo = net_string(inst.GUID, "zxextrainfo" , "zx_itemsapi_itemdirty") 
+    inst:ListenForEvent("zx_itemsapi_itemdirty", function(inst)
+        local extrainfo = inst.zxextrainfo:value()
+        inst.zxextrainfostr = extrainfo or nil
+	end)
+end
+
+
+local function updateFarmDesc(inst)
+    local max = inst.components.zxfarm:GetChildMaxCnt()
+    local cnt = inst.components.zxfarm:GetChildCnt()
+    local str = (ZXTUNING.IS_CH and "空间" or "Space")..tostring(cnt).."/"..tostring(max)
+    if inst.zxextrainfo then
+        inst.zxextrainfo:set("\n"..str)
+    end
+end
+
 
 local function MakeFarm(name, data)
+
+    --- 升级，每级提升 50% 上限， 减少20%的时间
+    local function onUpgradeFn(inst, lv)
+        local farm = inst.components.zxfarm
+        local cnt = math.floor(data.animalcnt * (1 + lv * 0.5))
+        local time = math.floor(data.producetime * (1 - lv * 0.2))
+        farm:SetChildMaxCnt(cnt)
+        farm:SetProduceTime(time)
+        updateFarmDesc(inst)
+    end
      
     --- 建造主体的时候会生成地皮
     local function onBuild(inst)
@@ -95,6 +124,7 @@ local function MakeFarm(name, data)
 
         inst:AddTag("structure")
         inst:AddTag("ZXFARM_HOST")
+        inst:AddTag("ZXUPGRADE")
 
         MakeObstaclePhysics(inst, 1)
         RemovePhysicsColliders(inst)
@@ -102,6 +132,7 @@ local function MakeFarm(name, data)
         ZxInitItemForClient(inst, name, "idle", true)
         inst.entity:SetPristine()
         
+        net(inst)
         if not TheWorld.ismastersim then
             return inst
         end
@@ -112,14 +143,6 @@ local function MakeFarm(name, data)
     
         inst:AddComponent("timer")
         inst:AddComponent("inspectable")
-        inst.components.inspectable.descriptionfn = function (_, _)
-            local childleft = inst.components.zxfarm:GetLeftChildNum()
-            if childleft > 0 then
-                return string.format(STRINGS.ZXFARM_SPACELEFT, tostring(childleft))
-            else
-                return STRINGS.ZXFARM_SPACENO
-            end
-        end
 
         ZXFarmItemInitFunc(inst, 5)
         inst.onhitfn = function ()
@@ -134,10 +157,14 @@ local function MakeFarm(name, data)
         inst.components.zxfarm:SetChild(data.animal)
         inst.components.zxfarm:SetChildMaxCnt(data.animalcnt)
         inst.components.zxfarm:SetProduceFunc(data.producefunc)
-        inst.components.zxfarm:SetProduceTime(data.producetime * ZXTUNING.FARM_TIME_MULTI)
+        inst.components.zxfarm:SetProduceTime(data.producetime)
         inst.components.zxfarm:SetFoodNum(data.foodnum)
 
         inst:AddComponent("zxbindable")
+        inst:AddComponent("zxupgradable")
+        inst.components.zxupgradable:SetMax(data.upgrade.maxlv)
+        inst.components.zxupgradable:SetMaterialTestFn(data.upgrade.testfn)
+        inst.components.zxupgradable:SetOnUpgradeFn(onUpgradeFn)
    
         --- 监听农场事件推送
         inst:ListenForEvent(ZXEVENTS.FARM_ADD_FOOD, function ()
@@ -150,6 +177,7 @@ local function MakeFarm(name, data)
         inst:ListenForEvent(ZXEVENTS.FARM_ITEM_BUILD, function (_, event)
             onFarmItemBuild(inst, event.item)
         end)
+
         
         return inst
     end

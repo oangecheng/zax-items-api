@@ -124,18 +124,6 @@ configuration_options = {
 	},
 
 	{
-		name = "zxfarmtimemulti",
-		label = ch and "农场耗时设置" or "farm time setting",
-		options = {
-			{ description = ch and "默认" or "default", data = 1 },
-			{ description = ch and "慢" or "slow", data = 2 },
-			{ description = ch and "快" or "quick", data = 0.75 },
-			{ description = ch and "极快" or "super", data = 0.5 },
-		},
-		default = 1
-	},
-
-	{
 		name = "zxperd_size",
 		label = ch and "小火鸡尺寸设置" or "farm perd size settings",
 		options = {
