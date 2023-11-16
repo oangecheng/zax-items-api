@@ -12,16 +12,25 @@
     <folder id="3" name="swap_soul">
         <file id="0" name="swap_soul/zxperd.png" width="100" height="100" pivot_x="0.480392" pivot_y="0.333333"/>
     </folder>
+    <folder id="4" name="zxkoalefant_w_soul">
+        <file id="0" name="zxkoalefant_w_soul/zxkoalefant_w_soul.png" width="100" height="100" pivot_x="0.558824" pivot_y="0.431373"/>
+    </folder>
+    <folder id="5" name="zxkoalefant_s_soul">
+        <file id="0" name="zxkoalefant_s_soul/zxkoalefant_s_soul.png" width="100" height="100" pivot_x="0.578431" pivot_y="0.401961"/>
+    </folder>
+    <folder id="6" name="zxcat_soul">
+        <file id="0" name="zxcat_soul/zxcat_soul.png" width="100" height="100" pivot_x="0.509804" pivot_y="0.362745"/>
+    </folder>
     <entity id="0" name="zxanimalsoul">
         <animation id="0" name="idle" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="zxperd" folder="3" file="0" abs_x="0" abs_y="0" abs_pivot_x="0.480392" abs_pivot_y="0.333333" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" name="zxperd" folder="3" file="0" abs_x="0" abs_y="0" abs_pivot_x="0.480392" abs_pivot_y="0.333333" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="zxperd">
                 <key id="0" spin="0">
-                    <object folder="3" file="0"/>
+                    <object folder="3" file="0" angle="0"/>
                 </key>
             </timeline>
         </animation>

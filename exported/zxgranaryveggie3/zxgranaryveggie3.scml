@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+    <folder id="0" name="body">
+        <file id="0" name="body/body.png" width="500" height="500" pivot_x="0.5" pivot_y="0.1"/>
+        <file id="1" name="body/deco.png" width="500" height="500" pivot_x="0.277778" pivot_y="0.796296"/>
+    </folder>
+    <entity id="0" name="zxgranaryveggie3">
+        <animation id="0" name="idle" length="3000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="body" folder="0" file="0" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" name="deco" folder="0" file="1" abs_x="-100" abs_y="380" abs_pivot_x="0.277778" abs_pivot_y="0.796296" abs_angle="10" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                </key>
+                <key id="1" time="1500">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="body">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="deco">
+                <key id="0" spin="-1">
+                    <object folder="0" file="1" x="-100" y="380" angle="10"/>
+                </key>
+                <key id="1" time="1500">
+                    <object folder="0" file="1" x="-100" y="380" angle="350"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="onbuild" length="3000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="body" folder="0" file="0" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" name="deco" folder="0" file="1" abs_x="-100" abs_y="380" abs_pivot_x="0.277778" abs_pivot_y="0.796296" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="body">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="deco">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-100" y="380" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="onhit" length="400">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="body" folder="0" file="0" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" name="deco" folder="0" file="1" abs_x="-100" abs_y="380" abs_pivot_x="0.277778" abs_pivot_y="0.796296" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                </key>
+                <key id="1" time="130">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                </key>
+                <key id="2" time="270">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="2" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="body">
+                <key id="0">
+                    <object folder="0" file="0" angle="0"/>
+                </key>
+                <key id="1" time="130" spin="-1">
+                    <object folder="0" file="0" y="25" angle="5"/>
+                </key>
+                <key id="2" time="270">
+                    <object folder="0" file="0" y="25" angle="355"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="deco">
+                <key id="0">
+                    <object folder="0" file="1" x="-100" y="380" angle="0"/>
+                </key>
+                <key id="1" time="130" spin="-1">
+                    <object folder="0" file="1" x="-132.738652" y="394.838411" angle="5"/>
+                </key>
+                <key id="2" time="270">
+                    <object folder="0" file="1" x="-66.436684" y="411.901539" angle="355"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

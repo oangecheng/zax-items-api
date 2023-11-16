@@ -7,11 +7,13 @@ local skinnamesdef = {
 
     ["0010"] = isCh and "经典" or "custom",
     ["0011"] = isCh and "浮生的潘多拉魔盒" or "pandro chest",
-    ["0012"] = isCh and "兔子气球" or "rabbit chest",
+    ["0012"] = isCh and "兔兔屿花" or "rabbit and flower",
+    ["0013"] = isCh and "兔子气球" or "rabbit chest",
 
     ["0100"] = isCh and "经典" or "custom",
     ["0101"] = isCh and "浮生的肉铺" or "ocean meat granary",
-    ["0102"] = isCh and "猫猫与花" or "cat and flower",
+    ["0102"] = isCh and "猫猫屿花" or "cat and flower",
+    ["0103"] = isCh and "小猪气球" or "pig chest",
 
     ["1000"] = isCh and "紫色酢浆草" or "oxalis",
     ["1001"] = isCh and "小雏菊花丛" or "daisy",
@@ -60,7 +62,10 @@ local skinnamesdef = {
     ["1800"] = isCh and "多彩蔷薇" or "rosebush well",
     ["1801"] = isCh and "宫廷风" or "court style",
 
-    ["1900"] = isCh and "花园巢"   or "garden style",
+    ["1900"] = isCh and "花园巢" or "garden style",
+    ["1901"] = isCh and "科幻蛋仔" or "egg",
+
+
     ["1950"] = isCh and "石质盆"   or "stone style",
     ["1951"] = isCh and "小木箱"   or "small chest",
     ["1952"] = isCh and "蘑菇桩"   or "mushroom stump",
@@ -143,10 +148,14 @@ registerSkin("zxskintool", "0002", "zxskintool3", 0, ZX_SKINTYPE.FREE)
 -- 粮仓
 registerSkin("zx_granary_veggie", "0010", "zx_granary_veggie", 0.1, ZX_SKINTYPE.FREE, true)
 registerSkin("zx_granary_veggie", "0011", "zxgranaryveggie1" , 0.1, ZX_SKINTYPE.CUSTOM)
-registerSkin("zx_granary_veggie", "0012", "zxgranaryveggie2" , 0.1, ZX_SKINTYPE.CUSTOM)
+registerSkin("zx_granary_veggie", "0012", "zxgranaryveggie2" , 0.1, ZX_SKINTYPE.SPONSOR)
+registerSkin("zx_granary_veggie", "0013", "zxgranaryveggie3" , 0.1, ZX_SKINTYPE.CUSTOM)
+
 registerSkin("zx_granary_meat", "0100", "zxgranarymeat", 0.2, ZX_SKINTYPE.FREE, true)
 registerSkin("zx_granary_meat", "0101", "zxgranarymeat1", 0.2, ZX_SKINTYPE.CUSTOM)
 registerSkin("zx_granary_meat", "0102", "zxgranarymeat2", 0.2, ZX_SKINTYPE.SPONSOR)
+registerSkin("zx_granary_meat", "0103", "zxgranarymeat3", 0.2, ZX_SKINTYPE.CUSTOM)
+
 
 
 -- 花丛
@@ -236,7 +245,10 @@ registerSkin("zxgoatfarm", "2301", "zxgoatfarm1", 15, ZX_SKINTYPE.SPONSOR)
 --- 有些动画制作的时候尺寸不佳
 --- 通过这个修改动画的尺寸
 local animscales = {
-    ["0012"] = 1.5,
+    ["0012"] = 1.2,
+    ["0013"] = 1.5,
+    ["0102"] = 1.2,
+    ["0103"] = 1.5,
     ["1213"] = 1.5,
     ["1214"] = 0.8,
     ["1256"] = 0.8,
