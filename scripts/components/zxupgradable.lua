@@ -16,6 +16,12 @@ nil,
     lv = onUpgrade
 })
 
+---获取等级
+---@return integer 等级
+function Upgradable:GetLv()
+    return self.lv
+end
+
 
 ---是否可升级
 ---@return boolean

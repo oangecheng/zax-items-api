@@ -105,7 +105,8 @@
         "WhileNode",
         "Wander",
         "BT",
-        "net_int"
+        "net_int",
+        "SourceModifierList"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

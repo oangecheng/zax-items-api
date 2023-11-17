@@ -160,10 +160,7 @@ function Farm:AddFarmAnimal()
 
             local timer = self.inst.components.timer        
             if timer:TimerExists(TIMER) then
-                if ZXFarmEatFood(self.inst, 1) then
-                    local timeleft = timer:GetTimeLeft(TIMER) * 0.9
-                    timer:SetTimeLeft(TIMER, timeleft)
-                end  
+                ZXFarmEatFood(self.inst, 1)
             else
                 -- 第一个动物需要启动生产机制
                 self:StartProduce()

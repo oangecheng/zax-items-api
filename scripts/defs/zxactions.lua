@@ -11,15 +11,13 @@ end
 local actions = {
 
     {
-        id = "ZXSWITCHMODE",
-        str = STRINGS.ZXACTION.ZXSWITCHMODE,
-        fn = function (act)
-            if act.invobject and act.invobject.switchMode then
-                act.invobject.switchMode()
-                return true
-            end
-            return false
-        end
+        id = "ZXSHOPOPEN",
+		str = STRINGS.ZXACTION.ZXSHOPOPEN,
+		fn = function(act)
+            act.doer:ShowPopUp(POPUPS.ZXTOOL, true, act.invobject)
+            return true
+		end,
+		state = "give",
     },
 
     {
@@ -103,6 +101,21 @@ local actions = {
             end
             return false
         end
+    },
+
+    {
+        id = "ZXACCELERATE",
+        str = STRINGS.ZXACTION.ACCELERATE,
+        fn = function (act)
+            local acc = act.target and act.components.zxaccelerate
+            -- 先按固定时间加速
+            if acc and act.invobject and act.invobject:HasTag("ZXACCELERATE_MATERIAL") then
+                acc:Start(ZXTUNING.ACCELERATE_TIME)
+                removeItem(act.invobject)
+                return true
+            end
+            return false
+        end
     }
 }
 
@@ -132,7 +145,16 @@ local componentactions = {
                 testfn = function (inst, doer, target, acts, right)
                     return target:HasTag("ZXUPGRADE") and inst:HasTag("ZXUPGRADE_MATERIAL")
                 end
-            }
+            },
+
+            {
+                action = "ZXACCELERATE",
+                testfn = function (inst, doer, target, acts, right)
+                    return target:HasTag("ZXACCELERATE") and inst:HasTag("ZXACCELERATE_MATERIAL")
+                end
+            },
+
+
         },
     },
 
@@ -141,11 +163,11 @@ local componentactions = {
         component = "inventoryitem",
         tests = {
             {
-                action = "ZXSWITCHMODE",
-                testfn = function (inst,doer,actions,right)
-                    return doer ~= nil and inst and inst:HasTag("zxswitchmode")
+                action = "ZXSHOPOPEN",
+                testfn = function(inst,doer,actions,right)
+                    return doer ~= nil and inst and inst:HasTag("zxshop")
                 end
-            }
+            }, 
         }
     },
 

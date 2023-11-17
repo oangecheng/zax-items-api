@@ -1,12 +1,12 @@
 
 ---- 动作相关
 STRINGS.ZXACTION = {
-	ZXSHOPOPEN = "打开小店",
-	ZXSWITCHMODE = "切换模式",
+	ZXSHOPOPEN = "选择模式",
 	ZXHATCH = "孵化",
 	ZXADDFOOD = "添加饲料",
 	ZXFARMHARVEST = "收获产品",
 	UPGRADE = "升级",
+	ACCELERATE = "加速",
 }
 
 STRINGS.CHARACTERS.GENERIC.ACTIONFAIL.ZXHATCH = {

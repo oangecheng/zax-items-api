@@ -1,9 +1,19 @@
 
 local DISTANCE = 4
 local FARMS = (require "defs/zxfarmdefs").farms
-local assets = {
-    Asset("ANIM", "anim/zxfarmland.zip"),
-}
+local assets = {}
+local MULTIPLIER = { 0.8, 0.7, 0.6, 0.5 }
+
+
+local function accelerateMax(lv)
+    return ZXTUNING.ACCELERATE_TIME + ZXTUNING.ACCELERATE_TIME * lv * 2
+end
+
+
+local function accelerateMulti(lv)
+    local index = math.max(lv + 1, #MULTIPLIER)
+    return MULTIPLIER[index]
+end
 
 
 local function getDistance()
@@ -14,7 +24,6 @@ end
 local prefabs = {
     "collapse_small",
 }
-
 
 
 for k, v in pairs(FARMS) do
@@ -94,17 +103,30 @@ local function updateFarmDesc(inst)
 end
 
 
+
 local function MakeFarm(name, data)
 
-    --- 升级，每级提升 50% 上限， 减少20%的时间
+    --- 升级，每级提升 50% 上限
+    --- 同时提升可加速的时间上限
     local function onUpgradeFn(inst, lv)
         local farm = inst.components.zxfarm
         local cnt = math.floor(data.animalcnt * (1 + lv * 0.5))
-        local time = math.floor(data.producetime * (1 - lv * 0.2))
         farm:SetChildMaxCnt(cnt)
-        farm:SetProduceTime(time)
         updateFarmDesc(inst)
+
+        local acc = inst.components.zxaccelerate
+        acc:SetMaxDuration(accelerateMax(lv))
+        acc:SetMultiplier(accelerateMulti(lv))
+
     end
+
+
+    local function onAccelerate(inst, multiplier)
+        local farm = inst.components.zxfarm
+        local time = math.floor(data.producetime * multiplier)
+        farm:SetProduceTime(time)
+    end
+
      
     --- 建造主体的时候会生成地皮
     local function onBuild(inst)
@@ -125,6 +147,7 @@ local function MakeFarm(name, data)
         inst:AddTag("structure")
         inst:AddTag("ZXFARM_HOST")
         inst:AddTag("ZXUPGRADE")
+        inst:AddTag("ZXACCELERATE")
 
         MakeObstaclePhysics(inst, 1)
         RemovePhysicsColliders(inst)
@@ -159,8 +182,15 @@ local function MakeFarm(name, data)
         inst.components.zxfarm:SetProduceFunc(data.producefunc)
         inst.components.zxfarm:SetProduceTime(data.producetime)
         inst.components.zxfarm:SetFoodNum(data.foodnum)
-
         inst:AddComponent("zxbindable")
+
+        ---加速组件
+        inst:AddComponent("zxaccelerate")
+        inst.components.zxaccelerate:SetMaxDuration(ZXTUNING.ACCELERATE_TIME)
+        inst.components.zxaccelerate:SetMultiplier(MULTIPLIER[1])
+        inst.components.zxaccelerate:SetOnAccelerateFn(onAccelerate)
+
+        ---升级组件
         inst:AddComponent("zxupgradable")
         inst.components.zxupgradable:SetMax(data.upgrade.maxlv)
         inst.components.zxupgradable:SetMaterialTestFn(data.upgrade.testfn)

@@ -90,8 +90,19 @@ local upgradeMaterials = {
 	"thulecite",
 }
 
+local accelerateMaterials = {
+	"bluegem",
+	"redgem",
+}
+
 for _, v in ipairs(upgradeMaterials) do
 	AddPrefabPostInit(v, function (inst)
 		inst:AddTag("ZXUPGRADE_MATERIAL")
+	end)
+end
+
+for _, v in ipairs(accelerateMaterials) do
+	AddPrefabPostInit(v, function (inst)
+		inst:AddTag("ZXACCELERATE_MATERIAL")
 	end)
 end
