@@ -173,6 +173,7 @@ local function MakeFarm(name, data)
         ZxInitItemForServer(inst, name)
 
         inst.farmdata = data
+        inst.radius = getDistance()
     
         inst:AddComponent("timer")
         inst:AddComponent("inspectable")
@@ -188,7 +189,6 @@ local function MakeFarm(name, data)
 
         inst:AddComponent("zxfarm")
         inst.components.zxfarm:SetChildMaxCnt(data.animalcnt)
-        inst.components.zxfarm:SetProduceFunc(data.producefunc)
         inst.components.zxfarm:SetProduceTime(data.producetime)
         inst.components.zxfarm:SetFoodNum(data.foodnum)
         inst:AddComponent("zxbindable")

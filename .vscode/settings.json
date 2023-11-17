@@ -106,7 +106,8 @@
         "Wander",
         "BT",
         "net_int",
-        "SourceModifierList"
+        "SourceModifierList",
+        "GetRandomItemWithIndex"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

@@ -54,15 +54,7 @@ local perdfarm = {
     },
 
     upgrade = obtainFarmUpgrade(),
-
     producetime = PRODUCE_BASE_TIME,
-    producefunc = function (inst)
-        if math.random() <= 0.5 then
-            return { "drumstick", 1 }
-        else 
-            return { "bird_egg", 1 }
-        end
-    end,
 
 }
 
@@ -106,20 +98,6 @@ local beefalofarm = {
     upgrade = obtainFarmUpgrade(),
 
     producetime = PRODUCE_BASE_TIME * 2,
-    producefunc = function (inst)
-        -- 春天有百分之10的概率生产一个牛角
-        if TheWorld.state.isspring then
-            if math.random() <= 0.1 then
-                return {"horn", 1}
-            end
-        end
-
-        if math.random() <= 0.7 then
-            return {"beefalowool", 4}
-        else
-            return { "meat", 1 }
-        end
-    end
 }
 
 
@@ -136,21 +114,7 @@ local goatfarm = {
     },
 
     upgrade = obtainFarmUpgrade(),
-
     producetime = PRODUCE_BASE_TIME * 3,
-    producefunc = function (inst)
-        -- 春天下雨的时候有百分之10的概率生产一个奶
-        if TheWorld.state.israining and TheWorld.state.isspring then
-            if math.random() <= 0.3 then
-                return {"goatmilk", 1}
-            end
-        end
-        if math.random() <= 0.5 then
-            return { "lightninggoathorn", 1}
-        else
-            return { "meat", 1}
-        end
-    end
 }
 
 
@@ -164,15 +128,7 @@ local koalefantfarm = {
     },
 
     upgrade = obtainFarmUpgrade(),
-
     producetime = PRODUCE_BASE_TIME * 3,
-    producefunc = function (inst)
-        if math.random() <= 0.5 then
-            return { "trunk_winter", 1}
-        else
-            return { "trunk_summer", 1}
-        end
-    end
 }
 
 
@@ -186,13 +142,8 @@ local catfarm = {
     foods = { 
         "zxfarmfood_normal"
     },
-
     upgrade = obtainFarmUpgrade(),
-
     producetime = PRODUCE_BASE_TIME * 1.5,
-    producefunc = function (inst)
-        return { "meat", 1}
-    end
 }
 
 

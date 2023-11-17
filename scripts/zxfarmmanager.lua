@@ -15,10 +15,14 @@ local function getBindId(inst)
 end
 
 
+---获取所有的物品
+---@param bindId string|nil 绑定id
+---@return table
 local function getFarmItems(bindId)
-    local data = zxfarmdata[bindId]
+    local data = bindId and zxfarmdata[bindId]
     return data and data.items or {}
 end
+
 
 
 --- 生成每个物品存储的key，这里使用GUID
@@ -228,4 +232,21 @@ function ZXFarmItemInitFunc(inst, workcount)
             removeBindItem(inst, bindId)
         end
     end)
+end
+
+
+
+---获取所有的动物
+---@param inst any
+---@return table
+function ZXFarmAnimals(inst)
+    local id = getBindId(inst)
+    local items = getFarmItems(id)
+    local animals = {}
+    for k, v in pairs(items) do
+        if v:HasTag("ZXFARM_ANIMAL") then
+            table.insert(animals, v)
+        end
+    end
+    return animals
 end

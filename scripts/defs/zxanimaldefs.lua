@@ -25,7 +25,15 @@ local farmperd = {
         "drumstick",
         "drumstick",
         "zxperd_soul"
-    }
+    },
+
+    producefn = function (inst)
+        if math.random() <= 0.5 then
+            return { "drumstick", 1 }
+        else 
+            return { "bird_egg", 1 }
+        end
+    end
 }
 
 
@@ -55,7 +63,17 @@ local farmpigman = {
         "meat",
         "pigskin",
         "zxpigman_soul"
-    }
+    },
+
+    producefn = function(inst)
+        -- 月圆的时候，必然生产2个猪皮
+        if TheWorld.state.isfullmoon then return { "pigskin", 2 } end
+        if math.random() <= 0.5 then
+            return { "pigskin", 1 }
+        else
+            return { "meat", 1 }
+        end
+    end
 }
 
 
@@ -89,7 +107,22 @@ local farmbeefalo = {
         "beefalowool",
         "meat",
         "zxbeefalo_soul"
-    }
+    },
+
+    producefn = function (inst)
+        -- 春天有百分之10的概率生产一个牛角
+        if TheWorld.state.isspring then
+            if math.random() <= 0.1 then
+                return {"horn", 1}
+            end
+        end
+
+        if math.random() <= 0.7 then
+            return {"beefalowool", 4}
+        else
+            return { "meat", 1 }
+        end 
+    end
 }
 
 
@@ -125,7 +158,21 @@ local farmgoat = {
         "meat",
         "meat",
         "zxgoat_soul"
-    }
+    },
+
+    producefn = function (inst)
+        -- 春天下雨的时候有百分之10的概率生产一个奶
+        if TheWorld.state.israining and TheWorld.state.isspring then
+            if math.random() <= 0.3 then
+                return {"goatmilk", 1}
+            end
+        end
+        if math.random() <= 0.5 then
+            return { "lightninggoathorn", 1}
+        else
+            return { "meat", 1}
+        end
+    end
 }
 
 
@@ -156,7 +203,21 @@ local function farmKoalefant(iswinter)
     
         walkspeed = 1,
         sound = nil,
-        loots = { "meat", "meat", soul }
+        loots = { "meat", "meat", soul },
+
+        producefn = function (inst)
+            local r = math.random()
+            if iswinter then
+                if r <= (TheWorld.state.iswinter and 0.5 or 0.3)  then
+                    return { "trunk_winter", 1} 
+                end
+            else
+                if r <= (TheWorld.state.issummer and 0.5 or 0.3)  then
+                    return { "trunk_summer", 1} 
+                end
+            end
+            return { "meat", 1}
+        end
     }
 end 
 
@@ -176,6 +237,14 @@ end
 
 --- 用年猫的贴图，浣猫的贴图需要改sg，麻烦
 --- 后面有时间改成9个小猫的图
+local catproducts = { 
+    --各种鸟的羽毛
+    feather_crow = 1, 
+    feather_robin = 1, 
+    feather_robin_winter = 1,
+    feather_canary = 1,
+    boneshard = 1,
+}
 local farmcat = {
      assets = {
 	    Asset("ANIM", "anim/".."kitcoon_yot".."_build.zip"),
@@ -194,7 +263,27 @@ local farmcat = {
 
     walkspeed = 1,
     sound = nil,
-    loots = { "meat", "zxcat_soul" }
+    loots = { "meat", "zxcat_soul" },
+
+    producefn = function(inst, host)
+        local x, _, z = host.Transform:GetWorldPosition()
+        --- 掉黄油初始概率为5%
+        local rbutter = 0.05
+        if x and z and host.radius then
+            --- 农场范围内种花，可以提升概率，最高能提升10%
+            local ents = TheSim:FindEntities(x, 0, z, host.radius, { "flower" })
+            if ents then
+                rbutter = rbutter + math.min(#ents * 0.01, 0.1)
+            end
+        end
+
+        if math.random() <= rbutter then
+            return { "butter", 1 }
+        end
+        --- 随机一个物品
+        local item, num = GetRandomItemWithIndex(catproducts)
+        return { item, num }
+    end
 }
 
 

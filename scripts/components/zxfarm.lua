@@ -14,18 +14,19 @@ end
 
 
 local function produce(self)
-    local animcnt = self.childcount
     local temp = nil
-    if self.producefunc and animcnt > 0 then
+    local animals = ZXFarmAnimals(self.inst)
+    if next(animals) ~= nil then
         temp = {}
-        for i = 1, animcnt do
-            local product = self.producefunc(self.inst)
-            if product[1] and product[2] then
+        for _, v in ipairs(animals) do
+            local product = v.producefn and v.producefn(v, self.inst)
+            if product and product[1] and product[2] then
                 local originnum = temp[product[1]] or 0
                 temp[product[1]] = originnum + product[2]
             end
         end
     end
+
     if temp then
         if self.productions == nil then
             self.productions = {}
@@ -88,11 +89,6 @@ end
 
 function Farm:SetFoodNum(num)
     self.foodnum = num or 1
-end
-
-
-function Farm:SetProduceFunc(func)
-    self.producefunc = func
 end
 
 

@@ -84,6 +84,8 @@ local function MakeAnimal(animal, data)
         inst:SetStateGraph(data.sg or "ZxAnimalSG")
         inst:AddComponent("inspectable")
 
+        inst.producefn = data.producefn
+
         -- 5~10s移动一次
         -- 暂时用这个策略，后面根据反馈优化
         local time = math.random(5, 10)
