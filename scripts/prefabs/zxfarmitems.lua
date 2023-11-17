@@ -363,7 +363,7 @@ local function MakeFarmBowl(name)
         end)
 
         inst:AddComponent("zxupgradable")
-        inst.components.zxupgradable:SetMax(1)
+        inst.components.zxupgradable:SetMax(ZXTUNING.FARM_MAX_LV)
         inst.components.zxupgradable:SetMaterialTestFn(function (_, item, lv)
             return item.prefab == "thulecite"
         end)

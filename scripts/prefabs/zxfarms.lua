@@ -6,7 +6,7 @@ local MULTIPLIER = { 0.8, 0.7, 0.6, 0.5 }
 
 
 local function accelerateMax(lv)
-    return ZXTUNING.ACCELERATE_TIME + ZXTUNING.ACCELERATE_TIME * lv * 2
+    return ZXTUNING.ACCELERATE_TIME * (lv + 1)
 end
 
 
@@ -85,8 +85,16 @@ end
 
 
 local function net(inst)
-    inst.zxextrainfo = net_string(inst.GUID, "zxextrainfo" , "zx_itemsapi_itemdirty") 
+    inst.zxchangename = net_string(inst.GUID, "zxchangename", "zx_itemsapi_itemdirty")
+    inst.zxextrainfo  = net_string(inst.GUID, "zxextrainfo" , "zx_itemsapi_itemdirty") 
     inst:ListenForEvent("zx_itemsapi_itemdirty", function(inst)
+        local newname = inst.zxchangename:value()
+		if newname then
+			inst.displaynamefn = function(aaa)
+				return newname
+			end
+		end
+
         local extrainfo = inst.zxextrainfo:value()
         inst.zxextrainfostr = extrainfo or nil
 	end)
@@ -100,6 +108,14 @@ local function updateFarmDesc(inst)
     if inst.zxextrainfo then
         inst.zxextrainfo:set("\n"..str)
     end
+    local name = STRINGS.NAMES[string.upper(inst.prefab)]
+    local lv = inst.components.zxupgradable:GetLv()
+    if name then
+        local newname = name.."[lv"..lv.."]"
+        if inst.zxchangename then
+            inst.zxchangename:set(newname)
+        end
+    end
 end
 
 
@@ -110,7 +126,7 @@ local function MakeFarm(name, data)
     --- 同时提升可加速的时间上限
     local function onUpgradeFn(inst, lv)
         local farm = inst.components.zxfarm
-        local delta = math.max(3, math.floor(data.animalcnt * 0.5))
+        local delta = math.max(1, math.floor(data.animalcnt * 0.5))
         farm:SetChildMaxCnt(data.animalcnt + delta)
         updateFarmDesc(inst)
 

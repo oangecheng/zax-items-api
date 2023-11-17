@@ -112,6 +112,17 @@ configuration_options = {
 	},
 
 	{
+		name = "zxfarmmaxlv",
+		label = ch and "农场等级上限设置" or "farm max level setting",
+		options = {
+			{description = "3", data = 3},
+			{description = "4", data = 4},
+			{description = "5", data = 5},
+		},
+		default = 3
+	},
+
+	{
 		name = "zxfarmdroprate",
 		label = ch and "农场物品掉落几率" or "farm items drop ratio",
 		options = {

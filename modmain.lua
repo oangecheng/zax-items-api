@@ -19,6 +19,7 @@ ZXTUNING.BOX_FRESH_RATE = TUNING.ZX_GRANARY_FRESHRATE or 0.2
 
 ZXTUNING.FARM_ENABLE     = GetModConfigData("zxfarmenable")
 ZXTUNING.FARM_AREA       = GetModConfigData("zxfarmarea")
+ZXTUNING.FARM_MAX_LV     = GetModConfigData("zxfarmmaxlv")
 ZXTUNING.FRAM_DROP_RATIO = GetModConfigData("zxfarmdroprate")
 
 

@@ -22,7 +22,7 @@ local materials = {
 
 local function obtainFarmUpgrade()
     return {
-        maxlv = 3,
+        maxlv = ZXTUNING.FARM_MAX_LV,
         testfn = function (inst, item, lv)
             local index = math.min(lv + 1, #materials)
             local needitem = materials[index]
