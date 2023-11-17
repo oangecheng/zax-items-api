@@ -110,8 +110,8 @@ local function MakeFarm(name, data)
     --- 同时提升可加速的时间上限
     local function onUpgradeFn(inst, lv)
         local farm = inst.components.zxfarm
-        local cnt = math.floor(data.animalcnt * (1 + lv))
-        farm:SetChildMaxCnt(cnt)
+        local delta = math.max(3, math.floor(data.animalcnt * 0.5))
+        farm:SetChildMaxCnt(data.animalcnt + delta)
         updateFarmDesc(inst)
 
         local acc = inst.components.zxaccelerate
