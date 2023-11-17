@@ -268,6 +268,36 @@ if ZXTUNING.FARM_ENABLE then
         { "GARDENING", "STRUCTURES" }
     )
 
+        -- 山羊农场
+    AddRecipe2(
+        "zxcatfarm",
+        { Ingredient("boards", 5), Ingredient("cutstone", 1),
+            Ingredient("zxstone", 10, "images/inventoryimages/zxstone.xml") },
+        TECH.LOST,
+        {
+            placer = "zxcatfarm_placer",
+            atlas = "images/zxskins/zxcatfarm/zxcatfarm.xml",
+            image = "zxcatfarm.tex",
+            min_spacing = 2,
+        },
+        { "GARDENING", "STRUCTURES" }
+    )
+
+    -- 山羊农场
+    AddRecipe2(
+        "zxkoalefantfarm",
+        { Ingredient("boards", 5), Ingredient("cutstone", 1),
+            Ingredient("zxstone", 10, "images/inventoryimages/zxstone.xml") },
+        TECH.LOST,
+        {
+            placer = "zxkoalefantfarm_placer",
+            atlas = "images/zxskins/zxkoalefantfarm/zxkoalefantfarm.xml",
+            image = "zxkoalefantfarm.tex",
+            min_spacing = 2,
+        },
+        { "GARDENING", "STRUCTURES" }
+    )
+
 
 
 

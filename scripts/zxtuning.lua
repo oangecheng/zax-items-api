@@ -1,5 +1,7 @@
+local isdebug = true
+
 ZXTUNING = {
-    DEBUG = false,
+    DEBUG = isdebug,
     IS_CH = true,
     LIGHT_RADIUS_MULTI = 1,
     BOX_FRESH_RATE = 0.2,
@@ -19,7 +21,7 @@ ZXTUNING = {
 
     FOOD_MAX_NUM = 120,
     ---基础加速时间1小时
-    ACCELERATE_TIME = TUNING.TOTAL_DAY_TIME * 7.5
+    ACCELERATE_TIME = isdebug and 60 or TUNING.TOTAL_DAY_TIME * 7.5
 }
 
 

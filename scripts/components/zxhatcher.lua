@@ -26,7 +26,7 @@ end
 
 
 function Hatcher:GetSeed()
-    return self.seed
+    return self.seed or (self.seedlist and self.seedlist[1])
 end
 
 

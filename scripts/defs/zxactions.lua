@@ -74,6 +74,7 @@ local actions = {
     {
         id = "ZXFARMHARVEST",
         str = STRINGS.ZXACTION.ZXFARMHARVEST,
+        state = "dolongaction",
         fn = function (act)
             local farm = act.target and act.target.components.zxfarm or nil
             if farm and act.doer and farm:Harvest(act.doer) then
@@ -81,12 +82,12 @@ local actions = {
             end
             return false, "EMPTY"
         end,
-        state = "dolongaction",
     },
 
     {
         id  = "ZXUPGRADE",
         str = STRINGS.ZXACTION.UPGRADE,
+        state = "dolongaction",
         fn  =  function (act)
             local up = act.target and act.target.components.zxupgradable
             if up and act.invobject then
@@ -96,18 +97,20 @@ local actions = {
                     return false, "INVALID_ITEM"
                 else
                     up:Upgrade()
+                    removeItem(act.invobject)
                     return true
                 end
             end
             return false
-        end
+        end,
     },
 
     {
         id = "ZXACCELERATE",
         str = STRINGS.ZXACTION.ACCELERATE,
+        state = "domediumaction",
         fn = function (act)
-            local acc = act.target and act.components.zxaccelerate
+            local acc = act.target and act.target.components.zxaccelerate
             -- 先按固定时间加速
             if acc and act.invobject and act.invobject:HasTag("ZXACCELERATE_MATERIAL") then
                 acc:Start(ZXTUNING.ACCELERATE_TIME)
@@ -136,7 +139,7 @@ local componentactions = {
             {
                 action = "ZXADDFOOD",
                 testfn = function (inst, doer, target, acts, right)
-                    return doer and target:HasTag("ZXFEEDER")
+                    return doer and target:HasTag("ZXFEEDER") and inst:HasTag("ZXFARM_FOOD")
                 end
             },
 

@@ -72,3 +72,5 @@ end
 function Upgradable:OnLoad(data)
     self.lv = data.lv or 0
 end
+
+return Upgradable

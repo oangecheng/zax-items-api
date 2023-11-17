@@ -3,8 +3,8 @@ local TIMER = "Accelerating"
 
 local function onAccelerate(self)
     if self.onAccelerateFn then
-        local multi = self.accelerating and self.multiplier or 1
-        self.onAccelerateFn(self.inst, multi)
+        local multi = self.accelerating and self.multiplier
+        self.onAccelerateFn(self.inst, multi or 1)
     end
 end
 
@@ -13,7 +13,7 @@ end
 ---需要宿主具有timer组件
 local Accelerate = Class(function (self, inst)
     self.inst = inst
-    self.multiplier = 1
+    self.multiplier = 0
     self.maxduration = TUNING.TOTAL_DAY_TIME
     self.accelerating = false
 
@@ -25,7 +25,8 @@ local Accelerate = Class(function (self, inst)
 end,
 nil,
 {
-    accelerating = onAccelerate
+    accelerating = onAccelerate,
+    multiplier = onAccelerate
 })
 
 
@@ -48,6 +49,7 @@ end
 function Accelerate:SetMultiplier(multiplier)
     self.multiplier = multiplier
 end
+
 
 
 ---开始加速，多次调用时间累加

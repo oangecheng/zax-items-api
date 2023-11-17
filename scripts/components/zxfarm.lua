@@ -70,7 +70,7 @@ end
 
 
 function Farm:GetChildMaxCnt(max)
-    self.childmax = max or 10
+    return self.childmax or 10
 end
 
 

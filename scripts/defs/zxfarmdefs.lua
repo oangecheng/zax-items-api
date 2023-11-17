@@ -1,8 +1,8 @@
 
 -- 基准时间，以一只鸡一天消耗一个饲料，生产一个鸡腿为基准值
 -- 每个动物的生产的物品是独立的
-local PRODUCE_BASE_TIME = TUNING.TOTAL_DAY_TIME * 2.5
-local HATCH_BASE_TIME = TUNING.TOTAL_DAY_TIME * 0.5
+local PRODUCE_BASE_TIME = ZXTUNING.DEBUG and 60 or TUNING.TOTAL_DAY_TIME * 2.5
+local HATCH_BASE_TIME = ZXTUNING.DEBUG and 60 or TUNING.TOTAL_DAY_TIME * 0.5
 
 
 local souls = {
@@ -38,7 +38,6 @@ end
 
 local foods = {
     ["zxfarmfood_normal"] = 5,
-    ["fishmeat"] = 5,
 }
 
 
@@ -46,7 +45,7 @@ local foods = {
 local perdfarm = {
 
     hatchitems = {"zxperd_soul"},
-    hatchtime = ZXTUNING.DEBUG and 10 or HATCH_BASE_TIME,
+    hatchtime = HATCH_BASE_TIME,
     animalcnt = 10,
 
     foodnum = 1,
@@ -56,7 +55,7 @@ local perdfarm = {
 
     upgrade = obtainFarmUpgrade(),
 
-    producetime = ZXTUNING.DEBUG and 10 or PRODUCE_BASE_TIME,
+    producetime = PRODUCE_BASE_TIME,
     producefunc = function (inst)
         if math.random() <= 0.5 then
             return { "drumstick", 1 }
@@ -70,7 +69,7 @@ local perdfarm = {
 
 local pigfarm = {
     hatchitems = {"zxpigman_soul"},
-    hatchtime = ZXTUNING.DEBUG and 10 or HATCH_BASE_TIME * 1.5,
+    hatchtime = HATCH_BASE_TIME * 1.5,
     animalcnt = 8,
 
     foodnum = 2,
@@ -80,7 +79,7 @@ local pigfarm = {
 
     upgrade = obtainFarmUpgrade(),
 
-    producetime = ZXTUNING.DEBUG and 10 or PRODUCE_BASE_TIME * 1.5,
+    producetime = PRODUCE_BASE_TIME * 1.5,
     producefunc = function (inst)
         -- 月圆的时候，必然生产2个猪皮
         if TheWorld.state.isfullmoon then return {"pigskin", 2} end
@@ -96,7 +95,7 @@ local pigfarm = {
 
 local beefalofarm = {
     hatchitems = {"zxbeefalo_soul"},
-    hatchtime = ZXTUNING.DEBUG and 10 or HATCH_BASE_TIME * 2,
+    hatchtime = HATCH_BASE_TIME * 2,
     animalcnt = 6,
 
     foodnum = 2,
@@ -106,7 +105,7 @@ local beefalofarm = {
 
     upgrade = obtainFarmUpgrade(),
 
-    producetime = ZXTUNING.DEBUG and 10 or PRODUCE_BASE_TIME * 2,
+    producetime = PRODUCE_BASE_TIME * 2,
     producefunc = function (inst)
         -- 春天有百分之10的概率生产一个牛角
         if TheWorld.state.isspring then
@@ -127,8 +126,8 @@ local beefalofarm = {
 
 
 local goatfarm = {
-    hatchitem = {"zxgoat_soul"},
-    hatchtime = ZXTUNING.DEBUG and 10 or HATCH_BASE_TIME * 3,
+    hatchitems = {"zxgoat_soul"},
+    hatchtime = HATCH_BASE_TIME * 3,
     animalcnt = 6,
 
     foodnum = 3,
@@ -138,7 +137,7 @@ local goatfarm = {
 
     upgrade = obtainFarmUpgrade(),
 
-    producetime = ZXTUNING.DEBUG and 10 or PRODUCE_BASE_TIME * 3,
+    producetime = PRODUCE_BASE_TIME * 3,
     producefunc = function (inst)
         -- 春天下雨的时候有百分之10的概率生产一个奶
         if TheWorld.state.israining and TheWorld.state.isspring then
@@ -157,7 +156,7 @@ local goatfarm = {
 
 local koalefantfarm = {
     hatchitems = {"zxkoalefant_w_soul", "zxkoalefant_s_soul"},
-    hatchtime = ZXTUNING.DEBUG and 10 or HATCH_BASE_TIME * 3,
+    hatchtime = HATCH_BASE_TIME * 3,
     animalcnt = 4,
     foodnum = 3,
     foods = { 
@@ -166,7 +165,7 @@ local koalefantfarm = {
 
     upgrade = obtainFarmUpgrade(),
 
-    producetime = ZXTUNING.DEBUG and 10 or PRODUCE_BASE_TIME * 3,
+    producetime = PRODUCE_BASE_TIME * 3,
     producefunc = function (inst)
         if math.random() <= 0.5 then
             return { "trunk_winter", 1}
@@ -180,17 +179,17 @@ local koalefantfarm = {
 
 local catfarm = {
     hatchitems = {"zxcat_soul"},
-    hatchtime = ZXTUNING.DEBUG and 10 or HATCH_BASE_TIME,
+    hatchtime = HATCH_BASE_TIME,
     animalcnt = 8,
 
     foodnum = 1,
     foods = { 
-        "fishmeat"
+        "zxfarmfood_normal"
     },
 
     upgrade = obtainFarmUpgrade(),
 
-    producetime = ZXTUNING.DEBUG and 10 or PRODUCE_BASE_TIME * 1.5,
+    producetime = PRODUCE_BASE_TIME * 1.5,
     producefunc = function (inst)
         return { "meat", 1}
     end
@@ -203,8 +202,8 @@ return {
         zxpigmanfarm  = pigfarm,
         zxbeefalofarm  = beefalofarm,
         zxgoatfarm = goatfarm,
-        -- zxcatfarm = catfarm
-        -- zxkoalefantfarm = koalefantfarm,
+        zxcatfarm = catfarm,
+        zxkoalefantfarm = koalefantfarm,
     },
 
     souls = souls,
