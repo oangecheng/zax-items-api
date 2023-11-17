@@ -110,6 +110,7 @@
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
-        "trailing-space"
+        "trailing-space",
+        "undefined-field"
     ]
 }

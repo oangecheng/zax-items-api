@@ -46,7 +46,6 @@ local Farm = Class(function (self, inst)
     self.childcount = 0
     self.productions = nil
 
-    self.child = nil
     self.childmax = 10
     self.time = 0
     self.foodnum = 1
@@ -58,12 +57,6 @@ local Farm = Class(function (self, inst)
         end
     end)
 end)
-
-
-
-function Farm:SetChild(prefab)
-    self.child = prefab
-end
 
 
 function Farm:GetChildCnt()
@@ -142,9 +135,11 @@ function Farm:Harvest(doer)
 end
 
 
-function Farm:AddFarmAnimal()
-    if self.child and self:GetChildCnt() < self.childmax then
-        local ent = SpawnPrefab(self.child)
+---添加一个小动物
+---@param child string
+function Farm:AddFarmAnimal(child)
+    if child and self:GetChildCnt() < self.childmax then
+        local ent = SpawnPrefab(child)
         if ent then
             local x,y,z = self.inst.Transform:GetWorldPosition()            
             self.childcount = self.childcount + 1

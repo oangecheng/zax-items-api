@@ -4,6 +4,17 @@ local FARMS = (require "defs/zxfarmdefs").farms
 local assets = {}
 local MULTIPLIER = { 0.8, 0.7, 0.6, 0.5 }
 
+local animals = {
+    zxperd_soul = "zxperd",
+    zxpigman_soul = "zxpigman",
+    zxbeefalo_soul = "zxbeefalo",
+    zxgoat_soul = "zxgoat",
+    zxkoalefant_w_soul = "zxkoalefant_w",
+    zxkoalefant_s_soul = "zxkoalefant_s",
+    zxcat_soul = "zxcat",
+}
+
+
 
 local function accelerateMax(lv)
     return ZXTUNING.ACCELERATE_TIME * (lv + 1)
@@ -193,7 +204,6 @@ local function MakeFarm(name, data)
         MakeSmallPropagator(inst)
 
         inst:AddComponent("zxfarm")
-        inst.components.zxfarm:SetChild(data.animal)
         inst.components.zxfarm:SetChildMaxCnt(data.animalcnt)
         inst.components.zxfarm:SetProduceFunc(data.producefunc)
         inst.components.zxfarm:SetProduceTime(data.producetime)
@@ -216,8 +226,9 @@ local function MakeFarm(name, data)
         inst:ListenForEvent(ZXEVENTS.FARM_ADD_FOOD, function ()
             inst.components.zxfarm:StartProduce()
         end)
-        inst:ListenForEvent(ZXEVENTS.FARM_HATCH_FINISHED, function ()
-            inst.components.zxfarm:AddFarmAnimal()
+        inst:ListenForEvent(ZXEVENTS.FARM_HATCH_FINISHED, function (_, d)
+            local animal = d.soul and animals[d.soul]
+            inst.components.zxfarm:AddFarmAnimal(animal)
         end)
         inst:ListenForEvent("onbuilt", onBuild)
         inst:ListenForEvent(ZXEVENTS.FARM_ITEM_BUILD, function (_, event)

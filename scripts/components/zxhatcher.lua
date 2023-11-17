@@ -9,17 +9,19 @@ local Hatcher = Class(function (self, inst)
 
     self.inst:ListenForEvent("timerdone", function (_, data)
         if data.name == TIMER then
+            local temp = self.seed or self.seedlist[1]
+            self.seed = nil
             if self.onStopFunc then
-                self.onStopFunc(self.inst)
+                self.onStopFunc(self.inst, temp)
             end        
         end
     end)
 end)
 
 --- 设置孵化器参数
---- @param seed string 物品名称
-function Hatcher:SetHatchSeed(seed)
-    self.seed = seed
+--- @param list string 物品名称
+function Hatcher:SetHatchSeeds(list)
+    self.seedlist = list
 end
 
 
@@ -51,13 +53,14 @@ end
 
 
 function Hatcher:CanHatch(item, doer)
-    return item and self.seed and item.prefab == self.seed
+    return item and self.seedlist and table.contains(self.seedlist, item.prefab)
 end
 
 
 function Hatcher:Hatch(item, doer)
     if not self:IsWorking() and self:CanHatch(item, doer) then
         self.inst.components.timer:StartTimer(TIMER, self.time)
+        self.seed = item.prefab
         if self.onStartFunc then
             self.onStartFunc(self.inst, self.seed)
         end
@@ -67,6 +70,18 @@ function Hatcher:Hatch(item, doer)
             item:Remove()
         end
     end
+end
+
+
+function Hatcher:OnSave()
+    return {
+        seed = self.seed
+    }
+end
+
+
+function Hatcher:OnLoad(data)
+    self.seed = data.seed or nil
 end
 
     

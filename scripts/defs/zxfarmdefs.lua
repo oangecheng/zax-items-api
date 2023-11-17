@@ -16,6 +16,7 @@ local souls = {
 }
 
 
+
 local materials = {
     "purplegem",
     "greengem",
@@ -44,9 +45,8 @@ local foods = {
 
 local perdfarm = {
 
-    hatchitem = "zxperd_soul",
+    hatchitems = {"zxperd_soul"},
     hatchtime = ZXTUNING.DEBUG and 10 or HATCH_BASE_TIME,
-    animal    = "zxperd",
     animalcnt = 10,
 
     foodnum = 1,
@@ -69,9 +69,8 @@ local perdfarm = {
 
 
 local pigfarm = {
-    hatchitem = "zxpigman_soul",
+    hatchitems = {"zxpigman_soul"},
     hatchtime = ZXTUNING.DEBUG and 10 or HATCH_BASE_TIME * 1.5,
-    animal    = "zxpigman",
     animalcnt = 8,
 
     foodnum = 2,
@@ -96,9 +95,8 @@ local pigfarm = {
 
 
 local beefalofarm = {
-    hatchitem = "zxbeefalo_soul",
+    hatchitems = {"zxbeefalo_soul"},
     hatchtime = ZXTUNING.DEBUG and 10 or HATCH_BASE_TIME * 2,
-    animal    = "zxbeefalo",
     animalcnt = 6,
 
     foodnum = 2,
@@ -129,9 +127,8 @@ local beefalofarm = {
 
 
 local goatfarm = {
-    hatchitem = "zxgoat_soul",
+    hatchitem = {"zxgoat_soul"},
     hatchtime = ZXTUNING.DEBUG and 10 or HATCH_BASE_TIME * 3,
-    animal    = "zxgoat",
     animalcnt = 6,
 
     foodnum = 3,
@@ -158,38 +155,32 @@ local goatfarm = {
 }
 
 
+local koalefantfarm = {
+    hatchitems = {"zxkoalefant_w_soul", "zxkoalefant_s_soul"},
+    hatchtime = ZXTUNING.DEBUG and 10 or HATCH_BASE_TIME * 3,
+    animalcnt = 4,
+    foodnum = 3,
+    foods = { 
+        "zxfarmfood_normal"
+    },
 
-local function koalefantFarm(iswinter)
-    local truck = iswinter and "trunk_winter" or "trunk_summer"
-    return {
-        hatchitem = iswinter and "zxkoalefant_w_soul" or "zxkoalefant_s_soul",
-        hatchtime = ZXTUNING.DEBUG and 10 or HATCH_BASE_TIME * 3,
-        animal    = iswinter and "zxkoalefant_w" or "zxkoalefant_s",
-        animalcnt = 4,
-        foodnum = 3,
-        foods = { 
-            "zxfarmfood_normal"
-        },
+    upgrade = obtainFarmUpgrade(),
 
-        upgrade = obtainFarmUpgrade(),
-
-        producetime = ZXTUNING.DEBUG and 10 or PRODUCE_BASE_TIME * 3,
-        producefunc = function (inst)
-            if math.random() <= 0.5 then
-                return { truck, 1}
-            else
-                return { "meat", 1}
-            end
+    producetime = ZXTUNING.DEBUG and 10 or PRODUCE_BASE_TIME * 3,
+    producefunc = function (inst)
+        if math.random() <= 0.5 then
+            return { "trunk_winter", 1}
+        else
+            return { "trunk_summer", 1}
         end
-    }
-end 
+    end
+}
 
 
 
 local catfarm = {
-    hatchitem = "zxcat_soul",
+    hatchitems = {"zxcat_soul"},
     hatchtime = ZXTUNING.DEBUG and 10 or HATCH_BASE_TIME,
-    animal    = "zxcat",
     animalcnt = 8,
 
     foodnum = 1,
@@ -213,10 +204,9 @@ return {
         zxbeefalofarm  = beefalofarm,
         zxgoatfarm = goatfarm,
         -- zxcatfarm = catfarm
-        -- zxkoalefantfarm_w = koalefantFarm(true),
-        -- zxkoalefantfarm_s = koalefantFarm(false)
+        -- zxkoalefantfarm = koalefantfarm,
     },
 
     souls = souls,
-    foods = foods
+    foods = foods,
 }
