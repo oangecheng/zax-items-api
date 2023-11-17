@@ -10,6 +10,9 @@ local souls = {
     "zxpigman_soul",
     "zxbeefalo_soul",
     "zxgoat_soul",
+    "zxkoalefant_w_soul",
+    "zxkoalefant_s_soul",
+    "zxcat_soul",
 }
 
 
@@ -34,6 +37,7 @@ end
 
 local foods = {
     ["zxfarmfood_normal"] = 5,
+    ["fishmeat"] = 5,
 }
 
 
@@ -182,12 +186,33 @@ end
 
 
 
+local catfarm = {
+    hatchitem = "zxcat_soul",
+    hatchtime = ZXTUNING.DEBUG and 10 or HATCH_BASE_TIME,
+    animal    = "zxcat",
+    animalcnt = 8,
+
+    foodnum = 1,
+    foods = { 
+        "fishmeat"
+    },
+
+    upgrade = obtainFarmUpgrade(),
+
+    producetime = ZXTUNING.DEBUG and 10 or PRODUCE_BASE_TIME * 1.5,
+    producefunc = function (inst)
+        return { "meat", 1}
+    end
+}
+
+
 return {
     farms = {
         zxperdfarm = perdfarm,
         zxpigmanfarm  = pigfarm,
         zxbeefalofarm  = beefalofarm,
         zxgoatfarm = goatfarm,
+        -- zxcatfarm = catfarm
         -- zxkoalefantfarm_w = koalefantFarm(true),
         -- zxkoalefantfarm_s = koalefantFarm(false)
     },

@@ -162,14 +162,50 @@ end
 
 
 
+-- local catsname = {
+--     kitcoon_forest = false,
+--     kitcoon_savanna = false,
+--     kitcoon_deciduous = false,
+--     kitcoon_marsh = false,
+--     kitcoon_grass = false,
+--     kitcoon_rocky = false,
+--     kitcoon_desert = false,
+--     kitcoon_moon = false,
+--     kitcoon_yot = false,
+-- }
+
+--- 用年猫的贴图，浣猫的贴图需要改sg，麻烦
+--- 后面有时间改成9个小猫的图
+local farmcat = {
+     assets = {
+	    Asset("ANIM", "anim/".."kitcoon_yot".."_build.zip"),
+	    Asset("ANIM", "anim/kitcoon_basic.zip"),
+    },
+    initfunc = function (inst)
+        inst.Transform:SetSixFaced()
+    end,
+
+    anim = {
+        bank  = "kitcoon",
+        build = "kitcoon_yot".."_build",
+        idle = "idle_loop",
+        size = 0.7,
+    },
+
+    walkspeed = 1,
+    sound = nil,
+    loots = { "meat", "zxcat_soul" }
+}
+
 
 
 
 local def  = {}
-def.zxperd      = farmperd
-def.zxpigman    = farmpigman
-def.zxbeefalo   = farmbeefalo
-def.zxgoat      = farmgoat
+def.zxperd    = farmperd
+def.zxpigman  = farmpigman
+def.zxbeefalo = farmbeefalo
+def.zxgoat    = farmgoat
+def.zxcat     = farmcat
 def.zxkoalefant_w = farmKoalefant(true)
 def.zxkoalefant_s = farmKoalefant(false)
 
