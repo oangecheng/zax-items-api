@@ -17,28 +17,34 @@ local souls = {
 
 
 
-local materials = {
+local upgradematerials = {
     "purplegem",
     "greengem",
     "opalpreciousgem"
 }
 
 
+
+local foods = {
+    zxfarmfood_normal = 5,
+    fishmeat = 15,
+    fishmeat_small = 5,
+    eel = 10,
+}
+
+
+
 local function obtainFarmUpgrade()
     return {
         maxlv = ZXTUNING.FARM_MAX_LV,
         testfn = function (inst, item, lv)
-            local index = math.min(lv + 1, #materials)
-            local needitem = materials[index]
+            local index = math.min(lv + 1, #upgradematerials)
+            local needitem = upgradematerials[index]
             return needitem == item.prefab
         end
     }
 end
 
-
-local foods = {
-    ["zxfarmfood_normal"] = 5,
-}
 
 
 
@@ -137,10 +143,11 @@ local catfarm = {
     hatchitems = {"zxcat_soul"},
     hatchtime = HATCH_BASE_TIME,
     animalcnt = 8,
-
     foodnum = 1,
     foods = { 
-        "zxfarmfood_normal"
+        "fishmeat",
+        "fishmeat_small",
+        "eel",
     },
     upgrade = obtainFarmUpgrade(),
     producetime = PRODUCE_BASE_TIME * 1.5,
@@ -159,4 +166,5 @@ return {
 
     souls = souls,
     foods = foods,
+    upgradematerials = upgradematerials,
 }

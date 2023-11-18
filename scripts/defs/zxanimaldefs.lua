@@ -257,8 +257,8 @@ local farmcat = {
     anim = {
         bank  = "kitcoon",
         build = "kitcoon_yot".."_build",
-        idle = "idle_loop",
-        size = 0.7,
+        idle  = "idle_loop",
+        size  = 0.7,
     },
 
     walkspeed = 1,
@@ -267,8 +267,8 @@ local farmcat = {
 
     producefn = function(inst, host)
         local x, _, z = host.Transform:GetWorldPosition()
-        --- 掉黄油初始概率为5%
-        local rbutter = 0.05
+        --- 掉黄油初始概率为10%
+        local rbutter = 0.1
         if x and z and host.radius then
             --- 农场范围内种花，可以提升概率，最高能提升10%
             local ents = TheSim:FindEntities(x, 0, z, host.radius, { "flower" })
@@ -280,8 +280,11 @@ local farmcat = {
         if math.random() <= rbutter then
             return { "butter", 1 }
         end
-        --- 随机一个物品
+        --- 随机一个物品,开了勋章，骨头会变成鱼骨
         local item, num = GetRandomItemWithIndex(catproducts)
+        if item == "boneshard" and ZXIsMedal() then
+            item = "medal_fishbones"
+        end
         return { item, num }
     end
 }

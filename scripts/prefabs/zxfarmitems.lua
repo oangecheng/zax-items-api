@@ -368,7 +368,7 @@ local function MakeFarmBowl(name)
             return item.prefab == "thulecite"
         end)
         inst.components.zxupgradable:SetOnUpgradeFn(function (_, lv)
-            inst.components.zxfeeder:SetFoodMaxNum(ZXTUNING.FOOD_MAX_NUM * (1 + lv))
+            inst.components.zxfeeder:SetFoodMaxNum(ZXTUNING.FOOD_MAX_NUM * (1 + lv * 0.5))
             updateBowlState(inst)
         end)
 
@@ -388,8 +388,10 @@ local items = {}
 for i, v in pairs(FARMS.souls) do
     table.insert(items, MakeAnimalSoul(v))
 end
-for k, _ in pairs(FARMS.foods) do
-    table.insert(items, MakeFarmFood(k))
+
+local customfoods = { "zxfarmfood_normal" }
+for _, v in ipairs(customfoods) do
+    table.insert(items, MakeFarmFood(v))
 end
 
 

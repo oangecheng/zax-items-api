@@ -20,8 +20,9 @@ ZXTUNING = {
     FARM_MAX_LV = 3,
 
     FOOD_MAX_NUM = 120,
-    ---基础加速时间1小时
-    ACCELERATE_TIME = isdebug and 60 or TUNING.TOTAL_DAY_TIME * 7.5
+    
+    ---基础加速时间0.5小时
+    ACCELERATE_TIME = isdebug and 60 or TUNING.TOTAL_DAY_TIME * 3.75
 }
 
 

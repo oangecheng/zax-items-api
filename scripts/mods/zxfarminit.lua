@@ -74,3 +74,35 @@ AddPlayerPostInit(function (inst)
        inst:ListenForEvent("killed", dropFarmItems)
    end
 end)
+
+
+local farmdefs = require "defs/zxfarmdefs"
+
+
+--- 升级材料
+local upgradeMaterials = {
+	"thulecite",
+}
+
+local accelerateMaterials = {
+	"zxstone",
+}
+
+for _, v in ipairs(JoinArrays(upgradeMaterials, farmdefs.upgradematerials)) do
+	AddPrefabPostInit(v, function (inst)
+		inst:AddTag("ZXUPGRADE_MATERIAL")
+	end)
+end
+
+for _, v in ipairs(accelerateMaterials) do
+	AddPrefabPostInit(v, function (inst)
+		inst:AddTag("ZXACCELERATE_MATERIAL")
+	end)
+end
+
+
+for k, _ in pairs(farmdefs.foods) do
+	AddPrefabPostInit(k, function (inst)
+		inst:AddTag("ZXFARM_FOOD")
+	end)
+end

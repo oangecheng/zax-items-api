@@ -9,6 +9,12 @@ function ZXSay(doer, msg)
     end
 end
 
+---是否开启了勋章
+---@return boolean 
+function ZXIsMedal()
+    return TUNING.FUNCTIONAL_MEDAL_IS_OPEN
+end
+
 
 function ZXSpawnPrefabs(prefab, num)
     local temp = SpawnPrefab(prefab)

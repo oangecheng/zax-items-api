@@ -79,30 +79,3 @@ AddClassPostConstruct("widgets/hoverer", function (hoverer)
 		return oldSetString(text, str)
 	end
 end)
-
-
-
---- 升级材料
-local upgradeMaterials = {
-	"purplegem",
-    "greengem",
-    "opalpreciousgem",
-	"thulecite",
-}
-
-local accelerateMaterials = {
-	"bluegem",
-	"redgem",
-}
-
-for _, v in ipairs(upgradeMaterials) do
-	AddPrefabPostInit(v, function (inst)
-		inst:AddTag("ZXUPGRADE_MATERIAL")
-	end)
-end
-
-for _, v in ipairs(accelerateMaterials) do
-	AddPrefabPostInit(v, function (inst)
-		inst:AddTag("ZXACCELERATE_MATERIAL")
-	end)
-end

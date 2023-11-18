@@ -107,7 +107,9 @@
         "BT",
         "net_int",
         "SourceModifierList",
-        "GetRandomItemWithIndex"
+        "GetRandomItemWithIndex",
+        "MergeMaps",
+        "JoinArrays"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
