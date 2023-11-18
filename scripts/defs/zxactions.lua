@@ -1,3 +1,6 @@
+local ITEMS = require "defs/zxitemdefs"
+
+
 --移除预制物(预制物,数量)
 local function removeItem(item,num)
 	if item.components.stackable then
@@ -112,8 +115,9 @@ local actions = {
         fn = function (act)
             local acc = act.target and act.target.components.zxaccelerate
             -- 先按固定时间加速
-            if acc and act.invobject and act.invobject:HasTag("ZXACCELERATE_MATERIAL") then
-                acc:Start(ZXTUNING.ACCELERATE_TIME)
+            if acc and act.invobject then
+                local time = ITEMS.accelerate[act.invobject.prefab] or 0
+                acc:Start(time)
                 removeItem(act.invobject)
                 return true
             end

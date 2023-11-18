@@ -1,19 +1,9 @@
 
 local DISTANCE = 4
 local FARMS = (require "defs/zxfarmdefs").farms
+local ITMES = require "defs/zxitemdefs"
 local assets = {}
 local MULTIPLIER = { 0.8, 0.7, 0.6, 0.5 }
-
-local animals = {
-    zxperd_soul = "zxperd",
-    zxpigman_soul = "zxpigman",
-    zxbeefalo_soul = "zxbeefalo",
-    zxgoat_soul = "zxgoat",
-    zxkoalefant_w_soul = "zxkoalefant_w",
-    zxkoalefant_s_soul = "zxkoalefant_s",
-    zxcat_soul = "zxcat",
-}
-
 
 
 local function accelerateMax(lv)
@@ -210,7 +200,7 @@ local function MakeFarm(name, data)
             inst.components.zxfarm:StartProduce()
         end)
         inst:ListenForEvent(ZXEVENTS.FARM_HATCH_FINISHED, function (_, d)
-            local animal = d.soul and animals[d.soul]
+            local animal = d.soul and ITMES.souls[d.soul]
             inst.components.zxfarm:AddFarmAnimal(animal)
             updateFarmDesc(inst)
         end)

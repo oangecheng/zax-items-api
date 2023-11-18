@@ -1,11 +1,5 @@
-local assets = {
-    Asset("ANIM", "anim/zxfarmhatch.zip"),
-    Asset("ANIM", "anim/zxfarmbowl.zip"),
-    Asset("ANIM", "anim/zxanimalsoul.zip")
-}
 
-
-local FARMS = (require "defs/zxfarmdefs")
+local ITMES = (require "defs/zxitemdefs")
 
 
 local prefabs = {
@@ -274,7 +268,7 @@ local function MakeFarmBowl(name)
 
     local res = ZxGetPrefabAnimAsset(name)
 
-    local foodsdef = FARMS.foods
+    local foodsall = ITMES.foods.all
 
     local function updateBowlState(inst)
         local feeder = inst.components.zxfeeder
@@ -349,7 +343,7 @@ local function MakeFarmBowl(name)
             if not data then return end
             local list = {}
             for _, v in ipairs(data.foods) do
-                local temp = foodsdef[v]
+                local temp = foodsall[v]
                 if temp then
                     list[v] = temp
                 end
@@ -365,7 +359,7 @@ local function MakeFarmBowl(name)
         inst:AddComponent("zxupgradable")
         inst.components.zxupgradable:SetMax(ZXTUNING.FARM_MAX_LV)
         inst.components.zxupgradable:SetMaterialTestFn(function (_, item, lv)
-            return item.prefab == "thulecite"
+            return table.contains(ITMES.upgrade.bowl, item.prefab)
         end)
         inst.components.zxupgradable:SetOnUpgradeFn(function (_, lv)
             inst.components.zxfeeder:SetFoodMaxNum(ZXTUNING.FOOD_MAX_NUM * (1 + lv * 0.5))
@@ -385,13 +379,12 @@ end
 
 
 local items = {}
-for i, v in pairs(FARMS.souls) do
-    table.insert(items, MakeAnimalSoul(v))
+for k, v in pairs(ITMES.souls) do
+    table.insert(items, MakeAnimalSoul(k))
 end
 
-local customfoods = { "zxfarmfood_normal" }
-for _, v in ipairs(customfoods) do
-    table.insert(items, MakeFarmFood(v))
+for k, v in pairs(ITMES.foods.custom) do
+    table.insert(items, MakeFarmFood(k))
 end
 
 

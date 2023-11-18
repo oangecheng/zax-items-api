@@ -76,32 +76,23 @@ AddPlayerPostInit(function (inst)
 end)
 
 
-local farmdefs = require "defs/zxfarmdefs"
+local ITEMS = require "defs/zxitemdefs"
 
 
---- 升级材料
-local upgradeMaterials = {
-	"thulecite",
-}
-
-local accelerateMaterials = {
-	"zxstone",
-}
-
-for _, v in ipairs(JoinArrays(upgradeMaterials, farmdefs.upgradematerials)) do
+for _, v in ipairs(ITEMS.upgrade.all) do
 	AddPrefabPostInit(v, function (inst)
 		inst:AddTag("ZXUPGRADE_MATERIAL")
 	end)
 end
 
-for _, v in ipairs(accelerateMaterials) do
-	AddPrefabPostInit(v, function (inst)
+for k, v in pairs(ITEMS.accelerate) do
+	AddPrefabPostInit(k, function (inst)
 		inst:AddTag("ZXACCELERATE_MATERIAL")
 	end)
 end
 
 
-for k, _ in pairs(farmdefs.foods) do
+for k, _ in pairs(ITEMS.foods.all) do
 	AddPrefabPostInit(k, function (inst)
 		inst:AddTag("ZXFARM_FOOD")
 	end)

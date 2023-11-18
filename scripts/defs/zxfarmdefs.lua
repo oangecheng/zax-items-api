@@ -3,43 +3,15 @@
 -- 每个动物的生产的物品是独立的
 local PRODUCE_BASE_TIME = ZXTUNING.DEBUG and 60 or TUNING.TOTAL_DAY_TIME * 2.5
 local HATCH_BASE_TIME = ZXTUNING.DEBUG and 60 or TUNING.TOTAL_DAY_TIME * 0.5
-
-
-local souls = {
-    "zxperd_soul",
-    "zxpigman_soul",
-    "zxbeefalo_soul",
-    "zxgoat_soul",
-    "zxkoalefant_w_soul",
-    "zxkoalefant_s_soul",
-    "zxcat_soul",
-}
-
-
-
-local upgradematerials = {
-    "purplegem",
-    "greengem",
-    "opalpreciousgem"
-}
-
-
-
-local foods = {
-    zxfarmfood_normal = 5,
-    fishmeat = 15,
-    fishmeat_small = 5,
-    eel = 10,
-}
-
+local MATERIALS = (require "defs/zxitemdefs").upgrade.farm
 
 
 local function obtainFarmUpgrade()
     return {
         maxlv = ZXTUNING.FARM_MAX_LV,
         testfn = function (inst, item, lv)
-            local index = math.min(lv + 1, #upgradematerials)
-            local needitem = upgradematerials[index]
+            local index = math.min(lv + 1, #MATERIALS)
+            local needitem = MATERIALS[index]
             return needitem == item.prefab
         end
     }
@@ -163,8 +135,4 @@ return {
         zxcatfarm = catfarm,
         zxkoalefantfarm = koalefantfarm,
     },
-
-    souls = souls,
-    foods = foods,
-    upgradematerials = upgradematerials,
 }
