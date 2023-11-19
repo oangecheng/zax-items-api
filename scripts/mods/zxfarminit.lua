@@ -1,20 +1,34 @@
 
-local BLUEPRINTS = {
-    ["perd"] = "zxperdfarm",
-    ["pigman"] = "zxpigmanfarm",
-    ["beefalo"] = "zxbeefalofarm",
-    ["lightninggoat"] = "zxgoatfarm"
+local FARM_R = ZXTUNING.DEBUG and 0.8 or 0.2 * ZXTUNING.FRAM_DROP_RATIO
+local SOUL_R = ZXTUNING.DEBUG and 0.8 or 0.1 * ZXTUNING.FRAM_DROP_RATIO
+
+local drop = {
+    perd             = { animal = "zxperd", },
+    beefalo          = { animal = "zxbeefalo" },
+    catcoon          = { animal = "zxcat" },
+    koalefant_winter = { animal = "zxkoalefant_w", farm = "zxkoalefantfarm" },
+    koalefant_summer = { animal = "zxkoalefant_s", farm = "zxkoalefantfarm" },
+
+    pigman           = {
+        animal  = "zxpigman",
+        ratiofn = function(inst)
+            return inst:HasTag("werepig") and 0.25 or 0
+        end
+    },
+
+    lightninggoat    = {
+        animal  = "zxgoat",
+        ratiofn = function(inst)
+            return inst:HasTag("charged") and 0.25 or 0
+        end
+    },
 }
 
-local SOULS = {
-   ["perd"] = "zxperd_soul",
-   ["pigman"] = "zxpigman_soul",
-   ["beefalo"] = "zxbeefalo_soul",
-   ["lightninggoat"] = "zxgoat_soul",
-}
 
-local rfarm = ZXTUNING.DEBUG and 0.8 or 0.2 * ZXTUNING.FRAM_DROP_RATIO
-local rsoul = ZXTUNING.DEBUG and 0.8 or 0.1 * ZXTUNING.FRAM_DROP_RATIO
+local otherbuildings = {
+    "zxfarmhatch",
+    "zxfarmbowl" ,
+}
 
 
 ---概率掉落
@@ -22,48 +36,43 @@ local rsoul = ZXTUNING.DEBUG and 0.8 or 0.1 * ZXTUNING.FRAM_DROP_RATIO
 ---@param chance number 概率
 ---@param inst table 玩家
 ---@param victim table 怪物
----@param blueprint boolean 是否是蓝图
-local function dropByRatio(prefab, chance, inst, victim, blueprint)
+local function dropByRatio(prefab, chance, inst, victim)
     if prefab and math.random() <= chance then
-        local item = blueprint and prefab.."_blueprint" or prefab
-        local ent = SpawnPrefab(item)
+        local ent = SpawnPrefab(prefab)
         if ent then
             LaunchAt(ent, victim, inst, 1, 1, nil, 60)
         end
     end
 end
 
-local function dropFarmItems(inst, data)
-    local victim = data.victim
-    local farm = victim and BLUEPRINTS[victim.prefab]
-    local builder = inst.components.builder
 
-    if not (farm and builder) then
+
+local function dropFarmItems(inst, data)
+
+    local victim = data.victim
+    local fdrop = victim and drop[victim.prefab]
+    local builder = inst.components.builder
+    if not (fdrop and builder) then
         return
     end
+
+    local farm = fdrop.farm or fdrop.animal.."farm"
+    local extraratio = fdrop.ratiofn and fdrop.ratiofn(victim) or 0
+    local _rfarm = FARM_R + extraratio
 
     if not builder:KnowsRecipe(farm) then
-        dropByRatio(farm, rfarm, inst, victim, true)
+        dropByRatio(farm.."_blueprint", _rfarm, inst, victim)
         return
     end
 
-    local _rsoul = rsoul
-    --- 电羊+50%
-    if inst:HasTag("charged") then
-        _rsoul = _rsoul + 0.5
-    end
-    --- 疯猪+20%
-    if inst:HasTag("werepig") then
-        _rsoul = _rsoul + 0.25
-    end
-    dropByRatio(SOULS[victim.prefab], _rsoul, inst, victim, false)
+    local soul = fdrop.animal.."_soul"
+    local _rsoul = SOUL_R + extraratio
+    dropByRatio(soul, _rsoul, inst, victim)
 
-    if not builder:KnowsRecipe("zxfarmhatch") then
-        dropByRatio("zxfarmhatch", rfarm, inst, victim, true)
-    end
-
-    if not builder:KnowsRecipe("zxfarmbowl") then
-        dropByRatio("zxfarmbowl", rfarm, inst, victim, true)
+    for _, v in ipairs(otherbuildings) do
+        if not builder:KnowsRecipe(v) then
+            dropByRatio(v.."_blueprint", _rfarm, inst, victim)
+        end
     end
 end
 
