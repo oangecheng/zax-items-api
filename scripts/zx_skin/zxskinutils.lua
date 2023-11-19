@@ -78,7 +78,7 @@ local skinnamesdef = {
     ["2300"] = isCh and "草原羊圈" or "country sheepfold",
     ["2301"] = isCh and "小羊羔裹" or "lamb wrap",
     ["2400"] = isCh and "温馨猫舍" or "cat house",
-    ["2401"] = isCh and "面包树屋" or "koalefant house",
+    ["2500"] = isCh and "面包树屋" or "koalefant house",
 }
 
 
