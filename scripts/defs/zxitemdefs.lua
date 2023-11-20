@@ -2,9 +2,9 @@
 
 ---- 升级材料定义
 local upgrade_farm = {
+    "marble",
     "purplegem",
     "greengem",
-    "opalpreciousgem"
 }
 local upgrade_bowl = {
     "thulecite"

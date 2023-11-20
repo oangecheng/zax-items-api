@@ -1,11 +1,15 @@
 
+local function isFullAnim(container)
+    local nums = container:NumItems()
+    local max  = container:GetNumSlots()
+    return nums >= max * 0.5
+end
+
 --- 三个阶段动画
 local function threePhaseAnim(inst)
     local container = inst.components.container
     if container ~= nil and not container:IsEmpty() then
-        local nums = container:NumItems()
-        local max  = container:GetNumSlots()
-        if nums >= max * 0.5 then
+        if isFullAnim(container) then
             return "full"
         else
             return "half"
@@ -15,7 +19,7 @@ local function threePhaseAnim(inst)
 end
 
 
-local function obtainNormalBox(prefab, icebox)
+local function obtainNormalBox(prefab, icebox, loop)
     local sound_open  = "saltydog/common/saltbox/open"
     local sound_close = "saltydog/common/saltbox/close"
 
@@ -24,13 +28,13 @@ local function obtainNormalBox(prefab, icebox)
         placeanim = "empty",
         initskin = ZxGetPrefabDefaultSkin(prefab),
         oninitfn = function(inst)
-            inst.AnimState:PlayAnimation(threePhaseAnim(inst))
+            inst.AnimState:PlayAnimation(threePhaseAnim(inst), loop)
         end,
         onopenfn = function(inst, doer)
             inst.SoundEmitter:PlaySound(sound_open)
         end,
         onclosefn = function(inst, doer)
-            inst.AnimState:PlayAnimation(threePhaseAnim(inst))
+            inst.AnimState:PlayAnimation(threePhaseAnim(inst), loop)
             inst.SoundEmitter:PlaySound(sound_close)
         end,
 
@@ -41,7 +45,7 @@ local function obtainNormalBox(prefab, icebox)
 
         onhitfn = function(inst, doer)
             inst.AnimState:PlayAnimation("onhit")
-            inst.AnimState:PushAnimation(threePhaseAnim(inst))
+            inst.AnimState:PushAnimation(threePhaseAnim(inst), loop)
         end,
     }
 end
@@ -68,10 +72,13 @@ local granaryveggie = {
 
 
     onbuildfn = function (inst)
+        inst.AnimState:PlayAnimation("onbuild")
+        inst.AnimState:PushAnimation("idle")
     end,
 
     onhitfn = function (inst, doer)
-
+        inst.AnimState:PlayAnimation("onhit")
+        inst.AnimState:PushAnimation("idle")
     end,
 }
 
@@ -114,7 +121,7 @@ local function getHoneyJarAnim(inst, isopen)
     local container = inst.components.container
     if container == nil then return nil end
     if container:IsEmpty() then return isopen and "open_empty" or "close_empty"
-    elseif container:IsFull() then return isopen and "open_full" or "close_full"
+    elseif isFullAnim(container) then return isopen and "open_full" or "close_full"
     else return isopen and "open_half" or "close_half" end
 end
 
@@ -204,7 +211,7 @@ local boxs = {
     ["zxeggbasket"] = obtainNormalBox("zxeggbasket", true),
     ["zx_hay_cart"] = obtainNormalBox("zx_hay_cart"),
     ["zxmushroomhouse"] = obtainNormalBox("zxmushroomhouse", true),
-    -- ["zxboxmine"] = obtainNormalBox("zxboxmine"),
+    ["zxboxstone"] = obtainNormalBox("zxboxstone", false, true),
     -- ["zxboxgem"]  = obtainNormalBox("zxboxgem")
 }
 

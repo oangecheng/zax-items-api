@@ -44,6 +44,8 @@ local skinnamesdef = {
     ["1301"] = isCh and "柴胡(白)" or "cottage",
     ["1302"] = isCh and "柴胡(绿)" or "cottage(green)",
 
+    ["1320"] = isCh and "荒废矿洞" or "Abandoned mine cave",
+
     ["1400"] = isCh and "甜心花蜜罐" or "sweety honey jar",
     ["1401"] = isCh and "小熊蜜罐" or "bear honey jar",
     ["1411"] = isCh and "花盈琉璃瓶" or "glazed vase",
@@ -192,6 +194,9 @@ registerSkin("zxlight",  "1256", "zxlight5",        3, ZX_SKINTYPE.CUSTOM)
 registerSkin("zxlogstore", "1300", "zxlogstoreforest", 4, ZX_SKINTYPE.FREE, true)
 registerSkin("zxlogstore", "1301", "zxlogstore1", 4, ZX_SKINTYPE.SPONSOR)
 registerSkin("zxlogstore", "1302", "zxlogstore2", 4, ZX_SKINTYPE.SPONSOR)
+-- 矿井
+registerSkin("zxboxstone", "1320", "zxboxstone",  4.1, ZX_SKINTYPE.FREE, true)
+
 
 -- 蜂蜜罐子
 registerSkin("zxhoneyjar", "1400", "zxhoneyjar1", 5, ZX_SKINTYPE.FREE, true)
@@ -207,9 +212,9 @@ registerSkin("zxeggbasket", "1503", "zxeggbasket4", 6, ZX_SKINTYPE.FREE)
 registerSkin("zx_hay_cart", "1600", "zxhaycart1",  7, ZX_SKINTYPE.FREE, true)
 registerSkin("zx_hay_cart", "1601", "zxhaycart2",  7, ZX_SKINTYPE.FREE)
 registerSkin("zx_hay_cart", "1602", "zxhaycart3",  7, ZX_SKINTYPE.SPONSOR)
-
 -- 蘑菇房子
 registerSkin("zxmushroomhouse", "1700", "zxmushroomhouse1",  8, ZX_SKINTYPE.FREE, true)
+
 -- 水井
 registerSkin("zx_well", "1800", "zx_well", 9, ZX_SKINTYPE.FREE, true)
 registerSkin("zx_well", "1801", "zxwell1", 9, ZX_SKINTYPE.SPONSOR)
@@ -238,6 +243,8 @@ registerSkin("zxgoatfarm", "2301", "zxgoatfarm1", 15, ZX_SKINTYPE.SPONSOR)
 registerSkin("zxcatfarm", "2400", "zxcatfarm", 16, ZX_SKINTYPE.FREE, true)
 -- 考拉象农场
 registerSkin("zxkoalefantfarm", "2500", "zxkoalefantfarm", 17, ZX_SKINTYPE.FREE, true)
+
+
 
 
 

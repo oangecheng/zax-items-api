@@ -326,9 +326,9 @@ end
 
 
 ------------------- 石头仓库 ------------------
-params.zxboxmine = createBox5x10Param()
-local zxboxmine = { }
-function params.zxboxmine.itemtestfn(container, item, slot)
+params.zxboxstone = createBox5x10Param()
+local zxboxstone = { }
+function params.zxboxstone.itemtestfn(container, item, slot)
 	--- 鼹鼠可以偷的都认为是矿石
 	return item:HasTag("molebait")
 end

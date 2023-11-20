@@ -1,4 +1,4 @@
-local isdebug = true
+local isdebug = false
 
 ZXTUNING = {
     DEBUG = isdebug,
@@ -12,6 +12,7 @@ ZXTUNING = {
     ZXBEEFALO_SIZE = 0.4,
     ZXGOAT_SIZE = 0.4,
     ZXKOALEFANT_SIZE = 0.4,
+    ZXCAT_SIZE = 1,
 
     ---农场配置
     FARM_ENABLE = true,

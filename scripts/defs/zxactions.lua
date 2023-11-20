@@ -100,6 +100,7 @@ local actions = {
                     return false, "INVALID_ITEM"
                 else
                     up:Upgrade()
+                    ZXSay(act.doer, STRINGS.ZX_UPGRADE_SUCCESS)
                     removeItem(act.invobject)
                     return true
                 end
@@ -118,6 +119,7 @@ local actions = {
             if acc and act.invobject then
                 local time = ITEMS.accelerate[act.invobject.prefab] or 0
                 acc:Start(time)
+                ZXSay(act.doer, STRINGS.ZX_ACCELERATE_SUCCESS)
                 removeItem(act.invobject)
                 return true
             end

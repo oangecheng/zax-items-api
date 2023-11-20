@@ -140,6 +140,8 @@ function GridPage:BuildSkinScrollGrid()
 				w.skin_button:SetOnClick(function ()
 					root.holder:useskinclient(skin.id)
 				end)
+			else
+				w.skin_button:Hide()
 			end
 
 		end

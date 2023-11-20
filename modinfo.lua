@@ -200,6 +200,19 @@ configuration_options = {
 		default = 0.4
 	},
 
+	{
+		name = "zxcat_size",
+		label = ch and "浣猫大小设置" or "cat size settings",
+		options = {
+			{description = ch and "默认" or "default", data = 1},
+			{description = ch and "小" or "small", data = 0.7},
+			{description = ch and "较大" or "big", data = 1.2},
+			{description = ch and "大" or "large", data = 1.5},
+
+		},
+		default = 1
+	},
+
 
 
 	Title(ch and "永亮灯设置" or "Perpetual light settings"),

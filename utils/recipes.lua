@@ -191,6 +191,20 @@ AddRecipe2(
 )
 
 
+-- 矿井
+AddRecipe2(
+	"zxboxstone",
+	{Ingredient("goldenpickaxe", 1), Ingredient("boards", 2), Ingredient("cutstone", 5), Ingredient("pinecone", 2)},
+	TECH.SCIENCE_TWO,
+	{
+		placer = "zxboxstone_placer",
+        atlas = "images/zxskins/zxboxstone/zxboxstone.xml",
+        image = "zxboxstone.tex",
+    },
+	{"STRUCTURES", "CONTAINERS"}
+)
+
+
 
 -- 水井
 AddRecipe2(
@@ -268,10 +282,10 @@ if ZXTUNING.FARM_ENABLE then
         { "GARDENING", "STRUCTURES" }
     )
 
-        -- 山羊农场
+    --- 浣猫农场
     AddRecipe2(
         "zxcatfarm",
-        { Ingredient("boards", 5), Ingredient("cutstone", 1),
+        { Ingredient("boards", 5), Ingredient("coontail", 1),
             Ingredient("zxstone", 10, "images/inventoryimages/zxstone.xml") },
         TECH.LOST,
         {
@@ -283,10 +297,10 @@ if ZXTUNING.FARM_ENABLE then
         { "GARDENING", "STRUCTURES" }
     )
 
-    -- 山羊农场
+    -- 大象农场
     AddRecipe2(
         "zxkoalefantfarm",
-        { Ingredient("boards", 5), Ingredient("cutstone", 1),
+        { Ingredient("boards", 5), Ingredient("trunk_winter", 1),
             Ingredient("zxstone", 10, "images/inventoryimages/zxstone.xml") },
         TECH.LOST,
         {

@@ -258,7 +258,7 @@ local farmcat = {
         bank  = "kitcoon",
         build = "kitcoon_yot".."_build",
         idle  = "idle_loop",
-        size  = 0.7,
+        size  = ZXTUNING.ZXCAT_SIZE,
     },
 
     walkspeed = 1,

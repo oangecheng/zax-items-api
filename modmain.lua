@@ -28,6 +28,7 @@ ZXTUNING.ZXPIGMAN_SIZE  = GetModConfigData("zxpigman_size") or 0.4
 ZXTUNING.ZXBEEFALO_SIZE = GetModConfigData("zxbeefalo_size") or 0.4
 ZXTUNING.ZXGOAT_SIZE    = GetModConfigData("zxgoat_size") or 0.4
 ZXTUNING.ZXKOALEFANT_SIZE = GetModConfigData("zxkoalefant_size") or 0.4
+ZXTUNING.ZXCAT_SIZE = GetModConfigData("zxcat_size") or 1
 
 
 
