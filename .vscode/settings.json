@@ -109,7 +109,8 @@
         "SourceModifierList",
         "GetRandomItemWithIndex",
         "MergeMaps",
-        "JoinArrays"
+        "JoinArrays",
+        "ZXIsMedal"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

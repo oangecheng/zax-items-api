@@ -6,8 +6,6 @@ local drop = {
     perd             = { animal = "zxperd", },
     beefalo          = { animal = "zxbeefalo" },
     catcoon          = { animal = "zxcat" },
-    koalefant_winter = { animal = "zxkoalefant_w", farm = "zxkoalefantfarm" },
-    koalefant_summer = { animal = "zxkoalefant_s", farm = "zxkoalefantfarm" },
 
     pigman           = {
         animal  = "zxpigman",
@@ -20,6 +18,22 @@ local drop = {
         animal  = "zxgoat",
         ratiofn = function(inst)
             return inst:HasTag("charged") and 0.25 or 0
+        end
+    },
+
+    koalefant_winter = {
+        animal  = "zxkoalefant_w",
+        farm    = "zxkoalefantfarm",
+        ratiofn = function(inst)
+            return 0.2
+        end
+    },
+
+    koalefant_summer = {
+        animal  = "zxkoalefant_s",
+        farm    = "zxkoalefantfarm",
+        ratiofn = function(inst)
+            return 0.2
         end
     },
 }
