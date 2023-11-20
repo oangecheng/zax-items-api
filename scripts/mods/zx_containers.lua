@@ -327,10 +327,10 @@ end
 
 ------------------- 石头仓库 ------------------
 params.zxboxstone = createBox5x10Param()
-local zxboxstone = { }
+local zxboxstone = { "moonrocknugget", "townportaltalisman" }
 function params.zxboxstone.itemtestfn(container, item, slot)
 	--- 鼹鼠可以偷的都认为是矿石
-	return item:HasTag("molebait")
+	return item:HasTag("molebait") or table.contains(zxboxstone, item.prefab)
 end
 
 
