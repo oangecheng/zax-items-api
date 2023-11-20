@@ -115,7 +115,7 @@ local catfarm = {
     hatchitems = {"zxcat_soul"},
     hatchtime = HATCH_BASE_TIME,
     animalcnt = 8,
-    foodnum = 1,
+    foodnum = 2,
     foods = { 
         "fishmeat",
         "fishmeat_small",
