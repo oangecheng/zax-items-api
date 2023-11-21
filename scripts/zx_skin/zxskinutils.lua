@@ -95,7 +95,10 @@ local ZX_SKINTYPE = {
 
 
 local WHITE_USERS = {}
-local USER_SKIN_DEF = {}
+local USER_SKIN_DEF = {
+    ---国外用户，暂时白名单
+    ["KU_YDPyY0Rb"] = { "1411", "1211", "1212", "1213", "1214", "1301", "1302", "1801", "1501", "1602", "2001", "2101", "2201", "2301" }
+}
 
 
 local skinlist = {}
