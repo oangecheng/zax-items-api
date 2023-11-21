@@ -100,7 +100,7 @@ local koalefantfarm = {
     hatchitems = {"zxkoalefant_w_soul", "zxkoalefant_s_soul"},
     hatchtime = HATCH_BASE_TIME * 3,
     animalcnt = 4,
-    foodnum = 3,
+    foodnum = 5,
     foods = { 
         "zxfarmfood_normal"
     },
