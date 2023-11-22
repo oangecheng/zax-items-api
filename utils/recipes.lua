@@ -362,7 +362,7 @@ end
 -- 建家石
 AddRecipe2(
     "zxstone",
-    {Ingredient("goldnugget", 2), Ingredient("flint", 1)},
+    {Ingredient("goldnugget", 2), Ingredient("rocks", 1)},
     TECH.SCIENCE_TWO,
     {
         atlas="images/inventoryimages/zxstone.xml",
