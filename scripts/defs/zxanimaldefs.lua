@@ -292,6 +292,66 @@ local farmcat = {
 
 
 
+local houndassets = {
+    Asset("ANIM", "anim/hound_basic.zip"),
+    Asset("ANIM", "anim/hound_basic_water.zip"),
+    Asset("ANIM", "anim/hound.zip"),
+    Asset("ANIM", "anim/hound_ocean.zip"),
+    Asset("PKGREF", "anim/hound_red.zip"),
+    Asset("ANIM", "anim/hound_red_ocean.zip"),
+    Asset("PKGREF", "anim/hound_ice.zip"),
+    Asset("ANIM", "anim/hound_ice_ocean.zip"),
+    Asset("ANIM", "anim/hound_mutated.zip"),
+    Asset("ANIM", "anim/hound_hedge_ocean.zip"),
+    Asset("ANIM", "anim/hound_hedge_action.zip"),
+    Asset("ANIM", "anim/hound_hedge_action_water.zip"),
+    Asset("SOUND", "sound/hound.fsb"),
+}
+
+local hounds = {
+    hound =  {
+        build = "hound_ocean",
+        loots = { "zxhound_soul" }
+    },
+
+    houndfire = {
+        build = "hound_red_ocean",
+        loots = { "zxhound_fire_soul" }
+    },
+
+    houndice = {
+        build = "hound_ice_ocean",
+        loots = { "zxhound_ice_soul" }
+    }
+}
+
+local function houndfn(hound)
+    return {
+        assets = houndassets,
+        sg = "ZxHoundSG",
+        anim = {
+            bank = "hound",
+            build = hounds[hound].build,
+            idle = "idle",
+            size = ZXTUNING.ZXHOUND_SIZE
+        },
+        initfunc = function (inst)
+            inst.Transform:SetFourFaced()
+        end,
+        walkspeed = 1,
+        sound = nil,
+        loots = hounds[hound],
+        producefn = function (inst, host)
+            return {
+                "houndstooth", 2
+            }
+        end
+    }
+end
+
+
+
+
 local def  = {}
 def.zxperd    = farmperd
 def.zxpigman  = farmpigman
@@ -300,5 +360,8 @@ def.zxgoat    = farmgoat
 def.zxcat     = farmcat
 def.zxkoalefant_w = farmKoalefant(true)
 def.zxkoalefant_s = farmKoalefant(false)
+def.zxhound = houndfn("hound")
+def.zxhoundfire = houndfn("houndfire")
+def.zxhoundice = houndfn("houndice")
 
 return def

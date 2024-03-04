@@ -110,7 +110,8 @@
         "GetRandomItemWithIndex",
         "MergeMaps",
         "JoinArrays",
-        "ZXIsMedal"
+        "ZXIsMedal",
+        "PlayFootstep"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
