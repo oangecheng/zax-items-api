@@ -126,6 +126,53 @@ local catfarm = {
 }
 
 
+--- 高脚鸟农场
+local tallbirdfarm = {
+    hatchitems = { "zxtallbird_soul" },
+    hatchtime = HATCH_BASE_TIME * 2,
+    animalcnt = 6,
+    foodnum = 4,
+    foods = {
+        "pumpkin"
+    },
+    upgrade = obtainFarmUpgrade(),
+    producetime = PRODUCE_BASE_TIME * 3
+}
+
+
+
+local spiderfarm = {
+    hatchitems = { "zxspider_soul", "zxspider_warrior_soul" },
+    hatchtime = HATCH_BASE_TIME,
+    animalcnt = 8,
+    foodnum = 2,
+    foods = {
+        "meat",
+        "monstermeat",
+        "smallmeat"
+    },
+    upgrade = obtainFarmUpgrade(),
+    producetime = PRODUCE_BASE_TIME 
+}
+
+
+
+local houndfarm = {
+    hatchitems = { "zxhound_soul", "zxhound_ice_soul", "zxhound_fire_soul" },
+    hatchtime = HATCH_BASE_TIME * 1.5,
+    animalcnt = 8,
+    foodnum = 3,
+    foods = {
+        "meat",
+        "monstermeat",
+        "smallmeat"
+    },
+    upgrade = obtainFarmUpgrade(),
+    producetime = PRODUCE_BASE_TIME  * 1.5
+}
+
+
+
 return {
     farms = {
         zxperdfarm = perdfarm,
