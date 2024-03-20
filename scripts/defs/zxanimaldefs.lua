@@ -351,6 +351,104 @@ end
 
 
 
+local farmtallbird = {
+
+    assets = {
+        Asset("ANIM", "anim/smallbird_basic.zip"),
+    },
+
+    initfunc = function (inst)
+        inst.Transform:SetFourFaced()
+    end,
+    sg = "SGsamllbird",
+    anim = {
+        bank = "smallbird",
+        build = "smallbird_basic",
+        idle = "idle",
+        size = ZXTUNING.ZXTALLBIRD_SIZE,
+    },
+
+    walkspeed = 1,
+    sound = nil,
+    loots = {
+        "meat",
+        "zxtallbird_soul"
+    },
+
+    producefn = function (inst)
+        if math.random() <= 0.1 then
+            return { "tallbirdegg", 1}
+        else
+            return { "meat", 1}
+        end
+    end
+}
+
+
+
+local spidersassets = {
+    zxspider = {
+        Asset("ANIM", "anim/ds_spider_basic.zip"),
+        Asset("ANIM", "anim/spider_build.zip"),
+        Asset("ANIM", "anim/ds_spider_boat_jump.zip"),
+        Asset("SOUND", "sound/spider.fsb"),
+    },
+    zxspider_warrior = {
+        Asset("ANIM", "anim/ds_spider_basic.zip"),
+        Asset("ANIM", "anim/ds_spider_warrior.zip"),
+        Asset("ANIM", "anim/spider_warrior_build.zip"),
+        Asset("SOUND", "sound/spider.fsb"),
+    },
+    zxspider_dropper = {
+        Asset("ANIM", "anim/ds_spider_basic.zip"),
+        Asset("ANIM", "anim/ds_spider_warrior.zip"),
+        Asset("ANIM", "anim/spider_white.zip"),
+        Asset("SOUND", "sound/spider.fsb"),
+    },
+    zxspider_healer = {
+        Asset("ANIM", "anim/ds_spider_cannon.zip"),
+        Asset("ANIM", "anim/spider_wolf_build.zip"),
+        Asset("SOUND", "sound/spider.fsb"),
+    }
+}
+
+local spiders = {
+    zxspider = { "spider", "spider_build" },
+    zxspider_warrior = { "spider", "spider_warrior_build" },
+    zxspider_dropper = { "spider", "spider_white" },
+    zxspider_healer = { "spider", "spider_wolf_build", }
+}
+
+
+local function spiderfn(spider)
+    local asts = spidersassets[spider]
+    local bank = spiders[spider][1]
+    local build = spiders[spider][2]
+    local loots = { "monstermeat", spider.."_soul" }
+
+    return {
+        assets = asts,
+        sg = "SGspider",
+        anim = {
+            bank = bank,
+            build = build,
+            idle = "idle",
+            size = ZXTUNING.ZXSPIDER_SIZE
+        },
+        initfunc = function (inst)
+            inst.Transform:SetFourFaced()
+        end,
+        walkspeed = 1,
+        sound = nil,
+        loots = loots,
+        producefn = function (inst, host)
+            return {
+                "silk", 2
+            }
+        end
+    }
+end
+
 
 local def  = {}
 def.zxperd    = farmperd
@@ -363,5 +461,10 @@ def.zxkoalefant_s = farmKoalefant(false)
 def.zxhound = houndfn("hound")
 def.zxhoundfire = houndfn("houndfire")
 def.zxhoundice = houndfn("houndice")
+def.zxspider = spiderfn("zxspider")
+def.zxspider_warrior = spiderfn("zxspider_warrior")
+def.zxspider_dropper = spiderfn("zxspider_dropper")
+def.zxspider_healer = spiderfn("zxspider_healer")
+
 
 return def

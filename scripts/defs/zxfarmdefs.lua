@@ -140,9 +140,12 @@ local tallbirdfarm = {
 }
 
 
-
 local spiderfarm = {
-    hatchitems = { "zxspider_soul", "zxspider_warrior_soul" },
+    hatchitems = { "zxspider_soul",
+        "zxspider_warrior_soul",
+        "zxspider_dropper_soul",
+        "zxspider_healer_soul"
+    },
     hatchtime = HATCH_BASE_TIME,
     animalcnt = 8,
     foodnum = 2,
@@ -152,7 +155,7 @@ local spiderfarm = {
         "smallmeat"
     },
     upgrade = obtainFarmUpgrade(),
-    producetime = PRODUCE_BASE_TIME 
+    producetime = PRODUCE_BASE_TIME
 }
 
 
@@ -181,5 +184,8 @@ return {
         zxgoatfarm = goatfarm,
         zxcatfarm = catfarm,
         zxkoalefantfarm = koalefantfarm,
+        zxhoundfarm = houndfarm,
+        zxspiderfarm = spiderfarm,
+        zxtallbirdfarm = tallbirdfarm,
     },
 }
