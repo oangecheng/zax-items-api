@@ -313,7 +313,53 @@ if ZXTUNING.FARM_ENABLE then
     )
 
 
+    -- 大象农场
+    AddRecipe2(
+        "zxhoundfarm",
+        { Ingredient("boards", 5), Ingredient("houndstooth", 10),
+            Ingredient("redgem", 1),
+            Ingredient("bluegem", 1),
+            Ingredient("zxstone", 10, "images/inventoryimages/zxstone.xml") },
+        TECH.LOST,
+        {
+            placer = "zxhoundfarm_placer",
+            atlas = "images/zxskins/zxhoundfarm/zxhoundfarm.xml",
+            image = "zxhoundfarm.tex",
+            min_spacing = 2,
+        },
+        { "GARDENING", "STRUCTURES" }
+    )
 
+
+    -- 大象农场
+    AddRecipe2(
+        "zxspiderfarm",
+        { Ingredient("boards", 5), Ingredient("spidereggsack", 1),
+            Ingredient("zxstone", 10, "images/inventoryimages/zxstone.xml") },
+        TECH.LOST,
+        {
+            placer = "zxspiderfarm_placer",
+            atlas = "images/zxskins/zxspiderfarm/zxspiderfarm.xml",
+            image = "zxspiderfarm.tex",
+            min_spacing = 2,
+        },
+        { "GARDENING", "STRUCTURES" }
+    )
+
+
+    AddRecipe2(
+        "zxtallbirdfarm",
+        { Ingredient("boards", 5), Ingredient("tallbirdegg", 1),
+            Ingredient("zxstone", 10, "images/inventoryimages/zxstone.xml") },
+        TECH.LOST,
+        {
+            placer = "zxtallbirdfarm_placer",
+            atlas = "images/zxskins/zxtallbirdfarm/zxtallbirdfarm.xml",
+            image = "zxtallbirdfarm.tex",
+            min_spacing = 2,
+        },
+        { "GARDENING", "STRUCTURES" }
+    )
 
     -- 孵化器
     AddRecipe2(

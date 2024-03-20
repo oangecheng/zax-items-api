@@ -21,6 +21,30 @@
     <folder id="6" name="zxcat_soul">
         <file id="0" name="zxcat_soul/zxcat_soul.png" width="100" height="100" pivot_x="0.509804" pivot_y="0.362745"/>
     </folder>
+    <folder id="7" name="zxspider_warrior_soul">
+        <file id="0" name="zxspider_warrior_soul/zxspider_warrior_soul.png" width="100" height="100" pivot_x="0.529412" pivot_y="0.362745"/>
+    </folder>
+    <folder id="8" name="zxspider_soul">
+        <file id="0" name="zxspider_soul/zxspider_soul.png" width="100" height="100" pivot_x="0.529412" pivot_y="0.323529"/>
+    </folder>
+    <folder id="9" name="zxspider_healer_soul">
+        <file id="0" name="zxspider_healer_soul/zxspider_healer_soul.png" width="100" height="100" pivot_x="0.509804" pivot_y="0.294118"/>
+    </folder>
+    <folder id="10" name="zxspider_dropper_soul">
+        <file id="0" name="zxspider_dropper_soul/zxspider_dropper_soul.png" width="100" height="100" pivot_x="0.54902" pivot_y="0.215686"/>
+    </folder>
+    <folder id="11" name="zxhound_soul">
+        <file id="0" name="zxhound_soul/zxhound_soul.png" width="100" height="100" pivot_x="0.627451" pivot_y="0.303922"/>
+    </folder>
+    <folder id="12" name="zxhound_ice_soul">
+        <file id="0" name="zxhound_ice_soul/zxhound_ice_soul.png" width="100" height="100" pivot_x="0.607843" pivot_y="0.313725"/>
+    </folder>
+    <folder id="13" name="zxhound_fire_soul">
+        <file id="0" name="zxhound_fire_soul/zxhound_fire_soul.png" width="100" height="100" pivot_x="0.627451" pivot_y="0.284314"/>
+    </folder>
+    <folder id="14" name="zxtallbird_soul">
+        <file id="0" name="zxtallbird_soul/zxtallbird_soul.png" width="100" height="100" pivot_x="0.519608" pivot_y="0.294118"/>
+    </folder>
     <entity id="0" name="zxanimalsoul">
         <animation id="0" name="idle" length="1000">
             <mainline>

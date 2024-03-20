@@ -338,7 +338,7 @@ local function houndfn(hound)
         initfunc = function (inst)
             inst.Transform:SetFourFaced()
         end,
-        walkspeed = 1,
+        walkspeed = 2.5,
         sound = nil,
         loots = hounds[hound],
         producefn = function (inst, host)
@@ -360,7 +360,7 @@ local farmtallbird = {
     initfunc = function (inst)
         inst.Transform:SetFourFaced()
     end,
-    sg = "SGsamllbird",
+    -- sg = "SGsmallbird",
     anim = {
         bank = "smallbird",
         build = "smallbird_basic",
@@ -465,6 +465,7 @@ def.zxspider = spiderfn("zxspider")
 def.zxspider_warrior = spiderfn("zxspider_warrior")
 def.zxspider_dropper = spiderfn("zxspider_dropper")
 def.zxspider_healer = spiderfn("zxspider_healer")
+def.zxtallbird = farmtallbird
 
 
 return def

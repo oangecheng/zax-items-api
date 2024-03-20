@@ -81,6 +81,9 @@ local skinnamesdef = {
     ["2301"] = isCh and "小羊羔裹" or "lamb wrap",
     ["2400"] = isCh and "温馨猫舍" or "cat house",
     ["2500"] = isCh and "面包树屋" or "koalefant house",
+    ["2510"] = isCh and "木质小屋" or "wood house",
+    ["2520"] = isCh and "蘑菇巢" or "mushroom nest",
+    ["2530"] = isCh and "树枝鸟窝" or "twig bird's nest",
 }
 
 
@@ -247,6 +250,9 @@ registerSkin("zxcatfarm", "2400", "zxcatfarm", 16, ZX_SKINTYPE.FREE, true)
 -- 考拉象农场
 registerSkin("zxkoalefantfarm", "2500", "zxkoalefantfarm", 17, ZX_SKINTYPE.FREE, true)
 
+registerSkin("zxhoundfarm", "2510", "zxhoundfarm", 18, ZX_SKINTYPE.FREE, true)
+registerSkin("zxspiderfarm", "2520", "zxspiderfarm", 19, ZX_SKINTYPE.FREE, true)
+registerSkin("zxtallbirdfarm", "2530", "zxtallbirdfarm", 20, ZX_SKINTYPE.FREE, true)
 
 
 
