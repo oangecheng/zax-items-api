@@ -191,6 +191,21 @@ AddRecipe2(
 )
 
 
+-- 蘑菇房子
+AddRecipe2(
+	"zxboxtoy",
+	{Ingredient("boards", 10)},
+	TECH.SCIENCE_TWO,
+	{
+		placer = "zxboxtoy_placer",
+        atlas = "images/zxskins/zxboxtoy/zxboxtoy.xml",
+        image = "zxboxtoy.tex",
+    },
+	{"STRUCTURES", "CONTAINERS"}
+)
+
+
+
 -- 矿井
 AddRecipe2(
 	"zxboxstone",

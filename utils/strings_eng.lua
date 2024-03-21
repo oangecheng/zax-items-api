@@ -221,7 +221,8 @@ DESCRIBE.ZXTALLBIRD = "Tiny one"
 NAMES.ZXTALLBIRD_SOUL = "Tallbird Soul"
 DESCRIBE.ZXTALLBIRD_SOUL = "Quickly put it into the incubator of the Tallbird Farm"
 
-
+NAMES.ZXBOXTOY = "Toy box"
+RECIPES.ZXBOXTOY = "Store toys!"
 
 STRINGS.NAMES.ZXFARMBOWL = "Feeding bowl"
 STRINGS.RECIPE_DESC.ZXFARMBOWL = "Used to hold food for small animals!"

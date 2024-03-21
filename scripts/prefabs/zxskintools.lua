@@ -66,17 +66,17 @@ local function spawnFx(inst)
 end
 
 
-local function changeSkin(target, doer)
+local function changeSkin(tool, target, doer)
     local skinable = target and target.components.zxskinable
     if doer and skinable then
         spawnFx(target)
-        local globalid = target._cached_reskinname[target.prefab]
+        local globalid = tool._cached_reskinname[target.prefab]
         local currentid = skinable:GetSkinId()
         if globalid ~= nil and globalid ~= currentid then
             skinable:SetSkin(globalid)
         else
             skinable:ChangeSkin(doer)
-            target._cached_reskinname[target.prefab] = skinable:GetSkinId()
+            tool._cached_reskinname[target.prefab] = skinable:GetSkinId()
         end
     end
 end 
@@ -111,7 +111,7 @@ end
 local function spellCB(tool, target, pos, doer)
     local player = doer or tool.zxowener
     if tool.mode == MODE_SKIN then
-        changeSkin(target, player)
+        changeSkin(tool, target, player)
     else
         doAnimAction(tool, target, player)
     end
