@@ -213,6 +213,7 @@ local boxs = {
     ["zxmushroomhouse"] = obtainNormalBox("zxmushroomhouse", true),
     ["zxboxstone"] = obtainNormalBox("zxboxstone", false, true),
     -- ["zxboxgem"]  = obtainNormalBox("zxboxgem")
+    -- ["zxboxtoy"] = obtainNormalBox("zxboxtoy")
 }
 
 return  boxs
