@@ -36,6 +36,44 @@ local drop = {
             return 0.2
         end
     },
+
+    spider = {
+        animal = "zxspider",
+        farm   = "zxspiderfarm",
+    },
+    spider_warrior = {
+        animal = "zxspider_warrior",
+        farm   = "zxspiderfarm",
+    },
+    spider_dropper = {
+        animal = "zxspider_dropper",
+        farm   = "zxspiderfarm",
+    },
+    spider_healer = {
+        animal = "zxspider_healer",
+        farm   = "zxspiderfarm",
+    },
+
+    hound = {
+        animal = "zxhound",
+        farm   = "zxhoundfarm",
+    },
+    firehound = {
+        animal = "zxhound_fire",
+        farm   = "zxhoundfarm",
+    },
+    icehound = {
+        animal = "zxhound_ice",
+        farm   = "zxhoundfarm",
+    },
+
+    tallbird = {
+        animal = "zxtallbird",
+        farm   = "zxtallbirdfarm",
+        ratiofn = function(inst)
+            return 0.1
+        end
+    }
 }
 
 
