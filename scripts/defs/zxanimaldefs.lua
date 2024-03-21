@@ -342,9 +342,16 @@ local function houndfn(hound)
         sound = nil,
         loots = hounds[hound],
         producefn = function (inst, host)
-            return {
-                "houndstooth", 2
-            }
+            if hound == "houndfire" then
+                if math.random() < 0.1 then
+                    return { "redgem", 1 }
+                end
+            elseif hound == "houndice" then
+                if math.random() < 0.1 then
+                    return { "bluegem", 1 }
+                end
+            end
+            return { "houndstooth", 2 }
         end
     }
 end
@@ -450,9 +457,7 @@ local function spiderfn(spider)
         sound = nil,
         loots = loots,
         producefn = function (inst, host)
-            return {
-                "silk", 2
-            }
+            return math.random() < 0.7 and { "silk", 2 } or { "spidergland", 2 }
         end
     }
 end
