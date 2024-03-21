@@ -351,16 +351,24 @@ end
 
 
 
+local userfns =   {
+    FollowLeader = function (_) end,
+    GetPeepChance = function (_) return 0.1 end,
+    SpawnTeen = function (_) end,
+    SpawnAdult = function (_) end,
+}
 local farmtallbird = {
-
     assets = {
         Asset("ANIM", "anim/smallbird_basic.zip"),
     },
 
-    initfunc = function (inst)
+    initfunc = function (inst, ismaster)
         inst.Transform:SetFourFaced()
+        if ismaster then
+            inst.userfunctions = userfns
+        end
     end,
-    -- sg = "SGsmallbird",
+    sg = "SGsmallbird",
     anim = {
         bank = "smallbird",
         build = "smallbird_basic",

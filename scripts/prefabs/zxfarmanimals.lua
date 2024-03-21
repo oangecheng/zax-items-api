@@ -49,7 +49,7 @@ local function MakeAnimal(animal, data)
         RemovePhysicsColliders(inst)
         inst.Physics:Stop()
         inst.DynamicShadow:SetSize(0.5, .75)
-        data.initfunc(inst)
+        data.initfunc(inst, TheWorld.ismastersim)
 
         inst.AnimState:SetBank(anim.bank)
         inst.AnimState:SetBuild(anim.build)
