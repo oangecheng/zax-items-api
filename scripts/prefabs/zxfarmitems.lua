@@ -233,8 +233,9 @@ local function MakeHatchMachine(name)
           
             if inst.components.zxhatcher:IsWorking() then
                 local x,y,z = inst.Transform:GetWorldPosition()
-                if x and y and z then
-                    local ent = SpawnPrefab(data.hatchitem)
+                local seed = inst.components.zxhatcher:GetSeed()
+                if x and y and z and seed then
+                    local ent = SpawnPrefab(seed)
                     if ent then
                         ent.Transform:SetPosition(x, y, z)
                     end
