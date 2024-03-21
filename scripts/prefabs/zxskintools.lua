@@ -67,9 +67,17 @@ end
 
 
 local function changeSkin(target, doer)
-    if doer and target and target.components.zxskinable then
-        target.components.zxskinable:ChangeSkin(doer)
+    local skinable = target and target.components.zxskinable
+    if doer and skinable then
         spawnFx(target)
+        local globalid = target._cached_reskinname[target.prefab]
+        local currentid = skinable:GetSkinId()
+        if globalid ~= nil and globalid ~= currentid then
+            skinable:SetSkin(globalid)
+        else
+            skinable:ChangeSkin(doer)
+            target._cached_reskinname[target.prefab] = skinable:GetSkinId()
+        end
     end
 end 
 
@@ -252,10 +260,12 @@ local function tool_fn()
 
     inst.OnLoad = function (_, data)
         inst.mode = data.mode or MODE_SKIN
+        inst._cached_reskinname = data._cached_reskinname or {}
         changeName(inst, inst.mode)
     end
     inst.OnSave = function (_, data)
         data.mode = inst.mode
+        data._cached_reskinname = inst._cached_reskinname
     end
 
     inst._cached_reskinname = {}

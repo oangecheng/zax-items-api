@@ -36,6 +36,11 @@ local Skinable = Class(function (self, inst)
 end)
 
 
+function Skinable:GetSkinId()
+   return self.skinid 
+end
+
+
 --- 判断该玩家是否可以更换皮肤
 --- 当玩家拥有的数量大于1时，即可认为可以更换皮肤
 --- @param doer table
