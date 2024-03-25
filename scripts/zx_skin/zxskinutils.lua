@@ -45,6 +45,7 @@ local skinnamesdef = {
     ["1302"] = isCh and "柴胡(绿)" or "cottage(green)",
 
     ["1320"] = isCh and "荒废矿洞" or "Abandoned mine cave",
+    ["1321"] = isCh and "雪人" or "Snowman",
 
     ["1400"] = isCh and "甜心花蜜罐" or "sweety honey jar",
     ["1401"] = isCh and "小熊蜜罐" or "bear honey jar",
@@ -80,9 +81,11 @@ local skinnamesdef = {
     ["2300"] = isCh and "草原羊圈" or "country sheepfold",
     ["2301"] = isCh and "小羊羔裹" or "lamb wrap",
     ["2400"] = isCh and "温馨猫舍" or "cat house",
+    ["2401"] = isCh and "小猫沙发" or "cat sofa",
     ["2500"] = isCh and "面包树屋" or "koalefant house",
     ["2510"] = isCh and "木质小屋" or "wood house",
     ["2520"] = isCh and "蘑菇巢" or "mushroom nest",
+    ["2521"] = isCh and "恐怖南瓜" or "Scary Pumpkin",
     ["2530"] = isCh and "树枝鸟窝" or "twig bird's nest",
 }
 
@@ -202,6 +205,7 @@ registerSkin("zxlogstore", "1301", "zxlogstore1", 4, ZX_SKINTYPE.SPONSOR)
 registerSkin("zxlogstore", "1302", "zxlogstore2", 4, ZX_SKINTYPE.SPONSOR)
 -- 矿井
 registerSkin("zxboxstone", "1320", "zxboxstone",  4.1, ZX_SKINTYPE.FREE, true)
+registerSkin("zxboxstone", "1321", "zxboxstone1",  4.2, ZX_SKINTYPE.CUSTOM)
 
 
 -- 蜂蜜罐子
@@ -248,11 +252,16 @@ registerSkin("zxgoatfarm", "2300", "zxgoatfarm", 15, ZX_SKINTYPE.FREE, true)
 registerSkin("zxgoatfarm", "2301", "zxgoatfarm1", 15, ZX_SKINTYPE.SPONSOR)
 -- 浣猫农场
 registerSkin("zxcatfarm", "2400", "zxcatfarm", 16, ZX_SKINTYPE.FREE, true)
+registerSkin("zxcatfarm", "2401", "zxcatfarm1", 16, ZX_SKINTYPE.SPONSOR)
+
 -- 考拉象农场
 registerSkin("zxkoalefantfarm", "2500", "zxkoalefantfarm", 17, ZX_SKINTYPE.FREE, true)
-
+-- 狗场
 registerSkin("zxhoundfarm", "2510", "zxhoundfarm", 18, ZX_SKINTYPE.FREE, true)
+-- 蜘蛛农场
 registerSkin("zxspiderfarm", "2520", "zxspiderfarm", 19, ZX_SKINTYPE.FREE, true)
+registerSkin("zxspiderfarm", "2521", "zxspiderfarm1", 19, ZX_SKINTYPE.SPONSOR)
+--高脚鸟农场
 registerSkin("zxtallbirdfarm", "2530", "zxtallbirdfarm", 20, ZX_SKINTYPE.FREE, true)
 
 

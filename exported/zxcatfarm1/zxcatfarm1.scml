@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+    <folder id="0" name="images">
+        <file id="0" name="images/body.png" width="500" height="500" pivot_x="0.5" pivot_y="0.15"/>
+        <file id="1" name="images/deco1.png" width="500" height="500" pivot_x="0.5" pivot_y="0.15"/>
+        <file id="2" name="images/deco2.png" width="500" height="500" pivot_x="0.336653" pivot_y="0.507968"/>
+        <file id="3" name="images/deco3.png" width="500" height="500" pivot_x="0.816733" pivot_y="0.165339"/>
+        <file id="4" name="images/deco4.png" width="500" height="500" pivot_x="0.5" pivot_y="0.15"/>
+        <file id="5" name="images/deco5.png" width="500" height="500" pivot_x="0.5" pivot_y="0.15"/>
+    </folder>
+    <entity id="0" name="zxcatfarm1">
+        <animation id="0" name="idle" length="4000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="body" folder="0" file="0" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.15" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" name="deco5" folder="0" file="5" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.15" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="5" key="0" z_index="1"/>
+                    <object_ref id="2" name="deco1" folder="0" file="1" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.15" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="2"/>
+                    <object_ref id="3" name="deco2" folder="0" file="2" abs_x="-81.6735" abs_y="178.984" abs_pivot_x="0.336653" abs_pivot_y="0.507968" abs_angle="5" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="3"/>
+                    <object_ref id="4" name="deco3" folder="0" file="3" abs_x="150" abs_y="0" abs_pivot_x="0.816733" abs_pivot_y="0.165339" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="3" key="0" z_index="4"/>
+                    <object_ref id="5" name="deco4" folder="0" file="4" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.15" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="4" key="0" z_index="5"/>
+                </key>
+                <key id="1" time="1432">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="5" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="2" key="0" z_index="3"/>
+                    <object_ref id="4" timeline="3" key="1" z_index="4"/>
+                    <object_ref id="5" timeline="4" key="0" z_index="5"/>
+                </key>
+                <key id="2" time="2000">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="5" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="2" key="1" z_index="3"/>
+                    <object_ref id="4" timeline="3" key="1" z_index="4"/>
+                    <object_ref id="5" timeline="4" key="0" z_index="5"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="body">
+                <key id="0" spin="0">
+                    <object folder="0" file="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="deco1">
+                <key id="0" spin="0">
+                    <object folder="0" file="1"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="deco2">
+                <key id="0" spin="-1">
+                    <object folder="0" file="2" x="-81.6735" y="178.984" angle="5"/>
+                </key>
+                <key id="1" time="2000">
+                    <object folder="0" file="2" x="-81.6735" y="178.984" angle="355"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="deco3">
+                <key id="0" spin="-1">
+                    <object folder="0" file="3" x="150"/>
+                </key>
+                <key id="1" time="1432">
+                    <object folder="0" file="3" x="60.869565" y="-27.173913" angle="180"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="deco4">
+                <key id="0" spin="0">
+                    <object folder="0" file="4"/>
+                </key>
+            </timeline>
+            <timeline id="5" name="deco5">
+                <key id="0" spin="0">
+                    <object folder="0" file="5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="onhit" length="400">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="body" folder="0" file="0" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.15" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" name="deco5" folder="0" file="5" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.15" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="5" key="0" z_index="1"/>
+                    <object_ref id="2" name="deco1" folder="0" file="1" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.15" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="2"/>
+                    <object_ref id="3" name="deco2" folder="0" file="2" abs_x="-81.6735" abs_y="178.984" abs_pivot_x="0.336653" abs_pivot_y="0.507968" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="3"/>
+                    <object_ref id="4" name="deco3" folder="0" file="3" abs_x="158.3665" abs_y="7.6695" abs_pivot_x="0.816733" abs_pivot_y="0.165339" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="3" key="0" z_index="4"/>
+                    <object_ref id="5" name="deco4" folder="0" file="4" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.15" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="4" key="0" z_index="5"/>
+                </key>
+                <key id="1" time="133">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="5" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="1" z_index="2"/>
+                    <object_ref id="3" timeline="2" key="1" z_index="3"/>
+                    <object_ref id="4" timeline="3" key="1" z_index="4"/>
+                    <object_ref id="5" timeline="4" key="1" z_index="5"/>
+                </key>
+                <key id="2" time="274">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                    <object_ref id="1" timeline="5" key="2" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="2" z_index="2"/>
+                    <object_ref id="3" timeline="2" key="2" z_index="3"/>
+                    <object_ref id="4" timeline="3" key="2" z_index="4"/>
+                    <object_ref id="5" timeline="4" key="2" z_index="5"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="body">
+                <key id="0">
+                    <object folder="0" file="0"/>
+                </key>
+                <key id="1" time="133" spin="-1">
+                    <object folder="0" file="0" y="25" angle="5"/>
+                </key>
+                <key id="2" time="274">
+                    <object folder="0" file="0" y="25" angle="355"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="deco1">
+                <key id="0">
+                    <object folder="0" file="1"/>
+                </key>
+                <key id="1" time="133" spin="-1">
+                    <object folder="0" file="1" y="25" angle="5"/>
+                </key>
+                <key id="2" time="274">
+                    <object folder="0" file="1" y="25" angle="355"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="deco2">
+                <key id="0">
+                    <object folder="0" file="2" x="-81.6735" y="178.984"/>
+                </key>
+                <key id="1" time="133" spin="-1">
+                    <object folder="0" file="2" x="-96.962191" y="196.184597" angle="5"/>
+                </key>
+                <key id="2" time="274">
+                    <object folder="0" file="2" x="-65.700542" y="210.245406" angle="355"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="deco3">
+                <key id="0">
+                    <object folder="0" file="3" x="158.3665" y="7.6695"/>
+                </key>
+                <key id="1" time="133" spin="-1">
+                    <object folder="0" file="3" x="157.095427" y="46.442865" angle="5"/>
+                </key>
+                <key id="2" time="274">
+                    <object folder="0" file="3" x="158.281983" y="18.843366" angle="355"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="deco4">
+                <key id="0">
+                    <object folder="0" file="4"/>
+                </key>
+                <key id="1" time="133" spin="-1">
+                    <object folder="0" file="4" y="25" angle="5"/>
+                </key>
+                <key id="2" time="274">
+                    <object folder="0" file="4" y="25" angle="355"/>
+                </key>
+            </timeline>
+            <timeline id="5" name="deco5">
+                <key id="0">
+                    <object folder="0" file="5"/>
+                </key>
+                <key id="1" time="133" spin="-1">
+                    <object folder="0" file="5" y="25" angle="5"/>
+                </key>
+                <key id="2" time="274">
+                    <object folder="0" file="5" y="25" angle="355"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="onbuild" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="body" folder="0" file="0" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.15" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" name="deco5" folder="0" file="5" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.15" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="5" key="0" z_index="1"/>
+                    <object_ref id="2" name="deco1" folder="0" file="1" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.15" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="2"/>
+                    <object_ref id="3" name="deco2" folder="0" file="2" abs_x="-81.6735" abs_y="178.984" abs_pivot_x="0.336653" abs_pivot_y="0.507968" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="3"/>
+                    <object_ref id="4" name="deco3" folder="0" file="3" abs_x="158.3665" abs_y="7.6695" abs_pivot_x="0.816733" abs_pivot_y="0.165339" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="3" key="0" z_index="4"/>
+                    <object_ref id="5" name="deco4" folder="0" file="4" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.15" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="4" key="0" z_index="5"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="body">
+                <key id="0" spin="0">
+                    <object folder="0" file="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="deco1">
+                <key id="0" spin="0">
+                    <object folder="0" file="1"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="deco2">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-81.6735" y="178.984"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="deco3">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="158.3665" y="7.6695"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="deco4">
+                <key id="0" spin="0">
+                    <object folder="0" file="4"/>
+                </key>
+            </timeline>
+            <timeline id="5" name="deco5">
+                <key id="0" spin="0">
+                    <object folder="0" file="5"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

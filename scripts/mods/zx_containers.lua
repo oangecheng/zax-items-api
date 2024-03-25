@@ -97,15 +97,14 @@ local function createBox5x10Param(anim, slotbg)
 			animbuild = anim and anim or "ui_zx_5x10",
 			pos = default_pos,
 			side_align_tip = 160,
+			buttoninfo = {
+				text = "整理",
+				position = Vector3(0, -230, 0),
+				fn = containerSortFn,
+				validfn = containerSortValidFn,
+			}
 		},
 		type = "chest",
-
-		buttoninfo = {
-			text = "整理",
-			position = Vector3(0, -230, 0),
-			fn = containerSortFn,
-			validfn = containerSortValidFn,
-		}
 	}
 
 	for y = 4, 0, -1 do
@@ -131,14 +130,14 @@ local function createBox5x5Param(anim, slotbg)
 			animbuild = anim and anim or "zx5x5_normal",
 			pos = default_pos,
 			side_align_tip = 160,
+			buttoninfo = {
+				text = "整理",
+				position = Vector3(0, -230, 0),
+				fn = containerSortFn,
+				validfn = containerSortValidFn,
+			}
 		},
 		type = "chest",
-		buttoninfo = {
-			text = "整理",
-			position = Vector3(0, -230, 0),
-			fn = containerSortFn,
-			validfn = containerSortValidFn,
-		}
 	}
 
 	for y = 4, 0, -1 do
