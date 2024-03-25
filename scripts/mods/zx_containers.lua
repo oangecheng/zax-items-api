@@ -6,86 +6,6 @@ local zxboxes = require "defs.zxboxdefs"
 local default_pos = Vector3(0, 220, 0)
 
 
--- 特色容器的大小都是 5x10 的尺寸
-local function createBox5x10Param(anim, slotbg)
-	local p = {
-		widget =
-		{
-			slotpos = {},
-			animbank = anim and anim or "ui_zx_5x10",
-			animbuild = anim and anim or "ui_zx_5x10",
-			pos = default_pos,
-			side_align_tip = 160,
-		},
-		type = "chest",
-	}
-
-	for y = 4, 0, -1 do
-		for x = 0, 9 do
-			local offsetX = x<=4 and -20 or 10
-			table.insert(p.widget.slotpos, Vector3(80 * (x - 5) + 40 + offsetX, 80 * (y - 3) + 80, 0))
-			if slotbg then
-				table.insert(p.widget.slotbg, slotbg)
-			end
-		end
-	end
-
-	return p;
-end
-
-local function createBox5x5Param(anim, slotbg)
-	local p =  {
-		widget =
-		{
-			slotpos = {},
-			slotbg = slotbg and {} or nil,
-			animbank = anim and anim or "zx5x5_normal",
-			animbuild = anim and anim or "zx5x5_normal",
-			pos = default_pos,
-			side_align_tip = 160,
-		},
-		type = "chest",
-	}
-
-	for y = 4, 0, -1 do
-		for x = 0, 4 do
-			table.insert(p.widget.slotpos, Vector3(80 * (x - 3) + 80, 80 * (y - 3) + 80, 0))
-			if slotbg then
-				table.insert(p.widget.slotbg, slotbg)
-			end
-		end
-	end
-
-	return p
-end
-
-
-
-local function creatBox3x3Param(anim, slotbg)
-	local p = {
-		widget =
-		{
-			slotpos = {},
-			animbank = "ui_chest_3x3",
-			animbuild = "ui_chest_3x3",
-			pos = default_pos,
-			side_align_tip = 160,
-		},
-		type = "chest",
-	}
-	for y = 2, 0, -1 do
-		for x = 0, 2 do
-			table.insert(p.widget.slotpos, Vector3(80 * x - 80 * 2 + 80, 80 * y - 80 * 2 + 80, 0))
-			if slotbg then
-				table.insert(p.widget.slotbg, slotbg)
-			end
-		end
-	end
-	return p
-end
-
-
-
 
 
 local function compareStr(str1, str2)
@@ -166,6 +86,101 @@ end
 
 
 
+-- 特色容器的大小都是 5x10 的尺寸
+local function createBox5x10Param(anim, slotbg)
+
+	local p = {
+		widget =
+		{
+			slotpos = {},
+			animbank = anim and anim or "ui_zx_5x10",
+			animbuild = anim and anim or "ui_zx_5x10",
+			pos = default_pos,
+			side_align_tip = 160,
+		},
+		type = "chest",
+
+		buttoninfo = {
+			text = "整理",
+			position = Vector3(0, -230, 0),
+			fn = containerSortFn,
+			validfn = containerSortValidFn,
+		}
+	}
+
+	for y = 4, 0, -1 do
+		for x = 0, 9 do
+			local offsetX = x<=4 and -20 or 10
+			table.insert(p.widget.slotpos, Vector3(80 * (x - 5) + 40 + offsetX, 80 * (y - 3) + 80, 0))
+			if slotbg then
+				table.insert(p.widget.slotbg, slotbg)
+			end
+		end
+	end
+
+	return p;
+end
+
+local function createBox5x5Param(anim, slotbg)
+	local p =  {
+		widget =
+		{
+			slotpos = {},
+			slotbg = slotbg and {} or nil,
+			animbank = anim and anim or "zx5x5_normal",
+			animbuild = anim and anim or "zx5x5_normal",
+			pos = default_pos,
+			side_align_tip = 160,
+		},
+		type = "chest",
+		buttoninfo = {
+			text = "整理",
+			position = Vector3(0, -230, 0),
+			fn = containerSortFn,
+			validfn = containerSortValidFn,
+		}
+	}
+
+	for y = 4, 0, -1 do
+		for x = 0, 4 do
+			table.insert(p.widget.slotpos, Vector3(80 * (x - 3) + 80, 80 * (y - 3) + 80, 0))
+			if slotbg then
+				table.insert(p.widget.slotbg, slotbg)
+			end
+		end
+	end
+
+	return p
+end
+
+
+
+local function creatBox3x3Param(anim, slotbg)
+	local p = {
+		widget =
+		{
+			slotpos = {},
+			animbank = "ui_chest_3x3",
+			animbuild = "ui_chest_3x3",
+			pos = default_pos,
+			side_align_tip = 160,
+		},
+		type = "chest",
+	}
+	for y = 2, 0, -1 do
+		for x = 0, 2 do
+			table.insert(p.widget.slotpos, Vector3(80 * x - 80 * 2 + 80, 80 * y - 80 * 2 + 80, 0))
+			if slotbg then
+				table.insert(p.widget.slotbg, slotbg)
+			end
+		end
+	end
+	return p
+end
+
+
+
+
 
 ---------------------------------  以下是各种容器的定义 ----------------------------------------------
 local params = containers.params
@@ -174,13 +189,6 @@ local params = containers.params
 
 ------------------- 肉仓 ------------------
 params.zx_granary_meat = createBox5x10Param()
-params.zx_granary_meat.widget.buttoninfo = {
-	text = "整理",
-	position = Vector3(0, -230, 0),
-	fn = containerSortFn,
-	validfn = containerSortValidFn,
-}
-
 local meat_types = { FOODTYPE.MEAT,}
 local meat_whitelist = {"spoiled_food","spoiled_fish","spoiled_fish_small","rottenegg",}
 params.zx_granary_meat.itemtestfn = function(container, item, slot)
@@ -204,13 +212,6 @@ end
 
 ------------------- 菜仓 ------------------
 params.zx_granary_veggie = createBox5x10Param()
-params.zx_granary_veggie.widget.buttoninfo = {
-	text = "整理",
-	position = Vector3(0, -230, 0),
-	fn = containerSortFn,
-	validfn = containerSortValidFn,
-}
-
 local veggie_types = { FOODTYPE.VEGGIE, FOODTYPE.SEEDS, FOODTYPE.GENERIC, FOODTYPE.GOODIES, FOODTYPE.BERRY}
 local veggie_whitelist = { "spoiled_food", "acorn",}
 params.zx_granary_veggie.itemtestfn= function(container, item, slot)
