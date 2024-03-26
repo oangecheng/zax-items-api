@@ -14,8 +14,8 @@ ZXTUNING = {
     ZXKOALEFANT_SIZE = 0.4,
     ZXCAT_SIZE = 1,
     ZXHOUND_SIZE = 0.6,
-    ZXSPIDER_SIZE = 0.6,
-    ZXTALLBIRD_SIZE = 0.8,
+    ZXSPIDER_SIZE = 0.8,
+    ZXTALLBIRD_SIZE = 0.9,
 
     ---农场配置
     FARM_ENABLE = true,

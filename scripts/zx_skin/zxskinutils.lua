@@ -84,6 +84,7 @@ local skinnamesdef = {
     ["2401"] = isCh and "小猫沙发" or "cat sofa",
     ["2500"] = isCh and "面包树屋" or "koalefant house",
     ["2510"] = isCh and "木质小屋" or "wood house",
+    ["2511"] = isCh and "荒野枯骨" or "Wild Bones",
     ["2520"] = isCh and "蘑菇巢" or "mushroom nest",
     ["2521"] = isCh and "恐怖南瓜" or "Scary Pumpkin",
     ["2530"] = isCh and "树枝鸟窝" or "twig bird's nest",
@@ -103,7 +104,8 @@ local ZX_SKINTYPE = {
 local WHITE_USERS = {}
 local USER_SKIN_DEF = {
     ---国外用户，暂时白名单
-    ["KU_YDPyY0Rb"] = { "1411", "1211", "1212", "1213", "1214", "1301", "1302", "1801", "1501", "1602", "2001", "2101", "2201", "2301" }
+    ["KU_YDPyY0Rb"] = { "1411", "1211", "1212", "1213", "1214", "1301", "1302", "1801", "1501", "1602", "2001", "2101", "2201", "2301" },
+    ["KU_xKqGIMds"] = { "1411", "1211", "1212", "1213", "1214", "1301", "1302", "1801", "1501", "1602", "2001", "2101", "2201", "2301" }
 }
 
 
@@ -258,6 +260,8 @@ registerSkin("zxcatfarm", "2401", "zxcatfarm1", 16, ZX_SKINTYPE.SPONSOR)
 registerSkin("zxkoalefantfarm", "2500", "zxkoalefantfarm", 17, ZX_SKINTYPE.FREE, true)
 -- 狗场
 registerSkin("zxhoundfarm", "2510", "zxhoundfarm", 18, ZX_SKINTYPE.FREE, true)
+registerSkin("zxhoundfarm", "2511", "zxhoundfarm1", 18, ZX_SKINTYPE.FREE)
+
 -- 蜘蛛农场
 registerSkin("zxspiderfarm", "2520", "zxspiderfarm", 19, ZX_SKINTYPE.FREE, true)
 registerSkin("zxspiderfarm", "2521", "zxspiderfarm1", 19, ZX_SKINTYPE.SPONSOR)
