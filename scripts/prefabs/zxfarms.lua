@@ -1,6 +1,6 @@
 
 local DISTANCE = 4
-local FARMS = (require "defs/zxfarmdefs").farms
+local FARMS = (require "defs/animalfarmdefs")
 local ITMES = require "defs/zxitemdefs"
 local assets = {}
 
@@ -144,7 +144,6 @@ local function MakeFarm(name, data)
         inst.farmdata = data
         inst.radius = getDistance()
     
-        inst:AddComponent("timer")
         inst:AddComponent("inspectable")
 
         ZXFarmItemInitFunc(inst, 5)
@@ -156,15 +155,18 @@ local function MakeFarm(name, data)
         MakeMediumBurnable(inst)
         MakeSmallPropagator(inst)
 
+
         inst:AddComponent("zxfarm")
         inst.components.zxfarm:SetChildMaxCnt(data.animalcnt)
-        inst:AddComponent("zxbindable")
+
 
         ---升级组件
         inst:AddComponent("zxupgradable")
         inst.components.zxupgradable:SetMax(data.upgrade.maxlv)
         inst.components.zxupgradable:SetMaterialTestFn(data.upgrade.testfn)
         inst.components.zxupgradable:SetOnUpgradeFn(onUpgradeFn)
+
+        inst:AddComponent("zxbindable")
 
         inst:ListenForEvent(ZXEVENTS.FARM_HATCH_FINISHED, function (_, d)
             local animal = d.soul and ITMES.souls[d.soul]
@@ -179,6 +181,9 @@ local function MakeFarm(name, data)
         inst:DoTaskInTime(0.1, function ()
             updateFarmDesc(inst)
         end)
+
+                inst:AddComponent("zxbindable")
+
         
         return inst
     end

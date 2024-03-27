@@ -34,4 +34,15 @@ ZXEVENTS = {
     FARM_ITEM_BUILD = "ZXFRAM_ITEM_BUILD",
     FARM_ADD_FOOD = "ZXFRAM_ADD_FOOD",
     FARM_HATCH_FINISHED = "ZXFARM_HATCH_FINISHED",
+    FARM_PRD = "ZXFARM_PRODUCTION"
+}
+
+
+ZXFARM = {
+    ANIMAL_TYPES = {
+        NORMAL = 0,
+        MEAT = 1,
+        FUR = 2,
+        EGG = 3,
+    }
 }

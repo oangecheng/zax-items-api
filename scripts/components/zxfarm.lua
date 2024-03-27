@@ -14,6 +14,11 @@ local function productionsCnt(self)
 end
 
 
+local function pushProductionEvent(self, data)
+    ZxFarmPushEvent(self.inst, ZXEVENTS.FARM_PRD, data)
+end
+
+
 local Farm = Class(function (self, inst)
     self.inst = inst
     self.childcount = 0
@@ -84,9 +89,8 @@ function Farm:Store(prefab, num)
     local newnum = (productions[prefab] or 0) + num
     productions[prefab] = newnum
     self.productions = productions
-    if self.onStoreFn then
-        local full = not self:CanStore()
-        self.onStoreFn(self.inst, full)
+    if self:IsFull() then
+        pushProductionEvent(self, { e = 1 })
     end
 end
 
@@ -107,6 +111,7 @@ function Farm:Harvest(doer)
         end
     end
     self.productions = nil
+    pushProductionEvent(self, { e = 2 })
     return true
 end
 

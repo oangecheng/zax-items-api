@@ -4,7 +4,7 @@ local zxfarmdata = {}
 local tagfeeder = "ZXFEEDER"
 local taghost = "ZXFARM_HOST"
 local taghatcher = "ZXHATCHER"
-local FARMS = (require "defs/zxfarmdefs").farms
+local FARMS = (require "defs/animalfarmdefs")
 
 --- 查找绑定id
 --- @param inst table 
@@ -162,6 +162,11 @@ end
 
 function ZXFarmHasFeeder(inst)
     return findItemByTag(inst, tagfeeder) ~= nil
+end
+
+
+function ZxGetFarmHost(inst)
+    return findItemByTag(inst, taghost)
 end
 
 
