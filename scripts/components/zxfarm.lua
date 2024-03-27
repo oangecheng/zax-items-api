@@ -1,11 +1,12 @@
 
-local PRODUCTION_MAX_CNT = 100
-local TIMER = "produce"
 
+---comment 计算当前动物产品总数量
+---@param self table farm组件
+---@return integer 数量
 local function productionsCnt(self)
     local sum = 0
     if self.productions then
-        for k, v in pairs(self.productions) do
+        for _, v in pairs(self.productions) do
             sum = sum + v
         end
     end
@@ -13,173 +14,75 @@ local function productionsCnt(self)
 end
 
 
-local function produce(self)
-    local temp = nil
-    local animals = ZXFarmAnimals(self.inst)
-    if next(animals) ~= nil then
-        temp = {}
-        for _, v in ipairs(animals) do
-            local product = v.producefn and v.producefn(v, self.inst)
-            if product and product[1] and product[2] then
-                local originnum = temp[product[1]] or 0
-                temp[product[1]] = originnum + product[2]
-            end
-        end
-    end
-
-    if temp then
-        if self.productions == nil then
-            self.productions = {}
-        end
-        for k, v in pairs(temp) do
-            if self.productions[k] ~= nil then
-                self.productions[k] = self.productions[k] + v
-            else
-                self.productions[k] = v
-            end
-        end
-    end
-end
-
-
 local Farm = Class(function (self, inst)
     self.inst = inst
     self.childcount = 0
-    self.productions = nil
-
     self.childmax = 10
-    self.time = 0
-    self.foodnum = 1
-
-    self.inst:ListenForEvent("timerdone", function (_, data)
-        if data.name == TIMER then
-            produce(self)
-            self:StartProduce()
-        end
-    end)
+    --- @type table|nil 
+    --- 存储产品 key = prefab, v = num
+    self.productions = nil
 end)
 
 
-function Farm:GetChildCnt()
-    return self.childcount
-end
-
-
+---comment 设置动物上限
+---@param max number 上限
 function Farm:SetChildMaxCnt(max)
     self.childmax = max or 10
 end
 
 
-function Farm:GetChildMaxCnt(max)
+---comment 获取动物上限值
+---@return number 上限
+function Farm:GetChildMaxCnt()
     return self.childmax or 10
 end
 
 
-function Farm:SetProduceTime(time)
-    if self.time ~= 0 and time ~= 0  and self.time ~= time then
-        local timer = self.inst.components.timer        
-        if timer and timer:TimerExists(TIMER) then
-            local left = timer:GetTimeLeft(TIMER) * (time / self.time)
-            timer:SetTimeLeft(TIMER, left)
-        end
-    end
-    self.time = time
-end
-
-
-function Farm:SetFoodNum(num)
-    self.foodnum = num or 1
-end
-
-
-function Farm:SetOnChildSpawn(func)
-    self.onChildSpawn = func
-end
-
-
-function Farm:SetOnItemGetFunc(func)
-    self.onItemGetFunc = func
-end
-
-
+---comment 判断农场小动物是否满了
+---@return boolean
 function Farm:IsFull()
     return self.childcount >= self.childmax
 end
 
 
-function Farm:GetLeftChildNum()
-    return self.childmax - self.childcount
+---comment 是否还能存放物品
+---@return boolean true可继续存放
+function Farm:CanStore()
+    return productionsCnt(self) < 100
 end
 
 
+---comment 存放动物产物
+---@param prefab string 物品
+---@param num number 数量
+function Farm:Store(prefab, num)
+    local productions = self.productions or {}
+    local newnum = (productions[prefab] or 0) + num
+    productions[prefab] = newnum
+    self.productions = productions
+    if not self:CanStore() then
+        self.inst:PushEvent("ZXPauseProduce", {})
+    end
+end
 
+
+---comment 收获动物产物
+---@param doer table 玩家
+---@return boolean 是否收获成功
 function Farm:Harvest(doer)
-    if self.productions ~= nil and doer.components.inventory then
-        for k, v in pairs(self.productions) do
-            local items = ZXSpawnPrefabs(k, v)
-            if items ~= nil then
-                for _, iv in ipairs(items) do
-                    doer.components.inventory:GiveItem(iv)
-                end
-            end
-        end
-        self.productions = nil
-        self:StartProduce()
-        return true
+    if not (self.productions and doer.components.inventory) then
+        return false
     end
-    return false
-end
-
-
----添加一个小动物
----@param child string
-function Farm:AddFarmAnimal(child)
-    if child and self:GetChildCnt() < self.childmax then
-        local ent = SpawnPrefab(child)
-        if ent then
-            local x,y,z = self.inst.Transform:GetWorldPosition()            
-            self.childcount = self.childcount + 1
-            ent.Transform:SetPosition(x, y, z)
-
-            local bindId = self.inst.components.zxbindable:GetBindId()
-            ent.components.zxbindable:Bind(bindId)
-
-            if ent.components.zxanimal then
-                ent.components.zxanimal:SetFarmPosition(x, y, z)
-            end
-
-
-            local timer = self.inst.components.timer        
-            if timer:TimerExists(TIMER) then
-                ZXFarmEatFood(self.inst, 1)
-            else
-                -- 第一个动物需要启动生产机制
-                self:StartProduce()
-            end
-
-            if self.onChildSpawn then
-                self.onChildSpawn(self.inst, ent)
+    for k, v in pairs(self.productions) do
+        local items = ZXSpawnPrefabs(k, v)
+        if items ~= nil then
+            for _, iv in ipairs(items) do
+                doer.components.inventory:GiveItem(iv)
             end
         end
     end
-end
-
-
-function Farm:StartProduce()
-    -- 物品超过100后停止生产
-    if productionsCnt(self) >= PRODUCTION_MAX_CNT then
-        return
-    end
-
-    local inst = self.inst
-    if inst.components.timer:TimerExists(TIMER) then
-        return
-    end
-    local animcnt = self.childcount
-    local foodneed = (self.foodnum or 1) * animcnt
-    if self.time > 0 and animcnt > 0 and ZXFarmEatFood(inst, foodneed) then
-        inst.components.timer:StartTimer(TIMER, self.time)
-    end
+    self.productions = nil
+    return true
 end
 
 
