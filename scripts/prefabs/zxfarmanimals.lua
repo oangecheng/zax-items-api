@@ -81,6 +81,7 @@ local function MakeAnimal(animal, data)
 
         
         inst:AddComponent("zxresizeable")
+        inst.components.zxresizeable:SetScale(anim.size)
         inst:AddComponent("zxanimal")
         inst.components.zxanimal:SetData(data.foodnum, data.producetime)
         inst.components.zxanimal:SetOnProducedFn(function ()

@@ -11,6 +11,7 @@ end
 
 
 local perddata = {
+    sg = "SGperd",
     assets = ASSETSDEF.perd,
     anim = {
         bank = "perd",
