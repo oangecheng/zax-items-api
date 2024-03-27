@@ -111,7 +111,8 @@
         "MergeMaps",
         "JoinArrays",
         "ZXIsMedal",
-        "PlayFootstep"
+        "PlayFootstep",
+        "IfNode"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

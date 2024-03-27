@@ -171,6 +171,12 @@ end
 
 
 
+function ZxGetFarmFeeder(inst)
+    return findItemByTag(inst, tagfeeder)
+end
+
+
+
 --- 移除绑定的物品
 --- 如果是农场，那么移除的时候，所有已绑定的物品都会被移除
 --- @param item any 待移除的物品
