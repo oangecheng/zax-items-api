@@ -24,6 +24,30 @@ local Farm = Class(function (self, inst)
 end)
 
 
+---comment 存储产品回调
+---@param fn function 
+---参数1：实体 参数2：是否满了
+function Farm:SetOnStoreFn(fn)
+    self.onStoreFn = fn
+end
+
+
+---comment 生成动物回调
+---@param fn function
+---参数1：实体 参数2：动物实体
+function Farm:SetOnSpawnFn(fn)
+    --- @type function|nil
+    self.onSpawnFn = fn
+end
+
+
+---comment 获取当前动物数量
+---@return integer
+function Farm:GetChildCnt()
+    return self.childcount
+end
+
+
 ---comment 设置动物上限
 ---@param max number 上限
 function Farm:SetChildMaxCnt(max)
@@ -60,8 +84,9 @@ function Farm:Store(prefab, num)
     local newnum = (productions[prefab] or 0) + num
     productions[prefab] = newnum
     self.productions = productions
-    if not self:CanStore() then
-        self.inst:PushEvent("ZXPauseProduce", {})
+    if self.onStoreFn then
+        local full = not self:CanStore()
+        self.onStoreFn(self.inst, full)
     end
 end
 
@@ -83,6 +108,30 @@ function Farm:Harvest(doer)
     end
     self.productions = nil
     return true
+end
+
+
+---comment 增加一个动物
+---@param animal string 动物prefab
+function Farm:AddAnimal(animal)
+    if self:IsFull() then
+        return
+    end
+    local ent = SpawnPrefab(animal)
+    if ent == nil then
+        return
+    end
+    local x, y, z = self.inst.Transform:GetWorldPosition()
+    self.childcount = self.childcount + 1
+    ent.Transform:SetPosition(x, y, z)
+    local bindId = self.inst.components.zxbindable:GetBindId()
+    ent.components.zxbindable:Bind(bindId)
+    if ent.components.zxanimal then
+        ent.components.zxanimal:SetFarmPosition(x, y, z)
+    end
+    if self.onSpawnFn then
+        self.onSpawnFn(self.inst, ent)
+    end
 end
 
 
