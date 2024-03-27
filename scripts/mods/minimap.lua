@@ -3,7 +3,7 @@ local map_icons = {
     "zxlight",
 }
 
-local farms = require("defs/zxfarmdefs").farms
+local farms = require("defs/animalfarmdefs").farms
 for key, _ in pairs(farms) do
     table.insert(map_icons, key)
 end

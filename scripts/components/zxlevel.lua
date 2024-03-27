@@ -97,6 +97,12 @@ function Level:SetLv(lv)
 end
 
 
+function Level:GetLv()
+    return self.lv
+end
+
+
+
 ---comment 设置等级上限
 ---@param max integer|nil 设置nil无上限
 function Level:SetMax(max)

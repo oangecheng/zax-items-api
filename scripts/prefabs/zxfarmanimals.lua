@@ -64,25 +64,43 @@ local function MakeAnimal(animal, data)
         if not TheWorld.ismastersim then
             return inst
         end
-
         -- 初始化农场
         ZXFarmItemInitFunc(inst)
 
-        inst.sound = data.sound
-
+        inst:AddComponent("timer")
         inst:AddComponent("locomotor")
-        inst.components.locomotor.runspeed = data.walkspeed
-        inst.components.locomotor.walkspeed = data.walkspeed
-        inst:AddComponent("zxanimal")
+        inst.components.locomotor.runspeed = data.speed
+        inst.components.locomotor.walkspeed = data.speed
         inst:AddComponent("lootdropper")
         inst.components.lootdropper:SetLoot(data.loots)
+        inst:AddComponent("inspectable")
+
+
+        inst:AddComponent("zxanimal")
+        inst.components.zxanimal:SetData(data.foodnum, data.producetime)
+        inst.components.zxanimal:SetOnProducedFn(function ()
+            local productions = data.producefn(inst)
+            local host = ZxGetFarmHost(inst)
+            if productions and host then
+                local farm = host.components.zxfarm
+                for k, v in pairs(productions) do
+                    if farm:CanStore() then
+                        farm:Store(k, v)
+                    end
+                end
+            end
+        end)
 
         inst:AddComponent("zxbindable")
+        inst.components.zxbindable:SetOnBindFunc(function ()
+            inst.components.zxanimal:StartProduce()
+        end)
         inst.components.zxbindable:SetOnUnBindFunc(function ()
             inst.components.lootdropper:DropLoot()
         end)
+
+ 
         inst:SetStateGraph(data.sg or "ZxAnimalSG")
-        inst:AddComponent("inspectable")
 
         inst.producefn = data.producefn
 
@@ -104,7 +122,7 @@ end
 
 
 
-local ANIMALS = require("defs/zxanimaldefs")
+local ANIMALS = require("defs/animaldefs")
 local list = {}
 for k, v in pairs(ANIMALS) do
     table.insert(list, MakeAnimal(k, v))

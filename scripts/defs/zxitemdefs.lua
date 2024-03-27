@@ -25,7 +25,7 @@ local accelerate = {
 
 
 
-local animals = require "defs/zxanimaldefs"
+local animals = require "defs/animaldefs"
 -- 灵魂key灵魂，value动物
 local souls = {}
 for k, v in pairs(animals) do
