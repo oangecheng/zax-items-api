@@ -44,7 +44,7 @@ local foods_other = {
     fishmeat_small = 5,
     eel = 10,
     meat = 10,
-    samllmeat = 5,
+    smallmeat = 5,
     monstermeat = 4,
     pumpkin = 2
 }
