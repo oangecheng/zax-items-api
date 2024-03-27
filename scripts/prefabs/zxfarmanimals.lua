@@ -29,6 +29,8 @@ local function findNextPosition(inst)
 end
 
 
+local brain = require "brains/zxanimalbrain"
+
 
 local function MakeAnimal(animal, data)
     local assets = data.assets
@@ -74,8 +76,11 @@ local function MakeAnimal(animal, data)
         inst:AddComponent("lootdropper")
         inst.components.lootdropper:SetLoot(data.loots)
         inst:AddComponent("inspectable")
+        inst:AddComponent("eater")
+        inst:AddComponent("talker")
 
-
+        
+        inst:AddComponent("zxresizeable")
         inst:AddComponent("zxanimal")
         inst.components.zxanimal:SetData(data.foodnum, data.producetime)
         inst.components.zxanimal:SetOnProducedFn(function ()
@@ -99,21 +104,21 @@ local function MakeAnimal(animal, data)
             inst.components.lootdropper:DropLoot()
         end)
 
- 
+        -- inst.producefn = data.producefn
+
+        -- -- 5~10s移动一次
+        -- -- 暂时用这个策略，后面根据反馈优化
+        -- local time = math.random(5, 10)
+        -- inst:DoPeriodicTask(time, function ()
+        --     local p = findNextPosition(inst)
+        --     if p then
+        --         inst.components.locomotor:GoToPoint(p, nil, false)
+        --     end
+        -- end)
+    
+        inst:SetBrain(brain)
         inst:SetStateGraph(data.sg or "ZxAnimalSG")
 
-        inst.producefn = data.producefn
-
-        -- 5~10s移动一次
-        -- 暂时用这个策略，后面根据反馈优化
-        local time = math.random(5, 10)
-        inst:DoPeriodicTask(time, function ()
-            local p = findNextPosition(inst)
-            if p then
-                inst.components.locomotor:GoToPoint(p, nil, false)
-            end
-        end)
-    
         return inst
     end
     

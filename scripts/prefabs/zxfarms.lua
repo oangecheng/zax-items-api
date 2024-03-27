@@ -182,8 +182,7 @@ local function MakeFarm(name, data)
             updateFarmDesc(inst)
         end)
 
-                inst:AddComponent("zxbindable")
-
+        inst:AddComponent("zxbindable")
         
         return inst
     end
