@@ -57,6 +57,6 @@ local beefalofarm = {
 
 return {
     zxperdfarm    = perdfarm,
-    zxpigmanfarm  = pigfarm,
-    zxbeefalofarm = beefalofarm,
+    -- zxpigmanfarm  = pigfarm,
+    -- zxbeefalofarm = beefalofarm,
 }
