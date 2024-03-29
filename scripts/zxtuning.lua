@@ -1,4 +1,4 @@
-local isdebug = false
+local isdebug = true
 
 ZXTUNING = {
     DEBUG = isdebug,

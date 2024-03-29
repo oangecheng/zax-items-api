@@ -443,7 +443,7 @@ local function spiderfn(spider)
 
     return {
         assets = asts,
-        sg = "SGspider",
+        sg = "SGzxspider",
         anim = {
             bank = bank,
             build = build,
