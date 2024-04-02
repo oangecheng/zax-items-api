@@ -85,8 +85,8 @@ local function MakeAnimal(animal, data)
         inst:AddComponent("zxanimal")
         inst.components.zxanimal:SetData(data.foodnum, data.producetime)
         inst.components.zxanimal:SetOnProducedFn(function ()
-            local productions = data.producefn(inst)
             local host = ZxGetFarmHost(inst)
+            local productions = data.producefn(inst, host)
             if productions and host then
                 local farm = host.components.zxfarm
                 for k, v in pairs(productions) do

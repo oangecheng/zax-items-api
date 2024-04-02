@@ -41,8 +41,9 @@ ZXEVENTS = {
 ZXFARM = {
     ANIMAL_TYPES = {
         NORMAL = 0,
-        MEAT = 1,
-        FUR = 2,
-        EGG = 3,
+        MEAT   = 1,
+        FUR    = 2,
+        EGG    = 3,
+        MILK   = 4,
     }
 }
