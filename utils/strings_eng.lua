@@ -117,26 +117,9 @@ STRINGS.NAMES.ZXBOXSTONE = "Mine cave"
 STRINGS.RECIPE_DESC.ZXBOXSTONE = "Store all kinds of minerals!"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXBOXSTONE = "The mole will love it!"
 
-
-
 -- 建家石
 STRINGS.NAMES.ZXSTONE= "Home building stone"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXSTONE = "a magical building materials ~"
-
-
--- 魂魄
-STRINGS.NAMES.ZXPERD_SOUL = "Perd's soul."
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXPERD_SOUL = "Put it in a Perd farm incubator and something amazing happens!"
-STRINGS.NAMES.ZXPIGMAN_SOUL = "Pigman's soul"
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXPIGMAN_SOUL = "Put it in the Pigman Farm incubator and something amazing happens!"
-STRINGS.NAMES.ZXBEEFALO_SOUL = "Beefalo's soul"
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXBEEFALO_SOUL = "Put it in the incubator at the Beefalo farm and something amazing happens!"
-STRINGS.NAMES.ZXGOAT_SOUL= "Goat's soul"
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXGOAT_SOUL = "Put it in the goat farm incubator and something amazing happens!"
--- 饲料
-STRINGS.NAMES.ZXFARMFOOD_NORMAL= "Universal feed"
-STRINGS.RECIPE_DESC.ZXFARMFOOD_NORMAL = "Used to feed hungry animals!"
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXFARMFOOD_NORMAL = "It's full of nutrients!"
 
 
 STRINGS.NAMES.ZXBOXTOY = "Toy box"
