@@ -92,6 +92,9 @@ modimport("scripts/zxui.lua")
 modimport("scripts/zxrpc.lua")
 modimport("scripts/mods/minimap.lua")
 modimport("scripts/zxactionhook.lua")
+if ZXTUNING.FARM_ENABLE then
+    modimport("utils/farmrecipes.lua")
+end
 
 
 --- 选择是否加载农场功能
