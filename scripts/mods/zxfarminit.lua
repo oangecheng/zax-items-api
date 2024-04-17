@@ -40,6 +40,9 @@ local drop = {
     spider = {
         animal = "zxspider",
         farm   = "zxspiderfarm",
+        ratiofn = function(inst)
+            return -0.08
+        end
     },
     spider_warrior = {
         animal = "zxspider_warrior",
