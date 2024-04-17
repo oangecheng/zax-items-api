@@ -33,6 +33,7 @@ ZXTUNING.ZXCAT_SIZE = GetModConfigData("zxcat_size") or 1
 
 modimport("utils/farmstr.lua")
 modimport(ZXTUNING.IS_CH and "utils/strings_ch.lua" or "utils/strings_eng.lua")
+modimport("utils/itemstr.lua")
 require("zx_skin/zxskinutils")
 
 
