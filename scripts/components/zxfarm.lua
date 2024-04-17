@@ -1,4 +1,4 @@
-
+local MAX_PRD_NUM = ZXTUNING.DEBUG and 30 or 100
 
 ---comment 计算当前动物产品总数量
 ---@param self table farm组件
@@ -77,7 +77,7 @@ end
 ---comment 是否还能存放物品
 ---@return boolean true可继续存放
 function Farm:CanStore()
-    return productionsCnt(self) < 100
+    return productionsCnt(self) < MAX_PRD_NUM
 end
 
 
@@ -89,7 +89,7 @@ function Farm:Store(prefab, num)
     local newnum = (productions[prefab] or 0) + num
     productions[prefab] = newnum
     self.productions = productions
-    if self:IsFull() then
+    if not self:CanStore() then
         pushProductionEvent(self, { e = 1 })
     end
 end

@@ -79,6 +79,7 @@ PrefabFiles = {
     "zxlights",
     "zxskintools",
     "zxstone",
+    "zxitems",
 }
 
 

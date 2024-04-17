@@ -22,7 +22,7 @@ local Animal = Class(function (self, inst)
         local timer = self.inst.components.timer
         if data and timer then
             if data.e == 1  then
-                timer:PasueTimer(TIMER_PRODUCE)
+                timer:PauseTimer(TIMER_PRODUCE)
             elseif data.e == 2 then
                 timer:ResumeTimer(TIMER_PRODUCE)
             end
@@ -85,9 +85,12 @@ end
 
 
 function Animal:StartProduce()
+    if not ZxFarmCanStore(self.inst) then
+       return false
+    end
     local timer = self.inst.components.timer
-    if timer:TimerExists(TIMER_PRODUCE) then
-        return false
+    if timer:ResumeTimer(TIMER_PRODUCE) then
+       return true
     end
     if ZXFarmEatFood(self.inst, self.foodnum) then
         timer:StartTimer(TIMER_PRODUCE, self.producetime)

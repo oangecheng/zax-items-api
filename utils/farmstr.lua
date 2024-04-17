@@ -40,18 +40,24 @@ local ANIMAL_STRS = isch and {
     ZXSPIDER_HEALER  = { "Cute Colorful Spider", "Its colorful fur is so bright!" },
     ZXTALLBIRD       = { "Cute Tallbird", "Still adorable in its small size~" },
 }
+
+
 --- 对应灵魂和农场的名称及描述
 for k, v in pairs(ANIMAL_STRS) do
     STRINGS.NAMES[k] = v[1]
     STRINGS.CHARACTERS.GENERIC.DESCRIBE[k] = v[2]
+end
+
+
+for k, v in pairs(ANIMAL_STRS) do
     --- 农场字符串
     local _index  = string.find(k, "_")
     local animKey = _index and string.sub(k, 1, _index - 1) or k
     local farmKey = animKey.."FARM"
     ZXLog("test", k, animKey, farmKey)
-    local frmName = STRINGS.NAMES[k]..(isch and "农场" or " Farm")
+    local frmName = STRINGS.NAMES[animKey]..(isch and "农场" or " Farm")
     STRINGS.NAMES[farmKey] = frmName
-    STRINGS.RECIPE_DESC[farmKey] = v[1]..string.format(FARM_DESC_1, STRINGS.NAMES[k])
+    STRINGS.RECIPE_DESC[farmKey] = v[1]..string.format(FARM_DESC_1, STRINGS.NAMES[animKey])
     --- 灵魂字符串
     local soulKey = k.."_SOUL"
     STRINGS.NAMES[soulKey] = v[1]..(isch and "的灵魂" or " Soul")

@@ -95,7 +95,7 @@ end
 
 
 --- 给农场内的其他绑定物广播事件
-function ZxFarmPushEvent(pusher, event, data)
+function ZxFarmPushEvent(pusher, event, data, all)
     local bindId = getBindId(pusher)
     if bindId then
         local items = getFarmItems(bindId)
@@ -143,6 +143,15 @@ function ZxFarmIsFull(inst)
     local farm = findItemByTag(inst, taghost)
     if farm and farm.components.zxfarm then
         return farm.components.zxfarm:IsFull()
+    end
+    return false
+end
+
+
+function ZxFarmCanStore(inst)
+    local farm = findItemByTag(inst, taghost)
+    if farm and farm.components.zxfarm then
+        return farm.components.zxfarm:CanStore()
     end
     return false
 end

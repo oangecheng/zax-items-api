@@ -1,6 +1,6 @@
 local ASSETSDEF = require "defs/animalassets"
 
-local BASE_TIME = ZXTUNING.DEBUG and 60 or TUNING.TOTAL_DAY_TIME * 2.5
+local BASE_TIME = ZXTUNING.DEBUG and 30 or TUNING.TOTAL_DAY_TIME * 2.5
 local TYPES = ZXFARM.ANIMAL_TYPES
 
 
@@ -108,6 +108,7 @@ local beefalodata = {
     speed = 1,
     loots = { "meat", "zxbeefalo_soul" },
 
+    foodnum = 2,
     producetime = BASE_TIME * 2,
     producefn = function(inst)
         local items = {
@@ -150,6 +151,7 @@ local goatdata = {
     speed = 1,
     loots = { "meat", "zxgoat_soul" },
 
+    foodnum = 3,
     producetime = BASE_TIME * 3,
     producefn = function (inst)
         local items = {
@@ -197,6 +199,7 @@ local koalefantfn = function (iswinter)
         speed = 1,
         loots = { "meat", soul },
 
+        foodnum = 5,
         producetime = BASE_TIME * 3,
         producefn = function (inst)
             local truck = iswinter and "trunk_winter" or "trunk_summer"
@@ -229,6 +232,7 @@ local catdata = {
     speed = 1,
     loots = { "meat", "zxcat_soul" },
 
+    foodnum = 2,
     producetime = BASE_TIME * 1.5,
     producefn = function(inst, host)
         --- 掉黄油初始概率为10%
@@ -282,10 +286,14 @@ local houndfn = function (hound)
             idle = "idle",
             size = 0.6
         },
+        initfunc = function(inst)
+            inst.Transform:SetFourFaced()
+        end,
 
         speed = 2.5,
         loots = loots,
 
+        foodnum = 3,
         producetime = BASE_TIME * 1.5,
         producefn = function(inst)
             if hound == "houndfire" and math.random() < 0.1 then
@@ -329,6 +337,8 @@ local smallbirddata = {
     speed = 1,
     loots = {"meat", "zxtallbird_soul" },
 
+    foodnum = 4,
+    producetime = BASE_TIME * 3,
     producefn = function (inst)
         if math.random() <= 0.1 then
             return { tallbirdegg =  1}
@@ -368,6 +378,7 @@ local function spiderfn(spidername)
         speed = 1,
         loots = loots,
 
+        foodnum = 2,
         producetime = BASE_TIME,
         producefn = function (inst, host)
             if spidername == "spider_healer" then

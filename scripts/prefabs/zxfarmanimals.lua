@@ -51,7 +51,9 @@ local function MakeAnimal(animal, data)
         RemovePhysicsColliders(inst)
         inst.Physics:Stop()
         inst.DynamicShadow:SetSize(0.5, .75)
-        data.initfunc(inst, TheWorld.ismastersim)
+        if data.initfunc then
+            data.initfunc(inst, TheWorld.ismastersim)
+        end
 
         inst.AnimState:SetBank(anim.bank)
         inst.AnimState:SetBuild(anim.build)
@@ -89,10 +91,8 @@ local function MakeAnimal(animal, data)
             local productions = data.producefn(inst, host)
             if productions and host then
                 local farm = host.components.zxfarm
-                for k, v in pairs(productions) do
-                    if farm:CanStore() then
-                        farm:Store(k, v)
-                    end
+                for k, v in pairs(productions) do 
+                    farm:Store(k, v)
                 end
             end
         end)
@@ -105,19 +105,18 @@ local function MakeAnimal(animal, data)
             inst.components.lootdropper:DropLoot()
         end)
 
-        -- inst.producefn = data.producefn
 
-        -- -- 5~10s移动一次
-        -- -- 暂时用这个策略，后面根据反馈优化
-        -- local time = math.random(5, 10)
-        -- inst:DoPeriodicTask(time, function ()
-        --     local p = findNextPosition(inst)
-        --     if p then
-        --         inst.components.locomotor:GoToPoint(p, nil, false)
-        --     end
-        -- end)
+        -- 5~10s移动一次
+        -- 暂时用这个策略，后面根据反馈优化
+        local time = math.random(5, 10)
+        inst:DoPeriodicTask(time, function ()
+            local p = findNextPosition(inst)
+            if p then
+                inst.components.locomotor:GoToPoint(p, nil, false)
+            end
+        end)
     
-        inst:SetBrain(brain)
+        -- inst:SetBrain(brain)
         inst:SetStateGraph(data.sg or "ZxAnimalSG")
 
         return inst

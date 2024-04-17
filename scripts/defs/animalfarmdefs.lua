@@ -1,6 +1,6 @@
 -- 基准时间，以一只鸡一天消耗一个饲料，生产一个鸡腿为基准值
 -- 每个动物的生产的物品是独立的
-local HATCH_BASE_TIME = ZXTUNING.DEBUG and 60 or TUNING.TOTAL_DAY_TIME * 0.5
+local HATCH_BASE_TIME = ZXTUNING.DEBUG and 5 or TUNING.TOTAL_DAY_TIME * 0.5
 local MATERIALS = (require "defs/zxitemdefs").upgrade.farm
 
 
@@ -23,7 +23,6 @@ local perdfarm = {
     hatchitems = { "zxperd_soul" },
     hatchtime = HATCH_BASE_TIME,
     animalcnt = 10,
-    foodnum = 1,
     foods = {
         "zxfarmfood_normal"
     },
@@ -35,7 +34,6 @@ local pigfarm = {
     hatchitems = { "zxpigman_soul" },
     hatchtime = HATCH_BASE_TIME * 1.5,
     animalcnt = 8,
-    foodnum = 2,
     foods = {
         "zxfarmfood_normal"
     },
@@ -47,7 +45,6 @@ local beefalofarm = {
     hatchitems = { "zxbeefalo_soul" },
     hatchtime = HATCH_BASE_TIME * 2,
     animalcnt = 6,
-    foodnum = 2,
     foods = {
         "zxfarmfood_normal"
     },
@@ -61,7 +58,6 @@ local goatfarm = {
     hatchitems = { "zxgoat_soul" },
     hatchtime = HATCH_BASE_TIME * 3,
     animalcnt = 6,
-    foodnum = 3,
     foods = {
         "zxfarmfood_normal"
     },
@@ -73,7 +69,6 @@ local koalefantfarm = {
     hatchitems = { "zxkoalefant_w_soul", "zxkoalefant_s_soul" },
     hatchtime = HATCH_BASE_TIME * 3,
     animalcnt = 4,
-    foodnum = 5,
     foods = {
         "zxfarmfood_normal"
     },
@@ -86,7 +81,6 @@ local catfarm = {
     hatchitems = { "zxcat_soul" },
     hatchtime = HATCH_BASE_TIME,
     animalcnt = 8,
-    foodnum = 2,
     foods = {
         "fishmeat",
         "fishmeat_small",
@@ -101,7 +95,6 @@ local tallbirdfarm = {
     hatchitems = { "zxtallbird_soul" },
     hatchtime = HATCH_BASE_TIME * 2,
     animalcnt = 6,
-    foodnum = 4,
     foods = {
         "pumpkin"
     },
@@ -118,7 +111,6 @@ local spiderfarm = {
     },
     hatchtime = HATCH_BASE_TIME,
     animalcnt = 8,
-    foodnum = 2,
     foods = {
         "meat",
         "monstermeat",
@@ -133,7 +125,6 @@ local houndfarm = {
     hatchitems = { "zxhound_soul", "zxhound_ice_soul", "zxhound_fire_soul" },
     hatchtime = HATCH_BASE_TIME * 1.5,
     animalcnt = 8,
-    foodnum = 3,
     foods = {
         "meat",
         "monstermeat",

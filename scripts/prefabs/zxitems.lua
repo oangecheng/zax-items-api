@@ -25,7 +25,7 @@ local function MakeItem(prefab, data)
         inst.AnimState:PlayAnimation("idle", data.loop)
         
         if data.tags then
-            for _, v in ipairs(data.tagst) do
+            for _, v in ipairs(data.tags) do
                 inst:AddTag(v)
             end
         end
