@@ -380,13 +380,13 @@ end
 
 
 local items = {}
-for k, v in pairs(ITMES.souls) do
-    table.insert(items, MakeAnimalSoul(k))
-end
+-- for k, v in pairs(ITMES.souls) do
+--     table.insert(items, MakeAnimalSoul(k))
+-- end
 
-for k, v in pairs(ITMES.foods.custom) do
-    table.insert(items, MakeFarmFood(k))
-end
+-- for k, v in pairs(ITMES.foods.custom) do
+--     table.insert(items, MakeFarmFood(k))
+-- end
 
 
 return
