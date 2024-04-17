@@ -45,7 +45,7 @@ end
 
 ---设置大小
 ---@param scale number
-function ResizeAble:SetScale(scale)
+function ResizeAble:SetSize(scale)
     if scale ~= nil then
         self.orgscale = scale
         updateAnimState(self)
@@ -53,8 +53,23 @@ function ResizeAble:SetScale(scale)
 end
 
 
-function ResizeAble:GetScale()
+function ResizeAble:GetSize()
     return calcScale(self)
+end
+
+
+---设置当前尺寸
+---@param size number
+function ResizeAble:SetScale(size)
+    if self.scale ~= size then
+        self.scale = size
+    end
+end
+
+---获取当前尺寸
+---@return number
+function ResizeAble:GetScale()
+    return self.scale
 end
 
 

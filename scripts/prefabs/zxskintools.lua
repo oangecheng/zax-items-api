@@ -52,7 +52,7 @@ local prefabs = {
 --生成特效
 local function spawnFx(inst)
     local resizeable = inst.components.zxresizeable
-    local multi = resizeable and resizeable:GetScale() or 1
+    local multi = resizeable and resizeable:GetSize() or 1
 
     local offset = {y=0.5,scale=1.2}
 	local fx = SpawnPrefab("explode_reskin")
@@ -90,20 +90,50 @@ local function trySay(player, mode)
 end
 
 
+local function tryUseCachedScale(tool, target)
+    local resizeable = target and target.components.zxresizeable
+    if resizeable == nil then
+        return false
+    end
+    local scale = resizeable:GetScale()
+    local cachedScale = tool._cached_scale[target.prefab]
+    if cachedScale and cachedScale ~= scale then
+        resizeable:SetScale(cachedScale)
+        return true
+    end
+    return false
+end
+
+
 local function doAnimAction(tool, target, player)
     local resizeable = target and target.components.zxresizeable
-    local mode = tool.mode
-    if resizeable then
-        if mode == MODE_MIRROR then
-            resizeable:Mirror(player)
-        elseif mode == MODE_ENLARGE then
-            resizeable:Enlarge(player)
-        elseif mode == MODE_SHRINK then
-            resizeable:Shrink(player)
-        end
-        spawnFx(target)
-        trySay(player, tool.mode)
+    if resizeable == nil then
+        return
     end
+
+    local mode = tool.mode
+
+    --- 镜像翻转
+    if mode == MODE_MIRROR then
+        resizeable:Mirror(player)
+    
+    --- 放大模式
+    elseif mode == MODE_ENLARGE then
+        if not tryUseCachedScale(tool, target) then
+            resizeable:Enlarge(player)
+            tool._cached_scale[target.prefab] = resizeable:GetScale()
+        end
+
+    --- 缩小模式
+    elseif mode == MODE_SHRINK then
+        if not tryUseCachedScale(tool, target) then
+            resizeable:Shrink(player)
+            tool._cached_scale[target.prefab] = resizeable:GetScale()
+        end
+    end
+
+    spawnFx(target)
+    trySay(player, tool.mode)
 end
 
 
@@ -261,14 +291,17 @@ local function tool_fn()
     inst.OnLoad = function (_, data)
         inst.mode = data.mode or MODE_SKIN
         inst._cached_reskinname = data._cached_reskinname or {}
+        inst._cached_scale = data._cached_scale or {}
         changeName(inst, inst.mode)
     end
     inst.OnSave = function (_, data)
         data.mode = inst.mode
         data._cached_reskinname = inst._cached_reskinname
+        data._cached_scale = inst._cached_scale
     end
 
     inst._cached_reskinname = {}
+    inst._cached_scale = {}
 
     return inst
 end

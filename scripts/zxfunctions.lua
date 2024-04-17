@@ -66,18 +66,18 @@ end
 ---初始化物品的样式和形态，按需添加换肤功能
 ---@param inst table 预制物
 ---@param prefab string 物品代码
----@param defscale number|nil 初始化大小，不传为1
-function ZxInitItemForServer(inst, prefab, defscale)
+---@param defsize number|nil 初始化大小，不传为1
+function ZxInitItemForServer(inst, prefab, defsize)
     local defskin = ZxGetPrefabDefaultSkin(prefab)
     if inst.components.zxresizeable == nil then
         inst:AddComponent("zxresizeable")
     end
-    inst.components.zxresizeable:SetScale(defscale or 1)
+    inst.components.zxresizeable:SetSize(defsize or 1)
     if defskin ~= nil then
         inst:AddComponent("zxskinable")
         inst.components.zxskinable:SetSkinChangedFunc(function(_, skinid)
             local scale = ZxGetSkinScale(skinid)
-            inst.components.zxresizeable:SetScale(scale)
+            inst.components.zxresizeable:SetSize(scale)
         end)
     end
 end
