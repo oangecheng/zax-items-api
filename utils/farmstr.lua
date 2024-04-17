@@ -48,9 +48,10 @@ for k, v in pairs(ANIMAL_STRS) do
     local _index  = string.find(k, "_")
     local animKey = _index and string.sub(k, 1, _index - 1) or k
     local farmKey = animKey.."FARM"
-    local frmName = STRINGS.NAMES[animKey]..(isch and "农场" or " Farm")
+    ZXLog("test", k, animKey, farmKey)
+    local frmName = STRINGS.NAMES[k]..(isch and "农场" or " Farm")
     STRINGS.NAMES[farmKey] = frmName
-    STRINGS.RECIPE_DESC[farmKey] = v..string.format(FARM_DESC_1, STRINGS.NAMES[animKey])
+    STRINGS.RECIPE_DESC[farmKey] = v[1]..string.format(FARM_DESC_1, STRINGS.NAMES[k])
     --- 灵魂字符串
     local soulKey = k.."_SOUL"
     STRINGS.NAMES[soulKey] = v[1]..(isch and "的灵魂" or " Soul")
