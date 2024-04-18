@@ -3,6 +3,14 @@ local function zxStone(num)
     return Ingredient("zxstone", num, "images/inventoryimages/zxstone.xml")
 end
 
+local function getIngredients(ingredients, modingredients)
+    local ret = modingredients or {}
+    for k, v in pairs(ingredients) do
+        table.insert(ret, Ingredient(k, v))
+    end
+    return ret
+end
+
 local function getFarmIngredients(extras)
     return JoinArrays(
         { Ingredient("livinglog", 5), zxStone(10) },
@@ -61,5 +69,25 @@ AddRecipe2(
         atlas = "images/inventoryimages/zxfarmfood_normal.xml",
         image = "zxfarmfood_normal.tex",
     },
-    { "GARDENING" }
+    { "GARDENING", "REFINE" }
 )
+
+
+
+---灵魂配方
+---@param prefab string
+---@param items table
+---@param moditems table|nil
+local function addSoulRecipe(prefab, items, moditems)
+    items["reviver"] = 1
+    AddRecipe2(
+        prefab,
+        getIngredients(items, moditems),
+        TECH.SCIENCE_TWO,
+        {
+            atlas = "images/inventoryimages/"..prefab..".xml",
+            image = prefab..".tex"
+        },
+        { "REFINE" }
+    )
+end
