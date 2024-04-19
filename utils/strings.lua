@@ -11,13 +11,24 @@ STRINGS.ZXDESTROY             = ch and "销毁" or "destroy"
 STRINGS.ZXUSE                 = ch and "使用" or "use"
 STRINGS.ZX_UPGRADE_SUCCESS    = ch and "升级成功!" or "upgrade success!"
 STRINGS.ZX_ACCELERATE_SUCCESS = ch and "加足马力生产!" or "Make haste to produce!"
+STRINGS.ZXTRANSFORM_SUCCESS   = ch and "它看起来不太一样了~" or "It looks different~"
+
+
+
+local TYPES = ZXFARM.ANIMAL_TYPES
+STRINGS.ZXANIML_TYPES_STRS = {
+    [TYPES.MEAT] = ch and "产肉的%s" or "%s (Meat)",
+    [TYPES.EGG]  = ch and "产蛋的%s" or "%s (Egg)",
+    [TYPES.FUR]  = ch and "产皮毛的%s" or "%s (Fur)",
+    [TYPES.MILK] = ch and "产奶的%s" or "%s (Milk)"
+}
 
 
 
 local ACTION_STRS = ch and {
     
-    ZXSHOPOPEN = { namestr = "选择模式" },
-    ACCELERATE = { namestr = "加速" },
+    ZXSHOPOPEN   = { namestr = "选择模式" },
+    ZXACCELERATE = { namestr = "加速" },
 
     ZXHATCH = { 
         namestr = "孵化",  
@@ -43,19 +54,27 @@ local ACTION_STRS = ch and {
         }
     },
 
-    UPGRADE = {
+    ZXUPGRADE = {
         namestr = "升级",
         failstr = {
             MAX = "已经是最高等级了!",
             INVALID_ITEM = "换个材料试试吧!"
+        }
+    },
+
+    ZXTRANSFORM = {
+        namestr = "变异",
+        failstr = {
+            INVALID = "这小东西就一个品种",
+            UNLUCKY = "运气不太好，变异失败了~"
         }
     }
 
 
 } or {
 
-    ZXSHOPOPEN = { namestr = "Select Mode" },
-    ACCELERATE = { namestr = "Accelerate" },
+    ZXSHOPOPEN   = { namestr = "Select Mode" },
+    ZXACCELERATE = { namestr = "Accelerate" },
 
     ZXHATCH = {
         namestr = "Hatch",
@@ -81,11 +100,19 @@ local ACTION_STRS = ch and {
         }
     },
 
-    UPGRADE = {
+    ZXUPGRADE = {
         namestr = "Upgrade",
         failstr = {
             MAX = "Already max!",
             INVALID_ITEM = "Change the material and retry!"
+        }
+    },
+
+    ZXTRANSFORM = {
+        namestr = "Transform",
+        failstr = {
+            INVALID = "This little guy only has one breed.",
+            UNLUCKY  = "Unlucky, transform failed~"
         }
     }
 }

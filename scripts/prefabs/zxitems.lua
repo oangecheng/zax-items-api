@@ -31,7 +31,7 @@ local function MakeItem(prefab, data)
         end
 
         if data.initfn then
-            data.initfn(inst, prefab)
+            data.initfn(inst, prefab, TheWorld.ismastersim)
         end
 
 

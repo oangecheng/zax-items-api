@@ -47,3 +47,9 @@ ZXFARM = {
         MILK   = 4,
     }
 }
+
+
+ZXTAGS = {
+    ANIMAL = "ZXFARM_ANIMAL",
+    TRANS  = "ZXTRANSFORM",
+}

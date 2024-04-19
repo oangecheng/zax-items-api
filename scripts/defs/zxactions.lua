@@ -89,7 +89,7 @@ local actions = {
 
     {
         id  = "ZXUPGRADE",
-        str = STRINGS.ZXACTION.UPGRADE,
+        str = STRINGS.ZXACTION.ZXUPGRADE,
         state = "dolongaction",
         fn  =  function (act)
             local up = act.target and act.target.components.zxupgradable
@@ -111,7 +111,7 @@ local actions = {
 
     {
         id = "ZXACCELERATE",
-        str = STRINGS.ZXACTION.ACCELERATE,
+        str = STRINGS.ZXACTION.ZXACCELERATE,
         state = "domediumaction",
         fn = function (act)
             local acc = act.target and act.target.components.zxaccelerate
@@ -124,6 +124,28 @@ local actions = {
                 return true
             end
             return false
+        end
+    },
+
+    {
+        id    = "ZXTRANSFORM",
+        str   = STRINGS.ZXACTION.ZXTRANSFORM,
+        state = "domediumaction",
+        fn    = function(act)
+            local animal = act.target and act.target.components.zxanimal
+            if animal then
+                local ret = animal:ChangeType(act.invobject, act.doer)
+                if ret == -1 then
+                    return false, "INVALID"
+                elseif ret == -2 then
+                    return false, "UNLUCKY"
+                elseif ret == 1 then
+                    ZXSay(act.doer, STRINGS.ZXTRANSFORM_SUCCESS)
+                    return true
+                else
+                    return false
+                end
+            end
         end
     }
 }
@@ -162,6 +184,13 @@ local componentactions = {
                     return target:HasTag("ZXACCELERATE") and inst:HasTag("ZXACCELERATE_MATERIAL")
                 end
             },
+
+            {
+                action = "ZXTRANSFORM",
+                testfn = function (inst, doer, target, acts, right)
+                    return inst:HasTag(ZXTAGS.TRANS) and target:HasTag(ZXTAGS.ANIMAL)
+                end
+            }
 
 
         },

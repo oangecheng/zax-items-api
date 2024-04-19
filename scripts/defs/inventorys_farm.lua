@@ -56,6 +56,26 @@ for k, v in pairs(FOODS) do
 end
 
 
+--- 变异药水
+ITEMS["zxpotion_trans"] = {
+    assets = {
+        Asset("ANIM", "anim/zxpotion.zip"),
+        Asset("ATLAS", DIR .."zxpotion.xml"),
+        Asset("IMAGE", DIR .."zxpotion.tex")
+    },
+    bank  = "zxpotion",
+    build = "zxpotion",
+    loop  = false,
+    tags  = { ZXTAGS.TRANS },
+    image = "zxpotion_trans",
+    atlas = "zxpotion",
+
+    initfn = function (inst, _, _)
+        inst.AnimState:OverrideSymbol("swap_potion", "zxpotion", "zxpotion_trans")
+    end
+}
+
+
 
 
 return ITEMS

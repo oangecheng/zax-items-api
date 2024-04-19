@@ -32,6 +32,18 @@ end
 local brain = require "brains/zxanimalbrain"
 
 
+
+
+local function onTypeChange(inst, type)
+    local name = STRINGS.NAMES[string.upper(inst.prefab)]
+    local pref = STRINGS.ZXANIML_TYPES_STRS[type] or ""
+    if inst._zxname then
+        local newname = string.format(pref, name)
+        inst._zxname:set(newname)
+    end
+end
+
+
 local function MakeAnimal(animal, data)
     local assets = data.assets
     local anim = data.anim
@@ -44,8 +56,10 @@ local function MakeAnimal(animal, data)
         inst.entity:AddSoundEmitter()
         inst.entity:AddDynamicShadow()
         inst.entity:AddNetwork()
+        inst.entity:SetPristine()
+
         inst:AddTag("character")
-        inst:AddTag("ZXFARM_ANIMAL")
+        inst:AddTag(ZXTAGS.ANIMAL)
     
         MakeCharacterPhysics(inst, 1, 0)
         RemovePhysicsColliders(inst)
@@ -64,7 +78,7 @@ local function MakeAnimal(animal, data)
             anim.extrafunc(inst)
         end
 
-        inst.entity:SetPristine()
+        ZXNetInfo(inst)
         if not TheWorld.ismastersim then
             return inst
         end
@@ -85,7 +99,9 @@ local function MakeAnimal(animal, data)
         inst:AddComponent("zxresizeable")
         inst.components.zxresizeable:SetScale(anim.size)
         inst:AddComponent("zxanimal")
+        inst.components.zxanimal:SetTypes(data.types)
         inst.components.zxanimal:SetData(data.foodnum, data.producetime)
+        inst.components.zxanimal:SetOnTypeFn(onTypeChange)
         inst.components.zxanimal:SetOnProducedFn(function ()
             local host = ZxGetFarmHost(inst)
             local productions = data.producefn(inst, host)

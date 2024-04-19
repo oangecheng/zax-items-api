@@ -27,6 +27,7 @@ local perddata = {
     speed = 2,
     loots = { "drumstick", "zxperd_soul" },
 
+    types = { TYPES.EGG, TYPES.MEAT },
     foodnum = 2,
     producetime = BASE_TIME,
     producefn = function (inst)
@@ -66,6 +67,7 @@ local pigdata = {
     speed = 2,
     loots = { "meat", "zxpigman_soul" },
 
+    types = { TYPES.FUR, TYPES.MEAT },
     foodnum = 2,
     producetime = BASE_TIME * 1.5,
     producefn = function(inst)
@@ -108,6 +110,7 @@ local beefalodata = {
     speed = 1,
     loots = { "meat", "zxbeefalo_soul" },
 
+    types = { TYPES.FUR, TYPES.MEAT },
     foodnum = 2,
     producetime = BASE_TIME * 2,
     producefn = function(inst)
@@ -151,6 +154,7 @@ local goatdata = {
     speed = 1,
     loots = { "meat", "zxgoat_soul" },
 
+    types = { TYPES.MILK, TYPES.MEAT },
     foodnum = 3,
     producetime = BASE_TIME * 3,
     producefn = function (inst)

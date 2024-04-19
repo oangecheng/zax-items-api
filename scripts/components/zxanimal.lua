@@ -1,9 +1,18 @@
 local TIMER_PRODUCE = "produce"
 
+
+local function ontype(self, type)
+    if self.ontypefn then
+        self.ontypefn(self.inst, type)
+    end
+end
+
+
 local Animal = Class(function (self, inst)
     self.inst = inst
     self.pt = nil
     self.type = 0
+    self.types = { 0 }
     self.foodnum = 1
     self.producetime = 480
 
@@ -33,11 +42,19 @@ local Animal = Class(function (self, inst)
     self.inst:ListenForEvent(ZXEVENTS.FARM_ADD_FOOD, function (_, data)
         self:StartProduce()
     end)
-end)
+end,
+nil,
+{
+    type = ontype
+})
 
 
 function Animal:SetOnProducedFn(fn)
     self.producedfn = fn
+end
+
+function Animal:SetOnTypeFn(fn)
+    self.ontypefn = fn
 end
 
 
@@ -60,11 +77,27 @@ end
 
 
 ---comment 改变动物类型
----@param type number
-function Animal:SetType(type)
-    self.type = type
+---@param types table|nil
+function Animal:SetTypes(types)
+    if types ~= nil then
+        ConcatArrays(self.types, types)
+    end
 end
 
+
+function Animal:ChangeType(item, doer)
+    if #self.types == 1 then
+        return -1
+    elseif math.random() < 0.75 then
+        return -2
+    end
+    -- 拷贝原始数组，移除当前类型，再随机选取一个
+    local types = deepcopy(self.types)
+    RemoveByValue(types, self.type)
+    local newtype = PickSome(1, types)
+    self.type = newtype
+    return 1
+end
 
 ---comment 获取动物类型
 ---@return number 类型

@@ -112,7 +112,10 @@
         "JoinArrays",
         "ZXIsMedal",
         "PlayFootstep",
-        "IfNode"
+        "IfNode",
+        "ConcatArrays",
+        "RemoveByValue",
+        "PickSome"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

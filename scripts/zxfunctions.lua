@@ -110,3 +110,24 @@ function ZxGetRandomItem(loot)
 
 	return target, cnt
 end
+
+
+
+---comment 监听网络数据同步至客户端
+---@param inst table 实体
+function ZXNetInfo(inst)
+    inst._zxname = net_string(inst.GUID, "_zxname", "zx_itemsapi_itemdirty")
+    inst._zxinfo = net_string(inst.GUID, "_zxinfo", "zx_itemsapi_itemdirty")
+
+    inst:ListenForEvent("zx_itemsapi_itemdirty", function(_)
+        local newname = inst._zxname:value()
+        if newname then
+            inst.displaynamefn = function(_)
+                return newname
+            end
+        end
+
+        local info = inst._zxinfo:value()
+        inst.zxinfostr = info or nil
+    end)
+end
