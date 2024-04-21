@@ -115,7 +115,9 @@
         "IfNode",
         "ConcatArrays",
         "RemoveByValue",
-        "PickSome"
+        "PickSome",
+        "ZXTAGS",
+        "CHARACTER_INGREDIENT"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",

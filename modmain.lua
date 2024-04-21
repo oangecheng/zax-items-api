@@ -6,7 +6,6 @@ require("zxfunctions")
 
 -- 仓库保鲜
 TUNING.ZX_GRANARY_FRESHRATE = GetModConfigData("zx_granary_freshrate")
-TUNING.ZX_GRANARY_DIFFICULT = GetModConfigData("zx_granary_difficult")
 -- 一些其他物品
 TUNING.ZX_MEATRACK = GetModConfigData("zx_meatrack")
 TUNING.ZX_BEEBOX = GetModConfigData("zx_beebox")
@@ -21,14 +20,6 @@ ZXTUNING.FARM_ENABLE     = GetModConfigData("zxfarmenable")
 ZXTUNING.FARM_AREA       = GetModConfigData("zxfarmarea")
 ZXTUNING.FARM_MAX_LV     = GetModConfigData("zxfarmmaxlv")
 ZXTUNING.FRAM_DROP_RATIO = GetModConfigData("zxfarmdroprate")
-
-
-ZXTUNING.ZXPERD_SIZE    = GetModConfigData("zxperd_size") or 0.4
-ZXTUNING.ZXPIGMAN_SIZE  = GetModConfigData("zxpigman_size") or 0.4
-ZXTUNING.ZXBEEFALO_SIZE = GetModConfigData("zxbeefalo_size") or 0.4
-ZXTUNING.ZXGOAT_SIZE    = GetModConfigData("zxgoat_size") or 0.4
-ZXTUNING.ZXKOALEFANT_SIZE = GetModConfigData("zxkoalefant_size") or 0.4
-ZXTUNING.ZXCAT_SIZE = GetModConfigData("zxcat_size") or 1
 
 
 modimport("utils/farmstr.lua")

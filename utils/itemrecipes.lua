@@ -151,7 +151,7 @@ addSkinRecipe(
 
 --- 鸡蛋篮子
 addSkinRecipe(
-    "zxhoneyjar",
+    "zxeggbasket",
     { rope = 2, twigs = 10 },
     TECH.SCIENCE_TWO,
     "zxeggbasket1",

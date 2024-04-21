@@ -86,3 +86,6 @@ STRINGS.RECIPE_DESC.ZXFARMFOOD_NORMAL = isch and "用来投喂饥饿的小动物
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXFARMFOOD_NORMAL = isch and "满满的都是营养!" or "It's full of nutrients!"
 
 
+STRINGS.NAMES.ZXPOTION_TRANS = isch and "变异魔药" or "Magic Potion"
+STRINGS.RECIPE_DESC.ZXPOTION_TRANS = isch and "能够让小动物们产生未知的变化!" or "It can make unknown changes in small animals!"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ZXPOTION_TRANS = isch and "效果杠杠的!" or "It works well!"

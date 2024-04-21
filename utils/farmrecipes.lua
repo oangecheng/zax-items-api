@@ -73,6 +73,19 @@ AddRecipe2(
 )
 
 
+-- 神奇药剂
+AddRecipe2(
+    "zxpotion_trans",
+    { Ingredient("nightmarefuel", 1), Ingredient("moon_tree_blossom", 1), Ingredient(CHARACTER_INGREDIENT.SANITY, 10)},
+    TECH.SCIENCE_TWO,
+    {
+        atlas = "images/inventoryimages/zxpotion.xml",
+        image = "zxpotion_trans.tex",
+    },
+    { "GARDENING", "REFINE" }
+)
+
+
 
 ---灵魂配方
 ---@param prefab string

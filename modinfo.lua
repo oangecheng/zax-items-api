@@ -76,16 +76,6 @@ configuration_options = {
 		},
 		default = 0.2,
 	},
-	{
-		name = "zx_granary_difficult",
-		label = ch and "粮仓建造难度" or "difficulty of granary",
-		options = {
-			{description = ch and "默认" or "default", data = 0},
-			{description = ch and "简单" or "esay", data = 1},
-			{description = ch and "困难" or "difficult", data = 2},
-		},
-		default = 0,
-	},
 
 
 	Title(ch and "农场设置" or "farm settings"),
@@ -133,86 +123,6 @@ configuration_options = {
 		},
 		default = 1
 	},
-
-	{
-		name = "zxperd_size",
-		label = ch and "小火鸡尺寸设置" or "farm perd size settings",
-		options = {
-			{description = ch and "默认" or "default", data = 0.4},
-			{description = ch and "小" or "small", data = 0.3},
-			{description = ch and "较大" or "big", data = 0.5},
-			{description = ch and "大" or "large", data = 0.6},
-			{description = ch and "原版" or "origin", data = 1},
-
-		},
-		default = 0.4
-	},
-	{
-		name = "zxpigman_size",
-		label = ch and "小猪人尺寸设置" or "farm pigman size settings",
-		options = {
-			{description = ch and "默认" or "default", data = 0.4},
-			{description = ch and "小" or "small", data = 0.3},
-			{description = ch and "较大" or "big", data = 0.5},
-			{description = ch and "大" or "large", data = 0.6},
-			{description = ch and "原版" or "origin", data = 1},
-		},
-		default = 0.4
-	},
-	{
-		name = "zxbeefalo_size",
-		label = ch and "小野牛尺寸设置" or "farm beefalo size settings",
-		options = {
-			{description = ch and "默认" or "default", data = 0.4},
-			{description = ch and "小"   or "small"  , data = 0.3},
-			{description = ch and "较大" or "big"    , data = 0.5},
-			{description = ch and "大"   or "large"  , data = 0.6},
-			{description = ch and "原版" or "origin" , data = 1  },
-
-		},
-		default = 0.4
-	},
-	{
-		name = "zxgoat_size",
-		label = ch and "小山羊尺寸设置" or "farm goat size settings",
-		options = {
-			{description = ch and "默认" or "default", data = 0.4},
-			{description = ch and "小" or "small", data = 0.3},
-			{description = ch and "较大" or "big", data = 0.5},
-			{description = ch and "大" or "large", data = 0.6},
-			{description = ch and "原版" or "origin", data = 1},
-
-		},
-		default = 0.4
-	},
-
-	{
-		name = "zxkoalefant_size",
-		label = ch and "考拉象大小设置" or "farm koalefant size settings",
-		options = {
-			{description = ch and "默认" or "default", data = 0.4},
-			{description = ch and "小" or "small", data = 0.3},
-			{description = ch and "较大" or "big", data = 0.5},
-			{description = ch and "大" or "large", data = 0.6},
-			{description = ch and "原版" or "origin", data = 1},
-
-		},
-		default = 0.4
-	},
-
-	{
-		name = "zxcat_size",
-		label = ch and "浣猫大小设置" or "cat size settings",
-		options = {
-			{description = ch and "默认" or "default", data = 1},
-			{description = ch and "小" or "small", data = 0.7},
-			{description = ch and "较大" or "big", data = 1.2},
-			{description = ch and "大" or "large", data = 1.5},
-
-		},
-		default = 1
-	},
-
 
 
 	Title(ch and "永亮灯设置" or "Perpetual light settings"),

@@ -124,7 +124,7 @@ local beefalodata = {
         if t == TYPES.FUR then
             items.meat.w = 0
         elseif t == TYPES.MEAT then
-            items.pigskin.w = 0
+            items.beefalowool.w = 0
         end
         local it, cnt = ZxGetRandomItem(items)
         -- 25%概率额外获得一个便便

@@ -94,7 +94,7 @@ function Animal:ChangeType(item, doer)
     -- 拷贝原始数组，移除当前类型，再随机选取一个
     local types = deepcopy(self.types)
     RemoveByValue(types, self.type)
-    local newtype = PickSome(1, types)
+    local newtype = types[math.random(#types)]
     self.type = newtype
     return 1
 end
