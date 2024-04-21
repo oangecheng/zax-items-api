@@ -1,0 +1,20 @@
+<Atlas>
+	<Texture filename="zxsoul.tex" />
+    <Elements>
+        <Element name="zxbeefalo_soul.tex" u1="0" u2="0.015625" v1="0.984375" v2="1" />
+        <Element name="zxcat_soul.tex" u1="0.015625" u2="0.03125" v1="0.984375" v2="1" />
+        <Element name="zxgoat_soul.tex" u1="0.03125" u2="0.046875" v1="0.984375" v2="1" />
+        <Element name="zxhound_fire_soul.tex" u1="0.046875" u2="0.0625" v1="0.984375" v2="1" />
+        <Element name="zxhound_ice_soul.tex" u1="0.0625" u2="0.078125" v1="0.984375" v2="1" />
+        <Element name="zxhound_soul.tex" u1="0.078125" u2="0.09375" v1="0.984375" v2="1" />
+        <Element name="zxkoalefant_s_soul.tex" u1="0.09375" u2="0.109375" v1="0.984375" v2="1" />
+        <Element name="zxkoalefant_w_soul.tex" u1="0.109375" u2="0.125" v1="0.984375" v2="1" />
+        <Element name="zxperd_soul.tex" u1="0.125" u2="0.140625" v1="0.984375" v2="1" />
+        <Element name="zxpigman_soul.tex" u1="0.140625" u2="0.15625" v1="0.984375" v2="1" />
+        <Element name="zxspider_dropper_soul.tex" u1="0.15625" u2="0.171875" v1="0.984375" v2="1" />
+        <Element name="zxspider_healer_soul.tex" u1="0.171875" u2="0.1875" v1="0.984375" v2="1" />
+        <Element name="zxspider_soul.tex" u1="0.1875" u2="0.203125" v1="0.984375" v2="1" />
+        <Element name="zxspider_warrior_soul.tex" u1="0.203125" u2="0.21875" v1="0.984375" v2="1" />
+        <Element name="zxtallbird_soul.tex" u1="0.21875" u2="0.234375" v1="0.984375" v2="1" />
+    </Elements>
+</Atlas>

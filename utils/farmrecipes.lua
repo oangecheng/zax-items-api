@@ -93,14 +93,33 @@ AddRecipe2(
 ---@param moditems table|nil
 local function addSoulRecipe(prefab, items, moditems)
     items["reviver"] = 1
+    items["purplegem"] = 1
     AddRecipe2(
         prefab,
         getIngredients(items, moditems),
         TECH.SCIENCE_TWO,
         {
-            atlas = "images/inventoryimages/"..prefab..".xml",
+            atlas = "images/inventoryimages/zxsoul.xml",
             image = prefab..".tex"
         },
         { "REFINE" }
     )
 end
+
+
+addSoulRecipe("zxperd_soul", { bird_egg = 1 })
+addSoulRecipe("zxpigman_soul", { pigskin = 1 })
+addSoulRecipe("zxbeefalo_soul", { horn = 1 })
+addSoulRecipe("zxgoat_soul", { goatmilk = 1 })
+addSoulRecipe("zxcat_soul", { coontail = 2 })
+addSoulRecipe("zxkoalefant_w_soul", { trunk_winter = 1})
+addSoulRecipe("zxkoalefant_s_soul", { trunk_summer = 1})
+addSoulRecipe("zxtallbird_soul", { tallbirdegg = 1 })
+addSoulRecipe("zxspider_soul", { spidereggsack = 1 })
+addSoulRecipe("zxspider_warrior_soul", { spidereggsack = 1 })
+addSoulRecipe("zxspider_healer_soul", { spidereggsack = 1 })
+addSoulRecipe("zxspider_dropper_soul", { spidereggsack = 1 })
+addSoulRecipe("zxhound_soul", { houndstooth = 5 })
+addSoulRecipe("zxhound_fire_soul", { houndstooth = 5 })
+addSoulRecipe("zxhound_ice_soul", { houndstooth = 5 })
+

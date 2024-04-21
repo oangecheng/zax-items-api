@@ -45,7 +45,10 @@ Assets = {
 
     Asset("ANIM" , "anim/zxstone.zip"),
     Asset("ATLAS", "images/inventoryimages/zxstone.xml"),
-    Asset("IMAGE", "images/inventoryimages/zxstone.tex")
+    Asset("IMAGE", "images/inventoryimages/zxstone.tex"),
+
+    Asset("ATLAS", "images/inventoryimages/zxsoul.xml"),
+    Asset("IMAGE", "images/inventoryimages/zxsoul.tex"),
 }
 
 

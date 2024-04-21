@@ -120,10 +120,6 @@ local function dropFarmItems(inst, data)
         return
     end
 
-    local soul = fdrop.animal.."_soul"
-    local _rsoul = SOUL_R + extraratio
-    dropByRatio(soul, _rsoul, inst, victim)
-
     for _, v in ipairs(otherbuildings) do
         if not builder:KnowsRecipe(v) then
             dropByRatio(v.."_blueprint", _rfarm, inst, victim)

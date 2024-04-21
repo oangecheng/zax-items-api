@@ -8,115 +8,6 @@ local prefabs = {
 
 
 
-
-local function MakeFarmFood(name)
-
-    local function ondropped(inst)
-        inst.AnimState:PlayAnimation("idle", false)
-    end
-
-    local foodassets = {
-        Asset("ANIM", "anim/zxfarmfood.zip"),
-        Asset("ATLAS", "images/inventoryimages/"..name..".xml"),
-        Asset("IMAGE", "images/inventoryimages/"..name..".tex")
-    }
-    
-
-    local function fn()
-
-        local inst = CreateEntity()
-        
-        inst.entity:AddTransform()
-        inst.entity:AddAnimState()
-        inst.entity:AddMiniMapEntity()
-        inst.entity:AddNetwork()
-
-        MakeInventoryPhysics(inst)
-
-    
-        inst.AnimState:SetBank("zxfarmfood")
-        inst.AnimState:SetBuild("zxfarmfood")
-        inst.AnimState:PlayAnimation("idle", false)
-        inst.AnimState:OverrideSymbol("zxfarmfood_normal", "zxfarmfood", name)
-
-        inst.entity:SetPristine()
-        inst:AddTag("ZXFARM_FOOD")   
-
-        if not TheWorld.ismastersim then
-            return inst
-        end
-        inst:AddComponent("inspectable")
-        inst:AddComponent("inventoryitem")
-        inst.components.inventoryitem:SetOnDroppedFn(ondropped)
-        inst.components.inventoryitem.imagename = name
-        inst.components.inventoryitem.atlasname = "images/inventoryimages/"..name..".xml"
-
-        inst:AddComponent("stackable")
-        inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
-        return inst
-    end
-    return Prefab(name, fn, foodassets, prefabs)
-end
-
-
-
-
-
-local function MakeAnimalSoul(name)
-
-    local function ondropped(inst)
-        inst.AnimState:PlayAnimation("idle", false)
-    end
-
-    local soulassets = {
-        Asset("ANIM", "anim/zxanimalsoul.zip"),
-        Asset("ATLAS", "images/inventoryimages/"..name..".xml"),
-        Asset("IMAGE", "images/inventoryimages/"..name..".tex")
-    }
-    
-
-    local function fn()
-
-        local inst = CreateEntity()
-        
-        inst.entity:AddTransform()
-        inst.entity:AddAnimState()
-        inst.entity:AddMiniMapEntity()
-        inst.entity:AddNetwork()
-
-        MakeInventoryPhysics(inst)
-
-    
-        inst.AnimState:SetBank("zxanimalsoul")
-        inst.AnimState:SetBuild("zxanimalsoul")
-        inst.AnimState:SetScale(1.5,1.5,1.5)
-        inst.AnimState:PlayAnimation("idle", false)
-        if name ~= "zxperd_soul" then
-            inst.AnimState:OverrideSymbol("swap_soul", "zxanimalsoul", name)
-        end
-
-        inst.entity:SetPristine()
-        inst:AddTag("ZXFARM_SOUL")   
-
-        if not TheWorld.ismastersim then
-            return inst
-        end
-        inst:AddComponent("inspectable")
-        inst:AddComponent("inventoryitem")
-        inst.components.inventoryitem:SetOnDroppedFn(ondropped)
-        inst.components.inventoryitem.imagename = name
-        inst.components.inventoryitem.atlasname = "images/inventoryimages/"..name..".xml"
-
-        inst:AddComponent("stackable")
-        inst.components.stackable.maxsize = TUNING.STACK_SIZE_MEDITEM
-        return inst
-    end
-    return Prefab(name, fn, soulassets, prefabs)
-end
-
-
-
-
 local function net(inst)
     inst.zxchangename = net_string(inst.GUID, "zxchangename", "zx_itemsapi_itemdirty")
     inst.zxextrainfo  = net_string(inst.GUID, "zxextrainfo" , "zx_itemsapi_itemdirty") 
@@ -380,14 +271,6 @@ end
 
 
 local items = {}
--- for k, v in pairs(ITMES.souls) do
---     table.insert(items, MakeAnimalSoul(k))
--- end
-
--- for k, v in pairs(ITMES.foods.custom) do
---     table.insert(items, MakeFarmFood(k))
--- end
-
 
 return
 MakeHatchMachine("zxfarmhatch"), MakePlacer("zxfarmhatch_placer", "zxfarmhatch", "zxfarmhatch", "working"),

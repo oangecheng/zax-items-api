@@ -9,8 +9,8 @@ for k, _ in pairs(ANIMAL_SOULS) do
     ITEMS[k] = {
         assets = {
             Asset("ANIM", "anim/zxanimalsoul.zip"),
-            Asset("ATLAS", DIR .. k .. ".xml"),
-            Asset("IMAGE", DIR .. k .. ".tex")
+            Asset("ATLAS", DIR .. "zxsoul.xml"),
+            Asset("IMAGE", DIR .. "zxsoul.tex")
         },
 
         bank   = "zxanimalsoul",
@@ -19,7 +19,7 @@ for k, _ in pairs(ANIMAL_SOULS) do
         loop   = false,
         tags   = { "ZXFARM_SOUL" },
         image  = k,
-        atlas  = k,
+        atlas  = "zxsoul",
 
         --- 替换素材
         initfn = function(inst, prefab)
