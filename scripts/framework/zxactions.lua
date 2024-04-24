@@ -86,12 +86,17 @@ registerAction(
     { state = "give" },
     nil,
     function (act)
-        
+        act.doer:ShowPopUp(POPUPS.ZXTOOL, true, act.invobject)
     end,
 
-    { cmp = "inventoryitem", type = "USEITEM" },
-    function ()
-        
+    { cmp = "inventoryitem", type = "INVENTORY" },
+    function (inst, doer, target, acts, right)
+        return doer and target:HasTag(ZXTAGS.SHOP)
     end
-
 )
+
+
+
+for key, value in pairs(t) do
+    
+end
