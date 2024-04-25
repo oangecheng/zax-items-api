@@ -28,7 +28,6 @@ STRINGS.ZXANIML_TYPES_STRS = {
 local ACTION_STRS = ch and {
     
     ZXSHOPOPEN   = { namestr = "选择模式" },
-    ZXACCELERATE = { namestr = "加速" },
 
     ZXHATCH = { 
         namestr = "孵化",  
@@ -74,7 +73,6 @@ local ACTION_STRS = ch and {
 } or {
 
     ZXSHOPOPEN   = { namestr = "Select Mode" },
-    ZXACCELERATE = { namestr = "Accelerate" },
 
     ZXHATCH = {
         namestr = "Hatch",

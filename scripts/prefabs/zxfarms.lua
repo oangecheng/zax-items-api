@@ -126,7 +126,6 @@ local function MakeFarm(name, data)
         inst:AddTag("structure")
         inst:AddTag("ZXFARM_HOST")
         inst:AddTag("ZXUPGRADE")
-        inst:AddTag("ZXACCELERATE")
 
         MakeObstaclePhysics(inst, 1)
         RemovePhysicsColliders(inst)

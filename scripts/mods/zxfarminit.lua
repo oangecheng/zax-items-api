@@ -145,12 +145,6 @@ for _, v in ipairs(ITEMS.upgrade.all) do
 	end)
 end
 
-for k, v in pairs(ITEMS.accelerate) do
-	AddPrefabPostInit(k, function (inst)
-		inst:AddTag("ZXACCELERATE_MATERIAL")
-	end)
-end
-
 
 for k, _ in pairs(ITEMS.foods.all) do
 	AddPrefabPostInit(k, function (inst)

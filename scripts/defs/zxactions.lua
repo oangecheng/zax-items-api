@@ -110,24 +110,6 @@ local actions = {
     },
 
     {
-        id = "ZXACCELERATE",
-        str = STRINGS.ZXACTION.ZXACCELERATE,
-        state = "domediumaction",
-        fn = function (act)
-            local acc = act.target and act.target.components.zxaccelerate
-            -- 先按固定时间加速
-            if acc and act.invobject then
-                local time = ITEMS.accelerate[act.invobject.prefab] or 0
-                acc:Start(time)
-                ZXSay(act.doer, STRINGS.ZX_ACCELERATE_SUCCESS)
-                removeItem(act.invobject)
-                return true
-            end
-            return false
-        end
-    },
-
-    {
         id    = "ZXTRANSFORM",
         str   = STRINGS.ZXACTION.ZXTRANSFORM,
         state = "domediumaction",
@@ -141,6 +123,7 @@ local actions = {
                     return false, "UNLUCKY"
                 elseif ret == 1 then
                     ZXSay(act.doer, STRINGS.ZXTRANSFORM_SUCCESS)
+                    removeItem(act.invobject)
                     return true
                 else
                     return false
@@ -175,13 +158,6 @@ local componentactions = {
                 action = "ZXUPGRADE",
                 testfn = function (inst, doer, target, acts, right)
                     return target:HasTag("ZXUPGRADE") and inst:HasTag("ZXUPGRADE_MATERIAL")
-                end
-            },
-
-            {
-                action = "ZXACCELERATE",
-                testfn = function (inst, doer, target, acts, right)
-                    return target:HasTag("ZXACCELERATE") and inst:HasTag("ZXACCELERATE_MATERIAL")
                 end
             },
 
