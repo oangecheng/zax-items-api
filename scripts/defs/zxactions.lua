@@ -96,7 +96,7 @@ local actions = {
             if up and act.invobject then
                 if up:IsMax() then
                     return false, "MAX"
-                elseif not up:IsValidMaterial(act.invobject) then
+                elseif not up:UpgradeTest(act.doer, act.invobject) then
                     return false, "INVALID_ITEM"
                 else
                     up:Upgrade()

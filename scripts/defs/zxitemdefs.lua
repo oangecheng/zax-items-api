@@ -2,25 +2,16 @@
 
 ---- 升级材料定义
 local upgrade_farm = {
-    "marble",
-    "purplegem",
-    "greengem",
+    "zxstone"
 }
 local upgrade_bowl = {
-    "thulecite"
+    "zxstone"
 }
 
 local upgrade = {
     farm = upgrade_farm,
     bowl = upgrade_bowl,
     all  = JoinArrays(upgrade_farm, upgrade_bowl)
-}
-
-
--- 基准半小时
-local basetime = TUNING.TOTAL_DAY_TIME * 3.75
-local accelerate = {
-	zxstone = basetime,
 }
 
 
@@ -55,12 +46,8 @@ local foods = {
 }
 
 
-
-
-
 return {
     upgrade = upgrade,
-    accelerate = accelerate,
     souls   = souls,
     foods   = foods,
 }

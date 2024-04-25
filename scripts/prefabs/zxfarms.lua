@@ -162,7 +162,7 @@ local function MakeFarm(name, data)
         ---升级组件
         inst:AddComponent("zxupgradable")
         inst.components.zxupgradable:SetMax(data.upgrade.maxlv)
-        inst.components.zxupgradable:SetMaterialTestFn(data.upgrade.testfn)
+        inst.components.zxupgradable:SetTestFn(data.upgrade.testfn)
         inst.components.zxupgradable:SetOnUpgradeFn(onUpgradeFn)
 
         inst:AddComponent("zxbindable")

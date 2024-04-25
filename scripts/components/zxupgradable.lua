@@ -8,8 +8,8 @@ end
 
 local Upgradable = Class(function (self, inst)
     self.inst = inst
+    self.max = math.maxinteger
     self.lv = 0
-    self.max = 1
 end,
 nil,
 {
@@ -30,9 +30,10 @@ function Upgradable:IsMax()
 end
 
 ---升级
+---@param doer table 玩家
 ---@param item table 材料
-function Upgradable:IsValidMaterial(item)
-    return self.testfn and self.testfn(self.inst, item, self.lv)
+function Upgradable:UpgradeTest(doer, item)
+    return self.testfn and self.testfn(doer, item, self.lv)
 end
 
 
@@ -49,14 +50,14 @@ end
 
 
 ---设置可用于升级的材料列表
----@param fn function 测试函数
-function Upgradable:SetMaterialTestFn(fn)
+---@param fn function (#doer, #item, #self.lv) 测试函数
+function Upgradable:SetTestFn(fn)
     self.testfn = fn
 end
 
 
----设置可用于升级的材料列表
----@param fn function 测试函数
+---升级回调
+---@param fn function 函数
 function Upgradable:SetOnUpgradeFn(fn)
     self.onupgradefn = fn
 end

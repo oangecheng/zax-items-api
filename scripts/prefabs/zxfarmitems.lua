@@ -250,7 +250,7 @@ local function MakeFarmBowl(name)
 
         inst:AddComponent("zxupgradable")
         inst.components.zxupgradable:SetMax(ZXTUNING.FARM_MAX_LV)
-        inst.components.zxupgradable:SetMaterialTestFn(function (_, item, lv)
+        inst.components.zxupgradable:SetTestFn(function (_, item, lv)
             return table.contains(ITMES.upgrade.bowl, item.prefab)
         end)
         inst.components.zxupgradable:SetOnUpgradeFn(function (_, lv)

@@ -7,7 +7,7 @@ local MATERIALS = (require "defs/zxitemdefs").upgrade.farm
 local function obtainFarmUpgrade()
     return {
         maxlv = ZXTUNING.FARM_MAX_LV,
-        testfn = function(inst, item, lv)
+        testfn = function(doer, item, lv)
             local index = math.min(lv + 1, #MATERIALS)
             local needitem = MATERIALS[index]
             return needitem == item.prefab
