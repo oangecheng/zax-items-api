@@ -1,83 +1,52 @@
 
-local FARM_R = ZXTUNING.DEBUG and 0.8 or 0.2 * ZXTUNING.FRAM_DROP_RATIO
-local SOUL_R = ZXTUNING.DEBUG and 0.8 or 0.1 * ZXTUNING.FRAM_DROP_RATIO
-
-local drop = {
-    perd             = { animal = "zxperd", },
-    beefalo          = { animal = "zxbeefalo" },
-    catcoon          = { animal = "zxcat" },
+local VICTIM_DROP = {
+    perd             = { farm = "zxperdfarm", },
+    beefalo          = { farm = "zxbeefalofarm" },
+    catcoon          = { farm = "zxcatfarm" },
 
     pigman           = {
-        animal  = "zxpigman",
+        farm  = "zxpigmanfarm",
         ratiofn = function(inst)
-            return inst:HasTag("werepig") and 0.25 or 0
+            return inst:HasTag("werepig") and 0.25 or 0.1
         end
     },
 
     lightninggoat    = {
-        animal  = "zxgoat",
+        farm  = "zxgoatfarm",
         ratiofn = function(inst)
-            return inst:HasTag("charged") and 0.25 or 0
+            return inst:HasTag("charged") and 0.25 or 0.1
         end
     },
 
     koalefant_winter = {
-        animal  = "zxkoalefant_w",
         farm    = "zxkoalefantfarm",
         ratiofn = function(inst)
-            return 0.2
+            return 0.25
         end
     },
 
-    koalefant_summer = {
-        animal  = "zxkoalefant_s",
-        farm    = "zxkoalefantfarm",
-        ratiofn = function(inst)
-            return 0.2
+    spiderqueen = {
+        farm = "zxspiderfarm",
+        ratiofn = function (_)
+            return 0.5
         end
     },
 
-    spider = {
-        animal = "zxspider",
-        farm   = "zxspiderfarm",
-        ratiofn = function(inst)
-            return -0.08
+    warg = {
+        farm = "zxhoundfarm",
+        ratiofn = function ()
+            return 0.5
         end
-    },
-    spider_warrior = {
-        animal = "zxspider_warrior",
-        farm   = "zxspiderfarm",
-    },
-    spider_dropper = {
-        animal = "zxspider_dropper",
-        farm   = "zxspiderfarm",
-    },
-    spider_healer = {
-        animal = "zxspider_healer",
-        farm   = "zxspiderfarm",
-    },
-
-    hound = {
-        animal = "zxhound",
-        farm   = "zxhoundfarm",
-    },
-    firehound = {
-        animal = "zxhound_fire",
-        farm   = "zxhoundfarm",
-    },
-    icehound = {
-        animal = "zxhound_ice",
-        farm   = "zxhoundfarm",
     },
 
     tallbird = {
-        animal = "zxtallbird",
-        farm   = "zxtallbirdfarm",
-        ratiofn = function(inst)
-            return 0.1
+        farm = "zxtallbirdfarm",
+        ratiofn = function ()
+            return 0.25
         end
     }
 }
+
 
 
 local otherbuildings = {
@@ -93,9 +62,8 @@ local otherbuildings = {
 ---@param victim table 怪物
 local function dropByRatio(prefab, chance, inst, victim)
     if prefab and math.random() <= chance then
-        local ent = SpawnPrefab(prefab)
-        if ent then
-            LaunchAt(ent, victim, inst, 1, 1, nil, 60)
+        if inst.components.zxusergiver then
+            inst.components.zxusergiver:Give(prefab)
         end
     end
 end
@@ -105,15 +73,15 @@ end
 local function dropFarmItems(inst, data)
 
     local victim = data.victim
-    local fdrop = victim and drop[victim.prefab]
+    local fdrop = victim and VICTIM_DROP[victim.prefab]
     local builder = inst.components.builder
     if not (fdrop and builder) then
         return
     end
 
-    local farm = fdrop.farm or fdrop.animal.."farm"
-    local extraratio = fdrop.ratiofn and fdrop.ratiofn(victim) or 0
-    local _rfarm = FARM_R + extraratio
+    local farm   = fdrop.farm
+    local _rfarm = (fdrop.ratiofn and fdrop.ratiofn(victim) or 0.1) * ZXTUNING.FRAM_DROP_RATIO
+    _rfarm       = ZXTUNING.DEBUG and 1 or math.min(0.5, _rfarm)
 
     if not builder:KnowsRecipe(farm) then
         dropByRatio(farm.."_blueprint", _rfarm, inst, victim)
@@ -129,10 +97,11 @@ end
 
 
 
-AddPlayerPostInit(function (inst)
-   if GLOBAL.TheWorld.ismastersim then
-       inst:ListenForEvent("killed", dropFarmItems)
-   end
+AddPlayerPostInit(function(inst)
+    if GLOBAL.TheWorld.ismastersim then
+        inst:ListenForEvent("killed", dropFarmItems)
+        inst:AddComponent("zxusergiver")
+    end
 end)
 
 
