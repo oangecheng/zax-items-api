@@ -13,12 +13,12 @@
         <animation id="0" name="idle" length="2000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="stonenew" folder="0" file="6" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.2" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
-                    <object_ref id="1" name="deco2" folder="0" file="5" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.2" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
-                    <object_ref id="2" name="deco" folder="0" file="4" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.2" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
-                    <object_ref id="3" name="body2" folder="0" file="3" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.2" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="4" key="0" z_index="3"/>
-                    <object_ref id="4" name="body1" folder="0" file="1" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.2" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="3" key="0" z_index="4"/>
-                    <object_ref id="5" name="body3" folder="0" file="2" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.2" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="5" key="0" z_index="5"/>
+                    <object_ref id="0" name="stonenew" folder="0" file="6" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.2" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" name="deco2" folder="0" file="5" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.2" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" name="deco" folder="0" file="4" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.2" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" name="body2" folder="0" file="3" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.2" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="4" key="0" z_index="3"/>
+                    <object_ref id="4" name="body1" folder="0" file="1" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.2" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="3" key="0" z_index="4"/>
+                    <object_ref id="5" name="body3" folder="0" file="2" abs_x="0" abs_y="0" abs_pivot_x="0.5" abs_pivot_y="0.2" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="5" key="0" z_index="5"/>
                 </key>
                 <key id="1" time="1005">
                     <object_ref id="0" timeline="0" key="1" z_index="0"/>
@@ -31,7 +31,7 @@
             </mainline>
             <timeline id="0" name="stonenew">
                 <key id="0">
-                    <object folder="0" file="6"/>
+                    <object folder="0" file="6" angle="0"/>
                 </key>
                 <key id="1" time="1005" spin="-1">
                     <object folder="0" file="6" angle="5"/>
@@ -39,7 +39,7 @@
             </timeline>
             <timeline id="1" name="deco2">
                 <key id="0">
-                    <object folder="0" file="5"/>
+                    <object folder="0" file="5" angle="0"/>
                 </key>
                 <key id="1" time="1005" spin="-1">
                     <object folder="0" file="5" angle="5"/>
@@ -47,7 +47,7 @@
             </timeline>
             <timeline id="2" name="deco">
                 <key id="0">
-                    <object folder="0" file="4"/>
+                    <object folder="0" file="4" angle="0"/>
                 </key>
                 <key id="1" time="1005" spin="-1">
                     <object folder="0" file="4" angle="5"/>
@@ -55,20 +55,20 @@
             </timeline>
             <timeline id="3" name="body1">
                 <key id="0" spin="0">
-                    <object folder="0" file="1"/>
+                    <object folder="0" file="1" angle="0"/>
                 </key>
             </timeline>
             <timeline id="4" name="body2">
                 <key id="0" spin="0">
-                    <object folder="0" file="3"/>
+                    <object folder="0" file="3" angle="0"/>
                 </key>
             </timeline>
             <timeline id="5" name="body3">
                 <key id="0" spin="0">
-                    <object folder="0" file="2"/>
+                    <object folder="0" file="2" angle="0"/>
                 </key>
                 <key id="1" time="1005" spin="0">
-                    <object folder="0" file="2" scale_x="0.9" scale_y="0.9"/>
+                    <object folder="0" file="2" angle="0" scale_x="0.9" scale_y="0.9"/>
                 </key>
             </timeline>
         </animation>
