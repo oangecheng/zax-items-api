@@ -33,7 +33,7 @@ local Animal = Class(function (self, inst)
             if data.e == 1  then
                 timer:PauseTimer(TIMER_PRODUCE)
             elseif data.e == 2 then
-                timer:ResumeTimer(TIMER_PRODUCE)
+                self:StartProduce()
             end
         end
     end)

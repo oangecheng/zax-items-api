@@ -34,11 +34,15 @@ local brain = require "brains/zxanimalbrain"
 
 
 
-local function onTypeChange(inst, type)
+local function updateName(inst)
     local name = STRINGS.NAMES[string.upper(inst.prefab)]
-    local pref = STRINGS.ZXANIML_TYPES_STRS[type] or ""
+    local type = inst.components.zxanimal:GetType()
+    local pref = STRINGS.ZXANIML_TYPES_STRS[type] or "%s"
     if inst._zxname then
         local newname = string.format(pref, name)
+        if inst.components.zxupgradable then
+            newname = newname.."[lv"..inst.components.zxupgradable:GetLv().."]"
+        end
         inst._zxname:set(newname)
     end
 end
@@ -102,7 +106,7 @@ local function MakeAnimal(animal, data)
         inst:AddComponent("zxanimal")
         inst.components.zxanimal:SetTypes(data.types)
         inst.components.zxanimal:SetData(data.foodnum, data.producetime)
-        inst.components.zxanimal:SetOnTypeFn(onTypeChange)
+        inst.components.zxanimal:SetOnTypeFn(updateName)
         inst.components.zxanimal:SetOnProducedFn(function ()
             local host = ZxGetFarmHost(inst)
             local productions = data.producefn(inst, host)
@@ -123,6 +127,7 @@ local function MakeAnimal(animal, data)
         inst.components.zxupgradable:SetOnUpgradeFn(function (_, lv)
             local time = data.producetime * (1 - lv * 0.05)
             inst.components.zxanimal:SetProduceTime(time)
+            updateName(inst)
         end)
 
         --- 绑定组件
@@ -144,10 +149,8 @@ local function MakeAnimal(animal, data)
                 inst.components.locomotor:GoToPoint(p, nil, false)
             end
         end)
-    
         -- inst:SetBrain(brain)
         inst:SetStateGraph(data.sg or "ZxAnimalSG")
-
         return inst
     end
     

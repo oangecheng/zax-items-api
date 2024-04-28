@@ -73,7 +73,6 @@ PrefabFiles = {
     "zxboxs",
     "zxlights",
     "zxskintools",
-    "zxstone",
     "zxitems",
 }
 
