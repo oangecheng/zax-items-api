@@ -157,7 +157,7 @@ local componentactions = {
             {
                 action = "ZXUPGRADE",
                 testfn = function (inst, doer, target, acts, right)
-                    return target:HasTag("ZXUPGRADE") and inst:HasTag("ZXUPGRADE_MATERIAL")
+                    return target:HasTag(ZXTAGS.UP_TARGET) and inst:HasTag(ZXTAGS.UP_ITEM)
                 end
             },
 

@@ -1,16 +1,12 @@
 -- 基准时间，以一只鸡一天消耗一个饲料，生产一个鸡腿为基准值
 -- 每个动物的生产的物品是独立的
 local HATCH_BASE_TIME = ZXTUNING.DEBUG and 5 or TUNING.TOTAL_DAY_TIME * 0.5
-local MATERIALS = (require "defs/zxitemdefs").upgrade.farm
-
 
 local function obtainFarmUpgrade()
     return {
         maxlv = ZXTUNING.FARM_MAX_LV,
         testfn = function(doer, item, lv)
-            local index = math.min(lv + 1, #MATERIALS)
-            local needitem = MATERIALS[index]
-            return needitem == item.prefab
+            return item.prefab == "zxstone"
         end
     }
 end

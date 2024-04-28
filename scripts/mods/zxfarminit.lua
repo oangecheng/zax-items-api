@@ -141,7 +141,7 @@ local ITEMS = require "defs/zxitemdefs"
 
 for _, v in ipairs(ITEMS.upgrade.all) do
 	AddPrefabPostInit(v, function (inst)
-		inst:AddTag("ZXUPGRADE_MATERIAL")
+		inst:AddTag(ZXTAGS.UP_ITEM)
 	end)
 end
 

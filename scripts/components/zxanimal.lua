@@ -112,6 +112,11 @@ function Animal:SetData(foodnum, producetime)
 end
 
 
+function Animal:SetProduceTime(time)
+    self.producetime = time
+end
+
+
 function Animal:GetData()
     return self.foodnum, self.producetime
 end

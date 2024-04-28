@@ -60,6 +60,7 @@ local function MakeAnimal(animal, data)
 
         inst:AddTag("character")
         inst:AddTag(ZXTAGS.ANIMAL)
+        inst:AddTag(ZXTAGS.UP_TARGET)
     
         MakeCharacterPhysics(inst, 1, 0)
         RemovePhysicsColliders(inst)
@@ -92,12 +93,12 @@ local function MakeAnimal(animal, data)
         inst:AddComponent("lootdropper")
         inst.components.lootdropper:SetLoot(data.loots)
         inst:AddComponent("inspectable")
-        inst:AddComponent("eater")
-        inst:AddComponent("talker")
 
-        
+        --- 大小变化
         inst:AddComponent("zxresizeable")
         inst.components.zxresizeable:SetScale(anim.size)
+
+        --- 动物生产配置
         inst:AddComponent("zxanimal")
         inst.components.zxanimal:SetTypes(data.types)
         inst.components.zxanimal:SetData(data.foodnum, data.producetime)
@@ -113,6 +114,18 @@ local function MakeAnimal(animal, data)
             end
         end)
 
+        --- 升级
+        inst:AddComponent("zxupgradable")
+        inst.components.zxupgradable:SetMax(10)
+        inst.components.zxupgradable:SetTestFn(function (doer, item, lv)
+            return inst.prefab and inst.prefab.."_soul" == item.prefab
+        end)
+        inst.components.zxupgradable:SetOnUpgradeFn(function (_, lv)
+            local time = data.producetime * (1 - lv * 0.05)
+            inst.components.zxanimal:SetProduceTime(time)
+        end)
+
+        --- 绑定组件
         inst:AddComponent("zxbindable")
         inst.components.zxbindable:SetOnBindFunc(function ()
             inst.components.zxanimal:StartProduce()

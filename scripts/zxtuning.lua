@@ -50,8 +50,10 @@ ZXFARM = {
 
 
 ZXTAGS = {
-    ANIMAL  = "ZXFARM_ANIMAL",
-    TRANS   = "ZXTRANSFORM",
-    HATCHER = "ZXHATCHER",
-    SHOP    = "zxshop" 
+    ANIMAL    = "ZXFARM_ANIMAL",
+    TRANS     = "ZXTRANSFORM",
+    HATCHER   = "ZXHATCHER",
+    SHOP      = "zxshop",
+    UP_TARGET = "ZXUPGRADE",
+    UP_ITEM   = "ZXUPGRADE_MATERIAL"
 }

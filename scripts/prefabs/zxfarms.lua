@@ -98,7 +98,6 @@ end
 local function MakeFarm(name, data)
 
     --- 升级，每级提升 50% 上限
-    --- 同时提升可加速的时间上限
     local function onUpgradeFn(inst, lv)
         local farm = inst.components.zxfarm
         local delta = lv > 0 and math.max(1, data.animalcnt * lv * 0.5) or 0
@@ -165,8 +164,8 @@ local function MakeFarm(name, data)
         inst.components.zxupgradable:SetTestFn(data.upgrade.testfn)
         inst.components.zxupgradable:SetOnUpgradeFn(onUpgradeFn)
 
-        inst:AddComponent("zxbindable")
 
+        inst:AddComponent("zxbindable")
         inst:ListenForEvent(ZXEVENTS.FARM_HATCH_FINISHED, function (_, d)
             local animal = d.soul and ITMES.souls[d.soul]
             inst.components.zxfarm:AddAnimal(animal)
@@ -180,8 +179,6 @@ local function MakeFarm(name, data)
         inst:DoTaskInTime(0.1, function ()
             updateFarmDesc(inst)
         end)
-
-        inst:AddComponent("zxbindable")
         
         return inst
     end
