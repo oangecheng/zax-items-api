@@ -131,3 +131,48 @@ function ZXNetInfo(inst)
         inst.zxinfostr = info or nil
     end)
 end
+
+
+--获取堆叠数量
+local function GetStackSize(item)
+    return item.components.stackable ~= nil and item.components.stackable:StackSize() or 1
+end
+
+
+---comment 尝试消耗
+---@param user table 玩家
+---@param items table key=prefab, value=数量
+---@return boolean 是否成功
+function ZXItemConsume(user, items)
+    local inventory = user.components.inventory
+    if not inventory then
+        return false
+    end
+
+    local cache = {}
+    for k, v in pairs(items) do
+        local temp = inventory:FindItems(function (i) return i.prefab == k end)
+        local cnt = 0
+        for _, v1 in ipairs(temp) do
+            cnt = cnt + GetStackSize(v1)
+        end
+        if v <= cnt then
+            cache[k] = v
+        end
+    end
+
+    --- 每一项都满足，才能认为材料足够
+    local cousume = true
+    for k, _ in pairs(items) do
+        local valid = cache[k]
+        cousume = cousume and valid and valid > 0
+    end
+    if cousume then
+        for k, v in pairs(items) do
+            inventory:ConsumeByName(k, v)
+        end
+        return true
+    end
+
+    return false
+end

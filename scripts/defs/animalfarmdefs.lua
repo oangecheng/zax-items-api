@@ -6,7 +6,10 @@ local function obtainFarmUpgrade()
     return {
         maxlv = ZXTUNING.FARM_MAX_LV,
         testfn = function(doer, item, lv)
-            return item.prefab == "zxstone"
+            if item.prefab == "zxstone" then
+                local needs = { livinglog = lv + 1, cutstone = lv + 1 }
+                return ZXItemConsume(doer, needs)
+            end
         end
     }
 end

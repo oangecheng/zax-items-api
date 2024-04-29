@@ -122,7 +122,9 @@ local function MakeAnimal(animal, data)
         inst:AddComponent("zxupgradable")
         inst.components.zxupgradable:SetMax(10)
         inst.components.zxupgradable:SetTestFn(function (doer, item, lv)
-            return inst.prefab and inst.prefab.."_soul" == item.prefab
+            if inst.prefab and inst.prefab.."_soul" == item.prefab then
+                return ZXItemConsume(doer, { zxstone = lv + 1 })
+            end 
         end)
         inst.components.zxupgradable:SetOnUpgradeFn(function (_, lv)
             local time = data.producetime * (1 - lv * 0.05)
