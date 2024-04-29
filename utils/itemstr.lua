@@ -142,8 +142,8 @@ registerStr(
 
 registerStr(
     "ZXSTONE",
-    { "建家石", "", "一种神奇的建筑材料~" },
-    { "Home building stone", "", "a magical building materials ~" }
+    { "海琉璃", "一种神奇的建筑材料~", "来自大海的馈赠" },
+    { "Seaglass", "a magical building materials ~", "A Gift from the Sea" }
 )
 
 registerStr(

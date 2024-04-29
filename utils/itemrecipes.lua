@@ -215,10 +215,10 @@ addSkinRecipe(
 )
 
 
---- 建家石
+--- 海琉璃
 addNormalRecipe(
     "zxstone",
-    { goldnugget = 2, rocks = 1 },
+    { goldnugget = 2, rocks = 1, bluegem = 1 },
     TECH.SCIENCE_TWO,
     nil,
     { "REFINE" }

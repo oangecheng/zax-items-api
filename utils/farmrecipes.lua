@@ -13,7 +13,7 @@ end
 
 local function getFarmIngredients(extras)
     return JoinArrays(
-        { Ingredient("livinglog", 5), zxStone(10) },
+        { Ingredient("livinglog", 5), zxStone(3) },
         extras
     )
 end
