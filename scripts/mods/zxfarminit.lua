@@ -49,11 +49,6 @@ local VICTIM_DROP = {
 
 
 
-local otherbuildings = {
-    "zxfarmhatch",
-    "zxfarmbowl" ,
-}
-
 
 ---概率掉落
 ---@param prefab string|nil
@@ -81,17 +76,10 @@ local function dropFarmItems(inst, data)
 
     local farm   = fdrop.farm
     local _rfarm = (fdrop.ratiofn and fdrop.ratiofn(victim) or 0.1) * ZXTUNING.FRAM_DROP_RATIO
-    _rfarm       = ZXTUNING.DEBUG and 1 or math.min(0.5, _rfarm)
+    _rfarm = ZXTUNING.DEBUG and 1 or math.min(0.5, _rfarm)
 
     if not builder:KnowsRecipe(farm) then
         dropByRatio(farm.."_blueprint", _rfarm, inst, victim)
-        return
-    end
-
-    for _, v in ipairs(otherbuildings) do
-        if not builder:KnowsRecipe(v) then
-            dropByRatio(v.."_blueprint", _rfarm, inst, victim)
-        end
     end
 end
 

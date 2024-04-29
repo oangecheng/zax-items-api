@@ -281,7 +281,7 @@ end
 ------------------- 蜂蜜蜜罐 ------------------
 local honeyslotbg = { image = "zx_slotbg_honey.tex", atlas = "images/zx_slotbg_honey.xml" }
 params.zxhoneyjar = createBox5x5Param("zx5x5_honey", honeyslotbg)
-local huneydefs = { "medal_withered_royaljelly", "royal_jelly", "honey" }
+local huneydefs = { "medal_withered_royaljelly", "royal_jelly", "honey", "cherry_honey" }
 function params.zxhoneyjar.itemtestfn(container, item, slot)
 	---@diagnostic disable-next-line: undefined-field
 	return table.contains(huneydefs, item.prefab)
@@ -307,7 +307,7 @@ params.zxashcan.widget.buttoninfo = {
 
 ------------------- 蛋篮子 ------------------
 params.zxeggbasket = createBox5x5Param()
-local eggbasketdef = { "bird_egg", "rottenegg", "tallbirdegg" }
+local eggbasketdef = { "bird_egg", "rottenegg", "tallbirdegg", "doydoyegg" }
 function params.zxeggbasket.itemtestfn(container, item, slot)
 	---@diagnostic disable-next-line: undefined-field
 	return table.contains(eggbasketdef, item.prefab)

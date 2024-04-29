@@ -30,7 +30,7 @@ local function addStructureRecipe(isfarm, structure, extras)
     AddRecipe2(
         structure, 
         ingredients, 
-        TECH.LOST, 
+        isfarm and TECH.LOST or TECH.SCIENCE_TWO, 
         placedata, 
         tabs
     )
@@ -57,8 +57,8 @@ addFarmRecipe("zxhoundfarm"    , { Ingredient("houndstooth", 10), Ingredient("re
 addFarmRecipe("zxspiderfarm"   , { Ingredient("spidereggsack", 1) })
 addFarmRecipe("zxtallbirdfarm" , { Ingredient("tallbirdegg", 1) })
 --- 农场建筑
-addItemRecipe("zxfarmbowl"     , { Ingredient("cutstone", 2), zxStone(3) })
-addItemRecipe("zxfarmhatch"    , { Ingredient("gears", 1), Ingredient("twigs", 5), zxStone(5) })
+addItemRecipe("zxfarmbowl"     , { Ingredient("cutstone", 2), zxStone(1) })
+addItemRecipe("zxfarmhatch"    , { Ingredient("gears", 1), Ingredient("twigs", 5), zxStone(1) })
 
 -- 通用型饲料
 AddRecipe2(
@@ -120,6 +120,6 @@ addSoulRecipe("zxspider_warrior_soul", { spidereggsack = 1 })
 addSoulRecipe("zxspider_healer_soul", { spidereggsack = 1 })
 addSoulRecipe("zxspider_dropper_soul", { spidereggsack = 1 })
 addSoulRecipe("zxhound_soul", { houndstooth = 5 })
-addSoulRecipe("zxhound_fire_soul", { houndstooth = 5 })
-addSoulRecipe("zxhound_ice_soul", { houndstooth = 5 })
+addSoulRecipe("zxhound_fire_soul", { houndstooth = 5, redgem = 1 })
+addSoulRecipe("zxhound_ice_soul", { houndstooth = 5, bluegem = 1 })
 
