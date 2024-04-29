@@ -116,7 +116,7 @@ local beefalodata = {
     producefn = function(inst)
         local items = {
             meat    = { w = 4, num = 1 },
-            beefalowool = { w = 6, num = 1 },
+            beefalowool = { w = 6, num = 2 },
         }
         --- 肉牛产肉，毛牛产毛
         --- 普通牛各60%概率产毛，40%概率产肉
@@ -154,30 +154,34 @@ local goatdata = {
     speed = 1,
     loots = { "meat", "zxgoat_soul" },
 
-    types = { TYPES.MILK, TYPES.MEAT },
+    types = { TYPES.HORN, TYPES.MEAT },
     foodnum = 3,
     producetime = BASE_TIME * 3,
     producefn = function (inst)
         local items = {
             meat = { w = 7, num = 1 },
-            lightninggoathorn = { w = 2, num = 1 },
-            goatmilk = { w = 0, num = 1 }
+            lightninggoathorn = { w = 3, num = 1 },
         }
-
-        if TheWorld.state.israining and TheWorld.state.isspring then
-            items.goatmilk.w = 1
-        end
 
         local t = getAnimalType(inst)
         if t == TYPES.MEAT then
            items.lightninggoathorn.w = 0
-        elseif t == TYPES.MILK then
+        elseif t == TYPES.HORN then
             items.meat.w = 0
         end
 
         local it, cnt = ZxGetRandomItem(items)
+
+        local milkcnt = 0
+        if TheWorld.state.israining and TheWorld.state.isspring then
+            if math.random() < 0.1 then
+                milkcnt = 1
+            end
+        end
+
         return {
-            [it] = cnt
+            [it] = cnt,
+            goatmilk = milkcnt
         }
     end
 }

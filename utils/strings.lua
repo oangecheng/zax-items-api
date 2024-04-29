@@ -20,7 +20,7 @@ STRINGS.ZXANIML_TYPES_STRS = {
     [TYPES.MEAT] = ch and "产肉的%s" or "%s (Meat)",
     [TYPES.EGG]  = ch and "产蛋的%s" or "%s (Egg)",
     [TYPES.FUR]  = ch and "产皮毛的%s" or "%s (Fur)",
-    [TYPES.MILK] = ch and "产奶的%s" or "%s (Milk)"
+    [TYPES.HORN] = ch and "产角的%s" or "%s (Horn)"
 }
 
 

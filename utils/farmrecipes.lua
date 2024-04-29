@@ -93,7 +93,7 @@ AddRecipe2(
 ---@param moditems table|nil
 local function addSoulRecipe(prefab, items, moditems)
     items["reviver"] = 1
-    items["purplegem"] = 1
+    items["zxstone"] = 1
     AddRecipe2(
         prefab,
         getIngredients(items, moditems),

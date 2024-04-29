@@ -44,7 +44,7 @@ ZXFARM = {
         MEAT   = 1,
         FUR    = 2,
         EGG    = 3,
-        MILK   = 4,
+        HORN   = 4,
     }
 }
 
