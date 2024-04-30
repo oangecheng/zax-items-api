@@ -17,7 +17,7 @@ for k, _ in pairs(ANIMAL_SOULS) do
         build  = "zxanimalsoul",
         scale  = 1.5,
         loop   = false,
-        tags   = { "ZXFARM_SOUL", ZXTAGS.UP_ITEM },
+        tags   = { "ZXFARM_SOUL" },
         image  = k,
         atlas  = "zxsoul",
 
