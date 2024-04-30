@@ -61,6 +61,7 @@ local skinnamesdef = {
     ["1602"] = isCh and "秋日草垛" or "autumn haystacks",
     ["1700"] = isCh and "多彩蘑菇房" or "mushroom house",
     ["1710"] = isCh and "玩具熊" or "toy bear",
+    ["1711"] = isCh and "圣诞树" or "christmas tree",
 
     ["1800"] = isCh and "多彩蔷薇" or "rosebush well",
     ["1801"] = isCh and "宫廷风"   or "court style",
@@ -227,6 +228,7 @@ registerSkin("zx_hay_cart", "1602", "zxhaycart3",  7, ZX_SKINTYPE.SPONSOR)
 -- 蘑菇房子
 registerSkin("zxmushroomhouse", "1700", "zxmushroomhouse1",  8, ZX_SKINTYPE.FREE, true)
 registerSkin("zxboxtoy", "1710", "zxboxtoy",  8, ZX_SKINTYPE.FREE, true)
+registerSkin("zxboxtoy", "1711", "zxboxtoy1",  8, ZX_SKINTYPE.SPONSOR)
 
 -- 水井
 registerSkin("zx_well", "1800", "zx_well", 9, ZX_SKINTYPE.FREE, true)

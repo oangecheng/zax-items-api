@@ -343,7 +343,7 @@ function params.zxboxgem.itemtestfn(container, item, slot)
 end
 
 params.zxboxtoy = createBox5x10Param()
-local zxboxtoy = { }
+local zxboxtoy = { "cotl_trinket" }
 function params.zxboxtoy.itemtestfn(container, item, slot)
 	---@diagnostic disable-next-line: undefined-field
 	return item:HasTag("cattoy") or table.contains(zxboxtoy, item.prefab)
