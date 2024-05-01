@@ -93,10 +93,10 @@ AddRecipe2(
 ---@param moditems table|nil
 local function addSoulRecipe(prefab, items, moditems)
     items["reviver"] = 1
-    items["zxstone"] = 1
+    local ingredients = { zxStone(1) }
     AddRecipe2(
         prefab,
-        getIngredients(items, moditems),
+        getIngredients(items, ingredients),
         TECH.SCIENCE_TWO,
         {
             atlas = "images/inventoryimages/zxsoul.xml",
