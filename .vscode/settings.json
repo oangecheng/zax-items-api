@@ -117,7 +117,9 @@
         "RemoveByValue",
         "PickSome",
         "ZXTAGS",
-        "CHARACTER_INGREDIENT"
+        "CHARACTER_INGREDIENT",
+        "MakeSmallObstaclePhysics",
+        "MakeMediumPropagator"
     ],
     "Lua.diagnostics.disable": [
         "deprecated",
