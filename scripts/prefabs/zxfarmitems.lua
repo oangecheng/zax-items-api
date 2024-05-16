@@ -175,6 +175,15 @@ local function MakeFarmBowl(name)
         end
         local str = tostring(foodleft).."/"..tostring(foodmax)
         local info = "\n"..string.format(STRINGS.ZXFARMBOWL_FOODLEFT, str)
+        
+        if feeder.foods then
+            local foodstr = ""
+            for k, _ in pairs(feeder.foods) do
+                foodstr = foodstr .. "["..STRINGS.NAMES[string.upper(k)].."]"
+            end
+           info = info.."\n".."投喂"..foodstr
+        end
+
         updateDisplayInfo(inst, info)
     end
     
@@ -242,6 +251,7 @@ local function MakeFarmBowl(name)
             end
             inst.components.zxfeeder:SetFoods(list)
             changeName(inst, STRINGS.ZX_HASBIND)
+            updateBowlState(inst)
         end)
 
         inst.components.zxbindable:SetOnUnBindFunc(function()

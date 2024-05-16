@@ -23,7 +23,10 @@ local perdfarm = {
     hatchtime = HATCH_BASE_TIME,
     animalcnt = 10,
     foods = {
-        "zxfarmfood_normal"
+        "zxfarmfood_normal",
+        "berries",
+        "berries_juicy",
+        "corn",
     },
 }
 
@@ -34,7 +37,8 @@ local pigfarm = {
     hatchtime = HATCH_BASE_TIME * 1.5,
     animalcnt = 8,
     foods = {
-        "zxfarmfood_normal"
+        "zxfarmfood_normal",
+        "spoiled_food"
     },
 }
 
@@ -45,7 +49,9 @@ local beefalofarm = {
     hatchtime = HATCH_BASE_TIME * 2,
     animalcnt = 6,
     foods = {
-        "zxfarmfood_normal"
+        "zxfarmfood_normal",
+        "cutgrass",
+        "twigs"
     },
 }
 
@@ -58,7 +64,9 @@ local goatfarm = {
     hatchtime = HATCH_BASE_TIME * 3,
     animalcnt = 6,
     foods = {
-        "zxfarmfood_normal"
+        "zxfarmfood_normal",
+        "cactus_meat",
+        "cactus_flower"
     },
 }
 
@@ -69,7 +77,9 @@ local koalefantfarm = {
     hatchtime = HATCH_BASE_TIME * 3,
     animalcnt = 4,
     foods = {
-        "zxfarmfood_normal"
+        "zxfarmfood_normal",
+        "cave_banana",
+        "watermelon"
     },
 }
 
@@ -81,6 +91,7 @@ local catfarm = {
     hatchtime = HATCH_BASE_TIME,
     animalcnt = 8,
     foods = {
+        "zxfarmfood_normal",
         "fishmeat",
         "fishmeat_small",
         "eel",
@@ -95,7 +106,9 @@ local tallbirdfarm = {
     hatchtime = HATCH_BASE_TIME * 2,
     animalcnt = 6,
     foods = {
-        "pumpkin"
+        "zxfarmfood_normal",
+        "pumpkin",
+        "tomato"
     },
 }
 
@@ -111,6 +124,7 @@ local spiderfarm = {
     hatchtime = HATCH_BASE_TIME,
     animalcnt = 8,
     foods = {
+        "zxfarmfood_normal",
         "meat",
         "monstermeat",
         "smallmeat"
@@ -125,6 +139,7 @@ local houndfarm = {
     hatchtime = HATCH_BASE_TIME * 1.5,
     animalcnt = 8,
     foods = {
+        "zxfarmfood_normal",
         "meat",
         "monstermeat",
         "smallmeat"

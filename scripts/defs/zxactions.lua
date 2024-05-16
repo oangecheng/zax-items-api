@@ -120,12 +120,14 @@ local actions = {
                 if ret == -1 then
                     return false, "INVALID"
                 elseif ret == -2 then
+                    removeItem(act.invobject)
                     return false, "UNLUCKY"
                 elseif ret == 1 then
                     ZXSay(act.doer, STRINGS.ZXTRANSFORM_SUCCESS)
                     removeItem(act.invobject)
                     return true
                 else
+                    removeItem(act.invobject)
                     return false
                 end
             end

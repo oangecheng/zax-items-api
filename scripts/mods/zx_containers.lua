@@ -269,7 +269,7 @@ end
 
 ------------------- 柴房 ------------------
 params.zxlogstore = createBox5x10Param()
-local logsdef = { "livinglog", "twigs", "log", "boards", "driftwood_log", "pinecone", "charcoal", "twiggy_nut", "palmcone_seed"}
+local logsdef = { "livinglog", "twigs", "log", "boards", "driftwood_log", "pinecone", "charcoal", "twiggy_nut", "palmcone_seed", "shyerrylog" }
 function params.zxlogstore.itemtestfn(container, item, slot)
 	---@diagnostic disable-next-line: undefined-field
 	if table.contains(logsdef, item.prefab) then return true end
@@ -327,7 +327,7 @@ end
 
 ------------------- 石头仓库 ------------------
 params.zxboxstone = createBox5x10Param()
-local zxboxstone = { "moonrocknugget", "townportaltalisman" }
+local zxboxstone = { "moonrocknugget", "townportaltalisman", "dreadstone", "moonglass" }
 function params.zxboxstone.itemtestfn(container, item, slot)
 	--- 鼹鼠可以偷的都认为是矿石
 	return item:HasTag("molebait") or table.contains(zxboxstone, item.prefab)
@@ -343,10 +343,10 @@ function params.zxboxgem.itemtestfn(container, item, slot)
 end
 
 params.zxboxtoy = createBox5x10Param()
-local zxboxtoy = { "cotl_trinket" }
+local zxboxtoy = {}
 function params.zxboxtoy.itemtestfn(container, item, slot)
 	---@diagnostic disable-next-line: undefined-field
-	return item:HasTag("cattoy") or table.contains(zxboxtoy, item.prefab)
+	return item:HasTag("cattoy") or table.contains(zxboxtoy, item.prefab) or string.find(item.prefab, "trinket")
 end
 
 

@@ -1,3 +1,4 @@
+local diff = ZXTUNING.DIFFICULTY
 
 local function zxStone(num)
     return Ingredient("zxstone", num, "images/inventoryimages/zxstone.xml")
@@ -92,7 +93,9 @@ AddRecipe2(
 ---@param items table
 ---@param moditems table|nil
 local function addSoulRecipe(prefab, items, moditems)
-    items["reviver"] = 1
+    if diff == 3 then
+        items["reviver"] = 1
+    end
     local ingredients = { zxStone(1) }
     AddRecipe2(
         prefab,

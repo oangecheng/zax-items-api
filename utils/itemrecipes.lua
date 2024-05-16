@@ -3,6 +3,7 @@ local ITEM_DIR = "images/inventoryimages/"
 
 local BOX_FILTER = { "STRUCTURES", "CONTAINERS" }
 local STRUCTURE_EXTRA  = { structure = true }
+local diff = ZXTUNING.DIFFICULTY
 
 
 local function getIngredients(ingredients)
@@ -73,10 +74,15 @@ addSkinRecipe(
 )
 
 
+local igranary = {
+    { gears = 1, boards = 3, cutstone = 3 },
+    { gears = 2, boards = 5, cutstone = 5, bearger_fur = 1 },
+    { gears = 3, boards = 8, cutstone = 8, bearger_fur = 2 },
+}
 --- 菜仓
 addSkinRecipe(
     "zx_granary_veggie",
-    {  bearger_fur = 1,  gears = 2, boards =  5, cutstone = 5 },
+    igranary[diff],
     TECH.SCIENCE_TWO,
     nil,
     BOX_FILTER,
@@ -87,7 +93,7 @@ addSkinRecipe(
 --- 肉仓
 addSkinRecipe(
     "zx_granary_meat",
-    {  bearger_fur = 1,  gears = 2, boards =  5, cutstone = 5 },
+    igranary[diff],
     TECH.SCIENCE_TWO,
     "zxgranarymeat",
     BOX_FILTER,
@@ -215,10 +221,16 @@ addSkinRecipe(
 )
 
 
+
+local istone = {
+    {  rocks = 1, goldnugget = 1 },
+    {  rocks = 1, goldnugget = 2 },
+    {  rocks = 1, goldnugget = 2, bluegem = 1 }
+}
 --- 海琉璃
 addNormalRecipe(
     "zxstone",
-    { goldnugget = 2, rocks = 1, bluegem = 1 },
+    istone[diff],
     TECH.SCIENCE_TWO,
     nil,
     { "REFINE" }

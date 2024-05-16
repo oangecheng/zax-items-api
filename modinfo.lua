@@ -63,6 +63,17 @@ configuration_options = {
 		default = "ch",
 	},
 
+	{
+		name = "zxdiffculty",
+		label = ch and "难度选择" or "select difficulty",
+		options = {
+			{description = ch and "简单" or "easy", data = 1},
+			{description = ch and "默认" or "default", data = 2},
+			{description = ch and "困难" or "hard", data = 3},
+		},
+		default = 2,
+	},
+
 	Title(ch and "箱子设置" or "container settings"),
 	{
 		name = "zx_granary_freshrate",
