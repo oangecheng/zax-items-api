@@ -1,24 +1,43 @@
 
+local function timefn(stage)
+    return 20
+end
+
+
 local bush_stages = {
     {
         name = "bud",
-        time = function () return TUNING.TOTAL_DAY_TIME end,
+        time = timefn,
         fn = function (inst, stage)
-            inst.AnimState:PlayAnimation("idle_stage"..stage)
+            inst.AnimState:PlayAnimation("stage_"..stage, true)
         end
     },
     {
         name = "grow",
-        time = function () return TUNING.TOTAL_DAY_TIME end,
+        time = timefn,
         fn = function (inst, stage)
-            inst.AnimState:PlayAnimation("idle_stage"..stage)
+            inst.AnimState:PlayAnimation("stage_"..stage, true)
         end
     },
     {
         name = "ripe",
-        time = function () return TUNING.TOTAL_DAY_TIME end,
+        time = timefn,
         fn = function (inst, stage)
-            inst.AnimState:PlayAnimation("idle_stage"..stage)
+            inst.AnimState:PlayAnimation("stage_"..stage, true)
+        end
+    },
+    {
+        name = "ripe_2",
+        time = timefn,
+        fn = function (inst, stage)
+            inst.AnimState:PlayAnimation("stage_"..stage, true)
+        end
+    },
+    {
+        name = "ripe_3",
+        time = timefn,
+        fn = function (inst, stage)
+            inst.AnimState:PlayAnimation("stage_"..stage, true)
         end
     }
 }
@@ -50,7 +69,7 @@ local function MakePlantBush(prefab, data)
         inst.entity:SetPristine()
         MakeSmallObstaclePhysics(inst, .1)
 
-        ZxInitItemForClient(inst, prefab, "stage_1")
+        ZxInitItemForClient(inst, prefab, "stage_1", true)
         if not TheWorld.ismastersim then
             return inst
         end
@@ -67,18 +86,21 @@ local function MakePlantBush(prefab, data)
         inst:AddComponent("growable")
         inst.components.growable.stages = bush_stages
         inst.components.growable:SetStage(1)
+        inst.components.growable:StartGrowing()
 
         -- 野火
         inst:AddComponent("witherable")
         MakeMediumBurnable(inst)
         MakeMediumPropagator(inst)
 
-
-        return Prefab(prefab, fn, assets, prefabs)
+        return inst
     end
+
+    return Prefab(prefab, fn, assets, prefabs)
 end
 
 
-return 
+return MakePlantBush("zxmorning_glory"),
+MakePlacer("zxmorning_glory_placer", "zxmorning_glory", "zxmorning_glory", "stage_1")
 
 

@@ -89,6 +89,8 @@ local skinnamesdef = {
     ["2520"] = isCh and "蘑菇巢" or "mushroom nest",
     ["2521"] = isCh and "恐怖南瓜" or "Scary Pumpkin",
     ["2530"] = isCh and "树枝鸟窝" or "twig bird's nest",
+
+    ["3000"] = isCh and "牵牛花" or "morning glory"
 }
 
 
@@ -269,6 +271,9 @@ registerSkin("zxspiderfarm", "2520", "zxspiderfarm", 19, ZX_SKINTYPE.FREE, true)
 registerSkin("zxspiderfarm", "2521", "zxspiderfarm1", 19, ZX_SKINTYPE.SPONSOR)
 --高脚鸟农场
 registerSkin("zxtallbirdfarm", "2530", "zxtallbirdfarm", 20, ZX_SKINTYPE.FREE, true)
+
+
+registerSkin("zxmorning_glory", "3000", "zxmorning_glory", 50, ZX_SKINTYPE.FREE, true)
 
 
 

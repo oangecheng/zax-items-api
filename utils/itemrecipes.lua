@@ -223,3 +223,13 @@ addNormalRecipe(
     nil,
     { "REFINE" }
 )
+
+
+addSkinRecipe(
+    "zxmorning_glory",
+    { butterfly = 1 },
+    TECH.SCIENCE_ONE,
+    nil,
+    { "REFINE" },
+    STRUCTURE_EXTRA
+)
